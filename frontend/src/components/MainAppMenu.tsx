@@ -40,12 +40,12 @@ export const MainAppMenu = ({ isMenuOpen }: IMainAppMenuProps) => {
                 <div className="inner-menu">
                     <h2>View mode</h2>
                     <ul>
-                        <li className={`${currentViewMode === 'summery' ? 'menu-li-active' : ''}`}
-                            onClick={() => { handleViewModeClick('summery') }}>
+                        <li className={`${currentViewMode === 'Summery' ? 'menu-li-active' : ''}`}
+                            onClick={() => { handleViewModeClick('Summery') }}>
                             Summery
                         </li>
-                        <li className={`${currentViewMode === 'graph' ? 'menu-li-active' : ''}`}
-                            onClick={() => { handleViewModeClick('graph') }}>
+                        <li className={`${currentViewMode === 'Graph' ? 'menu-li-active' : ''}`}
+                            onClick={() => { handleViewModeClick('Graph') }}>
                             Graph
                         </li>
                     </ul>

@@ -1,4 +1,4 @@
-.summery-block{
+.header-block{
     background-color: $main-light-color;
     height: 6rem;
     width: calc(99vw - 1rem);
@@ -7,7 +7,7 @@
     
     border-radius: 20px;
     
-    @include for-large-tablet{
+    @include for-desktop{
         width: 95%;
         margin: 1rem;
     }

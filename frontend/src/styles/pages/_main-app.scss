@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     
-    @include for-large-tablet{
+    @include for-desktop{
         flex-direction: row;
         justify-content: unset;
     }

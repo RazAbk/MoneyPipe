@@ -16,7 +16,7 @@
         @include flex-center;
     }
     
-    @include for-large-tablet{
+    @include for-desktop{
         display: none;
     }
 }

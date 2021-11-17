@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { MainAppMenu } from '../components/MainAppMenu'
 import { MobileMenu } from '../components/MobileMenu'
 import { Screen } from '../components/Screen'
-import { SummeryBlock } from '../components/SummeryBlock'
+import { HeaderBlock } from '../components/HeaderBlock'
 // import { IDataObject } from '../interfaces/dataInterfaces'
 import { getData } from '../store/actions/user.action'
 import { RootState } from '../store/store'
@@ -32,7 +32,7 @@ export const MainApp = () => {
             <MainAppMenu isMenuOpen={isMenuOpen} />
             <MobileMenu setMenuOpen={setMenuOpen} />
 
-            <SummeryBlock />
+            <HeaderBlock />
 
             <Screen isOpen={isMenuOpen} exitScreen={setMenuOpen} />
         </div>

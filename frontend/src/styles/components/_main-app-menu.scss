@@ -6,6 +6,8 @@
     
     position: fixed;
     transform: translateX(-100%);
+    left: 0;
+    top:0;
     
     transition: transform 0.3s;
     
@@ -101,12 +103,10 @@
         }
     }
     
-    @include for-large-tablet{
+    @include for-desktop{
+        min-width: 23rem;
         position: static;
         transform: translateX(0%);
     }
 
-    @include for-desktop{
-        width: 23rem;
-    }
 }

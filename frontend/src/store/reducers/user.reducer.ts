@@ -1,7 +1,7 @@
 
 const initialState: IState = {
     loggedInUser:  null,
-    currentViewMode: 'summery',
+    currentViewMode: 'Summery',
     currentLabel: null,
     data: null
 }
