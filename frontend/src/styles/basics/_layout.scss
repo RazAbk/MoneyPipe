@@ -1,0 +1,30 @@
+.main-layout {
+    max-width: 95vw;
+    margin: auto;
+
+    @include for-phone {
+        max-width: 480px;
+    }
+
+    @include for-large-phone {
+        max-width: 630px;
+    }
+
+    @include for-small-tablet {
+        max-width: 780px;
+    }
+    @include for-tablet {
+        max-width: 830px;
+    }
+
+    @include for-large-tablet {
+        max-width: 1100px;
+    }
+
+    @include for-desktop {
+        max-width: 1300px;
+    }
+    @include for-large-desktop {
+        max-width: 1750px;
+    }
+}
