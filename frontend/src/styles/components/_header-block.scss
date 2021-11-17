@@ -1,6 +1,6 @@
 .header-block{
     background-color: $main-light-color;
-    height: 6rem;
+    height: 4.5rem;
     width: calc(99vw - 1rem);
     box-sizing:border-box;
     margin: 0.25rem auto;
@@ -15,10 +15,10 @@
     .header-block-content{
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.25rem;
 
         h2{
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 600;
         }
 
@@ -37,8 +37,10 @@
     @include for-tablet{
         margin: 0.5rem auto;
         .header-block-content{
+            gap: 0rem;
+            
             h2{
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
             p{

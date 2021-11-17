@@ -27,7 +27,7 @@ export const MainAppMenu = ({ isMenuOpen }: IMainAppMenuProps) => {
         let label = currentLabel === value ? null : value
         dispatch(setCurrentLabel(label))
     }
-    console.log('currentViewMode', currentViewMode)
+    // console.log('currentViewMode', currentViewMode)
 
     return (
         <div className={`main-app-menu ${isMenuOpen ? 'open-menu' : ''}`}>

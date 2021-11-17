@@ -3,14 +3,23 @@
     .app-content{
         display: flex;
         flex-direction: column;
-        align-items: center;
         width: 100%;
+        background-color: $main-gray-color;
+        // background-color: rgb(131, 3, 3);
+        max-height: 100vh;
+
+        overflow-y: scroll;
+
+        .full-screen-content{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            min-height: 100vh;
+        }
     }
     
     @include for-desktop{
-        .app-content{
-            padding: 0.5rem 0;
-        }
         flex-direction: row;
         justify-content: unset;
     }

@@ -1,0 +1,50 @@
+.main-content-blocks{
+    min-height: 100%;
+    width: calc(99vw - 1rem);
+    box-sizing:border-box;
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.3rem;
+    overflow-x: scroll;
+    
+    @include for-tablet{
+        overflow-x: hidden;
+        margin-top: 0.5rem;
+    }
+    
+    @include for-desktop{
+        width: 98%;
+        margin: 0.4rem;
+    }
+}
+
+.expenses-block, .incomes-block{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @include for-tablet{
+        width: 100%;
+    }
+
+    padding-bottom: 0.75rem;
+}
+
+.actions-block{
+    border-radius: 10px;
+    background-color: $main-light-color;
+    min-height: 65%;
+    min-width: calc(99vw - 1rem);
+    padding: 1.5rem;
+
+    @include for-tablet{
+        min-width: unset;
+        width: 100%;
+    }
+    
+    @include for-desktop{
+        // width: 50%;
+    }
+}
+
