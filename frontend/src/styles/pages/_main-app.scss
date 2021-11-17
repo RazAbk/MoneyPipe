@@ -1,0 +1,10 @@
+.main-app{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    @include for-large-tablet{
+        flex-direction: row;
+        justify-content: unset;
+    }
+}

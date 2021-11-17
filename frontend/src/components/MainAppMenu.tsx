@@ -4,19 +4,28 @@ import { FaUserAlt } from 'react-icons/fa'
 import { MdAddCircle } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
-import { setViewMode } from '../store/actions/user.action'
+import { setCurrentViewMode, setCurrentLabel } from '../store/actions/user.action'
+import { IDataObject } from '../interfaces/dataInterfaces'
 
 interface IMainAppMenuProps {
     isMenuOpen: boolean;
 }
 
-export const MainAppMenu = ({isMenuOpen}: IMainAppMenuProps) => {
+export const MainAppMenu = ({ isMenuOpen }: IMainAppMenuProps) => {
 
-    const currentViewMode = useSelector<RootState>(state => state.userModule.currentViewMode)
+    const currentViewMode = useSelector((state: RootState) => state.userModule.currentViewMode)
+    const currentLabel = useSelector((state: RootState) => state.userModule.currentLabel)
+    const data: IDataObject = useSelector((state: RootState) => state.userModule.data)
+
     const dispatch = useDispatch()
 
     const handleViewModeClick = (value: string) => {
-        dispatch(setViewMode(value))
+        dispatch(setCurrentViewMode(value))
+    }
+
+    const handleLabelClick = (value: string) => {
+        let label = currentLabel === value ? null : value
+        dispatch(setCurrentLabel(label))
     }
     console.log('currentViewMode', currentViewMode)
 
@@ -31,29 +40,27 @@ export const MainAppMenu = ({isMenuOpen}: IMainAppMenuProps) => {
                 <div className="inner-menu">
                     <h2>View mode</h2>
                     <ul>
-                        <li className={`${currentViewMode === 'summery' ? 'menu-li-active' : ''}`} 
-                            onClick={() => {handleViewModeClick('summery')}}>
+                        <li className={`${currentViewMode === 'summery' ? 'menu-li-active' : ''}`}
+                            onClick={() => { handleViewModeClick('summery') }}>
                             Summery
                         </li>
                         <li className={`${currentViewMode === 'graph' ? 'menu-li-active' : ''}`}
-                            onClick={() => {handleViewModeClick('graph')}}>
+                            onClick={() => { handleViewModeClick('graph') }}>
                             Graph
                         </li>
                     </ul>
                 </div>
-                <hr/>
+                <hr />
                 <div className="inner-menu">
                     <h2>My labels</h2>
                     <ul>
-                        <li>
-                            Car
-                        </li>
-                        <li>
-                            Groceries
-                        </li>
-                        <li>
-                            House hold
-                        </li>
+                        {data && data.labels.map(label => {
+                            return <li onClick={() => {handleLabelClick(label.labelName)}}
+                                       className={`${currentLabel === label.labelName ? 'menu-li-active' : ''}`}
+                                       key={label.labelName}>
+                                       {label.title}
+                                    </li>
+                        })}
                     </ul>
                 </div>
             </div>

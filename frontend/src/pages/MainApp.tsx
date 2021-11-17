@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { MainAppMenu } from '../components/MainAppMenu'
 import { MobileMenu } from '../components/MobileMenu'
 import { Screen } from '../components/Screen'
+import { SummeryBlock } from '../components/SummeryBlock'
 // import { IDataObject } from '../interfaces/dataInterfaces'
 import { getData } from '../store/actions/user.action'
 import { RootState } from '../store/store'
@@ -12,9 +13,9 @@ export const MainApp = () => {
 
     const [isMenuOpen, setMenuOpen] = useState(false)
     const dispatch = useDispatch()
-    const data = useSelector<RootState>(state => state.userModule.data)
-    const currentViewMode = useSelector<RootState>(state => state.userModule.currentViewMode)
-    const currentLabel = useSelector<RootState>(state => state.userModule.currentLabel)
+    // const data = useSelector<RootState>(state => state.userModule.data)
+    // const currentViewMode = useSelector<RootState>(state => state.userModule.currentViewMode)
+    // const currentLabel = useSelector<RootState>(state => state.userModule.currentLabel)
 
     // Initialize: get the user's data
     useEffect(() => {
@@ -30,6 +31,8 @@ export const MainApp = () => {
         <div className="main-app">
             <MainAppMenu isMenuOpen={isMenuOpen} />
             <MobileMenu setMenuOpen={setMenuOpen} />
+
+            <SummeryBlock />
 
             <Screen isOpen={isMenuOpen} exitScreen={setMenuOpen} />
         </div>

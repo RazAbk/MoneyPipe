@@ -1,0 +1,14 @@
+.summery-block{
+    background-color: $main-light-color;
+    height: 6rem;
+    width: calc(99vw - 1rem);
+    box-sizing: content-box;
+    margin: 1rem auto;
+    
+    border-radius: 20px;
+    
+    @include for-large-tablet{
+        width: 95%;
+        margin: 1rem;
+    }
+}

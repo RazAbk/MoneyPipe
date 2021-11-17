@@ -1,9 +1,16 @@
 
-const initialState = {
+const initialState: IState = {
     loggedInUser:  null,
     currentViewMode: 'summery',
     currentLabel: null,
     data: null
+}
+
+interface IState  {
+    loggedInUser:  any,
+    currentViewMode: string
+    currentLabel: string | null,
+    data: any
 }
 
 interface IAction {
@@ -19,7 +26,8 @@ export const userReducer = (state = initialState, action: IAction) => {
             return state = { ...state, data: action.data }
         case 'SET_VIEWMODE':
             return state = { ...state, currentViewMode: action.viewMode }
-
+        case 'SET_LABEL':
+            return state = { ...state, currentLabel: action.label }
         default:
             return state
     }

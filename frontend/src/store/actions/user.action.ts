@@ -32,11 +32,20 @@ export const getData = (filterBy = {}) => {
     }
 }
 
-export const setViewMode = (viewMode: string) => {
+export const setCurrentViewMode = (viewMode: string) => {
     return (dispatch: AppUserDispatch) => {
         dispatch({
             type: "SET_VIEWMODE",
             viewMode
+        })
+    }
+}
+
+export const setCurrentLabel = (label: string | null) => {
+    return (dispatch: AppUserDispatch) => {
+        dispatch({
+            type: "SET_LABEL",
+            label
         })
     }
 }

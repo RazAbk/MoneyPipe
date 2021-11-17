@@ -102,7 +102,7 @@
     }
     
     @include for-large-tablet{
-        position: initial;
+        position: static;
         transform: translateX(0%);
     }
 
