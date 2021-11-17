@@ -1,0 +1,22 @@
+.mobile-menu{
+    width: 100vw;
+    height: 5rem;
+    background-color: $main-dark-color;
+    color: $txt-light-color;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+
+    z-index: 50;
+
+    .mobile-menu-icon{
+        cursor: pointer;
+        font-size: 2rem;
+        @include flex-center;
+    }
+    
+    @include for-large-tablet{
+        display: none;
+    }
+}

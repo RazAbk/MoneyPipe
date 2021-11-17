@@ -3,9 +3,16 @@ import { IoMdExit } from 'react-icons/io'
 import { FaUserAlt } from 'react-icons/fa'
 import { MdAddCircle } from 'react-icons/md'
 
-export const MainAppMenu = () => {
+interface IMainAppMenuProps {
+    isMenuOpen: boolean;
+}
+
+export const MainAppMenu = ({isMenuOpen}: IMainAppMenuProps) => {
+
+    console.log('isMenuOpen', isMenuOpen)
+
     return (
-        <div className="main-app-menu">
+        <div className={`main-app-menu ${isMenuOpen ? 'open-menu' : ''}`}>
             <h1 className="app-logo">MoneyPipe</h1>
             <div className="user-details">
                 <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" />

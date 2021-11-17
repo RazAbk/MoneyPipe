@@ -1,0 +1,19 @@
+.screen {
+    pointer-events: none;
+    cursor: pointer;
+    position: fixed;
+    background: rgba(0, 0, 0, 0);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 75;
+    transition: 0.3s;
+    
+}
+
+.screen-active {
+    background: rgba(0, 0, 0, 0.7);
+    pointer-events: visible;
+    transition: 0.3s;
+}
