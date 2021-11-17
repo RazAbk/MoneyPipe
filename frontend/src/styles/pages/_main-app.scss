@@ -1,9 +1,16 @@
 .main-app{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    .app-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
     
     @include for-desktop{
+        .app-content{
+            padding: 0.5rem 0;
+        }
         flex-direction: row;
         justify-content: unset;
     }

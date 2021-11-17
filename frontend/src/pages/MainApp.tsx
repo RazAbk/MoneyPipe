@@ -7,6 +7,7 @@ import { HeaderBlock } from '../components/HeaderBlock'
 // import { IDataObject } from '../interfaces/dataInterfaces'
 import { getData } from '../store/actions/user.action'
 import { RootState } from '../store/store'
+import { BalanceBlock } from '../components/BalanceBlock'
 
 
 export const MainApp = () => {
@@ -28,13 +29,19 @@ export const MainApp = () => {
     // console.log('currentLabel is:', currentLabel)
 
     return (
-        <div className="main-app">
-            <MainAppMenu isMenuOpen={isMenuOpen} />
-            <MobileMenu setMenuOpen={setMenuOpen} />
+        <>
+            <div className="main-app">
+                <MainAppMenu isMenuOpen={isMenuOpen} />
+                <div className="app-content">
 
-            <HeaderBlock />
+                <MobileMenu setMenuOpen={setMenuOpen} />
 
+                <HeaderBlock />
+                <BalanceBlock />
+
+                </div>
+            </div>
             <Screen isOpen={isMenuOpen} exitScreen={setMenuOpen} />
-        </div>
+        </>
     )
 }

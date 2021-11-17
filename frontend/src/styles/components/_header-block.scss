@@ -3,14 +3,14 @@
     height: 6rem;
     width: calc(99vw - 1rem);
     box-sizing:border-box;
-    margin: 1rem auto;
+    margin: 0.25rem auto;
     padding: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     
-    border-radius: 20px;
+    border-radius: 10px;
 
     .header-block-content{
         display: flex;
@@ -31,9 +31,11 @@
         cursor: pointer;
         padding-top: 0.5rem;
         font-size: 2rem;
+        font-family: RobotoCondensed-Regular;
     }
     
     @include for-tablet{
+        margin: 0.5rem auto;
         .header-block-content{
             h2{
                 font-size: 2.5rem;
@@ -46,7 +48,7 @@
     }
     
     @include for-desktop{
-        width: 95%;
-        margin: 1rem;
+        width: 98%;
+        margin: 0.4rem;
     }
 }
