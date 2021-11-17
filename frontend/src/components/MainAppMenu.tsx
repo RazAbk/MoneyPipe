@@ -9,8 +9,6 @@ interface IMainAppMenuProps {
 
 export const MainAppMenu = ({isMenuOpen}: IMainAppMenuProps) => {
 
-    console.log('isMenuOpen', isMenuOpen)
-
     return (
         <div className={`main-app-menu ${isMenuOpen ? 'open-menu' : ''}`}>
             <h1 className="app-logo">MoneyPipe</h1>
@@ -20,7 +18,7 @@ export const MainAppMenu = ({isMenuOpen}: IMainAppMenuProps) => {
             </div>
             <div className="main-menu">
                 <div className="inner-menu">
-                    <h2>Overall</h2>
+                    <h2>View mode</h2>
                     <ul>
                         <li>
                             Summery
