@@ -32,5 +32,14 @@ export const getData = (filterBy = {}) => {
     }
 }
 
+export const setViewMode = (viewMode: string) => {
+    return (dispatch: AppUserDispatch) => {
+        dispatch({
+            type: "SET_VIEWMODE",
+            viewMode
+        })
+    }
+}
+
 
 

@@ -71,6 +71,11 @@
         }
     }
 
+    .menu-li-active{
+        color: $txt-light-color !important;
+        background-color: rgba(0, 0, 0, 0.18);
+    }
+
     hr{
         width: 90%;
         margin: 0 auto;

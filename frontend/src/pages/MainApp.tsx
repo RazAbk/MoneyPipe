@@ -13,6 +13,8 @@ export const MainApp = () => {
     const [isMenuOpen, setMenuOpen] = useState(false)
     const dispatch = useDispatch()
     const data = useSelector<RootState>(state => state.userModule.data)
+    const currentViewMode = useSelector<RootState>(state => state.userModule.currentViewMode)
+    const currentLabel = useSelector<RootState>(state => state.userModule.currentLabel)
 
     // Initialize: get the user's data
     useEffect(() => {
@@ -20,14 +22,16 @@ export const MainApp = () => {
 
     }, [dispatch])
 
-    console.log('data is:', data)
+    // console.log('data is:', data)
+    // console.log('currentViewMode is:', currentViewMode)
+    // console.log('currentLabel is:', currentLabel)
 
     return (
         <div className="main-app">
-            <MainAppMenu isMenuOpen={isMenuOpen}/>
-            <MobileMenu setMenuOpen={setMenuOpen}/>
+            <MainAppMenu isMenuOpen={isMenuOpen} />
+            <MobileMenu setMenuOpen={setMenuOpen} />
 
-            <Screen isOpen={isMenuOpen} exitScreen={setMenuOpen}/>
+            <Screen isOpen={isMenuOpen} exitScreen={setMenuOpen} />
         </div>
     )
 }
