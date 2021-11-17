@@ -2,10 +2,48 @@
     background-color: $main-light-color;
     height: 6rem;
     width: calc(99vw - 1rem);
-    box-sizing: content-box;
+    box-sizing:border-box;
     margin: 1rem auto;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     
     border-radius: 20px;
+
+    .header-block-content{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        h2{
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        p{
+            font-size: 0.9rem;
+        }
+    }
+    
+    .filter-btn{
+        cursor: pointer;
+        padding-top: 0.5rem;
+        font-size: 2rem;
+    }
+    
+    @include for-tablet{
+        .header-block-content{
+            h2{
+                font-size: 2.5rem;
+            }
+            
+            p{
+                font-size: 1.15rem;
+            }
+        }
+    }
     
     @include for-desktop{
         width: 95%;
