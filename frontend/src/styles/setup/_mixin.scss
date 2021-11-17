@@ -1,5 +1,11 @@
-// Media Queries
+// Helpers
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+// Media Queries
 @mixin for-large-desktop {
     @media (min-width: $large-desktop) {
         @content;
