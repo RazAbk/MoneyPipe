@@ -1,22 +1,22 @@
 .mobile-menu{
+    position: fixed;
+    top: 0;
     width: 100%;
-    height: 5rem;
+    min-height: 3.5rem;
     background-color: $main-dark-color;
     color: $txt-light-color;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 1rem;
-    margin-bottom: 0.5rem;
-
     z-index: 50;
 
     .mobile-menu-icon{
+        @include flex-center;
         cursor: pointer;
         font-size: 2rem;
-        @include flex-center;
     }
-    
+
     @include for-desktop{
         display: none;
     }
