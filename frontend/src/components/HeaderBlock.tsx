@@ -5,8 +5,8 @@ import { BiSearchAlt } from 'react-icons/bi'
 
 export const HeaderBlock = () => {
 
-    const currentViewMode = useSelector((state: RootState) => state.userModule.currentViewMode)
-    const currentLabel = useSelector((state: RootState) => state.userModule.currentLabel)
+    const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
+    const currentLabel = useSelector((state: RootState) => state.appStateModule.currentLabel)
 
     return (
         <div className="header-block">

@@ -1,8 +1,8 @@
 import { userService } from "../../services/user.service"
-import { AppUserDispatch } from "../store"
+import { AppDispatch } from "../store"
 
 export const setUser = () => {
-    return async (dispatch: AppUserDispatch) => {
+    return async (dispatch: AppDispatch) => {
         try {
             const user = await userService.getLoggedInUser()
             dispatch({
@@ -17,7 +17,7 @@ export const setUser = () => {
 }
 
 export const getData = (filterBy = {}) => {
-    return async (dispatch: AppUserDispatch) => {
+    return async (dispatch: AppDispatch) => {
         try{
             const data = await userService.getData(filterBy)
             dispatch({
@@ -33,7 +33,7 @@ export const getData = (filterBy = {}) => {
 }
 
 export const setCurrentViewMode = (viewMode: string) => {
-    return (dispatch: AppUserDispatch) => {
+    return (dispatch: AppDispatch) => {
         dispatch({
             type: "SET_VIEWMODE",
             viewMode
@@ -42,7 +42,7 @@ export const setCurrentViewMode = (viewMode: string) => {
 }
 
 export const setCurrentLabel = (label: string | null) => {
-    return (dispatch: AppUserDispatch) => {
+    return (dispatch: AppDispatch) => {
         dispatch({
             type: "SET_LABEL",
             label

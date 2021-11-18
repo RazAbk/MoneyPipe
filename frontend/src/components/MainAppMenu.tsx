@@ -14,8 +14,8 @@ interface IMainAppMenuProps {
 
 export const MainAppMenu = ({ isMenuOpen, setMenuOpen }: IMainAppMenuProps) => {
 
-    const currentViewMode = useSelector((state: RootState) => state.userModule.currentViewMode)
-    const currentLabel = useSelector((state: RootState) => state.userModule.currentLabel)
+    const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
+    const currentLabel = useSelector((state: RootState) => state.appStateModule.currentLabel)
     const data: IDataObject = useSelector((state: RootState) => state.userModule.data)
 
     const dispatch = useDispatch()
@@ -30,7 +30,6 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen }: IMainAppMenuProps) => {
         dispatch(setCurrentLabel(label))
         setMenuOpen(false)
     }
-    // console.log('currentViewMode', currentViewMode)
 
     return (
         <div className={`main-app-menu ${isMenuOpen ? 'open-menu' : ''}`}>
