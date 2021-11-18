@@ -1,14 +1,13 @@
 .main-content-blocks{
-    min-height: 100%;
+    min-height: fit-content;
     width: calc(99vw - 1rem);
     box-sizing:border-box;
     display: flex;
-    gap: 1rem;
     margin-top: 0.3rem;
-    overflow-x: scroll;
     
     @include for-tablet{
-        overflow-x: hidden;
+        min-height: 100%;
+        gap: 1rem;
         margin-top: 0.5rem;
     }
     
@@ -19,32 +18,82 @@
 }
 
 .expenses-block, .incomes-block{
-    height: 100%;
+    border-radius: 10px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    padding-bottom: 0.75rem;
 
     @include for-tablet{
         width: 100%;
     }
+}
 
-    padding-bottom: 0.75rem;
+.summery-block, .actions-block{
+    border-radius: 10px;
+    background-color: $main-light-color;
+    min-width: calc(99vw - 1rem);
+    padding: 1.5rem;
+}
+
+.summery-block{
+    height: calc(100vh - 7.5rem - 4.5rem - 4.5rem);
+    
+    @include for-tablet{
+        height: calc(100vh - 6.25rem - 4.5rem - 4.5rem);
+    }
+    
+    @include for-desktop{
+        height: calc(100vh - 2.75rem - 4.5rem - 4.5rem);
+    }
 }
 
 .actions-block{
-    border-radius: 10px;
-    background-color: $main-light-color;
-    min-height: 65%;
-    min-width: calc(99vw - 1rem);
-    padding: 1.5rem;
+    height: fit-content;
 
     @include for-tablet{
         min-width: unset;
         width: 100%;
     }
-    
-    @include for-desktop{
-        // width: 50%;
+}
+
+.mobile-only{
+    @include for-tablet{
+        display: none;
     }
 }
 
+.above-mobile{
+    display: none;
+    @include for-tablet{
+        display: flex;
+    }
+}
+
+.swipe-btn{
+    position: fixed;
+    top: 50%;
+    font-size: 2.5rem;
+    color: $main-dark-color;
+    margin: 0.5rem;
+
+    transition: color 0.1s;
+}
+
+.pagination-dots{
+    position: fixed;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.pagination-dot{
+    color: rgba(29, 29, 29, 0.8);
+    transition: 0.2s;
+}
+
+.fade-dot{
+    color: rgba(83, 83, 83, 0.6);
+}
