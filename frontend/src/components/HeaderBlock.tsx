@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store/store'
-import { FaFilter } from 'react-icons/fa'
+import { BiSearchAlt } from 'react-icons/bi'
 
 export const HeaderBlock = () => {
 
@@ -16,7 +16,7 @@ export const HeaderBlock = () => {
                 <p>{currentViewMode} of <u>{'*Time*'}</u> incomes and expenses</p>
             </div>
             <div className="filter-btn">
-                <FaFilter/>
+                <BiSearchAlt/>
             </div>
         </div>
     )

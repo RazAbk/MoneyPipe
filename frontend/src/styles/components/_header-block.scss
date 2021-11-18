@@ -30,8 +30,13 @@
     .filter-btn{
         cursor: pointer;
         padding-top: 0.5rem;
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-family: RobotoCondensed-Regular;
+        
+        @include for-tablet{
+            font-size: 2rem;
+        }
+
     }
     
     @include for-tablet{

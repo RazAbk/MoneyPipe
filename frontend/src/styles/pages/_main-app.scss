@@ -19,6 +19,10 @@
             @include for-tablet{
                 min-height: 100vh;
             }
+
+            @include for-desktop{
+                margin: unset;
+            }
         }
     }
     
