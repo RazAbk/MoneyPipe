@@ -23,15 +23,18 @@ async function getData(filterBy = {}){
         categories: [
             {
                 title: 'Shopping',
-                icon: 'some icon'
+                icon: 'HiShoppingCart',
+                bgColor: '#E9BC66'
             },
             {
                 title: 'Car',
-                icon: 'some icon'
+                icon: 'MdDirectionsCar',
+                bgColor: '#5BB859'
             },
             {
                 title: 'Household',
-                icon: 'some icon'
+                icon: 'BsFillHouseDoorFill',
+                bgColor: '#BB9274'
             }
         ],
         actions: [

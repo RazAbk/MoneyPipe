@@ -9,9 +9,10 @@ import { IDataObject } from '../interfaces/dataInterfaces'
 
 interface IMainAppMenuProps {
     isMenuOpen: boolean;
+    setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const MainAppMenu = ({ isMenuOpen }: IMainAppMenuProps) => {
+export const MainAppMenu = ({ isMenuOpen, setMenuOpen }: IMainAppMenuProps) => {
 
     const currentViewMode = useSelector((state: RootState) => state.userModule.currentViewMode)
     const currentLabel = useSelector((state: RootState) => state.userModule.currentLabel)
@@ -21,11 +22,13 @@ export const MainAppMenu = ({ isMenuOpen }: IMainAppMenuProps) => {
 
     const handleViewModeClick = (value: string) => {
         dispatch(setCurrentViewMode(value))
+        setMenuOpen(false)
     }
 
     const handleLabelClick = (value: string) => {
         let label = currentLabel === value ? null : value
         dispatch(setCurrentLabel(label))
+        setMenuOpen(false)
     }
     // console.log('currentViewMode', currentViewMode)
 

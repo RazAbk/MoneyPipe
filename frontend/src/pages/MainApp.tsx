@@ -15,8 +15,12 @@ import { GoPrimitiveDot } from 'react-icons/go'
 
 export const MainApp = () => {
 
+    const dispatch = useDispatch()
+
     const [isMenuOpen, setMenuOpen] = useState(false)
     const [currentBlock, setCurrentBlock] = useState(0)
+
+    // Mobile slider
     const [ref] = useKeenSlider<HTMLDivElement>({
         spacing: 16,
         initial: 0,
@@ -24,7 +28,6 @@ export const MainApp = () => {
             setCurrentBlock(s.details().relativeSlide)
         }
     })
-    const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getData())
@@ -34,7 +37,7 @@ export const MainApp = () => {
     return (
         <>
             <div className="main-app">
-                <MainAppMenu isMenuOpen={isMenuOpen} />
+                <MainAppMenu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />
 
                 <div className="app-content">
                     <div className="full-screen-content">
