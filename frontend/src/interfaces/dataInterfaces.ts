@@ -24,3 +24,11 @@ export interface IDataObject {
     categories: ICategory[];
     actions: IAction[];
 }
+
+export interface IFilterBy {
+    searchTxt: string,
+    startDate: number,
+    endDate: number,
+    label: string,
+    category: string
+}

@@ -53,7 +53,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen }: IMainAppMenuProps) => {
                     </ul>
                 </div>
                 <hr />
-                <div className="inner-menu">
+                <div className="inner-menu labels-menu">
                     <h2>My labels</h2>
                     <ul>
                         {data && data.labels.map(label => {

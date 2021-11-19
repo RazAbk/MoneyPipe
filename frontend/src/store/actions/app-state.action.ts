@@ -1,4 +1,4 @@
-import { userService } from "../../services/user.service"
+import { IFilterBy } from "../../interfaces/dataInterfaces"
 import { AppDispatch } from "../store"
 
 export const setCurrentViewMode = (viewMode: string) => {
@@ -19,7 +19,7 @@ export const setCurrentLabel = (label: string | null) => {
     }
 }
 
-export const setFilterBy = (filterBy: any) => {
+export const setFilterBy = (filterBy: IFilterBy) => {
     return (dispatch: AppDispatch) => {
         dispatch({
             type: "SET_FILTERBY",

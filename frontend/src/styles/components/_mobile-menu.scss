@@ -11,6 +11,10 @@
     padding: 0 1rem;
     z-index: 50;
 
+    .app-logo{
+        font-size: 1.5rem;
+    }
+
     .mobile-menu-icon{
         @include flex-center;
         cursor: pointer;

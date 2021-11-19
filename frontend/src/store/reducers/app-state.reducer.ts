@@ -1,13 +1,22 @@
+import { IFilterBy } from "../../interfaces/dataInterfaces"
+import { utilService } from "../../services/util.service"
+
 const initialState: IState = {
     currentViewMode: 'Summery',
     currentLabel: null,
-    filterBy: null
+    filterBy: {
+        searchTxt: '',
+        startDate: utilService.getCurrMonthStartTS(),
+        endDate: Date.now(),
+        label: '',
+        category: ''
+    }
 }
 
 interface IState  {
     currentViewMode: string
     currentLabel: string | null,
-    filterBy: any
+    filterBy: IFilterBy
 }
 
 interface IAction {

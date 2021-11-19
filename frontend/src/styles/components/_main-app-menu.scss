@@ -3,6 +3,7 @@
     color: $txt-light-color;
     width: 19rem;
     height: 100vh;
+    box-sizing: border-box;
     
     position: fixed;
     transform: translateX(-100%);
@@ -23,13 +24,14 @@
     }
 
     .app-logo{
-        flex-grow: 1;
+        height: 2rem;
+        font-size: 1.5rem;
         @include flex-center;
     }
 
     .user-details{
+        height: 6rem;
         padding: 0rem 1rem;
-        flex-grow: 5;
         display: flex;
         align-items: center;
         width: 100%;
@@ -44,15 +46,21 @@
     }
 
     .main-menu{
-        flex-grow: 30;
+        flex-grow: 1;
         width: 100%;
+        
         h2{
             font-size: 1.75rem;
             padding: 0 1rem;
         }
 
         .inner-menu{
-            margin: 2rem 0;
+            margin: 1rem 0;
+            
+            @include for-desktop{
+                margin: 2rem 0;
+            }
+
             ul{
                 list-style: none;
             }
@@ -65,11 +73,20 @@
                 color: $txt-gray-color;
                 transition: background-color 0.2s;
 
-                &:hover{
-                    color: $txt-light-color;
-                    background-color: rgba(0, 0, 0, 0.18);
+                @include for-tablet{
+                    &:hover{
+                        color: $txt-light-color;
+                        background-color: rgba(0, 0, 0, 0.18);
+                    }
                 }
             }
+        }
+    }
+
+    .labels-menu{
+        ul{
+            overflow-y: scroll;
+            max-height: calc(100vh - 23rem);
         }
     }
 
@@ -85,13 +102,13 @@
     }
 
     .actions-bar{
-        flex-grow: 1;
+        height: 3rem;
         padding: 0 1rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        font-size: 2rem;
+        font-size: 1.75rem;
 
         .account-actions{
             display: flex;
@@ -106,7 +123,6 @@
     @include for-desktop{
         min-width: 23rem;
         position: static;
-        transform: translateX(0%);
+        transform: unset;
     }
-
 }
