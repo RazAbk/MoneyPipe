@@ -17,8 +17,13 @@
     }
 }
 
-.summery-blocks{
+.summery-block, .actions-block, .graph-block{
     border-radius: 10px;
+    background-color: $main-light-color;
+    padding: 1.5rem;
+}
+
+.summery-blocks{
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -30,13 +35,6 @@
     }
 
 
-}
-
-.summery-block, .actions-block{
-    border-radius: 10px;
-    background-color: $main-light-color;
-    // min-width: calc(99vw - 1rem);
-    padding: 1.5rem;
 }
 
 .summery-block{
@@ -105,9 +103,6 @@
 .graph-block{
     margin-top: 0.4rem;
     width: calc(99vw - 1rem);
-    border-radius: 10px;
-    padding: 1.5rem;
-    background-color: #fff;
     height: calc(100vh - 5.75rem - 4.5rem - 4.5rem);
     
     @include for-tablet{
