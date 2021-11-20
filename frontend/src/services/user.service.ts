@@ -69,17 +69,17 @@ async function getData(filterBy = {}){
             {
                 title: 'Motorcycle',
                 icon: 'FaMotorcycle',
-                bgColor: '#FDA810'
+                bgColor: '#4486AB'
             },
             {
                 title: 'Food',
                 icon: 'MdFastfood',
-                bgColor: '#AFA810'
+                bgColor: '#784AB2'
             },
             {
                 title: 'Hangout',
                 icon: 'IoBeer',
-                bgColor: '#FAC110'
+                bgColor: '#C28173'
             },
             {
                 title: 'Household',
@@ -89,12 +89,12 @@ async function getData(filterBy = {}){
             {
                 title: 'Salary',
                 icon: 'GiMoneyStack',
-                bgColor: '#AF1350'
+                bgColor: '#5BB859'
             },
             {
                 title: 'My business',
                 icon: 'GiMoneyStack',
-                bgColor: '#FF9050'
+                bgColor: '#73A5C2'
             },
         ],
         actions: [
