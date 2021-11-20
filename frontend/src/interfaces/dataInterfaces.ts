@@ -6,6 +6,7 @@ export interface ILabel {
 export interface ICategory {
     title: string;
     icon: string;
+    bgColor: string;
 }
 
 export interface IAction {
@@ -31,4 +32,25 @@ export interface IFilterBy {
     endDate: number,
     label: string,
     category: string
+}
+
+
+export interface IDataMap {
+    [key: string]: {
+        sum: number,
+        color: string
+    }
+}
+
+export interface IPieData {
+    labels: string[],
+    datasets: [
+        {
+            label: string,
+            data: number[],
+            backgroundColor: string[],
+            borderColor: string[],
+            borderWidth: number,
+        },
+    ],
 }

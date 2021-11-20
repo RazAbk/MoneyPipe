@@ -28,16 +28,22 @@
     @include for-tablet{
         width: 100%;
     }
+
+
 }
 
 .summery-block, .actions-block{
     border-radius: 10px;
     background-color: $main-light-color;
-    min-width: calc(99vw - 1rem);
+    // min-width: calc(99vw - 1rem);
     padding: 1.5rem;
 }
 
 .summery-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     height: calc(100vh - 6rem - 4.5rem - 4.5rem);
     
     @include for-tablet{
@@ -47,6 +53,44 @@
     @include for-desktop{
         height: calc(100vh - 2.75rem - 4.5rem - 4.5rem);
     }
+
+    .summery-block-title{
+        font-weight: 600;
+
+        @include for-desktop{
+            font-size: 2rem;
+        }
+    }
+
+    .pie{
+        flex-grow: 1;
+        max-width: 50%;
+        max-height: 50%;
+    }
+
+    .summery-block-details{
+        height: fit-content;
+        width: 100%;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+
+        .action-details{
+            display: flex;
+            justify-content: space-between;
+            .left-side{
+                display: flex;
+                align-items: center;
+
+                .action-color{
+                    border: black 1px solid;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+
+    
 }
 
 .actions-block{
@@ -97,3 +141,6 @@
 .fade-dot{
     color: rgba(83, 83, 83, 0.6);
 }
+
+
+

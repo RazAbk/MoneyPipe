@@ -13,7 +13,7 @@ export const IncomesBlock = () => {
                 Incomes:
                 <ul>
                     {data && data.actions.filter(action => action.type === 'income').map(action => {
-                        return <li>{action.description} - {action.amount}{action.currencySign}</li>
+                        return <li key={action.createdAt}>{action.description} - {action.amount}{action.currencySign}</li>
                     })}
                 </ul>
             </div>

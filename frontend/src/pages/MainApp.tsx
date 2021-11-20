@@ -50,13 +50,13 @@ export const MainApp = () => {
                                 <GoPrimitiveDot className={`${currentBlock === 1 ? 'fade-dot' : ''}`}/>
                                 <GoPrimitiveDot className={`${currentBlock === 0 ? 'fade-dot' : ''}`}/>
                             </div>
-                            <IncomesBlock />
                             <ExpensesBlock />
+                            <IncomesBlock />
                         </div>
 
                         <div className="main-content-blocks above-mobile">
-                            <IncomesBlock />
                             <ExpensesBlock />
+                            <IncomesBlock />
                         </div>
                     </div>
 

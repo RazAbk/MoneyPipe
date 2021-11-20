@@ -1,5 +1,3 @@
-import { IFilterBy } from "../interfaces/dataInterfaces"
-
 export const userService = {
     getData,
     getLoggedInUser
@@ -33,8 +31,8 @@ async function getData(filterBy = {}){
                 labelName: '#food',
             },
             {
-                title: 'Coffe',
-                labelName: '#coffe',
+                title: 'Coffee',
+                labelName: '#coffee',
             },
             {
                 title: 'Beer',
