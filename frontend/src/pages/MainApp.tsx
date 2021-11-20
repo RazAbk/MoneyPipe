@@ -6,11 +6,10 @@ import { Screen } from '../components/Screen'
 import { HeaderBlock } from '../components/HeaderBlock'
 import { getData } from '../store/actions/user.action'
 import { BalanceBlock } from '../components/BalanceBlock'
-import { IncomesBlock } from '../components/IncomesBlock'
-import { ExpensesBlock } from '../components/ExpensesBlock'
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 import { GoPrimitiveDot } from 'react-icons/go'
+import { SummeryBlock } from '../components/SummeryBlock'
 
 
 export const MainApp = () => {
@@ -50,13 +49,13 @@ export const MainApp = () => {
                                 <GoPrimitiveDot className={`${currentBlock === 1 ? 'fade-dot' : ''}`}/>
                                 <GoPrimitiveDot className={`${currentBlock === 0 ? 'fade-dot' : ''}`}/>
                             </div>
-                            <ExpensesBlock />
-                            <IncomesBlock />
+                            <SummeryBlock type="expense"/>
+                            <SummeryBlock type="income"/>
                         </div>
 
                         <div className="main-content-blocks above-mobile">
-                            <ExpensesBlock />
-                            <IncomesBlock />
+                            <SummeryBlock type="expense"/>
+                            <SummeryBlock type="income"/>
                         </div>
                     </div>
 

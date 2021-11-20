@@ -91,6 +91,11 @@ async function getData(filterBy = {}){
                 icon: 'GiMoneyStack',
                 bgColor: '#AF1350'
             },
+            {
+                title: 'My business',
+                icon: 'GiMoneyStack',
+                bgColor: '#FF9050'
+            },
         ],
         actions: [
             {
@@ -216,7 +221,7 @@ async function getData(filterBy = {}){
             {
                 type: 'income',
                 labels: ['#mybusiness'],
-                category: 'Salary',
+                category: 'My business',
                 description: 'הכנסות מהעסק שלי',
                 amount: '750',
                 currencySign: '₪',

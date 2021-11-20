@@ -20,7 +20,7 @@ const pieOptions = {
     aspectRatio: 1,
 }
 
-export const ExpensesBlock = () => {
+export const SummeryBlock = ({type}:{type: string}) => {
 
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
     const [dataMap, setDataMap] = useState<IDataMap | null>(null)
@@ -31,7 +31,7 @@ export const ExpensesBlock = () => {
             let acc: IDataMap = {}
 
             setDataMap(rawData.actions.reduce((dataMap, action) => {
-                if (action.type === 'income') return dataMap
+                if (action.type !== type) return dataMap
                 if (dataMap[action.category]) {
                     dataMap[action.category].sum += +action.amount
                 } else {
@@ -67,7 +67,7 @@ export const ExpensesBlock = () => {
     return (
         <div className="expenses-block keen-slider__slide">
             <div className="summery-block">
-                <h2 className="summery-block-title">Expenses</h2>
+                <h2 className="summery-block-title">{type === 'expense' ? 'Expenses' : 'Incomes'}</h2>
 
                 {pieData && <Pie data={pieData} options={pieOptions} className="pie" />}
 
