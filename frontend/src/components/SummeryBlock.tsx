@@ -92,7 +92,7 @@ export const SummeryBlock = ({ type }: { type: string }) => {
 
                     <div className="summery-block-details">
                         {dataMap && Object.entries(dataMap).map(action => {
-                            return <div key={action[0] + action[1].sum} className="action-details">
+                            return <div key={action[0] + action[1].sum + Math.random()} className="action-details">
                                 <div className="left-side">
                                     <BsFillSquareFill className="action-color" style={{ color: action[1].color }} />
                                     <h2>{action[0]}</h2>
@@ -112,14 +112,12 @@ export const SummeryBlock = ({ type }: { type: string }) => {
             <div className="actions-block">
                 {actionsData && Object.entries(actionsData).map(month => {
                     return (
-                        <>
+                        <React.Fragment key={`${month[0]}-${type}`}>
                             <h3 className="actions-month">{month[0]}</h3>
                             {
-                                month[1].sort((a,b) => b.createdAt - a.createdAt).map(action => {
-                                    return <ActionPreview action={action} />
-                                })
+                                month[1].sort((a, b) => b.createdAt - a.createdAt).map(action => <ActionPreview key={`action-${action.type}-${action.createdAt}`} action={action} />)
                             }
-                        </>
+                        </React.Fragment>
                     )
                 })}
             </div>

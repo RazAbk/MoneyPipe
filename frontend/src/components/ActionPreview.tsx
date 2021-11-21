@@ -9,7 +9,6 @@ interface IActionProps {
 
 
 export const ActionPreview = ({ action }: IActionProps) => {
-
     return (
         <div className="action-preview">
             <div className="left-side">
@@ -17,7 +16,7 @@ export const ActionPreview = ({ action }: IActionProps) => {
                 <div className="action-data">
                     <p className="action-date">{utilService.getRelativeDate(action.createdAt)}</p>
                     <h3>{action.description}</h3>
-                    <p className="action-labels">{action.labels.map(label => <span>{label}</span>)}</p>
+                    <p className="action-labels">{action.labels.map(label => <span key={`label-${action.createdAt}-${label}`}>{label}</span>)}</p>
                 </div>
             </div>
             <div className="right-side">
