@@ -106,7 +106,7 @@ async function getData(filterBy = {}){
                 amount: '303',
                 currencySign: '₪',
                 currency: 'nis',
-                createdAt: 1635851700
+                createdAt: 1635851700000
             },
             {
                 type: 'expense',
@@ -116,7 +116,7 @@ async function getData(filterBy = {}){
                 amount: '7',
                 currencySign: '₪',
                 currency: 'nis',
-                createdAt: 1635930900
+                createdAt: 1635930900000
             },
             {
                 type: 'expense',
@@ -126,7 +126,7 @@ async function getData(filterBy = {}){
                 amount: '24',
                 currencySign: '₪',
                 currency: 'nis',
-                createdAt: 1635938100
+                createdAt: 1635938100000
             },
             {
                 type: 'expense',
@@ -136,7 +136,7 @@ async function getData(filterBy = {}){
                 amount: '180',
                 currencySign: '₪',
                 currency: 'nis',
-                createdAt: 1635948900
+                createdAt: 1635948900000
             },
             {
                 type: 'expense',
@@ -146,7 +146,7 @@ async function getData(filterBy = {}){
                 amount: '70',
                 currencySign: '₪',
                 currency: 'nis',
-                createdAt: 1635981300
+                createdAt: 1635981300000
             },
             {
                 type: 'expense',
@@ -156,7 +156,7 @@ async function getData(filterBy = {}){
                 amount: '61',
                 currencySign: '₪',
                 currency: 'nis',
-                createdAt: 1636197300
+                createdAt: 1636197300000
             },
             {
                 type: 'expense',
@@ -166,7 +166,7 @@ async function getData(filterBy = {}){
                 amount: '54',
                 currencySign: '₪',
                 currency: 'nis',
-                createdAt: 1636215300
+                createdAt: 1636215300000
             },
             {
                 type: 'expense',
@@ -176,7 +176,7 @@ async function getData(filterBy = {}){
                 amount: '35',
                 currencySign: '₪',
                 currency: 'nis',
-                createdAt: 1636647300
+                createdAt: 1636647300000
             },
             {
                 type: 'expense',
@@ -186,7 +186,7 @@ async function getData(filterBy = {}){
                 amount: '80',
                 currencySign: '₪',
                 currency: 'nis',
-                createdAt: 1636733700
+                createdAt: 1636733700000
             },
             {
                 type: 'expense',
@@ -196,7 +196,7 @@ async function getData(filterBy = {}){
                 amount: '27',
                 currencySign: '₪',
                 currency: 'nis',
-                createdAt: 1636734000
+                createdAt: 1637406669000
             },
             {
                 type: 'expense',
@@ -206,7 +206,7 @@ async function getData(filterBy = {}){
                 amount: '85',
                 currencySign: '₪',
                 currency: 'nis',
-                createdAt: 1636759200
+                createdAt: 1637485869000
             },
             {
                 type: 'income',
@@ -216,7 +216,7 @@ async function getData(filterBy = {}){
                 amount: '12000',
                 currencySign: '₪',
                 currency: 'nis',
-                createdAt: 1636543200
+                createdAt: 1636543200000
             },
             {
                 type: 'income',
@@ -226,7 +226,7 @@ async function getData(filterBy = {}){
                 amount: '750',
                 currencySign: '₪',
                 currency: 'nis',
-                createdAt: 1636888800
+                createdAt: 1636888800000
             },
         ]
     }

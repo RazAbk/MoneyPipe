@@ -6,7 +6,7 @@ const initialState: IState = {
     currentLabel: null,
     filterBy: {
         searchTxt: '',
-        startDate: utilService.getCurrMonthStartTS(),
+        startDate: utilService.getCurrMonthStartTimeStamp(),
         endDate: Date.now(),
         label: '',
         category: ''

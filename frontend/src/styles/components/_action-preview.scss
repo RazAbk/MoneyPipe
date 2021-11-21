@@ -1,0 +1,41 @@
+.action-preview{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    height: 4rem;
+    // background-color: rgb(6, 148, 49);
+    // border-top: 1px rgb(145, 145, 145) solid;
+    border-bottom: 1px rgba(145, 145, 145, 0.2) solid;
+    padding: 0.75rem 1.5rem;
+    
+    .left-side{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .action-data{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        p{
+            font-size: 0.75rem;
+        }
+
+        .action-date{
+
+        }
+        .action-labels{
+            span{
+                margin-right: 0.4rem;
+                color: rgb(29, 93, 230);
+            }
+        }
+    }
+}
+
+.action-details-icon{
+    font-size: 1.5rem;
+}

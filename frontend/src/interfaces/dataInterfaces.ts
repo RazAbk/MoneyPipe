@@ -54,3 +54,7 @@ export interface IPieData {
         },
     ],
 }
+
+export interface IActionsData {
+    [key: string]: IAction[]
+}

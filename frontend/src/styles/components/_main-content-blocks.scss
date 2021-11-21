@@ -17,7 +17,7 @@
     }
 }
 
-.summery-block, .actions-block, .graph-block{
+.summery-block, .graph-block{
     border-radius: 10px;
     background-color: $main-light-color;
     padding: 1.5rem;
@@ -117,11 +117,19 @@
 }
 
 .actions-block{
+    border-radius: 10px;
+    background-color: $main-light-color;
     height: fit-content;
 
     @include for-tablet{
         min-width: unset;
         width: 100%;
+    }
+
+    .actions-month{
+        background-color: #CFCFCF;
+        padding: 0.5rem 1rem;
+        border-radius: 10px 10px 0 0;
     }
 }
 
