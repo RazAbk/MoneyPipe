@@ -48,10 +48,6 @@ export const MainApp = () => {
                         <BalanceBlock />
                         {currentViewMode === 'Graph' && <GraphBlock />}
                         <div ref={ref} className="main-content-blocks mobile-only keen-slider">
-                            <div className="pagination-dots">
-                                <GoPrimitiveDot className={`${currentBlock ? 'fade-dot' : ''}`} />
-                                <GoPrimitiveDot className={`${!currentBlock ? 'fade-dot' : ''}`} />
-                            </div>
                             <SummeryBlock type="expense" />
                             <SummeryBlock type="income" />
                         </div>
@@ -65,7 +61,10 @@ export const MainApp = () => {
                 </div>
             </div>
 
-
+            <div className="pagination-dots mobile-only">
+                <GoPrimitiveDot className={`${currentBlock ? 'fade-dot' : ''}`} />
+                <GoPrimitiveDot className={`${!currentBlock ? 'fade-dot' : ''}`} />
+            </div>
             <Screen isOpen={isMenuOpen} exitScreen={setMenuOpen} />
         </>
     )
