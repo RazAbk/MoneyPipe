@@ -8,11 +8,11 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-
 import { AiOutlineClose } from 'react-icons/ai'
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { IDataObject } from '../interfaces/dataInterfaces';
+import { setFilterBy as setGlobalFilterBy } from '../store/actions/app-state.action'
 import { utilService } from '../services/util.service';
-import { TypeFlags } from 'typescript';
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,32 +21,37 @@ interface IModalProps {
 export const SearchModal = ({ closeModal }: IModalProps) => {
 
     const globalFilterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
+    const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
+
     const [filterBy, setFilterBy] = useState(globalFilterBy)
+
+    const emptyFilterBy = {
+        category: "",
+        startDate: utilService.getCurrMonthStartTimeStamp(),
+        endDate: Date.now(),
+        label: "",
+        searchTxt: ""
+    }
 
     useEffect(() => {
         console.log('filterBy', filterBy)
     }, [filterBy])
 
-    const [value, setValue] = React.useState<Date | null>(new Date())
-    const [age, setAge] = React.useState('');
-
-    const handleChange = (event: SelectChangeEvent) => {
-        setAge(event.target.value as string);
+    const handleChange = (ev: SelectChangeEvent | any) => {
+        setFilterBy({ ...filterBy, [ev.target.name]: ev.target.value })
     };
 
-    const lalaChange = (ev: any) => {
-        console.log('name', ev.target.name)
-        console.log('value', ev.target.value)
-    }
-
     const handleDateChange = (date: number | null, field: string) => {
-        if(date){
-            const timeStamp =  new Date(date).getTime();
-            if(timeStamp > Date.now()){
+        if (date) {
+            const timeStamp = new Date(date).getTime();
+            if (timeStamp > Date.now()) {
                 alert("Date cannot be greater than the current date")
                 return
+            } else if(filterBy.startDate > filterBy.endDate){
+                alert("Start date cannot be greater than end date")
+                return
             }
-            setFilterBy({...filterBy, [field]: timeStamp})
+            setFilterBy({ ...filterBy, [field]: timeStamp })
         }
     }
 
@@ -57,32 +62,28 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
                 <AiOutlineClose className="exit-modal-btn" onClick={() => { closeModal(false) }} />
             </div>
             <div className="modal-body">
-                <Box className="modal-form" component="form" noValidate autoComplete="off" onChange={lalaChange}>
+                <Box className="modal-form" component="form" noValidate autoComplete="off" onChange={handleChange}>
                     <TextField className="search-input" value={filterBy.searchTxt} name="searchTxt" label="Search by text" variant="outlined" />
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <Stack spacing={3} className="date-filters">
-                            <MobileDatePicker label="Start date" value={filterBy.startDate} onAccept={(date) => {handleDateChange(date, 'startDate')}} onChange={(date) => {}} renderInput={(params) => <TextField className="input-field" {...params} />} />
-                            <MobileDatePicker label="End date" value={filterBy.endDate} onAccept={(date) => {handleDateChange(date, 'endDate')}} onChange={(date) => {}} renderInput={(params) => <TextField className="input-field" {...params} />} />
+                            <MobileDatePicker label="Start date" value={filterBy.startDate} onAccept={(date) => { handleDateChange(date, 'startDate') }} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
+                            <MobileDatePicker label="End date" value={filterBy.endDate} onAccept={(date) => { handleDateChange(date, 'endDate') }} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
                         </Stack>
                     </LocalizationProvider>
                     <div className="input-selectors">
                         <div className="input-select">
                             <FormControl className="input-field" fullWidth>
-                                <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                                <Select fullWidth labelId="demo-simple-select-label" id="demo-simple-select" value={age} label="Age" onChange={handleChange}>
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
+                                <InputLabel id="category">Category</InputLabel>
+                                <Select fullWidth labelId="category" id="category" value={filterBy.category} label="Category" name="category" onChange={handleChange}>
+                                    {rawData && rawData.categories.map(category => <MenuItem key={`cat-filter-${category.title}`} value={category.title}>{category.title}</MenuItem>)}
                                 </Select>
                             </FormControl>
                         </div>
                         <div className="input-select">
                             <FormControl className="input-field" fullWidth>
-                                <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                                <Select fullWidth labelId="demo-simple-select-label" id="demo-simple-select" value={age} label="Age" onChange={handleChange}>
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
+                                <InputLabel id="label">Label</InputLabel>
+                                <Select fullWidth labelId="label" id="label" value={filterBy.label} label="Label" name="label" onChange={handleChange}>
+                                    {rawData && rawData.labels.map(label => <MenuItem key={`lab-filter-${label.title}`} value={label.title}>{label.title}</MenuItem>)}
                                 </Select>
                             </FormControl>
                         </div>
@@ -91,8 +92,8 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
             </div>
             <div className="modal-footer">
                 <Stack className="form-buttons" spacing={2} direction="row">
-                    <Button variant="contained">Clear</Button>
-                    <Button variant="contained">Apply</Button>
+                    <Button variant="contained" onClick={() => {setFilterBy(emptyFilterBy)}}>Clear</Button>
+                    <Button variant="contained" onClick={() => {setGlobalFilterBy(filterBy); closeModal(false)}}>Apply</Button>
                 </Stack>
             </div>
         </div>
