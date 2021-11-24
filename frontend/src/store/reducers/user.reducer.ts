@@ -1,11 +1,4 @@
 
-const initialState: IState = {
-    loggedInUser:  null,
-    currentViewMode: 'Summery',
-    currentLabel: null,
-    data: null
-}
-
 interface IState  {
     loggedInUser:  any,
     currentViewMode: string
@@ -16,6 +9,13 @@ interface IState  {
 interface IAction {
     type: string,
     [key: string]: any
+}
+
+const initialState: IState = {
+    loggedInUser:  null,
+    currentViewMode: 'Summery',
+    currentLabel: null,
+    data: null
 }
 
 export const userReducer = (state = initialState, action: IAction) => {

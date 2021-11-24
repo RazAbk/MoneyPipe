@@ -3,7 +3,11 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import { BiSearchAlt } from 'react-icons/bi'
 
-export const HeaderBlock = () => {
+interface IHeaderProps {
+    setSearchModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const HeaderBlock = ({setSearchModalOpen}: IHeaderProps) => {
 
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
     const currentLabel = useSelector((state: RootState) => state.appStateModule.currentLabel)
@@ -16,7 +20,7 @@ export const HeaderBlock = () => {
                 <p>{currentViewMode} of <u>{'*Time*'}</u> incomes and expenses</p>
             </div>
             <div className="filter-btn">
-                <BiSearchAlt/>
+                <BiSearchAlt onClick={() => {setSearchModalOpen(true)}}/>
             </div>
         </div>
     )

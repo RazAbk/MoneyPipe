@@ -27,8 +27,7 @@
         }
     }
     
-    .filter-btn{
-        cursor: pointer;
+    .filter-btn, .balance-amount{
         padding-top: 0.5rem;
         font-size: 1.5rem;
         font-family: RobotoCondensed-Regular;
@@ -36,7 +35,11 @@
         @include for-tablet{
             font-size: 2rem;
         }
-
+        
+    }
+    
+    .filter-btn{
+        cursor: pointer;
     }
     
     @include for-tablet{

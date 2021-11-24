@@ -8,7 +8,7 @@ export const BalanceBlock = () => {
                 <h2>Balance</h2>
                 <p>Total balance for <u>{'*Time*'}</u></p>
             </div>
-            <div className="filter-btn">
+            <div className="balance-amount">
                 24,000₪
             </div>
         </div>

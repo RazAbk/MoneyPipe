@@ -1,6 +1,17 @@
 import { IFilterBy } from "../../interfaces/dataInterfaces"
 import { utilService } from "../../services/util.service"
 
+interface IState  {
+    currentViewMode: string
+    currentLabel: string | null,
+    filterBy: IFilterBy
+}
+
+interface IAction {
+    type: string,
+    [key: string]: any
+}
+
 const initialState: IState = {
     currentViewMode: 'Summery',
     currentLabel: null,
@@ -11,17 +22,6 @@ const initialState: IState = {
         label: '',
         category: ''
     }
-}
-
-interface IState  {
-    currentViewMode: string
-    currentLabel: string | null,
-    filterBy: IFilterBy
-}
-
-interface IAction {
-    type: string,
-    [key: string]: any
 }
 
 export const appStateReducer = (state = initialState, action: IAction) => {

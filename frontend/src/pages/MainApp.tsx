@@ -12,6 +12,7 @@ import { GoPrimitiveDot } from 'react-icons/go'
 import { SummeryBlock } from '../components/SummeryBlock'
 import { RootState } from '../store/store'
 import { GraphBlock } from '../components/GraphBlock'
+import { SearchModal } from '../components/SearchModal'
 
 
 export const MainApp = () => {
@@ -20,6 +21,7 @@ export const MainApp = () => {
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
 
     const [isMenuOpen, setMenuOpen] = useState(false)
+    const [isSearchModalOpen, setSearchModalOpen] = useState(false)
     const [currentBlock, setCurrentBlock] = useState(0)
 
     // Mobile slider
@@ -44,7 +46,7 @@ export const MainApp = () => {
                 <div className="app-content">
                     <div className="full-screen-content">
                         <MobileMenu setMenuOpen={setMenuOpen} />
-                        <HeaderBlock />
+                        <HeaderBlock setSearchModalOpen={setSearchModalOpen} />
                         <BalanceBlock />
                         {currentViewMode === 'Graph' && <GraphBlock />}
                         <div ref={ref} className="main-content-blocks mobile-only keen-slider">
@@ -66,6 +68,8 @@ export const MainApp = () => {
                 <GoPrimitiveDot className={`${!currentBlock ? 'fade-dot' : ''}`} />
             </div>
             <Screen isOpen={isMenuOpen} exitScreen={setMenuOpen} />
+            <Screen isOpen={isSearchModalOpen} exitScreen={setSearchModalOpen} />
+            {isSearchModalOpen && <SearchModal closeModal={setSearchModalOpen}/> }
         </>
     )
 }
