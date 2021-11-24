@@ -46,7 +46,6 @@ export const GraphBlock = () => {
     //     labels: 
     // }
     
-    console.log(rawData)
     return (
         <div className="graph-block">
             Graph:

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -13,6 +13,7 @@ import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@m
 import { IDataObject } from '../interfaces/dataInterfaces';
 import { setFilterBy as setGlobalFilterBy } from '../store/actions/app-state.action'
 import { utilService } from '../services/util.service';
+import { setCurrentLabel } from '../store/actions/user.action';
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,6 +21,7 @@ interface IModalProps {
 
 export const SearchModal = ({ closeModal }: IModalProps) => {
 
+    const dispatch = useDispatch()
     const globalFilterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
 
@@ -32,10 +34,6 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
         label: "",
         searchTxt: ""
     }
-
-    useEffect(() => {
-        console.log('filterBy', filterBy)
-    }, [filterBy])
 
     const handleChange = (ev: SelectChangeEvent | any) => {
         setFilterBy({ ...filterBy, [ev.target.name]: ev.target.value })
@@ -53,6 +51,14 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
             }
             setFilterBy({ ...filterBy, [field]: timeStamp })
         }
+    }
+
+    const handleApply = () => {
+        dispatch(setGlobalFilterBy(filterBy))
+        if(filterBy.label){
+            dispatch(setCurrentLabel(filterBy.label))
+        }
+        closeModal(false)
     }
 
     return (
@@ -83,7 +89,7 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
                             <FormControl className="input-field" fullWidth>
                                 <InputLabel id="label">Label</InputLabel>
                                 <Select fullWidth labelId="label" id="label" value={filterBy.label} label="Label" name="label" onChange={handleChange}>
-                                    {rawData && rawData.labels.map(label => <MenuItem key={`lab-filter-${label.title}`} value={label.title}>{label.title}</MenuItem>)}
+                                    {rawData && rawData.labels.map(label => <MenuItem key={`lab-filter-${label.labelName}`} value={label.labelName}>{label.title}</MenuItem>)}
                                 </Select>
                             </FormControl>
                         </div>
@@ -93,7 +99,7 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
             <div className="modal-footer">
                 <Stack className="form-buttons" spacing={2} direction="row">
                     <Button variant="contained" onClick={() => {setFilterBy(emptyFilterBy)}}>Clear</Button>
-                    <Button variant="contained" onClick={() => {setGlobalFilterBy(filterBy); closeModal(false)}}>Apply</Button>
+                    <Button variant="contained" onClick={() => {handleApply()}}>Apply</Button>
                 </Stack>
             </div>
         </div>

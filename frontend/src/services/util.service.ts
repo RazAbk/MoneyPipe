@@ -1,7 +1,8 @@
 export const utilService = {
     debounce,
     getCurrMonthStartTimeStamp,
-    getRelativeDate
+    getRelativeDate,
+    getDateAsString
 }
 
 function debounce<Params extends any[]>(func: (...args: Params) => any, timeout: number,): (...args: Params) => void {
@@ -37,4 +38,12 @@ function getRelativeDate(timeStamp: number) {
     } else {
         return `${date.getDate()}/${date.getMonth() + 1} ${date.getHours()}:${date.getMinutes()}`
     }
+}
+
+function getDateAsString(date: number) {
+    const dateObj = new Date(date)
+    const day = dateObj.getDate()
+    const month = dateObj.getMonth() + 1
+
+    return `${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${dateObj.getFullYear()}`
 }
