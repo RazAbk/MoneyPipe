@@ -21,9 +21,9 @@ function getCurrMonthStartTimeStamp() {
     const thisYear = now.getFullYear()
     const thisMonth = now.getMonth() + 1
 
-    const dateString = new Date(`${thisYear}-${thisMonth}-1`) + ''
+    const dateString = new Date(`${thisMonth}/01/${thisYear}`)
 
-    return Date.parse(dateString)
+    return dateString.getTime()
 }
 
 function getRelativeDate(timeStamp: number) {
