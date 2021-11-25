@@ -4,11 +4,6 @@ interface IScreenProps {
 }
 
 export const Screen = ({ isOpen, exitScreen }: IScreenProps) => {
-
-    const handleExit = () => {
-        
-    }
-
     return (
         <div onClick={() => {exitScreen(false)}} className={`screen ${isOpen ? 'screen-active' : ''}`}>
         </div>
