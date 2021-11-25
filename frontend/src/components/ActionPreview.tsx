@@ -36,7 +36,7 @@ export const ActionPreview = ({ action }: IActionProps) => {
                 </div>
             </div>
             <div className="right-side">
-                <h3>{action.amount}{action.currencySign}</h3>
+                <h3>{action.amount.toLocaleString()}{action.currencySign}</h3>
             </div>
         </div>
     )

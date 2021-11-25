@@ -125,7 +125,7 @@ async function getData(filterBy = {}) {
 //                     labels: ['#motorcycle', '#transportation'],
 //                     category: 'Motorcycle',
 //                     description: 'אגרה לטסט השנתי',
-//                     amount: '303',
+//                     amount: 303,
 //                     currencySign: '₪',
 //                     currency: 'nis',
 //                     createdAt: 1635851700000
@@ -135,7 +135,7 @@ async function getData(filterBy = {}) {
 //                     labels: ['#coffee'],
 //                     category: 'Food',
 //                     description: 'קפה',
-//                     amount: '7',
+//                     amount: 7,
 //                     currencySign: '₪',
 //                     currency: 'nis',
 //                     createdAt: 1635930900000
@@ -145,7 +145,7 @@ async function getData(filterBy = {}) {
 //                     labels: ['#food', '#coffee'],
 //                     category: 'Food',
 //                     description: 'קפה ומאפה',
-//                     amount: '24',
+//                     amount: 24,
 //                     currencySign: '₪',
 //                     currency: 'nis',
 //                     createdAt: 1635938100000
@@ -155,7 +155,7 @@ async function getData(filterBy = {}) {
 //                     labels: ['#food', '#restaurant'],
 //                     category: 'Food',
 //                     description: 'מסעדה',
-//                     amount: '180',
+//                     amount: 180,
 //                     currencySign: '₪',
 //                     currency: 'nis',
 //                     createdAt: 1635948900000
@@ -165,7 +165,7 @@ async function getData(filterBy = {}) {
 //                     labels: ['#beer', '#hangout'],
 //                     category: 'Hangout',
 //                     description: 'בירה עם חברים',
-//                     amount: '70',
+//                     amount: 70,
 //                     currencySign: '₪',
 //                     currency: 'nis',
 //                     createdAt: 1635981300000
@@ -175,7 +175,7 @@ async function getData(filterBy = {}) {
 //                     labels: ['#motorcycle', '#fuel'],
 //                     category: 'Motorcycle',
 //                     description: 'דלק',
-//                     amount: '61',
+//                     amount: 61,
 //                     currencySign: '₪',
 //                     currency: 'nis',
 //                     createdAt: 1636197300000
@@ -185,7 +185,7 @@ async function getData(filterBy = {}) {
 //                     labels: ['#motorcycle', '#fuel'],
 //                     category: 'Motorcycle',
 //                     description: 'דלק',
-//                     amount: '54',
+//                     amount: 54,
 //                     currencySign: '₪',
 //                     currency: 'nis',
 //                     createdAt: 1636215300000
@@ -195,7 +195,7 @@ async function getData(filterBy = {}) {
 //                     labels: ['#motorcycle'],
 //                     category: 'Motorcycle',
 //                     description: 'טסט',
-//                     amount: '35',
+//                     amount: 35,
 //                     currencySign: '₪',
 //                     currency: 'nis',
 //                     createdAt: 1636647300000
@@ -205,7 +205,7 @@ async function getData(filterBy = {}) {
 //                     labels: ['#household'],
 //                     category: 'Shopping',
 //                     description: 'קניות לבית',
-//                     amount: '80',
+//                     amount: 80,
 //                     currencySign: '₪',
 //                     currency: 'nis',
 //                     createdAt: 1636733700000
@@ -215,7 +215,7 @@ async function getData(filterBy = {}) {
 //                     labels: ['#household'],
 //                     category: 'Shopping',
 //                     description: 'קניות לבית',
-//                     amount: '27',
+//                     amount: 27,
 //                     currencySign: '₪',
 //                     currency: 'nis',
 //                     createdAt: 1637406669000
@@ -225,7 +225,7 @@ async function getData(filterBy = {}) {
 //                     labels: ['#beer', '#hangout'],
 //                     category: 'Hangout',
 //                     description: 'בירה עם חברים',
-//                     amount: '85',
+//                     amount: 85,
 //                     currencySign: '₪',
 //                     currency: 'nis',
 //                     createdAt: 1637485869000
@@ -235,7 +235,7 @@ async function getData(filterBy = {}) {
 //                     labels: ['#salary', '#somecompany'],
 //                     category: 'Salary',
 //                     description: 'משכורת',
-//                     amount: '12000',
+//                     amount: 12000,
 //                     currencySign: '₪',
 //                     currency: 'nis',
 //                     createdAt: 1636543200000
@@ -245,7 +245,7 @@ async function getData(filterBy = {}) {
 //                     labels: ['#mybusiness'],
 //                     category: 'My business',
 //                     description: 'הכנסות מהעסק שלי',
-//                     amount: '750',
+//                     amount: 750,
 //                     currencySign: '₪',
 //                     currency: 'nis',
 //                     createdAt: 1636888800000

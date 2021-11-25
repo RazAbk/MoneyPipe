@@ -14,7 +14,7 @@ export interface IAction {
     labels: string[];
     category: string;
     description: string;
-    amount: string;
+    amount: number;
     currencySign: string;
     currency: string;
     createdAt: any;
