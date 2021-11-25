@@ -35,8 +35,7 @@ export const MainApp = () => {
 
     useEffect(() => {
         dispatch(getData())
-
-    }, [dispatch])
+    }, [])
 
 
     return (
