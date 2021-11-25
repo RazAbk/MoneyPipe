@@ -45,6 +45,10 @@ async function getData(filterBy = {}) {
 //                     labelName: '#motorcycle',
 //                 },
 //                 {
+//                     title: 'Fuel',
+//                     labelName: '#fuel',
+//                 },
+//                 {
 //                     title: 'Food',
 //                     labelName: '#food',
 //                 },

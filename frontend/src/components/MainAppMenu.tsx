@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import { setCurrentViewMode, setCurrentLabel } from '../store/actions/user.action'
 import { IDataObject } from '../interfaces/dataInterfaces'
+import { setFilterBy } from '../store/actions/app-state.action'
 
 interface IMainAppMenuProps {
     isMenuOpen: boolean;
@@ -16,6 +17,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen }: IMainAppMenuProps) => {
 
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
     const currentLabel = useSelector((state: RootState) => state.appStateModule.currentLabel)
+    const filterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
     const data: IDataObject = useSelector((state: RootState) => state.userModule.data)
 
     const dispatch = useDispatch()
@@ -26,8 +28,10 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen }: IMainAppMenuProps) => {
     }
 
     const handleLabelClick = (value: string) => {
-        let label = currentLabel === value ? null : value
+        const label = currentLabel === value ? '' : value
+        const newFilterBy = {...filterBy, label}
         dispatch(setCurrentLabel(label))
+        dispatch(setFilterBy(newFilterBy))
         setMenuOpen(false)
     }
 

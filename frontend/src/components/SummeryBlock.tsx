@@ -38,6 +38,8 @@ export const SummeryBlock = ({ type }: { type: string }) => {
             setDataMap(rawData.actions.reduce((dataMap, action) => {
                 if (action.type !== type) return dataMap
                 if (action.createdAt < filterBy.startDate || action.createdAt > filterBy.endDate) return dataMap
+                if(filterBy.category && action.category !== filterBy.category) return dataMap
+                if(filterBy.label && !action.labels.includes(filterBy.label)) return dataMap
 
                 if (dataMap[action.category]) {
                     dataMap[action.category].sum += +action.amount
@@ -54,7 +56,13 @@ export const SummeryBlock = ({ type }: { type: string }) => {
 
             const actionsObj: any = {}
 
-            rawData.actions.filter(action => action.type === type && (action.createdAt >= filterBy.startDate && action.createdAt <= filterBy.endDate)).forEach(action => {
+            rawData.actions.filter(action => {
+                if(action.type !== type) return false
+                if(action.createdAt < filterBy.startDate || action.createdAt > filterBy.endDate) return false
+                if(filterBy.category && action.category !== filterBy.category) return false
+                if(filterBy.label && !action.labels.includes(filterBy.label)) return false
+                return true
+            }).forEach(action => {
                 const date = new Date(action.createdAt)
                 const dateStr = `${date.getMonth() + 1}/${date.getFullYear()}`
                 if (actionsObj[dateStr]) actionsObj[dateStr].push(action)
