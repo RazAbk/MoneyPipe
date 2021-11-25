@@ -1,6 +1,8 @@
 import React from 'react'
-import { IAction } from '../interfaces/dataInterfaces'
+import { useSelector } from 'react-redux'
+import { IAction, IDataObject } from '../interfaces/dataInterfaces'
 import { utilService } from '../services/util.service'
+import { RootState } from '../store/store'
 import { GetIcon } from './GetIcon'
 
 interface IActionProps {
@@ -9,10 +11,24 @@ interface IActionProps {
 
 
 export const ActionPreview = ({ action }: IActionProps) => {
+
+    const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
+
+
+    const findCategoryData = (category: string) => {
+        if(rawData){
+            const currCat =  rawData.categories.find(currCat => currCat.title === category)
+            return currCat
+        }
+    }
+
+    const categoryData = findCategoryData(action.category)
+
+    if(!categoryData) return <h1>Loading</h1>
     return (
         <div className="action-preview">
             <div className="left-side">
-                <GetIcon iconName={'bla bla'} />
+                <GetIcon iconName={categoryData.icon} iconColor={categoryData.bgColor} />
                 <div className="action-data">
                     <p className="action-date">{utilService.getRelativeDate(action.createdAt)}</p>
                     <h3>{action.description}</h3>

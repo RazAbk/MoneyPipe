@@ -45,7 +45,7 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
             if (timeStamp > Date.now()) {
                 alert("Date cannot be greater than the current date")
                 return
-            } else if(filterBy.startDate > filterBy.endDate){
+            } else if (filterBy.startDate > filterBy.endDate) {
                 alert("Start date cannot be greater than end date")
                 return
             }
@@ -55,9 +55,7 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
 
     const handleApply = () => {
         dispatch(setGlobalFilterBy(filterBy))
-        if(filterBy.label){
-            dispatch(setCurrentLabel(filterBy.label))
-        }
+        dispatch(setCurrentLabel(filterBy.label))
         closeModal(false)
     }
 
@@ -98,8 +96,8 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
             </div>
             <div className="modal-footer">
                 <Stack className="form-buttons" spacing={2} direction="row">
-                    <Button variant="contained" onClick={() => {setFilterBy(emptyFilterBy)}}>Clear</Button>
-                    <Button variant="contained" onClick={() => {handleApply()}}>Apply</Button>
+                    <Button variant="contained" onClick={() => { setFilterBy(emptyFilterBy) }}>Clear</Button>
+                    <Button variant="contained" onClick={() => { handleApply() }}>Apply</Button>
                 </Stack>
             </div>
         </div>

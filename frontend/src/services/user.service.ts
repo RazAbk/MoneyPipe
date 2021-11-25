@@ -78,7 +78,7 @@ async function getData(filterBy = {}){
             },
             {
                 title: 'Hangout',
-                icon: 'IoBeer',
+                icon: 'FaBeer',
                 bgColor: '#C28173'
             },
             {
