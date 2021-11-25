@@ -1,176 +1,178 @@
-.main-content-blocks{
-    min-height: fit-content;
-    width: calc(99vw - 1rem);
-    box-sizing:border-box;
-    display: flex;
-    margin-top: 0.3rem;
-    
-    @include for-tablet{
-        min-height: 100%;
-        gap: 1rem;
-        margin-top: 0.5rem;
-    }
-    
-    @include for-desktop{
-        width: 98%;
-        margin: 0.4rem;
-    }
-}
+.main-content-blocks {
+  min-height: fit-content;
+  width: calc(99vw - 1rem);
+  box-sizing: border-box;
+  display: flex;
+  margin-top: 0.3rem;
 
-.summery-block, .graph-block{
-    border-radius: 10px;
-    background-color: $main-light-color;
-    padding: 1.5rem;
-}
-
-.summery-blocks{
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
+  @include for-tablet {
+    min-height: 100%;
     gap: 1rem;
-    padding-bottom: 0.75rem;
+    margin-top: 0.5rem;
+  }
 
-    @include for-tablet{
-        width: 100%;
-    }
-
-
+  @include for-desktop {
+    width: 98%;
+    margin: 0.4rem;
+  }
 }
 
-.summery-block{
+.summery-block,
+.graph-block {
+  border-radius: 10px;
+  background-color: $main-light-color;
+  padding: 1.5rem;
+}
+
+.summery-blocks {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+
+  @include for-tablet {
+    width: 100%;
+  }
+}
+
+.summery-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+
+  height: calc(100vh - 6rem - 4.5rem - 4.5rem);
+
+  @include for-tablet {
+    height: calc(100vh - 7.25rem - 4.5rem - 4.5rem);
+  }
+
+  @include for-desktop {
+    gap: 2rem;
+    height: calc(100vh - 2.75rem - 4.5rem - 4.5rem);
+  }
+
+  .summery-block-title,
+  .summery-block-total {
+    font-weight: 600;
+
+    @include for-desktop {
+      font-size: 2rem;
+    }
+  }
+
+  .pie {
+    flex-grow: 1;
+    max-height: 40%;
+  }
+
+  .summery-block-details {
+    height: fit-content;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    
-    height: calc(100vh - 6rem - 4.5rem - 4.5rem);
-    
-    @include for-tablet{
-        height: calc(100vh - 7.25rem - 4.5rem - 4.5rem);
-    }
-    
-    @include for-desktop{
-        gap: 2rem;
-        height: calc(100vh - 2.75rem - 4.5rem - 4.5rem);
+    gap: 0.25rem;
+    font-size: 0.8rem;
+    overflow-y: auto;
+
+    @include for-desktop {
+      font-size: 1rem;
     }
 
-    .summery-block-title, .summery-block-total{
-        font-weight: 600;
+    .action-details {
+      display: flex;
+      justify-content: space-between;
 
-        @include for-desktop{
-            font-size: 2rem;
-        }
-    }
-
-    .pie{
-        flex-grow: 1;
-        max-height: 40%;
-    }
-
-    .summery-block-details{
-        height: fit-content;
-        width: 100%;
+      .left-side {
         display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-        font-size: 0.8rem;
-        overflow-y: auto;
+        align-items: center;
+        gap: 0.5rem;
 
-        @include for-desktop{
-            font-size: 1rem;
+        .action-color {
+          border: black 1px solid;
+          border-radius: 5px;
         }
-
-        .action-details{
-            display: flex;
-            justify-content: space-between;
-
-
-            .left-side{
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-
-                .action-color{
-                    border: black 1px solid;
-                    border-radius: 5px;
-                }
-            }
-        }
+      }
     }
+  }
 }
 
-.graph-block{
-    margin: 0.4rem 0;
-    width: calc(99vw - 1rem);
-    height: calc(100vh - 5.75rem - 4.5rem - 4.5rem);
-    
-    @include for-tablet{
-        min-height: calc(100vh - 7rem - 4.5rem - 4.5rem);
-    }
-    
-    @include for-desktop{
-        width: 98%;
-        gap: 2rem;
-        min-height: calc(100vh - 2.5rem - 4.5rem - 4.5rem);
-    }
+.graph-block {
+  margin: 0.4rem 0;
+  width: calc(99vw - 1rem);
+  height: calc(100vh - 5.75rem - 4.5rem - 4.5rem);
+
+  @include for-tablet {
+    min-height: calc(100vh - 7rem - 4.5rem - 4.5rem);
+  }
+
+  @include for-desktop {
+    width: 98%;
+    gap: 2rem;
+    min-height: calc(100vh - 2.5rem - 4.5rem - 4.5rem);
+  }
 }
 
-.actions-block{
-    border-radius: 10px;
-    background-color: $main-light-color;
-    height: fit-content;
+.actions-block {
+  border-radius: 10px;
+  background-color: $main-light-color;
+  height: fit-content;
 
-    @include for-tablet{
-        min-width: unset;
-        width: 100%;
-    }
+  @include for-tablet {
+    min-width: unset;
+    width: 100%;
+  }
 
-    .actions-month{
-        background-color: #CFCFCF;
-        padding: 0.5rem 1rem;
-        border-radius: 10px 10px 0 0;
-    }
+  .actions-month {
+    background-color: #cfcfcf;
+    padding: 0.5rem 1rem;
+    border-radius: 10px 10px 0 0;
+  }
 }
 
-.mobile-only{
-    @include for-tablet{
-        display: none;
-    }
-}
-
-.above-mobile{
+.mobile-only {
+  @include for-tablet {
     display: none;
-    @include for-tablet{
-        display: flex;
-    }
+  }
 }
 
-.swipe-btn{
-    position: fixed;
-    top: 50%;
-    font-size: 2.5rem;
-    color: $main-dark-color;
-    margin: 0.5rem;
-
-    transition: color 0.1s;
+.above-mobile {
+  display: none;
+  @include for-tablet {
+    display: flex;
+  }
 }
 
-.pagination-dots{
-    position: fixed;
-    bottom: 0%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
+.swipe-btn {
+  position: fixed;
+  top: 50%;
+  font-size: 2.5rem;
+  color: $main-dark-color;
+  margin: 0.5rem;
+
+  transition: color 0.1s;
 }
 
-.pagination-dot{
-    color: rgba(29, 29, 29, 0.8);
-    transition: 0.2s;
+.pagination-dots {
+  position: fixed;
+  bottom: 0%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
 }
 
-.fade-dot{
-    color: rgba(83, 83, 83, 0.6);
+.pagination-dot {
+  color: rgba(29, 29, 29, 0.8);
+  transition: 0.2s;
 }
 
+.fade-dot {
+  color: rgba(83, 83, 83, 0.6);
+}
 
+.no-data-title {
+  text-align: center;
+  padding: 1rem 0;
+}

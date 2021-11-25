@@ -25,6 +25,7 @@ export const SummeryBlock = ({ type }: { type: string }) => {
 
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
+    const filterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
 
     const [dataMap, setDataMap] = useState<IDataMap | null>(null)
     const [pieData, setPieData] = useState<IPieData | null>(null)
@@ -36,6 +37,8 @@ export const SummeryBlock = ({ type }: { type: string }) => {
 
             setDataMap(rawData.actions.reduce((dataMap, action) => {
                 if (action.type !== type) return dataMap
+                if (action.createdAt < filterBy.startDate || action.createdAt > filterBy.endDate) return dataMap
+
                 if (dataMap[action.category]) {
                     dataMap[action.category].sum += +action.amount
                 } else {
@@ -51,7 +54,7 @@ export const SummeryBlock = ({ type }: { type: string }) => {
 
             const actionsObj: any = {}
 
-            rawData.actions.filter(action => action.type === type).forEach(action => {
+            rawData.actions.filter(action => action.type === type && (action.createdAt >= filterBy.startDate && action.createdAt <= filterBy.endDate)).forEach(action => {
                 const date = new Date(action.createdAt)
                 const dateStr = `${date.getMonth() + 1}/${date.getFullYear()}`
                 if (actionsObj[dateStr]) actionsObj[dateStr].push(action)
@@ -62,7 +65,7 @@ export const SummeryBlock = ({ type }: { type: string }) => {
 
             setActionsData(actionsObj)
         }
-    }, [rawData, type])
+    }, [rawData, type, filterBy])
 
     useEffect(() => {
         if (dataMap) {
@@ -70,7 +73,7 @@ export const SummeryBlock = ({ type }: { type: string }) => {
                 labels: Object.keys(dataMap),
                 datasets: [
                     {
-                        label: '# of Votes',
+                        label: '',
                         data: Object.values(dataMap).map((action: any) => action.sum),
                         backgroundColor: Object.values(dataMap).map((action: any) => action.color),
                         borderColor: Object.values(dataMap).map(() => 'rgba(0, 0, 0, 1)'),
@@ -81,13 +84,12 @@ export const SummeryBlock = ({ type }: { type: string }) => {
         }
     }, [dataMap])
 
-
     return (
         <div className="summery-blocks keen-slider__slide">
             {currentViewMode === 'Summery' &&
                 <div className="summery-block">
                     <h2 className="summery-block-title">{type === 'expense' ? 'Expenses' : 'Incomes'}</h2>
-
+                    {(pieData && pieData.labels.length === 0) && <h2 className="no-data-title">No data to display</h2>}
                     {pieData && <Pie data={pieData} options={options} className="pie" />}
 
                     <div className="summery-block-details">
@@ -110,6 +112,7 @@ export const SummeryBlock = ({ type }: { type: string }) => {
                 </div>
             }
             <div className="actions-block">
+                {(actionsData && Object.entries(actionsData).length === 0) && <h2 className="no-data-title">No data to display</h2>}
                 {actionsData && Object.entries(actionsData).map(month => {
                     return (
                         <React.Fragment key={`${month[0]}-${type}`}>
