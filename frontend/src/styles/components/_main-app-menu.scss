@@ -16,7 +16,8 @@
     flex-direction: column;
     align-items: center;
     
-    z-index: 100;
+
+    z-index: 95;
     padding: 0.5rem 0;
     
     &.open-menu{
@@ -124,5 +125,6 @@
         min-width: 23rem;
         position: static;
         transform: unset;
+        z-index: 80;
     }
 }
