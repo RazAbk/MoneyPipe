@@ -40,6 +40,7 @@ export const SummeryBlock = ({ type }: { type: string }) => {
                 if (action.createdAt < filterBy.startDate || action.createdAt > filterBy.endDate) return dataMap
                 if (filterBy.category && action.category !== filterBy.category) return dataMap
                 if (filterBy.label && !action.labels.includes(filterBy.label)) return dataMap
+                if (!action.description.includes(filterBy.searchTxt)) return dataMap
 
                 if (dataMap[action.category]) {
                     dataMap[action.category].sum += +action.amount
@@ -61,6 +62,7 @@ export const SummeryBlock = ({ type }: { type: string }) => {
                 if (action.createdAt < filterBy.startDate || action.createdAt > filterBy.endDate) return false
                 if (filterBy.category && action.category !== filterBy.category) return false
                 if (filterBy.label && !action.labels.includes(filterBy.label)) return false
+                if (!action.description.includes(filterBy.searchTxt)) return false
                 return true
             }).forEach(action => {
                 const date = new Date(action.createdAt)
@@ -113,10 +115,13 @@ export const SummeryBlock = ({ type }: { type: string }) => {
                             </div>
                         })}
                     </div>
-                    {pieData && <h2 className="summery-block-total">{pieData?.datasets[0].data.reduce((sum, expense) => {
-                        sum += expense
-                        return sum
-                    }, 0).toLocaleString()}{rawData.actions[0].currencySign}</h2>}
+                    {pieData && <h2 className="summery-block-total" style={{color: type === 'expense' ? '#8A0000' : '#00600F'}}>
+                                    {pieData?.datasets[0].data.reduce((sum, expense) => {
+                                        sum += expense
+                                        return sum
+                                    }, 0).toLocaleString()}{rawData.actions[0].currencySign}
+                                </h2>
+                    }
                 </div>
             }
             <div className="actions-block">
