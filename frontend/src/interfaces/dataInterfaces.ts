@@ -15,12 +15,12 @@ export interface IAction {
     category: string;
     description: string;
     amount: number;
-    currencySign: string;
-    currency: string;
     createdAt: any;
 }
 
 export interface IDataObject {
+    currencySign: string;
+    currency: string;
     labels: ILabel[];
     categories: ICategory[];
     actions: IAction[];

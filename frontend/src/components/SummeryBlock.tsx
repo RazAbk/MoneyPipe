@@ -110,7 +110,7 @@ export const SummeryBlock = ({ type }: { type: string }) => {
                                     <h2>{action[0]}</h2>
                                 </div>
                                 <div className="right-side">
-                                    <h2>{action[1].sum}{rawData.actions[0].currencySign}</h2>
+                                    <h2>{action[1].sum}{rawData.currencySign}</h2>
                                 </div>
                             </div>
                         })}
@@ -119,7 +119,7 @@ export const SummeryBlock = ({ type }: { type: string }) => {
                                     {pieData?.datasets[0].data.reduce((sum, expense) => {
                                         sum += expense
                                         return sum
-                                    }, 0).toLocaleString()}{rawData.actions[0].currencySign}
+                                    }, 0).toLocaleString()}{rawData.currencySign}
                                 </h2>
                     }
                 </div>

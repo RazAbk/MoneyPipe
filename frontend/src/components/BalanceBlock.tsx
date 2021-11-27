@@ -43,7 +43,7 @@ export const BalanceBlock = () => {
                 <h2>Balance</h2>
                 <p>Total balance for <b>{startDateString} - {endDateString}</b></p>
             </div>
-            <div className="balance-amount" style={{color: balanceColor}}>{balance ? balance.toLocaleString() : '0'}{rawData && rawData.actions[0].currencySign}</div>
+            <div className="balance-amount" style={{color: balanceColor}}>{balance ? balance.toLocaleString() : '0'}{rawData && rawData.currencySign}</div>
         </div>
     )
 }
