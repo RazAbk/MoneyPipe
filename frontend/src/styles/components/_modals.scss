@@ -109,12 +109,12 @@
 
 .action-add-modal{
     width: 95vw;
-    height: 75vh;
-    max-height: 27.5rem;
+    height: 85vh;
+    max-height: 32rem;
     
     @include for-tablet{
         width: 25rem;
-        height: 27.5rem;
+        height: 32rem;
     }
 
     .input-selectors{
