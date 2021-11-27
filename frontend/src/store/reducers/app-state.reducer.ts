@@ -18,7 +18,7 @@ const initialState: IState = {
     filterBy: {
         searchTxt: '',
         startDate: utilService.getCurrMonthStartTimeStamp(),
-        endDate: Date.now(),
+        endDate: utilService.getDayMaxHour(Date.now()),
         label: '',
         category: ''
     }

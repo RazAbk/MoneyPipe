@@ -6,7 +6,6 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { IAction, IDataObject } from '../interfaces/dataInterfaces'
 import { RootState } from '../store/store'
-import { truncate } from 'fs';
 import { addAction } from '../store/actions/user.action';
 
 interface IActionAddModalProps {
@@ -42,6 +41,8 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
 export const ActionAddModal = ({ closeModal }: IActionAddModalProps) => {
 
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
+    const filterBy: IDataObject = useSelector((state: RootState) => state.appStateModule.filterBy)
+
     const dispatch = useDispatch()
     const theme = useTheme();
 
@@ -87,9 +88,7 @@ export const ActionAddModal = ({ closeModal }: IActionAddModalProps) => {
             setErrors(errorsCopy)
             return
         } else {
-            console.log('formData:', formData)
             dispatch(addAction(formData))
-            // Todo: add new action
             closeModal(false)
         }
     }

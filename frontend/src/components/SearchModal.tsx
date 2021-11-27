@@ -30,7 +30,7 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
     const emptyFilterBy = {
         category: "",
         startDate: utilService.getCurrMonthStartTimeStamp(),
-        endDate: Date.now(),
+        endDate: utilService.getDayMaxHour(Date.now()),
         label: "",
         searchTxt: ""
     }
@@ -49,7 +49,7 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
                 alert("Start date cannot be greater than end date")
                 return
             }
-            setFilterBy({ ...filterBy, [field]: timeStamp })
+            setFilterBy({ ...filterBy, [field]: field === 'endDate' ? utilService.getDayMaxHour(timeStamp) : timeStamp })
         }
     }
 
