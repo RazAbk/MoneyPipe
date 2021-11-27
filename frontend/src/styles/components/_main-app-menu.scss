@@ -119,6 +119,10 @@
             font-size: 2.25rem;
             @include flex-center;
         }
+
+        svg{
+            cursor: pointer;
+        }
     }
     
     @include for-desktop{
