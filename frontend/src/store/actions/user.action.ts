@@ -1,3 +1,4 @@
+import { IAction } from "../../interfaces/dataInterfaces"
 import { userService } from "../../services/user.service"
 import { AppDispatch } from "../store"
 
@@ -25,30 +26,23 @@ export const getData = (filterBy = {}) => {
                 data
             })
             return data
-
         } catch (err){
             console.log(err)
         }
     }
 }
 
-export const setCurrentViewMode = (viewMode: string) => {
-    return (dispatch: AppDispatch) => {
-        dispatch({
-            type: "SET_VIEWMODE",
-            viewMode
-        })
+export const addAction = (action: IAction) => {
+    return async (dispatch: AppDispatch) => {
+        try{
+            const data = await userService.addAction(action)
+            dispatch({
+                type: "SET_DATA",
+                data
+            })
+            return data
+        } catch (err){
+            console.log(err)
+        }
     }
 }
-
-export const setCurrentLabel = (label: string | null) => {
-    return (dispatch: AppDispatch) => {
-        dispatch({
-            type: "SET_LABEL",
-            label
-        })
-    }
-}
-
-
-

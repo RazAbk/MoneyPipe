@@ -13,7 +13,7 @@ import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@m
 import { IDataObject } from '../interfaces/dataInterfaces';
 import { setFilterBy as setGlobalFilterBy } from '../store/actions/app-state.action'
 import { utilService } from '../services/util.service';
-import { setCurrentLabel } from '../store/actions/user.action';
+import { setCurrentLabel } from '../store/actions/app-state.action';
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;

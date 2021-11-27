@@ -24,10 +24,6 @@ export const userReducer = (state = initialState, action: IAction) => {
             return state = { ...state, loggedInUser: action.user }
         case 'SET_DATA':
             return state = { ...state, data: action.data }
-        case 'SET_VIEWMODE':
-            return state = { ...state, currentViewMode: action.viewMode }
-        case 'SET_LABEL':
-            return state = { ...state, currentLabel: action.label }
         default:
             return state
     }

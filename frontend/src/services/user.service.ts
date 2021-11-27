@@ -1,9 +1,11 @@
 import { localStorageService } from "./local-storage.service"
 import { storageService as asyncLocalStorage } from '../services/async-storage.service'
+import { IAction, IUser } from "../interfaces/dataInterfaces"
 
 export const userService = {
+    getLoggedInUser,
     getData,
-    getLoggedInUser
+    addAction
 }
 
 function getLoggedInUser() {
@@ -13,9 +15,20 @@ function getLoggedInUser() {
 
 async function getData(filterBy = {}) {
     const loggedInUser = getLoggedInUser()
-
+    
     const user = await asyncLocalStorage.get('users', loggedInUser)
     return user.data
+}
+
+async function addAction(action: IAction) {
+    const loggedInUser = getLoggedInUser()
+    const users = localStorageService.load('users')
+
+    const userIdx = users.findIndex((user: IUser) => user.userName === loggedInUser)
+    users[userIdx].data.actions.push(action)
+    localStorageService.save('users', users)
+
+    return users[userIdx].data
 }
 
 // _loadToStorage()

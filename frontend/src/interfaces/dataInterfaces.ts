@@ -58,3 +58,12 @@ export interface IPieData {
 export interface IActionsData {
     [key: string]: IAction[]
 }
+
+export interface IUser {
+    userName: string;
+    name: string;
+    password: string;
+    createdAt: number;
+    picture: string;
+    data: IDataObject;
+}

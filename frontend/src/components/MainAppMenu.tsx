@@ -4,7 +4,7 @@ import { FaUserAlt } from 'react-icons/fa'
 import { MdAddCircle } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
-import { setCurrentViewMode, setCurrentLabel } from '../store/actions/user.action'
+import { setCurrentViewMode, setCurrentLabel } from '../store/actions/app-state.action'
 import { IDataObject } from '../interfaces/dataInterfaces'
 import { setFilterBy } from '../store/actions/app-state.action'
 

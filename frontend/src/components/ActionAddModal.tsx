@@ -3,10 +3,11 @@ import { Button, Chip, FormControl, InputLabel, MenuItem, OutlinedInput, Select,
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { IAction, IDataObject } from '../interfaces/dataInterfaces'
 import { RootState } from '../store/store'
 import { truncate } from 'fs';
+import { addAction } from '../store/actions/user.action';
 
 interface IActionAddModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -41,7 +42,7 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
 export const ActionAddModal = ({ closeModal }: IActionAddModalProps) => {
 
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
-
+    const dispatch = useDispatch()
     const theme = useTheme();
 
     const [formData, setFormData] = useState<IAction>({
@@ -87,6 +88,7 @@ export const ActionAddModal = ({ closeModal }: IActionAddModalProps) => {
             return
         } else {
             console.log('formData:', formData)
+            dispatch(addAction(formData))
             // Todo: add new action
             closeModal(false)
         }
