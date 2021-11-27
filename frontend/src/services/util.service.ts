@@ -1,6 +1,7 @@
 export const utilService = {
     debounce,
     getCurrMonthStartTimeStamp,
+    getDayMaxHour,
     getRelativeDate,
     getDateAsString
 }
@@ -24,6 +25,16 @@ function getCurrMonthStartTimeStamp() {
     const dateString = new Date(`${thisMonth}/01/${thisYear}`)
 
     return dateString.getTime()
+}
+
+function getDayMaxHour(timeStamp: number) {
+    const date = new Date(timeStamp)
+
+    const day = date.getDate()
+    const month = date.getMonth()
+    const year = date.getFullYear()
+
+    return new Date(year, month, day, 23, 59, 59).getTime()
 }
 
 function getRelativeDate(timeStamp: number) {
