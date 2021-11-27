@@ -38,16 +38,32 @@ function getDayMaxHour(timeStamp: number) {
 }
 
 function getRelativeDate(timeStamp: number) {
-    const now = new Date()
-    const date = new Date(timeStamp)
+    const nowTimeStamp = new Date()
+    const dateTimeStamp = new Date(timeStamp)
 
-    if (now.getDate() === date.getDate() && now.getFullYear() === date.getFullYear() && now.getMonth() === date.getMonth()) {
-        return `Today ${date.getHours()}:${date.getMinutes()}`
-    } else if ((now.getDate() === date.getDate() + 1 && now.getFullYear() === date.getFullYear() && now.getMonth() === date.getMonth()) || Date.now() - timeStamp < 24 * 60 * 60 * 1000) {
+    const now = {
+        day: getFormatedDigits(nowTimeStamp.getDate()),
+        month: getFormatedDigits(nowTimeStamp.getMonth() + 1),
+        year: nowTimeStamp.getFullYear(),
+        hours: getFormatedDigits(nowTimeStamp.getHours()),
+        minutes: getFormatedDigits(nowTimeStamp.getMinutes()),
+    }
+
+    const date = {
+        day: getFormatedDigits(dateTimeStamp.getDate()),
+        month: getFormatedDigits(dateTimeStamp.getMonth() + 1),
+        year: dateTimeStamp.getFullYear(),
+        hours: getFormatedDigits(dateTimeStamp.getHours()),
+        minutes: getFormatedDigits(dateTimeStamp.getMinutes()),
+    }
+
+    if (now.day === date.day && now.year === date.year && now.month === date.month) {
+        return `Today ${date.hours}:${date.minutes}`
+    } else if ((now.day === date.day && now.year === date.year && now.month === date.month) || Date.now() - timeStamp < 24 * 60 * 60 * 1000) {
         // Todo: Improve! not accurate!
-        return `Yesterday ${date.getHours()}:${date.getMinutes()}`
+        return `Yesterday ${date.hours}:${date.minutes}`
     } else {
-        return `${date.getDate()}/${date.getMonth() + 1} ${date.getHours()}:${date.getMinutes()}`
+        return `${date.day}/${date.month} ${date.hours}:${date.minutes}`
     }
 }
 
@@ -56,5 +72,9 @@ function getDateAsString(date: number) {
     const day = dateObj.getDate()
     const month = dateObj.getMonth() + 1
 
-    return `${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${dateObj.getFullYear()}`
+    return `${getFormatedDigits(day)}/${getFormatedDigits(month)}/${dateObj.getFullYear()}`
+}
+
+function getFormatedDigits(num: number) {
+    return num < 10 ? '0' + num : num
 }
