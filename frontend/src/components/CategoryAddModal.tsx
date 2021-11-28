@@ -1,15 +1,17 @@
 import { Button, Stack, TextField } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { ChangeEvent, useState } from 'react'
+import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { GetIcon } from './GetIcon'
 import { BsApp } from 'react-icons/bs'
 import { Screen } from './Screen'
 import { useDispatch } from 'react-redux'
 import { addCategory } from '../store/actions/user.action'
+import { IAction } from '../interfaces/dataInterfaces'
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
+    setFormData: React.Dispatch<React.SetStateAction<IAction>>;
 }
 
 const colors = [
@@ -63,7 +65,7 @@ const btnErrorStyle = {
     border: '2px #E34C4C solid'
 }
 
-export const CategoryAddModal = ({ closeModal }: IModalProps) => {
+export const CategoryAddModal = ({ closeModal, setFormData }: IModalProps) => {
 
     const dispatch = useDispatch()
 
@@ -104,13 +106,16 @@ export const CategoryAddModal = ({ closeModal }: IModalProps) => {
             setErrors(errorsCopy)
             return
         } else {
+            const categoryFormatedName = categoryName[0].toUpperCase() + categoryName.substr(1)
+            
             const newCategory = {
-                title: categoryName,
+                title: categoryFormatedName,
                 icon: selectedIcon,
                 bgColor: selectedColor
             }
-            
+
             dispatch(addCategory(newCategory))
+            setFormData(formData => {return {...formData, category: categoryFormatedName}})
             closeModal(false)
         }
     }

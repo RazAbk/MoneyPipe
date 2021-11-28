@@ -43,7 +43,7 @@ async function addCategory(category: ICategory) {
     return users[userIdx].data
 }
 
-_loadToStorage()
+// _loadToStorage()
 
 function _loadToStorage() {
 

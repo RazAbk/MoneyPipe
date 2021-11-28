@@ -168,7 +168,7 @@ export const ActionAddModal = ({ closeModal }: IActionAddModalProps) => {
             </div>
             <Screen isOpen={addCategoryModal} exitScreen={setAddCategoryModal} zIndex="100" />
             <Screen isOpen={addLabelModal} exitScreen={setAddLabelModal} zIndex="100" />
-            {addCategoryModal && <CategoryAddModal closeModal={setAddCategoryModal} />}
+            {addCategoryModal && <CategoryAddModal closeModal={setAddCategoryModal} setFormData={setFormData}/>}
             {addLabelModal && <LabelAddModal closeModal ={setAddLabelModal} />}
         </>
     )
