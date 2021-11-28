@@ -9,7 +9,7 @@ export const BalanceBlock = () => {
     const filterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
 
-    const [balance, setBalance] = useState<string | number>('')
+    const [balance, setBalance] = useState(0)
     const [balanceColor, setBalanceColor] = useState('#000000')
 
     const startDateString = utilService.getDateAsString(filterBy.startDate)
@@ -23,8 +23,8 @@ export const BalanceBlock = () => {
                 if (filterBy.label && !action.labels.includes(filterBy.label)) return balance
                 if (!action.description.includes(filterBy.searchTxt)) return balance
                 
-                if (action.type === 'income') balance += action.amount
-                if (action.type === 'expense') balance -= action.amount
+                if (action.type === 'income') balance += +action.amount
+                if (action.type === 'expense') balance -= +action.amount
                 return balance
             }, 0)
             
