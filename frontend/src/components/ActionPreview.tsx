@@ -28,7 +28,9 @@ export const ActionPreview = ({ action }: IActionProps) => {
     return (
         <div className="action-preview">
             <div className="left-side">
-                <GetIcon iconName={categoryData.icon} iconColor={categoryData.bgColor} />
+            <div className="action-details-icon" style={{ backgroundColor: categoryData.bgColor }}>
+                <GetIcon iconName={categoryData.icon}/>
+            </div>
                 <div className="action-data">
                     <p className="action-date">{utilService.getRelativeDate(action.createdAt)}</p>
                     <h3>{action.description}</h3>
