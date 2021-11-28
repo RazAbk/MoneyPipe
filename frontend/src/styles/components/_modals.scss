@@ -150,7 +150,7 @@
     }
 }
 
-.category-add-modal ,.label-add-modal {
+.category-add-modal{
     width: 85vw;
     height: 60vh;
     max-height: 32rem;
@@ -159,6 +159,20 @@
         width: 20rem;
         height: 25rem;
     }
+}
+
+.label-add-modal{
+    width: 85vw;
+    height: 35vh;
+    max-height: 17rem;
+    
+    @include for-tablet{
+        width: 20rem;
+        height: 15rem;
+    }
+}
+
+.category-add-modal ,.label-add-modal {
 
     .modal-body{
         display: flex;

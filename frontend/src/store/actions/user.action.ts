@@ -1,4 +1,4 @@
-import { IAction, ICategory } from "../../interfaces/dataInterfaces"
+import { IAction, ICategory, ILabel } from "../../interfaces/dataInterfaces"
 import { userService } from "../../services/user.service"
 import { AppDispatch } from "../store"
 
@@ -51,6 +51,21 @@ export const addCategory = (category: ICategory) => {
     return async (dispatch: AppDispatch) => {
         try{
             const data = await userService.addCategory(category)
+            dispatch({
+                type: "SET_DATA",
+                data
+            })
+            return data
+        } catch (err){
+            console.log(err)
+        }
+    }
+}
+
+export const addLabel = (label: ILabel) => {
+    return async (dispatch: AppDispatch) => {
+        try{
+            const data = await userService.addLabel(label)
             dispatch({
                 type: "SET_DATA",
                 data

@@ -74,7 +74,7 @@ export const SummeryBlock = ({ type }: { type: string }) => {
             })
             setActionsData(actionsObj)
         }
-    }, [rawData, filterBy])
+    }, [rawData, filterBy, type])
 
     useEffect(() => {
         if (dataMap) {

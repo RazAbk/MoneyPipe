@@ -1,12 +1,13 @@
 import { localStorageService } from "./local-storage.service"
 import { storageService as asyncLocalStorage } from '../services/async-storage.service'
-import { IAction, ICategory, IUser } from "../interfaces/dataInterfaces"
+import { IAction, ICategory, ILabel, IUser } from "../interfaces/dataInterfaces"
 
 export const userService = {
     getLoggedInUser,
     getData,
     addAction,
-    addCategory
+    addCategory,
+    addLabel
 }
 
 function getLoggedInUser() {
@@ -38,6 +39,17 @@ async function addCategory(category: ICategory) {
 
     const userIdx = users.findIndex((user: IUser) => user.userName === loggedInUser)
     users[userIdx].data.categories.push(category)
+    localStorageService.save('users', users)
+
+    return users[userIdx].data
+}
+
+async function addLabel(label: ILabel) {
+    const loggedInUser = getLoggedInUser()
+    const users = localStorageService.load('users')
+
+    const userIdx = users.findIndex((user: IUser) => user.userName === loggedInUser)
+    users[userIdx].data.labels.push(label)
     localStorageService.save('users', users)
 
     return users[userIdx].data
