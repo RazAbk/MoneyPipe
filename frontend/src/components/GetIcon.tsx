@@ -1,20 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { IoIosWarning } from 'react-icons/io'
 
-export const GetIcon = ({iconName, iconColor}:{iconName: string, iconColor: string}) => {
-    
-    const [icon, setIcon] = useState<any>(null)
+import { HiShoppingCart } from 'react-icons/hi'
+import { MdDirectionsCar, MdFastfood } from 'react-icons/md'
+import { FaMotorcycle, FaBeer } from 'react-icons/fa'
+import { BsFillHouseDoorFill } from 'react-icons/bs'
+import { GiMoneyStack } from 'react-icons/gi'
 
-    useEffect(() => {
-        const getIconsLib = async () => {
-            const iconLib = iconName.substr(0,2).toLowerCase()
-            const iconsLib = await import(`react-icons/${iconLib}`)
-            const icon = iconsLib[iconName]
-            setIcon(icon)
-        }
-        getIconsLib()
-    }, [])
 
-    if(icon) return <div className="action-details-icon" style={{ backgroundColor: iconColor }}>{icon}</div>
-    else return <IoIosWarning className="action-details-icon"/>
+interface IconProps {
+    iconName: string;
+    iconColor: string;
+}
+
+export const GetIcon = ({ iconName, iconColor = '#e57373' }: IconProps) => {
+    return <div className="action-details-icon" style={{ backgroundColor: iconColor }}>
+                {iconName === 'shopping-cart' && <HiShoppingCart />}
+                {iconName === 'car' && <MdDirectionsCar />}
+                {iconName === 'food' && <MdFastfood />}
+                {iconName === 'motorcycle' && <FaMotorcycle />}
+                {iconName === 'beer' && <FaBeer />}
+                {iconName === 'home' && <BsFillHouseDoorFill />}
+                {iconName === 'money' && <GiMoneyStack />}
+                {!iconName && <IoIosWarning />}
+            </div>
+
+
 }
