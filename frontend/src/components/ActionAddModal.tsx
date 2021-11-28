@@ -41,7 +41,6 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
 export const ActionAddModal = ({ closeModal }: IActionAddModalProps) => {
 
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
-    const filterBy: IDataObject = useSelector((state: RootState) => state.appStateModule.filterBy)
 
     const dispatch = useDispatch()
     const theme = useTheme();
@@ -79,6 +78,9 @@ export const ActionAddModal = ({ closeModal }: IActionAddModalProps) => {
             if (!formData[key as keyof IAction]) {
                 isValid = false
                 errorsCopy[key as keyof IErrors] = true
+            } else if(key === 'amount' && formData.amount <= 0){
+                isValid = false
+                errorsCopy.amount = true
             } else {
                 errorsCopy[key as keyof IErrors] = false
             }
