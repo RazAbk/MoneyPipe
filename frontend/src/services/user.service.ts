@@ -1,11 +1,12 @@
 import { localStorageService } from "./local-storage.service"
 import { storageService as asyncLocalStorage } from '../services/async-storage.service'
-import { IAction, IUser } from "../interfaces/dataInterfaces"
+import { IAction, ICategory, IUser } from "../interfaces/dataInterfaces"
 
 export const userService = {
     getLoggedInUser,
     getData,
-    addAction
+    addAction,
+    addCategory
 }
 
 function getLoggedInUser() {
@@ -31,7 +32,18 @@ async function addAction(action: IAction) {
     return users[userIdx].data
 }
 
-// _loadToStorage()
+async function addCategory(category: ICategory) {
+    const loggedInUser = getLoggedInUser()
+    const users = localStorageService.load('users')
+
+    const userIdx = users.findIndex((user: IUser) => user.userName === loggedInUser)
+    users[userIdx].data.categories.push(category)
+    localStorageService.save('users', users)
+
+    return users[userIdx].data
+}
+
+_loadToStorage()
 
 function _loadToStorage() {
 
@@ -98,42 +110,42 @@ function _loadToStorage() {
                 categories: [
                     {
                         title: 'Shopping',
-                        icon: 'HiShoppingCart',
+                        icon: 'shopping-cart',
                         bgColor: '#E9BC66'
                     },
                     {
                         title: 'Car',
-                        icon: 'MdDirectionsCar',
+                        icon: 'car',
                         bgColor: '#5BB859'
                     },
                     {
                         title: 'Motorcycle',
-                        icon: 'FaMotorcycle',
+                        icon: 'motorcycle',
                         bgColor: '#4486AB'
                     },
                     {
                         title: 'Food',
-                        icon: 'MdFastfood',
+                        icon: 'food',
                         bgColor: '#784AB2'
                     },
                     {
                         title: 'Hangout',
-                        icon: 'FaBeer',
+                        icon: 'beer',
                         bgColor: '#C28173'
                     },
                     {
                         title: 'Household',
-                        icon: 'BsFillHouseDoorFill',
+                        icon: 'home',
                         bgColor: '#BB9274'
                     },
                     {
                         title: 'Salary',
-                        icon: 'GiMoneyStack',
+                        icon: 'money',
                         bgColor: '#5BB859'
                     },
                     {
                         title: 'My business',
-                        icon: 'GiMoneyStack',
+                        icon: 'money',
                         bgColor: '#73A5C2'
                     },
                 ],

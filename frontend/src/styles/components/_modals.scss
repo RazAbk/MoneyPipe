@@ -45,6 +45,19 @@
     .modal-footer{
         height: 3rem;
     }
+
+    button{
+        background-color: $main-light-color;
+        color: $txt-dark-color;
+        &:hover, &:active{
+            background-color: $main-light-color;
+        }
+    }
+
+    .txt-input{
+        background-color: $main-light-color;
+        width: 100%;
+    }
 }
 
 .search-modal{
@@ -94,15 +107,6 @@
         display: flex;
         justify-content: center;
         width: 100%;
-        button{
-            background-color: $main-light-color;
-            color: $txt-dark-color;
-        }
-    }
-    
-    .txt-input{
-        background-color: $main-light-color;
-        width: 100%;
     }
     
 }
@@ -124,11 +128,95 @@
         gap: 0.5rem;
     }
 
+    .input-select{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        
+        button{
+            height: 30px;
+            font-size: 0.8rem;
+            
+        }
+    }
+
     .amount-input{
         width: 50%;
     }
 
     .input-field{
         width: 15rem;
+    }
+}
+
+.category-add-modal ,.label-add-modal {
+    width: 85vw;
+    height: 60vh;
+    max-height: 32rem;
+    
+    @include for-tablet{
+        width: 20rem;
+        height: 25rem;
+    }
+
+    .modal-body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        button{
+            width: 8rem;
+        }
+
+        .icon-preview{
+            font-size: 1.5rem;
+            color: $txt-light-color;
+            border-radius: 100%;
+            width: 40px;
+            height: 40px;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+.pick-modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+
+    width: 15rem;
+    height: 15rem;
+    background-color: $main-light-color;
+    z-index: 150;
+    padding: 0.75rem;
+    overflow-y: scroll;
+    
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(auto-fill, 3rem);
+    justify-items: center;
+}
+
+.colors-pick-modal{
+    .color{
+        cursor: pointer;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        border: 2px solid black;
+    }
+}
+
+.icon-pick-modal{
+    font-size: 2rem;
+    &>*{
+        cursor: pointer;
     }
 }

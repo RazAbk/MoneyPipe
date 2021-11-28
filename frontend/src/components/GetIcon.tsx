@@ -23,6 +23,4 @@ export const GetIcon = ({iconName}: IconProps) => {
                 {iconName === 'money' && <GiMoneyStack />}
                 {!iconName && <IoIosWarning />}
             </>
-
-
 }
