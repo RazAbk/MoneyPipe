@@ -10,6 +10,7 @@ export interface ICategory {
 }
 
 export interface IAction {
+    _id: string;
     type: string;
     labels: string[];
     category: string;

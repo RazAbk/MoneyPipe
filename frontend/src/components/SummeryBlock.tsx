@@ -130,7 +130,7 @@ export const SummeryBlock = ({ type }: { type: string }) => {
                         <React.Fragment key={`${month[0]}-${type}`}>
                             <h3 className="actions-month">{month[0]}</h3>
                             {
-                                month[1].sort((a, b) => b.createdAt - a.createdAt).map(action => <ActionPreview key={`action-${action.type}-${action.createdAt}`} action={action} />)
+                                month[1].sort((a, b) => b.createdAt - a.createdAt).map(action => <ActionPreview key={action._id} action={action} />)
                             }
                         </React.Fragment>
                     )

@@ -3,7 +3,8 @@ export const utilService = {
     getCurrMonthStartTimeStamp,
     getDayMaxHour,
     getRelativeDate,
-    getDateAsString
+    getDateAsString,
+    makeId
 }
 
 function debounce<Params extends any[]>(func: (...args: Params) => any, timeout: number,): (...args: Params) => void {
@@ -77,4 +78,15 @@ function getDateAsString(date: number) {
 
 function getFormatedDigits(num: number) {
     return num < 10 ? '0' + num : num
+}
+
+function makeId(length: number = 6) {
+    let txt = '';
+    let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for (let i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    return txt;
 }

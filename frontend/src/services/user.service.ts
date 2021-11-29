@@ -1,6 +1,7 @@
 import { localStorageService } from "./local-storage.service"
 import { storageService as asyncLocalStorage } from '../services/async-storage.service'
 import { IAction, ICategory, ILabel, IUser } from "../interfaces/dataInterfaces"
+import { utilService } from "./util.service"
 
 export const userService = {
     getLoggedInUser,
@@ -23,9 +24,10 @@ async function getData(filterBy = {}) {
 }
 
 async function addAction(action: IAction) {
+    action._id = utilService.makeId()
     const loggedInUser = getLoggedInUser()
     const users = localStorageService.load('users')
-
+    
     const userIdx = users.findIndex((user: IUser) => user.userName === loggedInUser)
     users[userIdx].data.actions.push(action)
     localStorageService.save('users', users)
@@ -163,6 +165,7 @@ function _loadToStorage() {
                 ],
                 actions: [
                     {
+                        _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#motorcycle', '#transportation'],
                         category: 'Motorcycle',
@@ -171,6 +174,7 @@ function _loadToStorage() {
                         createdAt: 1635851700000
                     },
                     {
+                        _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#coffee'],
                         category: 'Food',
@@ -179,6 +183,7 @@ function _loadToStorage() {
                         createdAt: 1635930900000
                     },
                     {
+                        _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#food', '#coffee'],
                         category: 'Food',
@@ -187,6 +192,7 @@ function _loadToStorage() {
                         createdAt: 1635938100000
                     },
                     {
+                        _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#food', '#restaurant'],
                         category: 'Food',
@@ -195,6 +201,7 @@ function _loadToStorage() {
                         createdAt: 1635948900000
                     },
                     {
+                        _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#beer', '#hangout'],
                         category: 'Hangout',
@@ -203,6 +210,7 @@ function _loadToStorage() {
                         createdAt: 1635981300000
                     },
                     {
+                        _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#motorcycle', '#fuel'],
                         category: 'Motorcycle',
@@ -211,6 +219,7 @@ function _loadToStorage() {
                         createdAt: 1636197300000
                     },
                     {
+                        _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#motorcycle', '#fuel'],
                         category: 'Motorcycle',
@@ -219,6 +228,7 @@ function _loadToStorage() {
                         createdAt: 1636215300000
                     },
                     {
+                        _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#motorcycle'],
                         category: 'Motorcycle',
@@ -227,6 +237,7 @@ function _loadToStorage() {
                         createdAt: 1636647300000
                     },
                     {
+                        _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#household'],
                         category: 'Shopping',
@@ -235,6 +246,7 @@ function _loadToStorage() {
                         createdAt: 1636733700000
                     },
                     {
+                        _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#household'],
                         category: 'Shopping',
@@ -243,6 +255,7 @@ function _loadToStorage() {
                         createdAt: 1637406669000
                     },
                     {
+                        _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#beer', '#hangout'],
                         category: 'Hangout',
@@ -251,6 +264,7 @@ function _loadToStorage() {
                         createdAt: 1637485869000
                     },
                     {
+                        _id: utilService.makeId(),
                         type: 'income',
                         labels: ['#salary', '#somecompany'],
                         category: 'Salary',
@@ -259,6 +273,7 @@ function _loadToStorage() {
                         createdAt: 1636543200000
                     },
                     {
+                        _id: utilService.makeId(),
                         type: 'income',
                         labels: ['#mybusiness'],
                         category: 'My business',

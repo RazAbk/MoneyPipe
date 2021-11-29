@@ -48,6 +48,7 @@ export const ActionAddModal = ({ closeModal }: IActionAddModalProps) => {
     const theme = useTheme();
 
     const [formData, setFormData] = useState<IAction>({
+        _id: '',
         type: 'expense',
         labels: [],
         category: '',

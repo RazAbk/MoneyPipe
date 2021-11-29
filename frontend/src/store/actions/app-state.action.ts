@@ -19,6 +19,15 @@ export const setCurrentLabel = (label: string | null) => {
     }
 }
 
+export const setSelectedAction = (actionId: string | null) => {
+    return (dispatch: AppDispatch) => {
+        dispatch({
+            type: "SET_SELECTED_ACTION",
+            actionId
+        })
+    }
+}
+
 export const setFilterBy = (filterBy: IFilterBy) => {
     return (dispatch: AppDispatch) => {
         dispatch({
