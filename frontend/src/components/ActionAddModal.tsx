@@ -32,10 +32,10 @@ const MenuProps = {
     },
 };
 
-function getStyles(name: string, personName: readonly string[], theme: Theme) {
+function getStyles(title: string, labels: readonly string[], theme: Theme) {
     return {
         fontWeight:
-            personName.indexOf(name) === -1
+            labels.indexOf(title) === -1
                 ? theme.typography.fontWeightRegular
                 : theme.typography.fontWeightMedium,
     };
