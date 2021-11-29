@@ -19,14 +19,14 @@ export const setUser = () => {
 
 export const getData = (filterBy = {}) => {
     return async (dispatch: AppDispatch) => {
-        try{
+        try {
             const data = await userService.getData(filterBy)
             dispatch({
                 type: "SET_DATA",
                 data
             })
             return data
-        } catch (err){
+        } catch (err) {
             console.log(err)
         }
     }
@@ -34,14 +34,28 @@ export const getData = (filterBy = {}) => {
 
 export const addAction = (action: IAction) => {
     return async (dispatch: AppDispatch) => {
-        try{
+        try {
             const data = await userService.addAction(action)
             dispatch({
                 type: "SET_DATA",
                 data
             })
             return data
-        } catch (err){
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+export const deleteAction = (actionId: string) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const data = await userService.deleteAction(actionId)
+            dispatch({
+                type: "SET_DATA",
+                data
+            })
+        } catch (err) {
             console.log(err)
         }
     }
@@ -49,14 +63,14 @@ export const addAction = (action: IAction) => {
 
 export const addCategory = (category: ICategory) => {
     return async (dispatch: AppDispatch) => {
-        try{
+        try {
             const data = await userService.addCategory(category)
             dispatch({
                 type: "SET_DATA",
                 data
             })
             return data
-        } catch (err){
+        } catch (err) {
             console.log(err)
         }
     }
@@ -64,14 +78,14 @@ export const addCategory = (category: ICategory) => {
 
 export const addLabel = (label: ILabel) => {
     return async (dispatch: AppDispatch) => {
-        try{
+        try {
             const data = await userService.addLabel(label)
             dispatch({
                 type: "SET_DATA",
                 data
             })
             return data
-        } catch (err){
+        } catch (err) {
             console.log(err)
         }
     }

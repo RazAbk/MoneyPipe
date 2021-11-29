@@ -7,6 +7,7 @@ export const userService = {
     getLoggedInUser,
     getData,
     addAction,
+    deleteAction,
     addCategory,
     addLabel
 }
@@ -30,6 +31,20 @@ async function addAction(action: IAction) {
     
     const userIdx = users.findIndex((user: IUser) => user.userName === loggedInUser)
     users[userIdx].data.actions.push(action)
+    localStorageService.save('users', users)
+
+    return users[userIdx].data
+}
+
+async function deleteAction(actionId: string) {
+    const loggedInUser = getLoggedInUser()
+    const users = localStorageService.load('users')
+    
+    const userIdx = users.findIndex((user: IUser) => user.userName === loggedInUser)
+
+    const actionIdx = users[userIdx].data.actions.findIndex((action: IAction) => action._id === actionId)
+    users[userIdx].data.actions.splice(actionIdx, 1)
+
     localStorageService.save('users', users)
 
     return users[userIdx].data

@@ -1,4 +1,3 @@
-import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { IAction, IDataObject } from '../interfaces/dataInterfaces'
 import { utilService } from '../services/util.service'
@@ -7,6 +6,7 @@ import { GetIcon } from './GetIcon'
 import { FaRegEdit } from 'react-icons/fa'
 import { VscTrash } from 'react-icons/vsc'
 import { setSelectedAction } from '../store/actions/app-state.action'
+import { deleteAction } from '../store/actions/user.action'
 
 
 interface IActionProps {
@@ -28,13 +28,11 @@ export const ActionPreview = ({ action }: IActionProps) => {
     }
 
     const onDelete = () => {
-        console.log('delete', action._id)
-        // setShowActions(false)
+        dispatch(deleteAction(action._id))
     }
 
     const onEdit = () => {
         console.log('edit', action._id)
-        // setShowActions(false)
     }
 
     const handleActionClick = () => {
