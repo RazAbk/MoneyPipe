@@ -1,7 +1,9 @@
 .action-preview{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
     
     height: 4rem;
     border-bottom: 1px rgba(145, 145, 145, 0.2) solid;
@@ -28,6 +30,49 @@
                 color: rgb(29, 93, 230);
             }
         }
+    }
+
+    .action-preview-actions{
+        position: absolute;
+        right: 0;
+        height: 102%;
+        width: 8rem;
+        transform: translateX(100%);
+
+        display: flex;
+
+        transition: 0.2s;
+
+        button{
+            font-size: 1.4rem;
+            border: transparent;
+            width: 50%;
+            color: $txt-light-color;
+            transition: 0.2s;
+        }
+
+        >button:first-child{
+            background-color: rgb(226, 131, 21);
+            border-radius: 7.5px 0 0 7.5px;
+            &:hover{
+                background-color: rgb(245, 142, 25);
+            }
+        }
+        
+        >button:nth-child(2){
+            background-color: rgb(192, 45, 45);
+            &:hover{
+                background-color: rgb(211, 35, 35);
+            }
+        }
+    }
+
+    &:focus{
+        outline: none;
+    }
+    
+    .right-side{
+        transition: 0.2s;
     }
 }
 
