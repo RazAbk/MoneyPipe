@@ -11,10 +11,10 @@ import { setFilterBy } from '../store/actions/app-state.action'
 interface IMainAppMenuProps {
     isMenuOpen: boolean;
     setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    setActionAddModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setActionAddEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddModalOpen }: IMainAppMenuProps) => {
+export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen }: IMainAppMenuProps) => {
 
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
     const currentLabel = useSelector((state: RootState) => state.appStateModule.currentLabel)
@@ -78,7 +78,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddModalOpen }: 
                     <FaUserAlt />
                 </div>
                 <div className="quick-actions">
-                    <MdAddCircle onClick={() => {setActionAddModalOpen(true); setMenuOpen(false)}}/>
+                    <MdAddCircle onClick={() => {setActionAddEditModalOpen(true); setMenuOpen(false)}}/>
                 </div>
             </div>
         </div>

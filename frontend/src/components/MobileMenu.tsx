@@ -4,10 +4,10 @@ import { MdAddCircle } from 'react-icons/md'
 
 interface IMobileMenuProps{
     setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    setActionAddModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setActionAddEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const MobileMenu = ({setMenuOpen, setActionAddModalOpen}: IMobileMenuProps) => {
+export const MobileMenu = ({setMenuOpen, setActionAddEditModalOpen}: IMobileMenuProps) => {
     return (
         <div className="mobile-menu">
             <div className="mobile-menu-icon">
@@ -15,7 +15,7 @@ export const MobileMenu = ({setMenuOpen, setActionAddModalOpen}: IMobileMenuProp
             </div>
             <h1 className="app-logo">MoneyPipe</h1>
             <div className="mobile-menu-icon">
-                <MdAddCircle onClick={() => {setActionAddModalOpen(true)}}/>
+                <MdAddCircle onClick={() => {setActionAddEditModalOpen(true)}}/>
             </div>
         </div>
     )

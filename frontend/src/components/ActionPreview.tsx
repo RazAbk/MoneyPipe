@@ -7,6 +7,9 @@ import { FaRegEdit } from 'react-icons/fa'
 import { VscTrash } from 'react-icons/vsc'
 import { setSelectedAction } from '../store/actions/app-state.action'
 import { deleteAction } from '../store/actions/user.action'
+import { ActionAddEditModal } from './ActionAddEditModal'
+import { useState } from 'react'
+import { Screen } from './Screen'
 
 
 interface IActionProps {
@@ -20,6 +23,8 @@ export const ActionPreview = ({ action }: IActionProps) => {
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
     const selectedAction: string | null = useSelector((state: RootState) => state.appStateModule.selectedAction)
 
+    const [isActionAddEditModalOpen ,setActionAddEditModalOpen] = useState(false)
+
     const findCategoryData = (category: string) => {
         if (rawData) {
             const currCat = rawData.categories.find(currCat => currCat.title === category)
@@ -32,11 +37,11 @@ export const ActionPreview = ({ action }: IActionProps) => {
     }
 
     const onEdit = () => {
-        console.log('edit', action._id)
+        setActionAddEditModalOpen(true)
     }
 
     const handleActionClick = () => {
-        if(selectedAction === action._id){
+        if (selectedAction === action._id) {
             dispatch(setSelectedAction(null))
         } else {
             dispatch(setSelectedAction(action._id))
@@ -47,24 +52,28 @@ export const ActionPreview = ({ action }: IActionProps) => {
 
     if (!categoryData) return <h1>Loading</h1>
     return (
-        <div className="action-preview" onClick={handleActionClick}>
-            <div className="left-side">
-                <div className="action-details-icon" style={{ backgroundColor: categoryData.bgColor }}>
-                    <GetIcon iconName={categoryData.icon} />
+        <>
+            <div className="action-preview" onClick={handleActionClick}>
+                <div className="left-side">
+                    <div className="action-details-icon" style={{ backgroundColor: categoryData.bgColor }}>
+                        <GetIcon iconName={categoryData.icon} />
+                    </div>
+                    <div className="action-data">
+                        <p className="action-date">{utilService.getRelativeDate(action.createdAt)}</p>
+                        <h3>{action.description}</h3>
+                        <p className="action-labels">{action.labels.map(label => <span key={`label-${action.createdAt}-${label}`}>{label}</span>)}</p>
+                    </div>
                 </div>
-                <div className="action-data">
-                    <p className="action-date">{utilService.getRelativeDate(action.createdAt)}</p>
-                    <h3>{action.description}</h3>
-                    <p className="action-labels">{action.labels.map(label => <span key={`label-${action.createdAt}-${label}`}>{label}</span>)}</p>
+                <div className="right-side">
+                    <h3>{action.amount.toLocaleString()}{rawData.currencySign}</h3>
+                </div>
+                <div className="action-preview-actions" style={{ transform: selectedAction === action._id ? 'translateX(0%)' : 'translateX(100%)' }}>
+                    <button onClick={onEdit}><FaRegEdit /></button>
+                    <button onClick={onDelete}><VscTrash /></button>
                 </div>
             </div>
-            <div className="right-side">
-                <h3>{action.amount.toLocaleString()}{rawData.currencySign}</h3>
-            </div>
-            <div className="action-preview-actions" style={{ transform: selectedAction === action._id ? 'translateX(0%)' : 'translateX(100%)' }}>
-                <button onClick={onEdit}><FaRegEdit /></button>
-                <button onClick={onDelete}><VscTrash /></button>
-            </div>
-        </div>
+            <Screen isOpen={isActionAddEditModalOpen} exitScreen={setActionAddEditModalOpen} zIndex="100" />
+            {isActionAddEditModalOpen && <ActionAddEditModal closeModal={setActionAddEditModalOpen} action={action}/>}
+        </>
     )
 }

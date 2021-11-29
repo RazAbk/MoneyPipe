@@ -11,8 +11,9 @@ import { Screen } from './Screen';
 import { CategoryAddModal } from './CategoryAddModal';
 import { LabelAddModal } from './LabelAddModal';
 
-interface IActionAddModalProps {
+interface IActionAddEditModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
+    action?: IAction;
 }
 
 interface IErrors {
@@ -41,13 +42,13 @@ function getStyles(title: string, labels: readonly string[], theme: Theme) {
     };
 }
 
-export const ActionAddModal = ({ closeModal }: IActionAddModalProps) => {
+export const ActionAddEditModal = ({ closeModal, action }: IActionAddEditModalProps) => {
 
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
     const dispatch = useDispatch()
     const theme = useTheme();
 
-    const [formData, setFormData] = useState<IAction>({
+    const [formData, setFormData] = useState<IAction>(action || {
         _id: '',
         type: 'expense',
         labels: [],
@@ -105,7 +106,7 @@ export const ActionAddModal = ({ closeModal }: IActionAddModalProps) => {
         <>
             <div className="modal action-add-modal">
                 <div className="modal-header">
-                    <h3>Add new action</h3>
+                    <h3>{action ? 'Edit action' : 'Add new action'}</h3>
                     <AiOutlineClose className="exit-modal-btn" onClick={() => { closeModal(false) }} />
                 </div>
                 <div className="modal-body">
@@ -163,7 +164,7 @@ export const ActionAddModal = ({ closeModal }: IActionAddModalProps) => {
                 </div>
                 <div className="modal-footer">
                     <Stack className="form-buttons" spacing={2} direction="row">
-                        <Button variant="contained" onClick={onSubmit}>Add new action</Button>
+                        <Button variant="contained" onClick={onSubmit}>{action ? 'Submit' : 'Add new action'}</Button>
                     </Stack>
                 </div>
             </div>

@@ -25,12 +25,19 @@ async function getData(filterBy = {}) {
 }
 
 async function addAction(action: IAction) {
-    action._id = utilService.makeId()
     const loggedInUser = getLoggedInUser()
     const users = localStorageService.load('users')
     
     const userIdx = users.findIndex((user: IUser) => user.userName === loggedInUser)
-    users[userIdx].data.actions.push(action)
+    
+    // If ID already exists - update, else - Add new
+    if(action._id){
+        const actionIdx = users[userIdx].data.actions.findIndex((currAction: IAction) => currAction._id === action._id)
+        users[userIdx].data.actions[actionIdx] = action
+    } else {
+        action._id = utilService.makeId()
+        users[userIdx].data.actions.push(action)
+    }
     localStorageService.save('users', users)
 
     return users[userIdx].data

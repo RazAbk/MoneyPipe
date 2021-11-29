@@ -13,7 +13,7 @@ import { SummeryBlock } from '../components/SummeryBlock'
 import { RootState } from '../store/store'
 import { GraphBlock } from '../components/GraphBlock'
 import { SearchModal } from '../components/SearchModal'
-import { ActionAddModal } from '../components/ActionAddModal'
+import { ActionAddEditModal } from '../components/ActionAddEditModal'
 
 
 export const MainApp = () => {
@@ -23,7 +23,7 @@ export const MainApp = () => {
 
     const [isMenuOpen, setMenuOpen] = useState(false)
     const [isSearchModalOpen, setSearchModalOpen] = useState(false)
-    const [isActionAddModalOpen, setActionAddModalOpen] = useState(false)
+    const [isActionAddEditModalOpen, setActionAddEditModalOpen] = useState(false)
     const [currentBlock, setCurrentBlock] = useState(0)
 
     // Mobile slider
@@ -43,10 +43,10 @@ export const MainApp = () => {
     return (
         <>
             <div className="main-app">
-                <MainAppMenu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} setActionAddModalOpen={setActionAddModalOpen}/>
+                <MainAppMenu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} setActionAddEditModalOpen={setActionAddEditModalOpen}/>
                 <div className="app-content">
                     <div className="full-screen-content">
-                        <MobileMenu setMenuOpen={setMenuOpen} setActionAddModalOpen={setActionAddModalOpen}/>
+                        <MobileMenu setMenuOpen={setMenuOpen} setActionAddEditModalOpen={setActionAddEditModalOpen}/>
                         <HeaderBlock setSearchModalOpen={setSearchModalOpen} />
                         <BalanceBlock />
                         {currentViewMode === 'Graph' && <GraphBlock />}
@@ -70,10 +70,10 @@ export const MainApp = () => {
             </div>
             <Screen isOpen={isMenuOpen} exitScreen={setMenuOpen} />
             <Screen isOpen={isSearchModalOpen} exitScreen={setSearchModalOpen} />
-            <Screen isOpen={isActionAddModalOpen} exitScreen={setActionAddModalOpen} />
+            <Screen isOpen={isActionAddEditModalOpen} exitScreen={setActionAddEditModalOpen} />
 
             {isSearchModalOpen && <SearchModal closeModal={setSearchModalOpen}/> }
-            {isActionAddModalOpen && <ActionAddModal closeModal={setActionAddModalOpen}/> }
+            {isActionAddEditModalOpen && <ActionAddEditModal closeModal={setActionAddEditModalOpen}/> }
         </>
     )
 }
