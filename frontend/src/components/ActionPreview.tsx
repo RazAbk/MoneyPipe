@@ -37,8 +37,6 @@ export const ActionPreview = ({ action, setActionAddEditModalOpen }: IActionProp
     }
 
     const handleActionClick = (ev: any) => {
-        console.dir(ev.target)
-        console.log(ev.target.classList)
         if(!selectedAction){
             dispatch(setSelectedAction(action))
         } else {
