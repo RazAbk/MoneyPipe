@@ -6,22 +6,21 @@ import { Screen } from '../components/Screen'
 import { HeaderBlock } from '../components/HeaderBlock'
 import { getData } from '../store/actions/user.action'
 import { BalanceBlock } from '../components/BalanceBlock'
-import { useKeenSlider } from "keen-slider/react"
-import "keen-slider/keen-slider.min.css"
-import { GoPrimitiveDot } from 'react-icons/go'
+import { GoPrimitiveDot as MobileIdx } from 'react-icons/go'
 import { SummeryBlock } from '../components/SummeryBlock'
 import { RootState } from '../store/store'
 import { GraphBlock } from '../components/GraphBlock'
 import { SearchModal } from '../components/SearchModal'
 import { ActionAddEditModal } from '../components/ActionAddEditModal'
 import { setSelectedAction } from '../store/actions/app-state.action'
+import { useKeenSlider } from "keen-slider/react"
+import "keen-slider/keen-slider.min.css"
 
 
 export const MainApp = () => {
 
     const dispatch = useDispatch()
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
-    const selectedAction = useSelector((state: RootState) => state.appStateModule.selectedAction)
 
     const [isMenuOpen, setMenuOpen] = useState(false)
     const [isSearchModalOpen, setSearchModalOpen] = useState(false)
@@ -40,19 +39,19 @@ export const MainApp = () => {
     useEffect(() => {
         dispatch(getData())
     }, [dispatch])
-    
+
     useEffect(() => {
-        if(!isActionAddEditModalOpen) dispatch(setSelectedAction(null))
+        if (!isActionAddEditModalOpen) dispatch(setSelectedAction(null))
     }, [dispatch, isActionAddEditModalOpen])
 
 
     return (
         <>
             <div className="main-app">
-                <MainAppMenu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} setActionAddEditModalOpen={setActionAddEditModalOpen}/>
+                <MainAppMenu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} setActionAddEditModalOpen={setActionAddEditModalOpen} />
                 <div className="app-content">
                     <div className="full-screen-content">
-                        <MobileMenu setMenuOpen={setMenuOpen} setActionAddEditModalOpen={setActionAddEditModalOpen}/>
+                        <MobileMenu setMenuOpen={setMenuOpen} setActionAddEditModalOpen={setActionAddEditModalOpen} />
                         <HeaderBlock setSearchModalOpen={setSearchModalOpen} />
                         <BalanceBlock />
                         {currentViewMode === 'Graph' && <GraphBlock />}
@@ -71,15 +70,16 @@ export const MainApp = () => {
             </div>
 
             <div className="pagination-dots mobile-only">
-                <GoPrimitiveDot className={`${currentBlock ? 'fade-dot' : ''}`} />
-                <GoPrimitiveDot className={`${!currentBlock ? 'fade-dot' : ''}`} />
+                <MobileIdx className={`${currentBlock ? 'fade-dot' : ''}`} />
+                <MobileIdx className={`${!currentBlock ? 'fade-dot' : ''}`} />
             </div>
+
             <Screen isOpen={isMenuOpen} exitScreen={setMenuOpen} />
             <Screen isOpen={isSearchModalOpen} exitScreen={setSearchModalOpen} />
             <Screen isOpen={isActionAddEditModalOpen} exitScreen={setActionAddEditModalOpen} />
 
-            {isSearchModalOpen && <SearchModal closeModal={setSearchModalOpen}/> }
-            {isActionAddEditModalOpen && <ActionAddEditModal closeModal={setActionAddEditModalOpen}/> }
+            {isSearchModalOpen && <SearchModal closeModal={setSearchModalOpen} />}
+            {isActionAddEditModalOpen && <ActionAddEditModal closeModal={setActionAddEditModalOpen} />}
         </>
     )
 }
