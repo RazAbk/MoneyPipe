@@ -1,9 +1,8 @@
-import React, { SetStateAction, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { IActionsData, IDataMap, IDataObject, IPieData } from '../interfaces/dataInterfaces'
 import { RootState } from '../store/store'
 import { Pie } from 'react-chartjs-2';
-import { BsFillSquareFill } from 'react-icons/bs'
 import { ActionPreview } from './ActionPreview';
 
 interface ISummeryBlockProps {
