@@ -1,4 +1,4 @@
-import { IFilterBy } from "../../interfaces/dataInterfaces"
+import { IAction, IFilterBy } from "../../interfaces/dataInterfaces"
 import { AppDispatch } from "../store"
 
 export const setCurrentViewMode = (viewMode: string) => {
@@ -19,11 +19,11 @@ export const setCurrentLabel = (label: string | null) => {
     }
 }
 
-export const setSelectedAction = (actionId: string | null) => {
+export const setSelectedAction = (action: IAction | null) => {
     return (dispatch: AppDispatch) => {
         dispatch({
             type: "SET_SELECTED_ACTION",
-            actionId
+            action
         })
     }
 }

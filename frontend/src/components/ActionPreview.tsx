@@ -7,23 +7,19 @@ import { FaRegEdit } from 'react-icons/fa'
 import { VscTrash } from 'react-icons/vsc'
 import { setSelectedAction } from '../store/actions/app-state.action'
 import { deleteAction } from '../store/actions/user.action'
-import { ActionAddEditModal } from './ActionAddEditModal'
-import { useState } from 'react'
-import { Screen } from './Screen'
 
 
 interface IActionProps {
     action: IAction;
+    setActionAddEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 
-export const ActionPreview = ({ action }: IActionProps) => {
+export const ActionPreview = ({ action, setActionAddEditModalOpen }: IActionProps) => {
 
     const dispatch = useDispatch()
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
-    const selectedAction: string | null = useSelector((state: RootState) => state.appStateModule.selectedAction)
-
-    const [isActionAddEditModalOpen ,setActionAddEditModalOpen] = useState(false)
+    const selectedAction: IAction | null = useSelector((state: RootState) => state.appStateModule.selectedAction)
 
     const findCategoryData = (category: string) => {
         if (rawData) {
@@ -40,11 +36,15 @@ export const ActionPreview = ({ action }: IActionProps) => {
         setActionAddEditModalOpen(true)
     }
 
-    const handleActionClick = () => {
-        if (selectedAction === action._id) {
-            dispatch(setSelectedAction(null))
+    const handleActionClick = (ev: any) => {
+        if(!selectedAction){
+            dispatch(setSelectedAction(action))
         } else {
-            dispatch(setSelectedAction(action._id))
+            if(selectedAction._id !== action._id){
+                dispatch(setSelectedAction(action))
+            } else if(ev.target.classList.contains('action-preview')){
+                dispatch(setSelectedAction(null))
+            }
         }
     }
 
@@ -52,28 +52,24 @@ export const ActionPreview = ({ action }: IActionProps) => {
 
     if (!categoryData) return <h1>Loading</h1>
     return (
-        <>
-            <div className="action-preview" onClick={handleActionClick}>
-                <div className="left-side">
-                    <div className="action-details-icon" style={{ backgroundColor: categoryData.bgColor }}>
-                        <GetIcon iconName={categoryData.icon} />
-                    </div>
-                    <div className="action-data">
-                        <p className="action-date">{utilService.getRelativeDate(action.createdAt)}</p>
-                        <h3>{action.description}</h3>
-                        <p className="action-labels">{action.labels.map(label => <span key={`label-${action.createdAt}-${label}`}>{label}</span>)}</p>
-                    </div>
+        <div className="action-preview" onClick={handleActionClick}>
+            <div className="left-side">
+                <div className="action-details-icon" style={{ backgroundColor: categoryData.bgColor }}>
+                    <GetIcon iconName={categoryData.icon} />
                 </div>
-                <div className="right-side">
-                    <h3>{action.amount.toLocaleString()}{rawData.currencySign}</h3>
-                </div>
-                <div className="action-preview-actions" style={{ transform: selectedAction === action._id ? 'translateX(0%)' : 'translateX(100%)' }}>
-                    <button onClick={onEdit}><FaRegEdit /></button>
-                    <button onClick={onDelete}><VscTrash /></button>
+                <div className="action-data">
+                    <p className="action-date">{utilService.getRelativeDate(action.createdAt)}</p>
+                    <h3>{action.description}</h3>
+                    <p className="action-labels">{action.labels.map(label => <span key={`label-${action.createdAt}-${label}`}>{label}</span>)}</p>
                 </div>
             </div>
-            <Screen isOpen={isActionAddEditModalOpen} exitScreen={setActionAddEditModalOpen} zIndex="100" />
-            {isActionAddEditModalOpen && <ActionAddEditModal closeModal={setActionAddEditModalOpen} action={action}/>}
-        </>
+            <div className="right-side">
+                <h3>{action.amount.toLocaleString()}{rawData.currencySign}</h3>
+            </div>
+            <div className="action-preview-actions" style={{ transform: selectedAction?._id === action._id ? 'translateX(0%)' : 'translateX(100%)' }}>
+                <button onClick={onEdit}><FaRegEdit /></button>
+                <button onClick={onDelete}><VscTrash /></button>
+            </div>
+        </div>
     )
 }

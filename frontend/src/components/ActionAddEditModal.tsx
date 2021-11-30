@@ -13,7 +13,6 @@ import { LabelAddModal } from './LabelAddModal';
 
 interface IActionAddEditModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
-    action?: IAction;
 }
 
 interface IErrors {
@@ -42,13 +41,14 @@ function getStyles(title: string, labels: readonly string[], theme: Theme) {
     };
 }
 
-export const ActionAddEditModal = ({ closeModal, action }: IActionAddEditModalProps) => {
+export const ActionAddEditModal = ({ closeModal }: IActionAddEditModalProps) => {
 
+    const selectedAction: IAction | null = useSelector((state: RootState) => state.appStateModule.selectedAction)
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
     const dispatch = useDispatch()
     const theme = useTheme();
 
-    const [formData, setFormData] = useState<IAction>(action || {
+    const [formData, setFormData] = useState<IAction>(selectedAction || {
         _id: '',
         type: 'expense',
         labels: [],
@@ -104,9 +104,9 @@ export const ActionAddEditModal = ({ closeModal, action }: IActionAddEditModalPr
 
     return (
         <>
-            <div className="modal action-add-modal">
+            <div className="modal action-add-edit-modal">
                 <div className="modal-header">
-                    <h3>{action ? 'Edit action' : 'Add new action'}</h3>
+                    <h3>{selectedAction ? 'Edit action' : 'Add new action'}</h3>
                     <AiOutlineClose className="exit-modal-btn" onClick={() => { closeModal(false) }} />
                 </div>
                 <div className="modal-body">
@@ -164,7 +164,7 @@ export const ActionAddEditModal = ({ closeModal, action }: IActionAddEditModalPr
                 </div>
                 <div className="modal-footer">
                     <Stack className="form-buttons" spacing={2} direction="row">
-                        <Button variant="contained" onClick={onSubmit}>{action ? 'Submit' : 'Add new action'}</Button>
+                        <Button variant="contained" onClick={onSubmit}>{selectedAction ? 'Submit' : 'Add new action'}</Button>
                     </Stack>
                 </div>
             </div>

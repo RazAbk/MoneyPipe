@@ -14,12 +14,14 @@ import { RootState } from '../store/store'
 import { GraphBlock } from '../components/GraphBlock'
 import { SearchModal } from '../components/SearchModal'
 import { ActionAddEditModal } from '../components/ActionAddEditModal'
+import { setSelectedAction } from '../store/actions/app-state.action'
 
 
 export const MainApp = () => {
 
     const dispatch = useDispatch()
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
+    const selectedAction = useSelector((state: RootState) => state.appStateModule.selectedAction)
 
     const [isMenuOpen, setMenuOpen] = useState(false)
     const [isSearchModalOpen, setSearchModalOpen] = useState(false)
@@ -38,6 +40,10 @@ export const MainApp = () => {
     useEffect(() => {
         dispatch(getData())
     }, [dispatch])
+    
+    useEffect(() => {
+        if(!isActionAddEditModalOpen) dispatch(setSelectedAction(null))
+    }, [dispatch, isActionAddEditModalOpen])
 
 
     return (
@@ -51,13 +57,13 @@ export const MainApp = () => {
                         <BalanceBlock />
                         {currentViewMode === 'Graph' && <GraphBlock />}
                         <div ref={ref} className="main-content-blocks mobile-only keen-slider">
-                            <SummeryBlock type="expense" />
-                            <SummeryBlock type="income" />
+                            <SummeryBlock type="expense" setActionAddEditModalOpen={setActionAddEditModalOpen} />
+                            <SummeryBlock type="income" setActionAddEditModalOpen={setActionAddEditModalOpen} />
                         </div>
 
                         <div className="main-content-blocks above-mobile">
-                            <SummeryBlock type="expense" />
-                            <SummeryBlock type="income" />
+                            <SummeryBlock type="expense" setActionAddEditModalOpen={setActionAddEditModalOpen} />
+                            <SummeryBlock type="income" setActionAddEditModalOpen={setActionAddEditModalOpen} />
                         </div>
                     </div>
 

@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { SetStateAction, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { IActionsData, IDataMap, IDataObject, IPieData } from '../interfaces/dataInterfaces'
 import { RootState } from '../store/store'
 import { Pie } from 'react-chartjs-2';
 import { BsFillSquareFill } from 'react-icons/bs'
 import { ActionPreview } from './ActionPreview';
+
+interface ISummeryBlockProps {
+    type: string;
+    setActionAddEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 const options = {
     maintainAspectRatio: false,
@@ -21,7 +26,7 @@ const options = {
     aspectRatio: 1,
 }
 
-export const SummeryBlock = ({ type }: { type: string }) => {
+export const SummeryBlock = ({ type, setActionAddEditModalOpen }: ISummeryBlockProps) => {
 
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
@@ -130,7 +135,7 @@ export const SummeryBlock = ({ type }: { type: string }) => {
                         <React.Fragment key={`${month[0]}-${type}`}>
                             <h3 className="actions-month">{month[0]}</h3>
                             {
-                                month[1].sort((a, b) => b.createdAt - a.createdAt).map(action => <ActionPreview key={action._id} action={action} />)
+                                month[1].sort((a, b) => b.createdAt - a.createdAt).map(action => <ActionPreview key={action._id} action={action} setActionAddEditModalOpen={setActionAddEditModalOpen} />)
                             }
                         </React.Fragment>
                     )
