@@ -19,6 +19,14 @@ interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const emptyFilterBy = {
+    category: "",
+    startDate: utilService.getCurrMonthStartTimeStamp(),
+    endDate: utilService.getDayMaxHour(Date.now()),
+    label: "",
+    searchTxt: ""
+}
+
 export const SearchModal = ({ closeModal }: IModalProps) => {
 
     const dispatch = useDispatch()
@@ -27,13 +35,6 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
 
     const [filterBy, setFilterBy] = useState(globalFilterBy)
 
-    const emptyFilterBy = {
-        category: "",
-        startDate: utilService.getCurrMonthStartTimeStamp(),
-        endDate: utilService.getDayMaxHour(Date.now()),
-        label: "",
-        searchTxt: ""
-    }
 
     const handleChange = (ev: SelectChangeEvent | any) => {
         setFilterBy({ ...filterBy, [ev.target.name]: ev.target.value })
