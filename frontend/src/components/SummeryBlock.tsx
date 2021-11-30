@@ -110,7 +110,7 @@ export const SummeryBlock = ({ type, setActionAddEditModalOpen }: ISummeryBlockP
                         {dataMap && Object.entries(dataMap).map(action => {
                             return <div key={action[0] + action[1].sum + Math.random()} className="action-details">
                                 <div className="left-side">
-                                    <BsFillSquareFill className="action-color" style={{ color: action[1].color }} />
+                                    <div className="action-color-dot" style={{ backgroundColor: action[1].color }}></div>
                                     <h2>{action[0]}</h2>
                                 </div>
                                 <div className="right-side">
