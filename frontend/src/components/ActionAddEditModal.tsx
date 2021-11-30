@@ -138,7 +138,7 @@ export const ActionAddEditModal = ({ closeModal }: IActionAddEditModalProps) => 
                             <div className="input-select">
                                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                                     <Stack spacing={3}>
-                                        <DateTimePicker label="Date" value={selectedAction ? selectedAction.createdAt : formData.createdAt} onAccept={(date) => {handleDateChange(date)}} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
+                                        <DateTimePicker label="Date & Time" ampm={false} inputFormat="dd/MM/yyyy HH:mm" value={selectedAction ? selectedAction.createdAt : formData.createdAt} onAccept={(date) => {handleDateChange(date)}} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
                                     </Stack>
                                 </LocalizationProvider>
 

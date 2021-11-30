@@ -71,8 +71,8 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
                 <Box className="modal-form" component="form" noValidate autoComplete="off" onChange={handleChange}>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <Stack spacing={3} className="date-filters">
-                            <MobileDatePicker label="Start date" value={filterBy.startDate} onAccept={(date) => { handleDateChange(date, 'startDate') }} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
-                            <MobileDatePicker label="End date" value={filterBy.endDate} onAccept={(date) => { handleDateChange(date, 'endDate') }} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
+                            <MobileDatePicker label="Start date" inputFormat="dd/MM/yyyy" value={filterBy.startDate} onAccept={(date) => { handleDateChange(date, 'startDate') }} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
+                            <MobileDatePicker label="End date" inputFormat="dd/MM/yyyy" value={filterBy.endDate} onAccept={(date) => { handleDateChange(date, 'endDate') }} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
                         </Stack>
                     </LocalizationProvider>
                     <div className="input-selectors">
