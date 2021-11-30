@@ -28,21 +28,24 @@ export const ActionPreview = ({ action, setActionAddEditModalOpen }: IActionProp
         }
     }
 
-    const onDelete = () => {
+    const onDelete = (ev: any) => {
+        ev.stopPropagation()
         dispatch(deleteAction(action._id))
+        dispatch(setSelectedAction(null))
     }
 
-    const onEdit = () => {
+    const onEdit = (ev: any) => {
+        ev.stopPropagation()
         setActionAddEditModalOpen(true)
     }
 
-    const handleActionClick = (ev: any) => {
+    const handleActionClick = () => {
         if(!selectedAction){
             dispatch(setSelectedAction(action))
         } else {
             if(selectedAction._id !== action._id){
                 dispatch(setSelectedAction(action))
-            } else if(ev.target.classList.contains('exit-click') || ev.target.nodeName === 'path' || ev.target.nodeName === 'svg'){
+            } else{
                 dispatch(setSelectedAction(null))
             }
         }
@@ -52,21 +55,23 @@ export const ActionPreview = ({ action, setActionAddEditModalOpen }: IActionProp
 
     if (!categoryData) return <h1>Loading</h1>
     return (
-        <div className="action-preview exit-click" onClick={handleActionClick}>
-            <div className="left-side exit-click">
-                <div className="action-details-icon exit-click" style={{ backgroundColor: categoryData.bgColor }}>
+        <div className={`action-preview ${selectedAction?._id === action._id ? 'selected-action' : ''}`} onClick={handleActionClick}>
+            <div className="left-side ">
+                <div className="action-details-icon " style={{ backgroundColor: categoryData.bgColor }}>
                     <GetIcon iconName={categoryData.icon} />
                 </div>
-                <div className="action-data exit-click">
-                    <p className="action-date exit-click">{utilService.getRelativeDate(action.createdAt)}</p>
-                    <h3 className="exit-click">{action.description}</h3>
-                    <p className="action-labels exit-click">{action.labels.map(label => <span key={`label-${action.createdAt}-${label}`} className="exit-click">{label}</span>)}</p>
+                <div className="action-data ">
+                    <p className="action-date ">{utilService.getRelativeDate(action.createdAt)}</p>
+                    <h3>{action.description}</h3>
+                    <p className="action-labels ">{action.labels.map(label => {
+                        return <span key={`label-${action.createdAt}-${label}`}>{label}</span>
+                    })}</p>
                 </div>
             </div>
-            <div className="right-side exit-click">
+            <div className="right-side ">
                 <h3>{action.amount.toLocaleString()}{rawData.currencySign}</h3>
             </div>
-            <div className="action-preview-actions" style={{ transform: selectedAction?._id === action._id ? 'translateX(0%)' : 'translateX(100%)' }}>
+            <div className="action-preview-actions " style={{ transform: selectedAction?._id === action._id ? 'translateX(0%)' : 'translateX(100%)' }}>
                 <button onClick={onEdit}><FaRegEdit /></button>
                 <button onClick={onDelete}><VscTrash /></button>
             </div>

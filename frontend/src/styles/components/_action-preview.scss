@@ -1,4 +1,12 @@
 .action-preview{
+    background-color: $main-light-color;
+}
+
+.selected-action{
+    background-color: rgba(94, 94, 94, 0.1);
+}
+
+.action-preview{
     position: relative;
     display: flex;
     align-items: center;
@@ -8,6 +16,8 @@
     height: 4rem;
     border-bottom: 1px rgba(145, 145, 145, 0.2) solid;
     padding: 0.75rem 1.5rem;
+
+    transition: background-color 0.2s;
     
     .left-side{
         display: flex;
