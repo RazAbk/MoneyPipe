@@ -28,7 +28,7 @@ export const LabelAddModal = ({ closeModal, setFormData }: IModalProps) => {
             return
         } else {
             const formatedLabel = '#' + label.toLowerCase().split('').filter(char => char !== ' ').join('')
-            
+
             const newLabel = {
                 title: label,
                 labelName: formatedLabel
@@ -50,8 +50,6 @@ export const LabelAddModal = ({ closeModal, setFormData }: IModalProps) => {
                 <Box className="modal-form" component="form" noValidate autoComplete="off" onChange={handleLabelChange}>
                     <TextField className="txt-input" error={error} value={label} name="label" label="label name" variant="outlined" />
                 </Box>
-            </div>
-            <div className="modal-footer">
                 <Stack className="form-buttons" spacing={2} direction="row">
                     <Button variant="contained" onClick={onSubmitLabel}>Add</Button>
                 </Stack>

@@ -67,8 +67,8 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
                 <AiOutlineClose className="exit-modal-btn" onClick={() => { closeModal(false) }} />
             </div>
             <div className="modal-body">
+                <TextField className="txt-input" value={filterBy.searchTxt} name="searchTxt" onChange={handleChange} label="Search by text" variant="outlined" />
                 <Box className="modal-form" component="form" noValidate autoComplete="off" onChange={handleChange}>
-                    <TextField className="txt-input" value={filterBy.searchTxt} name="searchTxt" label="Search by text" variant="outlined" />
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <Stack spacing={3} className="date-filters">
                             <MobileDatePicker label="Start date" value={filterBy.startDate} onAccept={(date) => { handleDateChange(date, 'startDate') }} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
@@ -94,8 +94,6 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
                         </div>
                     </div>
                 </Box>
-            </div>
-            <div className="modal-footer">
                 <Stack className="form-buttons" spacing={2} direction="row">
                     <Button variant="contained" onClick={() => { setFilterBy(emptyFilterBy) }}>Clear</Button>
                     <Button variant="contained" onClick={() => { handleApply() }}>Apply</Button>

@@ -81,6 +81,7 @@ async function addLabel(label: ILabel) {
 
 // _loadToStorage()
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function _loadToStorage() {
 
     const users = [

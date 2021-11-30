@@ -137,8 +137,6 @@ export const CategoryAddModal = ({ closeModal, setFormData }: IModalProps) => {
                         {!selectedIcon && <BsApp />}
                         {selectedIcon && <GetIcon iconName={selectedIcon} />}
                     </div>
-                </div>
-                <div className="modal-footer">
                     <Stack className="form-buttons" spacing={2} direction="row">
                         <Button variant="contained" onClick={onSubmit}>Add</Button>
                     </Stack>
