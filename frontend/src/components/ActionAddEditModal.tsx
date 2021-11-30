@@ -85,8 +85,9 @@ export const ActionAddEditModal = ({ closeModal }: IActionAddEditModalProps) => 
             if (timeStamp > Date.now()) {
                 alert("Date cannot be greater than the current date")
                 return
+            } else{
+                setFormData({...formData, createdAt: timeStamp})
             }
-            setFormData({...formData, createdAt: timeStamp})
         }
     }
 
@@ -138,7 +139,7 @@ export const ActionAddEditModal = ({ closeModal }: IActionAddEditModalProps) => 
                             <div className="input-select">
                                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                                     <Stack spacing={3}>
-                                        <MobileDateTimePicker label="Date & Time" ampm={false} inputFormat="dd/MM/yyyy HH:mm" value={selectedAction ? selectedAction.createdAt : formData.createdAt} onAccept={(date) => {handleDateChange(date)}} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
+                                        <MobileDateTimePicker label="Date & Time" ampm={false} inputFormat="dd/MM/yyyy HH:mm" value={formData.createdAt} onAccept={(date) => {handleDateChange(date)}} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
                                     </Stack>
                                 </LocalizationProvider>
 
