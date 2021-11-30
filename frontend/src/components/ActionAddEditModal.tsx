@@ -10,7 +10,7 @@ import { addAction } from '../store/actions/user.action';
 import { Screen } from './Screen';
 import { CategoryAddModal } from './CategoryAddModal';
 import { LabelAddModal } from './LabelAddModal';
-import { DateTimePicker, LocalizationProvider } from '@mui/lab';
+import { MobileDateTimePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
 interface IActionAddEditModalProps {
@@ -138,7 +138,7 @@ export const ActionAddEditModal = ({ closeModal }: IActionAddEditModalProps) => 
                             <div className="input-select">
                                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                                     <Stack spacing={3}>
-                                        <DateTimePicker label="Date & Time" ampm={false} inputFormat="dd/MM/yyyy HH:mm" value={selectedAction ? selectedAction.createdAt : formData.createdAt} onAccept={(date) => {handleDateChange(date)}} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
+                                        <MobileDateTimePicker label="Date & Time" ampm={false} inputFormat="dd/MM/yyyy HH:mm" value={selectedAction ? selectedAction.createdAt : formData.createdAt} onAccept={(date) => {handleDateChange(date)}} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
                                     </Stack>
                                 </LocalizationProvider>
 
