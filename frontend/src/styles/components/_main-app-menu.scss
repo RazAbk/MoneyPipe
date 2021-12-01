@@ -1,7 +1,7 @@
 .main-app-menu{
     background-color: $main-dark-color;
     color: $txt-light-color;
-    width: 19rem;
+    width: 17rem;
     height: 100vh;
     box-sizing: border-box;
     
@@ -19,6 +19,8 @@
 
     z-index: 95;
     padding: 0.5rem 0;
+
+    
     
     &.open-menu{
         transform: translateX(0%);
@@ -42,7 +44,7 @@
             width: 80px;
         }
         h3{
-            font-size: 2rem;
+            font-size: 1.5rem;
         }
     }
 
@@ -122,6 +124,15 @@
 
         svg{
             cursor: pointer;
+        }
+    }
+
+    @include for-small-phone {
+        width: 19rem;
+        .user-details{
+            h3{
+                font-size: 2rem;
+            }
         }
     }
     

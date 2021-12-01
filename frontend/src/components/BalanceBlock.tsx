@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { IDataObject } from '../interfaces/dataInterfaces'
-import { utilService } from '../services/util.service'
 import { RootState } from '../store/store'
 
 export const BalanceBlock = () => {
@@ -12,8 +11,6 @@ export const BalanceBlock = () => {
     const [balance, setBalance] = useState(0)
     const [balanceColor, setBalanceColor] = useState('#000000')
 
-    const startDateString = utilService.getDateAsString(filterBy.startDate)
-    const endDateString = utilService.getDateAsString(filterBy.endDate)
 
     useEffect(() => {
         if(rawData){
@@ -40,7 +37,7 @@ export const BalanceBlock = () => {
     return (
         <div className="header-block">
             <div className="header-block-content">
-                <h2>Balance<p>-</p><span>{startDateString} - {endDateString}</span></h2>
+                <h2>Balance</h2>
                 <p>Total balance</p>
             </div>
             <div className="balance-amount" style={{color: balanceColor}}>{balance ? balance.toLocaleString() : '0'}{rawData && rawData.currencySign}</div>

@@ -94,7 +94,11 @@
     }
 
     .input-field{
-        width: 8.5rem;
+        width: 7rem;
+        
+        @include for-small-phone{
+            width: 8.5rem;
+        }
 
         @include for-tablet{
             width: 15rem
@@ -119,7 +123,13 @@
 
 .action-add-edit-modal{
     width: 95vw;
-    height: 85vh;
+    height: 95vh;
+    
+    @include for-small-phone{
+        width: 95vw;
+        height: 85vh;
+        max-height: 34rem;
+    }
     
     @include for-tablet{
         width: 25rem;
@@ -178,8 +188,12 @@
 
 .category-add-modal{
     width: 85vw;
-    height: 60vh;
+    height: 65vh;
     max-height: 32rem;
+    
+    @include for-small-phone{
+        height: 60vh;
+    }
     
     @include for-tablet{
         width: 20rem;

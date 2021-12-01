@@ -30,7 +30,13 @@
             }
 
             span{
-                font-size: 0.6rem; 
+                font-size: 0.7rem; 
+            }
+            
+            @include for-small-phone{
+                span{
+                    font-size: 0.8rem; 
+                }
             }
 
             @include for-tablet{
