@@ -40,8 +40,8 @@ export const BalanceBlock = () => {
     return (
         <div className="header-block">
             <div className="header-block-content">
-                <h2>Balance</h2>
-                <p>Total balance for <b>{startDateString} - {endDateString}</b></p>
+                <h2>Balance<p>-</p><span>{startDateString} - {endDateString}</span></h2>
+                <p>Total balance</p>
             </div>
             <div className="balance-amount" style={{color: balanceColor}}>{balance ? balance.toLocaleString() : '0'}{rawData && rawData.currencySign}</div>
         </div>

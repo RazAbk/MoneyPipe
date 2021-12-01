@@ -63,7 +63,7 @@ export const SummeryBlock = ({ type, setActionAddEditModalOpen }: ISummeryBlockP
 
             rawData.actions.filter(action => {
                 if (action.type !== type) return false
-                if (action.createdAt < filterBy.startDate || action.createdAt > filterBy.endDate) {console.log(filterBy.endDate - action.createdAt); return false}
+                if (action.createdAt < filterBy.startDate || action.createdAt > filterBy.endDate) return false
                 if (filterBy.category && action.category !== filterBy.category) return false
                 if (filterBy.label && !action.labels.includes(filterBy.label)) return false
                 if (!action.description.includes(filterBy.searchTxt)) return false

@@ -20,9 +20,9 @@ export const HeaderBlock = ({setSearchModalOpen}: IHeaderProps) => {
     return (
         <div className="header-block">
             <div className="header-block-content">
-                {currentLabel && <h2>{currentLabel}</h2>}
-                {(!currentLabel && currentViewMode) && <h2>{currentViewMode}</h2>}
-                <p>{currentViewMode} of <b>{startDateString} - {endDateString}</b> incomes and expenses</p>
+                {currentLabel && <h2>{currentLabel}<p>-</p><span>{startDateString} - {endDateString}</span></h2>}
+                {(!currentLabel && currentViewMode) && <h2>{currentViewMode}<p>-</p><span>{startDateString} - {endDateString}</span></h2>}
+                <p>{currentViewMode} of incomes and expenses</p>
             </div>
             <div className="filter-btn">
                 <BiSearchAlt onClick={() => {setSearchModalOpen(true)}}/>
