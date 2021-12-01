@@ -4,6 +4,7 @@ export const utilService = {
     getDayMaxHour,
     getRelativeDate,
     getDateAsString,
+    calculatePeriodDays,
     makeId
 }
 
@@ -78,6 +79,12 @@ function getDateAsString(date: number) {
 
 function getFormatedDigits(num: number) {
     return num < 10 ? '0' + num : num
+}
+
+function calculatePeriodDays(startDate: number, endDate: number){
+    const rawResult = endDate - startDate
+
+    return Math.ceil(rawResult / 86400000)
 }
 
 function makeId(length: number = 6) {

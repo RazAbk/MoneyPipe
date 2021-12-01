@@ -1,18 +1,11 @@
-import React from 'react';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
+import React, { useEffect, useState } from 'react';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
-import { IDataObject } from '../interfaces/dataInterfaces';
+import { IDataObject, IFilterBy } from '../interfaces/dataInterfaces';
+import { utilService } from '../services/util.service';
+import { isNull } from 'util';
 
 ChartJS.register(
     CategoryScale,
@@ -24,7 +17,7 @@ ChartJS.register(
     Legend
 );
 
-export const options = {
+const options = {
     responsive: true,
     plugins: {
         legend: {
@@ -33,39 +26,85 @@ export const options = {
     }
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const returnTodayTimestampByHour = (hour: string) => {
+    const now = new Date()
 
-const data = {
-    labels,
-    datasets: [
-        {
-            data: labels.map(() => Math.random()),
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-        {
-            data: labels.map(() => Math.random()),
-            borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        },
-    ],
-};
-
-interface IGraphBlockProps {
+    return new Date(`${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()} ${hour}`).getTime()
 }
 
-export const GraphBlock = ({}: IGraphBlockProps) => {
+
+export const GraphBlock = () => {
 
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
+    const filterBy: IFilterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
 
-    // const data = {
-    //     labels: 
-    // }
+    const [graphData, setGraphData] = useState<any>(null)
+
+
+    useEffect(() => {
+        setGraphData(null)
+        if (!rawData) return
+
+        // Get the amount of days => endDate - startDate
+        const daysPeriod = utilService.calculatePeriodDays(filterBy.startDate, filterBy.endDate)
+
+        let expensesDataset: any = {
+            data: [],
+            borderColor: '#8A0000',
+            backgroundColor: '#BD5D5D',
+        }
+
+        let incomesDataset: any = {
+            data: [],
+            borderColor: '#00600A',
+            backgroundColor: '#5EAE6B',
+        }
+
+        let timePoints: string[] = []
+
+        if (daysPeriod <= 1) {
+            timePoints = ['00:00', '06:00', '12:00', '18:00', '23:59']
+            const timeStamps = timePoints.map(timePoint => returnTodayTimestampByHour(timePoint))
+
+            expensesDataset.data = timeStamps.map(timeStamp => 0)
+            incomesDataset.data = [...expensesDataset.data]
+
+            rawData.actions.forEach(action => {
+                timeStamps.forEach((timeStamp, idx, timeStamps) => {
+                    if (idx === timeStamps.length - 1) return
+                    if (action.createdAt >= timeStamp && action.createdAt <= (timeStamps[idx + 1])) {
+                        if (action.type === 'expense') {
+                            expensesDataset.data[idx] += +action.amount
+                        } else {
+                            incomesDataset.data[idx] += +action.amount
+                        }
+                    }
+                })
+            })
+
+        } else if (daysPeriod <= 14) {
+            console.log('show each day, up to 14 days')
+            timePoints = ['01/12', '02/12', '03/12', '04/12', '05/12....']
+        } else if (daysPeriod <= 31) {
+            console.log('show weeks of month')
+        } else if (daysPeriod <= 365) {
+            console.log('show months of year')
+        } else if (daysPeriod > 365) {
+            console.log('show years')
+        }
+
+        setGraphData({
+            labels: timePoints,
+            datasets: [expensesDataset, incomesDataset]
+        })
+
+    }, [rawData, filterBy])
 
     return (
-        <div className="graph-block">
-            {/* <Line data={dataMap} options={options}/> */}
-            <Line options={options} data={data} className="graph"/>
+        <div className="graph-block" style={{ justifyContent: !graphData ? 'center' : '' }}>
+            {graphData && <Line redraw className="graph" options={options} data={graphData} />}
+            {!graphData && <h2>No data to display</h2>}
         </div>
     )
+
 }
