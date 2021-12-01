@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { IDataObject, IFilterBy } from '../interfaces/dataInterfaces';
 import { utilService } from '../services/util.service';
-import { isNull } from 'util';
 
 ChartJS.register(
     CategoryScale,
@@ -26,8 +25,8 @@ const options = {
     }
 };
 
-const returnTodayTimestampByHour = (hour: string) => {
-    const now = new Date()
+const returnDayTimestampByHour = (date: number, hour: string) => {
+    const now = new Date(date)
 
     return new Date(`${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()} ${hour}`).getTime()
 }
@@ -42,12 +41,11 @@ export const GraphBlock = () => {
 
 
     useEffect(() => {
-        setGraphData(null)
         if (!rawData) return
 
         // Get the amount of days => endDate - startDate
         const daysPeriod = utilService.calculatePeriodDays(filterBy.startDate, filterBy.endDate)
-
+        
         let expensesDataset: any = {
             data: [],
             borderColor: '#8A0000',
@@ -64,7 +62,7 @@ export const GraphBlock = () => {
 
         if (daysPeriod <= 1) {
             timePoints = ['00:00', '06:00', '12:00', '18:00', '23:59']
-            const timeStamps = timePoints.map(timePoint => returnTodayTimestampByHour(timePoint))
+            const timeStamps = timePoints.map(timePoint => returnDayTimestampByHour(filterBy.startDate, timePoint))
 
             expensesDataset.data = timeStamps.map(timeStamp => 0)
             incomesDataset.data = [...expensesDataset.data]
@@ -93,10 +91,14 @@ export const GraphBlock = () => {
             console.log('show years')
         }
 
-        setGraphData({
-            labels: timePoints,
-            datasets: [expensesDataset, incomesDataset]
-        })
+        if(timePoints.length === 0){
+            setGraphData(null)
+        } else {
+            setGraphData({
+                labels: timePoints,
+                datasets: [expensesDataset, incomesDataset]
+            })
+        }
 
     }, [rawData, filterBy])
 
