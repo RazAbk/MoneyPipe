@@ -68,7 +68,7 @@ export const SummeryBlock = ({ type, setActionAddEditModalOpen }: ISummeryBlockP
                 if (filterBy.label && !action.labels.includes(filterBy.label)) return false
                 if (!action.description.includes(filterBy.searchTxt)) return false
                 return true
-            }).forEach(action => {
+            }).sort((a,b) => b.createdAt - a.createdAt).forEach(action => {
                 const date = new Date(action.createdAt)
                 const dateStr = `${date.getMonth() + 1}/${date.getFullYear()}`
                 if (actionsObj[dateStr]) actionsObj[dateStr].push(action)
