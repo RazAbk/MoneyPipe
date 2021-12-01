@@ -68,6 +68,7 @@
     max-height: 40%;
   }
 
+
   .summery-block-details {
     height: fit-content;
     width: 100%;
@@ -102,6 +103,9 @@
 }
 
 .graph-block {
+  display: flex;
+  align-items: center;
+
   margin: 0.4rem 0;
   width: calc(99vw - 1rem);
   height: calc(100vh - 5.75rem - 4.5rem - 4.5rem);
@@ -115,6 +119,11 @@
     gap: 2rem;
     min-height: calc(100vh - 2.5rem - 4.5rem - 4.5rem);
   }
+
+  .graph{
+    max-height: 100%;
+  }
+
 }
 
 .actions-block {

@@ -14,7 +14,7 @@ interface IReducerAction {
 }
 
 const initialState: IState = {
-    currentViewMode: 'Summery',
+    currentViewMode: 'Graph',
     currentLabel: null,
     selectedAction: null,
     filterBy: {
