@@ -81,15 +81,14 @@ export const GraphBlock = () => {
             timePoints = ['00:00', '06:00', '12:00', '18:00', '23:59']
             timeStamps = timePoints.map(timePoint => _returnDayTimestampByHour(filterBy.startDate, timePoint))
 
-        } else if (daysPeriod <= 14) {
+        } else if (daysPeriod <= 31) {
             const timeData = _returnDaysTimeData(daysPeriod, filterBy)
             timePoints = timeData.timePoints
             timeStamps = timeData.timeStamps
 
-        } else if (daysPeriod <= 31) {
-            console.log('show weeks of month')
         } else if (daysPeriod <= 365) {
             console.log('show months of year')
+            
         } else if (daysPeriod > 365) {
             console.log('show years')
         }
