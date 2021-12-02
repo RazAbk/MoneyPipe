@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { IDataObject, IFilterBy } from '../interfaces/dataInterfaces';
-import { utilService } from '../services/util.service';
+import { dateService } from '../services/date.service';
 
 ChartJS.register(
     CategoryScale,
@@ -25,83 +25,6 @@ const options = {
     }
 };
 
-const _returnDayTimestampByHour = (date: number, hour: string) => {
-    const now = new Date(date)
-
-    return new Date(`${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()} ${hour}`).getTime()
-}
-
-const _returnDaysTimeData = (days: number, filterBy: IFilterBy) => {
-    let timePoints: string[] = []
-    let timeStamps: number[] = []
-
-    for (let i = 0; i < days; i++) {
-        const date = new Date(filterBy.startDate + (86400000 * i))
-        timePoints.push(`${date.getDate()}/${date.getMonth() + 1}`)
-        timeStamps.push(date.getTime())
-    }
-
-    return { timePoints, timeStamps }
-}
-
-const _returnMonthsTimeData = (filterBy: IFilterBy) => {
-    const firstDate = new Date(filterBy.startDate)
-
-    let monthIdx = firstDate.getMonth() + 1
-    let yearIdx = firstDate.getFullYear()
-
-    const firstTimePoint = `${monthIdx}/${yearIdx}`
-
-    let timePoints: string[] = [firstTimePoint]
-    let timeStamps: number[] = [filterBy.startDate]
-
-    let dateIdx = _getNextMonth(monthIdx, yearIdx)
-
-    while (dateIdx < filterBy.endDate) {
-        const date = new Date(dateIdx)
-        monthIdx = date.getMonth() + 1
-        yearIdx = date.getFullYear()
-
-        timePoints.push(`${monthIdx}/${yearIdx}`)
-        timeStamps.push(date.getTime() - 1000)
-
-        dateIdx = _getNextMonth(monthIdx, yearIdx)
-    }
-
-    timeStamps.push(filterBy.endDate)
-
-    return { timePoints, timeStamps }
-}
-
-const _returnYearsTimeData = (filterBy: IFilterBy) => {
-    let yearIdx = new Date(filterBy.startDate).getFullYear()
-
-    let timePoints: string[] = []
-    let timeStamps: number[] = [filterBy.startDate]
-
-    while(yearIdx < new Date().getFullYear()){
-        timePoints.push(`${yearIdx}`)
-        timeStamps.push(new Date(`01/01/${yearIdx + 1}`).getTime() - 1000)
-
-        yearIdx++
-    }
-    timePoints.push(`${new Date().getFullYear()}`)
-    timeStamps.push(filterBy.endDate)
-    
-    return { timePoints, timeStamps }
-}
-
-const _getNextMonth = (month: number, year: number) => {
-    month++
-    if (month > 12) {
-        month = 1
-        year++
-    }
-
-    return utilService.getMonthStartTimeStamp(new Date(`${month}/01/${year}`))
-}
-
-
 export const GraphBlock = () => {
 
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
@@ -109,24 +32,23 @@ export const GraphBlock = () => {
 
     const [graphData, setGraphData] = useState<any>(null)
 
-
     useEffect(() => {
         if (!rawData) return
 
         // Get the amount of days => endDate - startDate
-        const daysPeriod = utilService.calculatePeriodDays(filterBy.startDate, filterBy.endDate)
+        const daysPeriod = dateService.calculatePeriodDays(filterBy.startDate, filterBy.endDate)
 
         // Initializing the graph's Data
         let expensesDataset: any = {
             data: [],
-            borderColor: '#8A0000',
-            backgroundColor: '#BD5D5D',
+            borderColor: '#c41f02',
+            backgroundColor: '#eb2300',
         }
 
         let incomesDataset: any = {
             data: [],
-            borderColor: '#00600A',
-            backgroundColor: '#5EAE6B',
+            borderColor: '#18b50d',
+            backgroundColor: '#0ecf00',
         }
 
         let timePoints: string[] = []
@@ -136,20 +58,20 @@ export const GraphBlock = () => {
         // For different days periods, the calculations and data is shown differently
         if (daysPeriod <= 1) {
             timePoints = ['00:00', '06:00', '12:00', '18:00', '23:59']
-            timeStamps = timePoints.map(timePoint => _returnDayTimestampByHour(filterBy.startDate, timePoint))
+            timeStamps = timePoints.map(timePoint => dateService.getDayTimestampByHour(filterBy.startDate, timePoint))
 
         } else if (daysPeriod <= 31) {
-            const timeData = _returnDaysTimeData(daysPeriod, filterBy)
+            const timeData = dateService.getDaysTimeData(daysPeriod, filterBy)
             timePoints = timeData.timePoints
             timeStamps = timeData.timeStamps
             
         } else if (daysPeriod <= 365) {
-            const timeData = _returnMonthsTimeData(filterBy)
+            const timeData = dateService.getMonthsTimeData(filterBy)
             timePoints = timeData.timePoints
             timeStamps = timeData.timeStamps
             
         } else if (daysPeriod > 365) {
-            const timeData = _returnYearsTimeData(filterBy)
+            const timeData = dateService.getYearsTimeData(filterBy)
             timePoints = timeData.timePoints
             timeStamps = timeData.timeStamps
 

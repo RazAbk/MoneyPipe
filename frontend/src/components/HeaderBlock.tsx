@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import { BiSearchAlt } from 'react-icons/bi'
-import { utilService } from '../services/util.service'
+import { dateService } from '../services/date.service'
 
 interface IHeaderProps {
     setSearchModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,8 +14,8 @@ export const HeaderBlock = ({setSearchModalOpen}: IHeaderProps) => {
     const currentLabel = useSelector((state: RootState) => state.appStateModule.currentLabel)
     const filterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
 
-    const startDateString = utilService.getDateAsString(filterBy.startDate)
-    const endDateString = utilService.getDateAsString(filterBy.endDate)
+    const startDateString = dateService.getDateAsString(filterBy.startDate)
+    const endDateString = dateService.getDateAsString(filterBy.endDate)
 
     return (
         <div className="header-block">

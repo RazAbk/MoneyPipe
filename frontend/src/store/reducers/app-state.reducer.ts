@@ -1,5 +1,5 @@
 import { IAction, IFilterBy } from "../../interfaces/dataInterfaces"
-import { utilService } from "../../services/util.service"
+import { dateService } from "../../services/date.service"
 
 interface IState {
     currentViewMode: string;
@@ -19,8 +19,8 @@ const initialState: IState = {
     selectedAction: null,
     filterBy: {
         searchTxt: '',
-        startDate: utilService.getMonthStartTimeStamp(),
-        endDate: utilService.getDayMaxHour(Date.now()),
+        startDate: dateService.getMonthStartTimeStamp(),
+        endDate: dateService.getDayMaxHour(Date.now()),
         label: '',
         category: ''
     }

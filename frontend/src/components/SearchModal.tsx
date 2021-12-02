@@ -12,8 +12,8 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { IDataObject } from '../interfaces/dataInterfaces';
 import { setFilterBy as setGlobalFilterBy } from '../store/actions/app-state.action'
-import { utilService } from '../services/util.service';
 import { setCurrentLabel } from '../store/actions/app-state.action';
+import { dateService } from '../services/date.service';
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,8 +21,8 @@ interface IModalProps {
 
 const emptyFilterBy = {
     category: "",
-    startDate: utilService.getMonthStartTimeStamp(),
-    endDate: utilService.getDayMaxHour(Date.now()),
+    startDate: dateService.getMonthStartTimeStamp(),
+    endDate: dateService.getDayMaxHour(Date.now()),
     label: "",
     searchTxt: ""
 }
@@ -50,7 +50,7 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
                 alert("Start date cannot be greater than end date")
                 return
             }
-            setFilterBy({ ...filterBy, [field]: field === 'endDate' ? utilService.getDayMaxHour(timeStamp) : timeStamp })
+            setFilterBy({ ...filterBy, [field]: field === 'endDate' ? dateService.getDayMaxHour(timeStamp) : timeStamp })
         }
     }
 

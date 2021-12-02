@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { IAction, IDataObject } from '../interfaces/dataInterfaces'
-import { utilService } from '../services/util.service'
 import { RootState } from '../store/store'
 import { GetIcon } from './GetIcon'
 import { FaRegEdit } from 'react-icons/fa'
 import { VscTrash } from 'react-icons/vsc'
 import { setSelectedAction } from '../store/actions/app-state.action'
 import { deleteAction } from '../store/actions/user.action'
+import { dateService } from '../services/date.service'
 
 
 interface IActionProps {
@@ -61,7 +61,7 @@ export const ActionPreview = ({ action, setActionAddEditModalOpen }: IActionProp
                     <GetIcon iconName={categoryData.icon} />
                 </div>
                 <div className="action-data ">
-                    <p className="action-date ">{utilService.getRelativeDate(action.createdAt)}</p>
+                    <p className="action-date ">{dateService.getRelativeDate(action.createdAt)}</p>
                     <h3>{action.description}</h3>
                     <p className="action-labels ">{action.labels.map(label => {
                         return <span key={`label-${action.createdAt}-${label}`}>{label}</span>
