@@ -19,7 +19,7 @@ const initialState: IState = {
     selectedAction: null,
     filterBy: {
         searchTxt: '',
-        startDate: utilService.getCurrMonthStartTimeStamp(),
+        startDate: utilService.getMonthStartTimeStamp(),
         endDate: utilService.getDayMaxHour(Date.now()),
         label: '',
         category: ''

@@ -44,6 +44,45 @@ const _returnDaysTimeData = (days: number, filterBy: IFilterBy) => {
     return { timePoints, timeStamps }
 }
 
+const _returnMonthsTimeData = (filterBy: IFilterBy) => {
+    const firstDate = new Date(filterBy.startDate)
+
+    let monthIdx = firstDate.getMonth() + 1
+    let yearIdx = firstDate.getFullYear()
+
+    const firstTimePoint = `${monthIdx}/${yearIdx}`
+
+    let timePoints: string[] = [firstTimePoint]
+    let timeStamps: number[] = [filterBy.startDate]
+
+    let dateIdx = _getNextMonth(monthIdx, yearIdx)
+
+    while (dateIdx < filterBy.endDate) {
+        const date = new Date(dateIdx)
+        monthIdx = date.getMonth() + 1
+        yearIdx = date.getFullYear()
+
+        timePoints.push(`${monthIdx}/${yearIdx}`)
+        timeStamps.push(date.getTime() - 1000)
+
+        dateIdx = _getNextMonth(monthIdx, yearIdx)
+    }
+
+    timeStamps.push(filterBy.endDate)
+
+    return { timePoints, timeStamps }
+}
+
+const _getNextMonth = (month: number, year: number) => {
+    month++
+    if (month > 12) {
+        month = 1
+        year++
+    }
+
+    return utilService.getMonthStartTimeStamp(new Date(`${month}/01/${year}`))
+}
+
 
 export const GraphBlock = () => {
 
@@ -85,10 +124,12 @@ export const GraphBlock = () => {
             const timeData = _returnDaysTimeData(daysPeriod, filterBy)
             timePoints = timeData.timePoints
             timeStamps = timeData.timeStamps
-
-        } else if (daysPeriod <= 365) {
-            console.log('show months of year')
             
+        } else if (daysPeriod <= 365) {
+            const timeData = _returnMonthsTimeData(filterBy)
+            timePoints = timeData.timePoints
+            timeStamps = timeData.timeStamps
+
         } else if (daysPeriod > 365) {
             console.log('show years')
         }

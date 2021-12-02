@@ -1,6 +1,6 @@
 export const utilService = {
     debounce,
-    getCurrMonthStartTimeStamp,
+    getMonthStartTimeStamp,
     getDayMaxHour,
     getRelativeDate,
     getDateAsString,
@@ -19,10 +19,9 @@ function debounce<Params extends any[]>(func: (...args: Params) => any, timeout:
     }
 }
 
-function getCurrMonthStartTimeStamp() {
-    const now = new Date()
-    const thisYear = now.getFullYear()
-    const thisMonth = now.getMonth() + 1
+function getMonthStartTimeStamp(date: Date = new Date()) {
+    const thisYear = date.getFullYear()
+    const thisMonth = date.getMonth() + 1
 
     const dateString = new Date(`${thisMonth}/01/${thisYear}`)
 
