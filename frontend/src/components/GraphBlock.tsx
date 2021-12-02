@@ -25,10 +25,23 @@ const options = {
     }
 };
 
-const returnDayTimestampByHour = (date: number, hour: string) => {
+const _returnDayTimestampByHour = (date: number, hour: string) => {
     const now = new Date(date)
 
     return new Date(`${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()} ${hour}`).getTime()
+}
+
+const _returnDaysTimeData = (days: number, filterBy: IFilterBy) => {
+    let timePoints: string[] = []
+    let timeStamps: number[] = []
+
+    for (let i = 0; i < days; i++) {
+        const date = new Date(filterBy.startDate + (86400000 * i))
+        timePoints.push(`${date.getDate()}/${date.getMonth() + 1}`)
+        timeStamps.push(date.getTime())
+    }
+
+    return { timePoints, timeStamps }
 }
 
 
@@ -45,7 +58,8 @@ export const GraphBlock = () => {
 
         // Get the amount of days => endDate - startDate
         const daysPeriod = utilService.calculatePeriodDays(filterBy.startDate, filterBy.endDate)
-        
+
+        // Initializing the graph's Data
         let expensesDataset: any = {
             data: [],
             borderColor: '#8A0000',
@@ -59,30 +73,19 @@ export const GraphBlock = () => {
         }
 
         let timePoints: string[] = []
+        let timeStamps: number[] = []
 
+        // Calculating the graph's timePoints (X axis) and timeStamps according to them
+        // For different days periods, the calculations and data is shown differently
         if (daysPeriod <= 1) {
             timePoints = ['00:00', '06:00', '12:00', '18:00', '23:59']
-            const timeStamps = timePoints.map(timePoint => returnDayTimestampByHour(filterBy.startDate, timePoint))
-
-            expensesDataset.data = timeStamps.map(timeStamp => 0)
-            incomesDataset.data = [...expensesDataset.data]
-
-            rawData.actions.forEach(action => {
-                timeStamps.forEach((timeStamp, idx, timeStamps) => {
-                    if (idx === timeStamps.length - 1) return
-                    if (action.createdAt >= timeStamp && action.createdAt <= (timeStamps[idx + 1])) {
-                        if (action.type === 'expense') {
-                            expensesDataset.data[idx] += +action.amount
-                        } else {
-                            incomesDataset.data[idx] += +action.amount
-                        }
-                    }
-                })
-            })
+            timeStamps = timePoints.map(timePoint => _returnDayTimestampByHour(filterBy.startDate, timePoint))
 
         } else if (daysPeriod <= 14) {
-            console.log('show each day, up to 14 days')
-            timePoints = ['01/12', '02/12', '03/12', '04/12', '05/12....']
+            const timeData = _returnDaysTimeData(daysPeriod, filterBy)
+            timePoints = timeData.timePoints
+            timeStamps = timeData.timeStamps
+
         } else if (daysPeriod <= 31) {
             console.log('show weeks of month')
         } else if (daysPeriod <= 365) {
@@ -91,9 +94,36 @@ export const GraphBlock = () => {
             console.log('show years')
         }
 
-        if(timePoints.length === 0){
+        // No Data
+        if (timePoints.length === 0) {
             setGraphData(null)
         } else {
+            // Initialize with amounts of 0
+            expensesDataset.data = timeStamps.map(timeStamp => 0)
+            incomesDataset.data = [...expensesDataset.data]
+
+            rawData.actions.forEach(action => {
+                timeStamps.forEach((timeStamp, idx, timeStamps) => {
+                    if (action.createdAt >= timeStamp) {
+                        if (idx === timeStamps.length - 1) {
+                            if (action.createdAt <= Date.now()) {
+                                if (action.type === 'expense') {
+                                    expensesDataset.data[idx] += +action.amount
+                                } else {
+                                    incomesDataset.data[idx] += +action.amount
+                                }
+                            }
+                        } else if (action.createdAt <= (timeStamps[idx + 1])) {
+                            if (action.type === 'expense') {
+                                expensesDataset.data[idx] += +action.amount
+                            } else {
+                                incomesDataset.data[idx] += +action.amount
+                            }
+                        }
+                    }
+                })
+            })
+
             setGraphData({
                 labels: timePoints,
                 datasets: [expensesDataset, incomesDataset]
