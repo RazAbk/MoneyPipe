@@ -128,11 +128,14 @@ function getRelativeDate(timeStamp: number) {
         minutes: getFormatedDigits(dateTimeStamp.getMinutes()),
     }
 
+    // Today
     if (now.day === date.day && now.year === date.year && now.month === date.month) {
         return `Today ${date.hours}:${date.minutes}`
-    } else if ((now.day === date.day && now.year === date.year && now.month === date.month) || Date.now() - timeStamp < 24 * 60 * 60 * 1000) {
+        // Yesterday
+    } else if (now.day === getFormatedDigits(+date.day + 1) && now.year === date.year && now.month === date.month) {
         // Todo: Improve! not accurate!
         return `Yesterday ${date.hours}:${date.minutes}`
+    // Some Date
     } else {
         return `${date.day}/${date.month} ${date.hours}:${date.minutes}`
     }
