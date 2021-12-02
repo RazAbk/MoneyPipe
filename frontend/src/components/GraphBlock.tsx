@@ -64,12 +64,12 @@ export const GraphBlock = () => {
             const timeData = dateService.getDaysTimeData(daysPeriod, filterBy)
             timePoints = timeData.timePoints
             timeStamps = timeData.timeStamps
-            
+
         } else if (daysPeriod <= 365) {
             const timeData = dateService.getMonthsTimeData(filterBy)
             timePoints = timeData.timePoints
             timeStamps = timeData.timeStamps
-            
+
         } else if (daysPeriod > 365) {
             const timeData = dateService.getYearsTimeData(filterBy)
             timePoints = timeData.timePoints
@@ -85,7 +85,12 @@ export const GraphBlock = () => {
             expensesDataset.data = timeStamps.map(timeStamp => 0)
             incomesDataset.data = [...expensesDataset.data]
 
-            rawData.actions.forEach(action => {
+            rawData.actions.filter(action => {
+                if (filterBy.category && action.category !== filterBy.category) return false
+                if (filterBy.label && !action.labels.includes(filterBy.label)) return false
+                if (!action.description.includes(filterBy.searchTxt)) return false
+                return true
+            }).forEach(action => {
                 timeStamps.forEach((timeStamp, idx, timeStamps) => {
                     if (action.createdAt >= timeStamp) {
                         if (idx === timeStamps.length - 1) {
