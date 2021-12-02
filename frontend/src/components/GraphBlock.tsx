@@ -73,6 +73,24 @@ const _returnMonthsTimeData = (filterBy: IFilterBy) => {
     return { timePoints, timeStamps }
 }
 
+const _returnYearsTimeData = (filterBy: IFilterBy) => {
+    let yearIdx = new Date(filterBy.startDate).getFullYear()
+
+    let timePoints: string[] = []
+    let timeStamps: number[] = [filterBy.startDate]
+
+    while(yearIdx < new Date().getFullYear()){
+        timePoints.push(`${yearIdx}`)
+        timeStamps.push(new Date(`01/01/${yearIdx + 1}`).getTime() - 1000)
+
+        yearIdx++
+    }
+    timePoints.push(`${new Date().getFullYear()}`)
+    timeStamps.push(filterBy.endDate)
+    
+    return { timePoints, timeStamps }
+}
+
 const _getNextMonth = (month: number, year: number) => {
     month++
     if (month > 12) {
@@ -129,16 +147,19 @@ export const GraphBlock = () => {
             const timeData = _returnMonthsTimeData(filterBy)
             timePoints = timeData.timePoints
             timeStamps = timeData.timeStamps
-
+            
         } else if (daysPeriod > 365) {
-            console.log('show years')
+            const timeData = _returnYearsTimeData(filterBy)
+            timePoints = timeData.timePoints
+            timeStamps = timeData.timeStamps
+
         }
 
         // No Data
         if (timePoints.length === 0) {
             setGraphData(null)
         } else {
-            // Initialize with amounts of 0
+            // Initialize with amounts of 0 for each time point in the graph
             expensesDataset.data = timeStamps.map(timeStamp => 0)
             incomesDataset.data = [...expensesDataset.data]
 
