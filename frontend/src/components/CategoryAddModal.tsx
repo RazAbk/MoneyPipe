@@ -54,11 +54,50 @@ const colors = [
 const icons = [
     'shopping-cart',
     'car',
+    'bus',
+    'train',
     'food',
     'motorcycle',
+    'code',
     'beer',
+    'cocktail',
     'home',
-    'money'
+    'money',
+    'coins',
+    'leaf',
+    'travel',
+    'fire',
+    'music',
+    'bottles',
+    'baby',
+    'ball',
+    'bicycle',
+    'box',
+    'book',
+    'student',
+    'bone',
+    'dog',
+    'building',
+    'camping',
+    'camera',
+    'capsules',
+    'pie-graph',
+    'industry',
+    'church',
+    'exclamation',
+    'water',
+    'warning',
+    'movie',
+    'gas',
+    'guitar',
+    'hamburger',
+    'hammer',
+    'heart',
+    'information',
+    'laptop',
+    'smartphone',
+    'carry',
+    'smoke'
 ]
 
 const btnErrorStyle = {
@@ -78,7 +117,7 @@ export const CategoryAddModal = ({ closeModal, setFormData }: IModalProps) => {
 
     const [errors, setErrors] = useState({
         categoryName: false,
-        selectedIcon:false
+        selectedIcon: false
     })
 
     const categoryNameChange = (ev: React.ChangeEvent<HTMLFormElement>) => {
@@ -96,18 +135,18 @@ export const CategoryAddModal = ({ closeModal, setFormData }: IModalProps) => {
     }
 
     const onSubmit = () => {
-        const errorsCopy = {...errors}
+        const errorsCopy = { ...errors }
 
         errorsCopy.categoryName = categoryName ? false : true
         errorsCopy.selectedIcon = selectedIcon ? false : true
 
 
-        if(errorsCopy.categoryName || errorsCopy.selectedIcon){
+        if (errorsCopy.categoryName || errorsCopy.selectedIcon) {
             setErrors(errorsCopy)
             return
         } else {
             const categoryFormatedName = categoryName[0].toUpperCase() + categoryName.substr(1)
-            
+
             const newCategory = {
                 title: categoryFormatedName,
                 icon: selectedIcon,
@@ -115,7 +154,7 @@ export const CategoryAddModal = ({ closeModal, setFormData }: IModalProps) => {
             }
 
             dispatch(addCategory(newCategory))
-            setFormData(formData => {return {...formData, category: categoryFormatedName}})
+            setFormData(formData => { return { ...formData, category: categoryFormatedName } })
             closeModal(false)
         }
     }
