@@ -79,18 +79,18 @@ async function addLabel(label: ILabel) {
     return users[userIdx].data
 }
 
-// _loadToStorage()
+_loadToStorage()
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function _loadToStorage() {
 
     const users = [
         {
-            userName: 'razAbk',
+            userName: 'YossiCo',
             password: '1234',
-            name: 'Raz Abekasis',
+            name: 'Yossi Cohen',
             createdAt: 1635498520000,
-            picture: 'https://scontent.ftlv18-1.fna.fbcdn.net/v/t1.6435-9/91491076_3070598229650212_2525597600778813440_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=VaKsHQVKdcEAX9REcAS&_nc_ht=scontent.ftlv18-1.fna&oh=a1f38be9e9c18267c4e8ca66d32b999d&oe=61C39FC9',
+            picture: '',
             data: {
                 currencySign: '₪',
                 currency: 'nis',
@@ -98,6 +98,10 @@ function _loadToStorage() {
                     {
                         title: 'Household',
                         labelName: '#household',
+                    },
+                    {
+                        title: 'Rent',
+                        labelName: '#rent',
                     },
                     {
                         title: 'Technology',
@@ -110,6 +114,10 @@ function _loadToStorage() {
                     {
                         title: 'Motorcycle',
                         labelName: '#motorcycle',
+                    },
+                    {
+                        title: 'Car',
+                        labelName: '#car',
                     },
                     {
                         title: 'Fuel',
@@ -142,6 +150,10 @@ function _loadToStorage() {
                     {
                         title: 'My Business',
                         labelName: '#mybusiness',
+                    },
+                    {
+                        title: 'Groceries',
+                        labelName: '#groceries',
                     },
                 ],
                 categories: [
@@ -190,8 +202,26 @@ function _loadToStorage() {
                     {
                         _id: utilService.makeId(),
                         type: 'expense',
-                        labels: ['#motorcycle', '#transportation'],
-                        category: 'Motorcycle',
+                        labels: ['#car', '#fuel'],
+                        category: 'Car',
+                        description: 'דלק',
+                        amount: 122,
+                        createdAt: 1638348467000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#coffee'],
+                        category: 'Food',
+                        description: 'קפה',
+                        amount: 12,
+                        createdAt: 1638446507000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#car', '#transportation'],
+                        category: 'Car',
                         description: 'אגרה לטסט השנתי',
                         amount: 303,
                         createdAt: 1635851700000
@@ -219,7 +249,7 @@ function _loadToStorage() {
                         type: 'expense',
                         labels: ['#food', '#restaurant'],
                         category: 'Food',
-                        description: 'מסעדה',
+                        description: 'מסעדה עם חברים',
                         amount: 180,
                         createdAt: 1635948900000
                     },
@@ -235,8 +265,8 @@ function _loadToStorage() {
                     {
                         _id: utilService.makeId(),
                         type: 'expense',
-                        labels: ['#motorcycle', '#fuel'],
-                        category: 'Motorcycle',
+                        labels: ['#car', '#fuel'],
+                        category: 'Car',
                         description: 'דלק',
                         amount: 61,
                         createdAt: 1636197300000
@@ -244,17 +274,8 @@ function _loadToStorage() {
                     {
                         _id: utilService.makeId(),
                         type: 'expense',
-                        labels: ['#motorcycle', '#fuel'],
-                        category: 'Motorcycle',
-                        description: 'דלק',
-                        amount: 54,
-                        createdAt: 1636215300000
-                    },
-                    {
-                        _id: utilService.makeId(),
-                        type: 'expense',
-                        labels: ['#motorcycle'],
-                        category: 'Motorcycle',
+                        labels: ['#car'],
+                        category: 'Car',
                         description: 'טסט',
                         amount: 35,
                         createdAt: 1636647300000
@@ -262,20 +283,56 @@ function _loadToStorage() {
                     {
                         _id: utilService.makeId(),
                         type: 'expense',
-                        labels: ['#household'],
+                        labels: ['#household', '#food'],
                         category: 'Shopping',
-                        description: 'קניות לבית',
+                        description: 'ירקות מהשוק',
                         amount: 80,
                         createdAt: 1636733700000
                     },
                     {
                         _id: utilService.makeId(),
                         type: 'expense',
-                        labels: ['#household'],
+                        labels: ['#household', '#food'],
                         category: 'Shopping',
-                        description: 'קניות לבית',
+                        description: 'לחמניות מהמאפייה',
                         amount: 27,
                         createdAt: 1637406669000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 1252,
+                        createdAt: 1636056000000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 1350,
+                        createdAt: 1636660800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 927,
+                        createdAt: 1637265600000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 1320,
+                        createdAt: 1637870400000
                     },
                     {
                         _id: utilService.makeId(),
@@ -286,14 +343,665 @@ function _loadToStorage() {
                         amount: 85,
                         createdAt: 1637485869000
                     },
+
+
+
+
+
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#car', '#fuel'],
+                        category: 'Car',
+                        description: 'דלק',
+                        amount: 186,
+                        createdAt: 1633433520000 - 2629800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#coffee'],
+                        category: 'Food',
+                        description: 'קפה',
+                        amount: 12,
+                        createdAt: 1633339920000 - 2629800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#food'],
+                        category: 'Food',
+                        description: 'ארוחת צהריים בחוץ',
+                        amount: 52,
+                        createdAt: 1633357920000 - 2629800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#coffee'],
+                        category: 'Food',
+                        description: 'קפה',
+                        amount: 15,
+                        createdAt: 1633249920000 - 2629800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#food', '#restaurant'],
+                        category: 'Food',
+                        description: 'מסעדה בערב',
+                        amount: 115,
+                        createdAt: 1634077920000 - 2629800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#beer', '#hangout'],
+                        category: 'Hangout',
+                        description: 'בירה עם חברים',
+                        amount: 70,
+                        createdAt: 1634167920000 - 2629800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#car', '#fuel'],
+                        category: 'Car',
+                        description: 'דלק',
+                        amount: 153,
+                        createdAt: 1634200320000 - 2629800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#food'],
+                        category: 'Shopping',
+                        description: 'ירקות מהשוק',
+                        amount: 52,
+                        createdAt: 1634371920000 - 2629800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 926,
+                        createdAt: 1636056000000 - 2629800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 1060,
+                        createdAt: 1634631120000 - 2629800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 831,
+                        createdAt: 1635279120000 - 2629800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 1401,
+                        createdAt: 1634069520000 - 2629800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#beer', '#hangout'],
+                        category: 'Hangout',
+                        description: 'בירה עם חברים',
+                        amount: 115,
+                        createdAt: 1635538320000 - 2629800000
+                    },
+
+
+                    // Aug
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#car', '#fuel'],
+                        category: 'Car',
+                        description: 'דלק',
+                        amount: 186,
+                        createdAt: 1633433520000 - ( 2* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#coffee'],
+                        category: 'Food',
+                        description: 'קפה',
+                        amount: 12,
+                        createdAt: 1633339920000 - ( 2* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#food'],
+                        category: 'Food',
+                        description: 'ארוחת צהריים בחוץ',
+                        amount: 52,
+                        createdAt: 1633357920000 - ( 2* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#coffee'],
+                        category: 'Food',
+                        description: 'קפה',
+                        amount: 15,
+                        createdAt: 1633249920000 - ( 2* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#food', '#restaurant'],
+                        category: 'Food',
+                        description: 'מסעדה בערב',
+                        amount: 115,
+                        createdAt: 1634077920000 - ( 2* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#beer', '#hangout'],
+                        category: 'Hangout',
+                        description: 'בירה עם חברים',
+                        amount: 70,
+                        createdAt: 1634167920000 - ( 2* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#car', '#fuel'],
+                        category: 'Car',
+                        description: 'דלק',
+                        amount: 153,
+                        createdAt: 1634200320000 - ( 2* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#food'],
+                        category: 'Shopping',
+                        description: 'ירקות מהשוק',
+                        amount: 52,
+                        createdAt: 1634371920000 - ( 2* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 926,
+                        createdAt: 1636056000000 - ( 2* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 1060,
+                        createdAt: 1634631120000 - ( 2* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 831,
+                        createdAt: 1635279120000 - ( 2* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 1201,
+                        createdAt: 1634069520000 - ( 2* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#beer', '#hangout'],
+                        category: 'Hangout',
+                        description: 'בירה עם חברים',
+                        amount: 155,
+                        createdAt: 1635538320000 - ( 2* 2629800000)
+                    },
+                    // 
+
+                     // JUL
+                     {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#car', '#fuel'],
+                        category: 'Car',
+                        description: 'דלק',
+                        amount: 196,
+                        createdAt: 1633433520000 - ( 3* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#coffee'],
+                        category: 'Food',
+                        description: 'קפה',
+                        amount: 15,
+                        createdAt: 1633339920000 - ( 3* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#food'],
+                        category: 'Food',
+                        description: 'ארוחת צהריים בחוץ',
+                        amount: 48,
+                        createdAt: 1633357920000 - ( 3* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#coffee'],
+                        category: 'Food',
+                        description: 'קפה',
+                        amount: 11,
+                        createdAt: 1633249920000 - ( 3* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#food', '#restaurant'],
+                        category: 'Food',
+                        description: 'מסעדה בערב',
+                        amount: 125,
+                        createdAt: 1634077920000 - ( 3* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#beer', '#hangout'],
+                        category: 'Hangout',
+                        description: 'בירה עם חברים',
+                        amount: 80,
+                        createdAt: 1634167920000 - ( 3* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#car', '#fuel'],
+                        category: 'Car',
+                        description: 'דלק',
+                        amount: 183,
+                        createdAt: 1634200320000 - ( 3* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#food'],
+                        category: 'Shopping',
+                        description: 'ירקות מהשוק',
+                        amount: 22,
+                        createdAt: 1634371920000 - ( 3* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 1126,
+                        createdAt: 1636056000000 - ( 3* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 1260,
+                        createdAt: 1634631120000 - ( 3* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 931,
+                        createdAt: 1635279120000 - ( 3* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 1101,
+                        createdAt: 1634069520000 - ( 3* 2629800000)
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#beer', '#hangout'],
+                        category: 'Hangout',
+                        description: 'בירה עם חברים',
+                        amount: 75,
+                        createdAt: 1635538320000 - ( 3* 2629800000)
+                    },
+                    // 
+
+
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#car', '#fuel'],
+                        category: 'Car',
+                        description: 'דלק',
+                        amount: 220,
+                        createdAt: 1633433520000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#coffee'],
+                        category: 'Food',
+                        description: 'קפה',
+                        amount: 15,
+                        createdAt: 1633339920000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#food'],
+                        category: 'Food',
+                        description: 'ארוחת צהריים בחוץ',
+                        amount: 42,
+                        createdAt: 1633357920000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#coffee'],
+                        category: 'Food',
+                        description: 'קפה',
+                        amount: 15,
+                        createdAt: 1633249920000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household','#technology'],
+                        category: 'Shopping',
+                        description: 'מסך טלוויזיה 52 אינץ',
+                        amount: 4200,
+                        createdAt: 1633721520000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#food', '#restaurant'],
+                        category: 'Food',
+                        description: 'מסעדה בערב',
+                        amount: 120,
+                        createdAt: 1634077920000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#beer', '#hangout'],
+                        category: 'Hangout',
+                        description: 'בירה עם חברים',
+                        amount: 95,
+                        createdAt: 1634167920000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#car', '#fuel'],
+                        category: 'Car',
+                        description: 'דלק',
+                        amount: 216,
+                        createdAt: 1634200320000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#food'],
+                        category: 'Shopping',
+                        description: 'ירקות מהשוק',
+                        amount: 67,
+                        createdAt: 1634371920000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 1126,
+                        createdAt: 1636056000000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 1260,
+                        createdAt: 1634631120000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 1031,
+                        createdAt: 1635279120000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#household', '#groceries'],
+                        category: 'Shopping',
+                        description: 'קניות שבועיות',
+                        amount: 1201,
+                        createdAt: 1634069520000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#beer', '#hangout'],
+                        category: 'Hangout',
+                        description: 'בירה עם חברים',
+                        amount: 85,
+                        createdAt: 1635538320000
+                    },
+
+
+
+                    
+
+
+
                     {
                         _id: utilService.makeId(),
                         type: 'income',
                         labels: ['#salary', '#somecompany'],
                         category: 'Salary',
                         description: 'משכורת',
-                        amount: 12000,
-                        createdAt: 1636543200000
+                        amount: 12570,
+                        createdAt: 1636531200000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#mybusiness'],
+                        category: 'My business',
+                        description: 'הכנסות מהעסק שלי',
+                        amount: 840,
+                        createdAt: 1636704000000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#mybusiness'],
+                        category: 'My business',
+                        description: 'הכנסות מהעסק שלי',
+                        amount: 942,
+                        createdAt: 1638462720000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#salary', '#somecompany'],
+                        category: 'Salary',
+                        description: 'משכורת',
+                        amount: 12310,
+                        createdAt: 1633852800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#mybusiness'],
+                        category: 'My business',
+                        description: 'הכנסות מהעסק שלי',
+                        amount: 1025,
+                        createdAt: 1634371200000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#salary', '#somecompany'],
+                        category: 'Salary',
+                        description: 'משכורת',
+                        amount: 11400,
+                        createdAt: 1631260800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#mybusiness'],
+                        category: 'My business',
+                        description: 'הכנסות מהעסק שלי',
+                        amount: 427,
+                        createdAt: 1630828800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#salary', '#somecompany'],
+                        category: 'Salary',
+                        description: 'משכורת',
+                        amount: 13412,
+                        createdAt: 1628582400000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#mybusiness'],
+                        category: 'My business',
+                        description: 'הכנסות מהעסק שלי',
+                        amount: 1623,
+                        createdAt: 1628841600000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#salary', '#somecompany'],
+                        category: 'Salary',
+                        description: 'משכורת',
+                        amount: 10800,
+                        createdAt: 1625904000000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#mybusiness'],
+                        category: 'My business',
+                        description: 'הכנסות מהעסק שלי',
+                        amount: 412,
+                        createdAt: 1626076800000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#salary', '#somecompany'],
+                        category: 'Salary',
+                        description: 'משכורת',
+                        amount: 11750,
+                        createdAt: 1623312000000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#mybusiness'],
+                        category: 'My business',
+                        description: 'הכנסות מהעסק שלי',
+                        amount: 814,
+                        createdAt: 1624608000000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#salary', '#somecompany'],
+                        category: 'Salary',
+                        description: 'משכורת',
+                        amount: 12250,
+                        createdAt: 1620633600000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#mybusiness'],
+                        category: 'My business',
+                        description: 'הכנסות מהעסק שלי',
+                        amount: 640,
+                        createdAt: 1621929600000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#salary', '#somecompany'],
+                        category: 'Salary',
+                        description: 'משכורת',
+                        amount: 9500,
+                        createdAt: 1618041600000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#mybusiness'],
+                        category: 'My business',
+                        description: 'הכנסות מהעסק שלי',
+                        amount: 1100,
+                        createdAt: 1619337600000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#salary', '#somecompany'],
+                        category: 'Salary',
+                        description: 'משכורת',
+                        amount: 11500,
+                        createdAt: 1615363200000
                     },
                     {
                         _id: utilService.makeId(),
@@ -302,14 +1010,149 @@ function _loadToStorage() {
                         category: 'My business',
                         description: 'הכנסות מהעסק שלי',
                         amount: 750,
-                        createdAt: 1636888800000
+                        createdAt: 1615190400000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#salary', '#somecompany'],
+                        category: 'Salary',
+                        description: 'משכורת',
+                        amount: 13250,
+                        createdAt: 1612944000000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#mybusiness'],
+                        category: 'My business',
+                        description: 'הכנסות מהעסק שלי',
+                        amount: 415,
+                        createdAt: 1612512000000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#salary', '#somecompany'],
+                        category: 'Salary',
+                        description: 'משכורת',
+                        amount: 10750,
+                        createdAt: 1610265600000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'income',
+                        labels: ['#mybusiness'],
+                        category: 'My business',
+                        description: 'הכנסות מהעסק שלי',
+                        amount: 1321,
+                        createdAt: 1610870400000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#rent', '#household'],
+                        category: 'Household',
+                        description: 'שכר דירה',
+                        amount: 3500,
+                        createdAt: 1636977707000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#rent', '#household'],
+                        category: 'Household',
+                        description: 'שכר דירה',
+                        amount: 3500,
+                        createdAt: 1634289347000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#rent', '#household'],
+                        category: 'Household',
+                        description: 'שכר דירה',
+                        amount: 3500,
+                        createdAt: 1631697347000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#rent', '#household'],
+                        category: 'Household',
+                        description: 'שכר דירה',
+                        amount: 3500,
+                        createdAt: 1629018947000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#rent', '#household'],
+                        category: 'Household',
+                        description: 'שכר דירה',
+                        amount: 3500,
+                        createdAt: 1626340547000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#rent', '#household'],
+                        category: 'Household',
+                        description: 'שכר דירה',
+                        amount: 3500,
+                        createdAt: 1623748547000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#rent', '#household'],
+                        category: 'Household',
+                        description: 'שכר דירה',
+                        amount: 3500,
+                        createdAt: 1621070147000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#rent', '#household'],
+                        category: 'Household',
+                        description: 'שכר דירה',
+                        amount: 3500,
+                        createdAt: 1618478147000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#rent', '#household'],
+                        category: 'Household',
+                        description: 'שכר דירה',
+                        amount: 3500,
+                        createdAt: 1615799747000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#rent', '#household'],
+                        category: 'Household',
+                        description: 'שכר דירה',
+                        amount: 3500,
+                        createdAt: 1613380547000
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        type: 'expense',
+                        labels: ['#rent', '#household'],
+                        category: 'Household',
+                        description: 'שכר דירה',
+                        amount: 3500,
+                        createdAt: 1610702147000
                     },
                 ]
             }
         }
     ]
 
-    const loggedInUser = 'razAbk'
+    const loggedInUser = 'YossiCo'
 
     localStorageService.save('users', users)
     localStorageService.save('loggedInUser', loggedInUser)
