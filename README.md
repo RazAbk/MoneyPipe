@@ -2,9 +2,11 @@
 
 App is in the proccess!
 
+\
 03/12/2021 update:
 
-Live page is ready to view & experience:
+Live page is ready to view & experience:\
+(front end only)\
 https://money-pipe.netlify.app/
 
 • Data from all over 2021 is available
@@ -19,7 +21,8 @@ https://money-pipe.netlify.app/
 
 • Use on desktop, mobile & tablet
 
-
+\
+\
 MoneyPipe is an incomes & expenses personal managment app.
 
 Check out the design I've made with figma:\
