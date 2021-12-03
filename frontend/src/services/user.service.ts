@@ -84,6 +84,8 @@ _loadToStorage()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function _loadToStorage() {
 
+    const loggedInUser = 'YossiCo'
+
     const users = [
         {
             userName: 'YossiCo',
@@ -1854,8 +1856,15 @@ function _loadToStorage() {
         }
     ]
 
-    const loggedInUser = 'YossiCo'
 
-    localStorageService.save('users', users)
-    localStorageService.save('loggedInUser', loggedInUser)
+    const usersFromStorage = localStorageService.load('users')
+    const loggedInUserFromStorage = localStorageService.load('loggedInUser')
+
+    if(!usersFromStorage){
+        localStorageService.save('users', users)
+    }
+
+    if(!loggedInUserFromStorage){
+        localStorageService.save('loggedInUser', loggedInUser)
+    }
 }
