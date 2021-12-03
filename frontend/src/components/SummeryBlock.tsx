@@ -113,7 +113,7 @@ export const SummeryBlock = ({ type, setActionAddEditModalOpen }: ISummeryBlockP
                                     <h2>{action[0]}</h2>
                                 </div>
                                 <div className="right-side">
-                                    <h2>{action[1].sum}{rawData.currencySign}</h2>
+                                    <h2>{action[1].sum.toLocaleString()}{rawData.currencySign}</h2>
                                 </div>
                             </div>
                         })}
@@ -132,7 +132,7 @@ export const SummeryBlock = ({ type, setActionAddEditModalOpen }: ISummeryBlockP
                 {actionsData && Object.entries(actionsData).map(month => {
                     return (
                         <React.Fragment key={`${month[0]}-${type}`}>
-                            <h3 className="actions-month">{month[0]}</h3>
+                            <h3 className="actions-month">{`${month[0]} - ${month[1].reduce((sum, action) => { sum += +action.amount; return sum}, 0).toLocaleString()}${rawData.currencySign}`}</h3>
                             {
                                 month[1].sort((a, b) => b.createdAt - a.createdAt).map(action => <ActionPreview key={action._id} action={action} setActionAddEditModalOpen={setActionAddEditModalOpen} />)
                             }
