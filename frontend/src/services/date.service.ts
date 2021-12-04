@@ -1,4 +1,5 @@
 import { IFilterBy } from "../interfaces/dataInterfaces"
+import { utilService } from "./util.service"
 
 export const dateService = {
     getDayTimestampByHour,
@@ -10,6 +11,7 @@ export const dateService = {
     getDayMaxHour,
     getRelativeDate,
     getDateAsString,
+    getShortYear,
     calculatePeriodDays
 }
 
@@ -36,9 +38,9 @@ function getMonthsTimeData(filterBy: IFilterBy) {
     const firstDate = new Date(filterBy.startDate)
 
     let monthIdx = firstDate.getMonth() + 1
-    let yearIdx = firstDate.getFullYear()
+    let yearIdx = getShortYear(firstDate.getFullYear())
 
-    const firstTimePoint = `${monthIdx}/${yearIdx}`
+    const firstTimePoint = `${utilService.getFormatedDigits(monthIdx)}/${yearIdx}`
 
     let timePoints: string[] = [firstTimePoint]
     let timeStamps: number[] = [filterBy.startDate]
@@ -48,9 +50,9 @@ function getMonthsTimeData(filterBy: IFilterBy) {
     while (dateIdx < filterBy.endDate) {
         const date = new Date(dateIdx)
         monthIdx = date.getMonth() + 1
-        yearIdx = date.getFullYear()
+        yearIdx = getShortYear(date.getFullYear())
 
-        timePoints.push(`${monthIdx}/${yearIdx}`)
+        timePoints.push(`${utilService.getFormatedDigits(monthIdx)}/${yearIdx}`)
         timeStamps.push(date.getTime() - 1000)
 
         dateIdx = getNextMonth(monthIdx, yearIdx)
@@ -113,26 +115,26 @@ function getRelativeDate(timeStamp: number) {
     const dateTimeStamp = new Date(timeStamp)
 
     const now = {
-        day: getFormatedDigits(nowTimeStamp.getDate()),
-        month: getFormatedDigits(nowTimeStamp.getMonth() + 1),
+        day: utilService.getFormatedDigits(nowTimeStamp.getDate()),
+        month: utilService.getFormatedDigits(nowTimeStamp.getMonth() + 1),
         year: nowTimeStamp.getFullYear(),
-        hours: getFormatedDigits(nowTimeStamp.getHours()),
-        minutes: getFormatedDigits(nowTimeStamp.getMinutes()),
+        hours: utilService.getFormatedDigits(nowTimeStamp.getHours()),
+        minutes: utilService.getFormatedDigits(nowTimeStamp.getMinutes()),
     }
 
     const date = {
-        day: getFormatedDigits(dateTimeStamp.getDate()),
-        month: getFormatedDigits(dateTimeStamp.getMonth() + 1),
+        day: utilService.getFormatedDigits(dateTimeStamp.getDate()),
+        month: utilService.getFormatedDigits(dateTimeStamp.getMonth() + 1),
         year: dateTimeStamp.getFullYear(),
-        hours: getFormatedDigits(dateTimeStamp.getHours()),
-        minutes: getFormatedDigits(dateTimeStamp.getMinutes()),
+        hours: utilService.getFormatedDigits(dateTimeStamp.getHours()),
+        minutes: utilService.getFormatedDigits(dateTimeStamp.getMinutes()),
     }
 
     // Today
     if (now.day === date.day && now.year === date.year && now.month === date.month) {
         return `Today ${date.hours}:${date.minutes}`
         // Yesterday
-    } else if (now.day === getFormatedDigits(+date.day + 1) && now.year === date.year && now.month === date.month) {
+    } else if (now.day === utilService.getFormatedDigits(+date.day + 1) && now.year === date.year && now.month === date.month) {
         // Todo: Improve! not accurate!
         return `Yesterday ${date.hours}:${date.minutes}`
     // Some Date
@@ -146,11 +148,11 @@ function getDateAsString(date: number) {
     const day = dateObj.getDate()
     const month = dateObj.getMonth() + 1
 
-    return `${getFormatedDigits(day)}/${getFormatedDigits(month)}/${dateObj.getFullYear()}`
+    return `${utilService.getFormatedDigits(day)}/${utilService.getFormatedDigits(month)}/${dateObj.getFullYear()}`
 }
 
-function getFormatedDigits(num: number) {
-    return num < 10 ? '0' + num : num
+function getShortYear(year: number) {
+    return +(year + '').substr(2,3)
 }
 
 function calculatePeriodDays(startDate: number, endDate: number){

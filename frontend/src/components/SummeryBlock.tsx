@@ -4,6 +4,8 @@ import { IActionsData, IDataMap, IDataObject, IPieData } from '../interfaces/dat
 import { RootState } from '../store/store'
 import { Pie } from 'react-chartjs-2';
 import { ActionPreview } from './ActionPreview';
+import { utilService } from '../services/util.service';
+import { dateService } from '../services/date.service';
 
 interface ISummeryBlockProps {
     type: string;
@@ -70,7 +72,7 @@ export const SummeryBlock = ({ type, setActionAddEditModalOpen }: ISummeryBlockP
                 return true
             }).sort((a,b) => b.createdAt - a.createdAt).forEach(action => {
                 const date = new Date(action.createdAt)
-                const dateStr = `${date.getMonth() + 1}/${date.getFullYear()}`
+                const dateStr = `${utilService.getFormatedDigits(date.getMonth() + 1)}/${dateService.getShortYear(date.getFullYear())}`
                 if (actionsObj[dateStr]) actionsObj[dateStr].push(action)
                 else {
                     actionsObj[dateStr] = [action]

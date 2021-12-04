@@ -1,6 +1,7 @@
 export const utilService = {
     debounce,
-    makeId
+    makeId,
+    getFormatedDigits
 }
 
 function debounce<Params extends any[]>(func: (...args: Params) => any, timeout: number,): (...args: Params) => void {
@@ -23,4 +24,8 @@ function makeId(length: number = 6) {
     }
 
     return txt;
+}
+
+function getFormatedDigits(num: number) {
+    return num < 10 ? '0' + num : num
 }
