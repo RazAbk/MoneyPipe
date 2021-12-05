@@ -22,6 +22,7 @@ interface IModalProps {
 const emptyFilterBy = {
     category: "",
     startDate: dateService.getMonthStartTimeStamp(),
+    // startDate: new Date('01/01/2021').getTime(),
     endDate: dateService.getDayMaxHour(Date.now()),
     label: "",
     searchTxt: ""
