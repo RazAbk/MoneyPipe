@@ -1,0 +1,152 @@
+.homepage{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    display: flex;
+
+    background-color: $main-gray-color;
+    border-radius: 10px;
+
+    width: 95vw;
+    height: 80vh;
+
+    overflow-y: auto;
+
+    .MuiOutlinedInput-root{
+        background-color: #fff;
+    }
+
+    .left-side{
+        display: none;
+    }
+
+    .right-side{
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 2rem 1rem;
+
+        h2{
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .MuiTextField-root{
+                width: 80%;
+            }
+
+            .name-fields{
+                display: flex;
+                gap: 0.5rem;
+                justify-content: center;
+
+                .MuiTextField-root{
+                    max-width: 36.5%;
+                }
+            }
+
+            button{
+                background-color: $main-dark-color;
+                color: $txt-light-color;
+
+                width: 15rem;
+                height: 3rem;
+                margin: 1.5rem 0;
+            }
+
+        }
+        
+        hr{
+            width: 90%;
+            margin: 20px auto;
+            border-color: rgba(0, 0, 0, 0.247)
+        }
+
+        .form-state-header{
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0.6rem;
+
+        }
+        h4{
+            font-size: 0.8rem;
+            span{
+                cursor: pointer;
+                color: #357DB1;
+            }
+        }
+        
+    }
+
+    @include for-tablet{
+        height: 80vh;
+        max-height: 50rem;
+        
+        min-width: 50rem;
+        width: 80vw;
+        max-width: 70rem;
+
+        .left-side{
+            width: 45%;
+            height: 100%;
+            background-color: #292929;
+            border-radius: 10px 0 0 10px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2.5rem 1rem;
+
+            h2{
+                color: $txt-light-color;
+                font-size: 2.25rem;
+            }
+
+            img{
+                width: 85%;
+                max-width: 20rem;
+            }
+        }
+
+        .right-side{
+            width: 55%;
+            padding: 2.5rem 1rem;
+
+            form{
+                .name-fields{
+                    .MuiTextField-root{
+                        max-width: 37.5%;
+                    }
+                }
+            }
+
+            h4{
+                font-size: 1rem;
+            }
+        }
+
+    }
+
+}
+
+.dimmer-screen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.35);
+    width: 100vw;
+    height: 100vh;
+}

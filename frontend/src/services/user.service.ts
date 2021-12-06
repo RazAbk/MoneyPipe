@@ -2,6 +2,7 @@ import { localStorageService } from "./local-storage.service"
 import { storageService as asyncLocalStorage } from '../services/async-storage.service'
 import { IAction, ICategory, ILabel, IUser } from "../interfaces/dataInterfaces"
 import { utilService } from "./util.service"
+import axios from "axios"
 
 export const userService = {
     getLoggedInUser,
@@ -12,16 +13,16 @@ export const userService = {
     addLabel
 }
 
+const BASE_URL = process.env.NODE_ENV === 'production' ? '' : '//localhost:3030'
+
 function getLoggedInUser() {
     const loggedInUser = localStorageService.load('loggedInUser')
     return loggedInUser
 }
 
 async function getData(filterBy = {}) {
-    const loggedInUser = getLoggedInUser()
-    
-    const user = await asyncLocalStorage.get('users', loggedInUser)
-    return user.data
+    const response = await axios.get(`${BASE_URL}/api/user/61ade6373c54ca6aa67dbfc2`)
+    return response.data.data
 }
 
 async function addAction(action: IAction) {
@@ -79,7 +80,7 @@ async function addLabel(label: ILabel) {
     return users[userIdx].data
 }
 
-_loadToStorage()
+// _loadToStorage()
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function _loadToStorage() {
