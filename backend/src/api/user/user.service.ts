@@ -12,6 +12,7 @@ async function getById(userId: string) {
         delete user.password
         return user
     } catch(err) {
+        console.log('could not get user by id')
         console.log(err)
         throw err
     }
@@ -23,7 +24,7 @@ async function getByUsername(userName: string) {
         const user = await collection.findOne({ userName: userName })
         return user
     } catch (err) {
-        console.log(`while finding user ${userName}`, err)
+        console.log(`error accrued while finding user ${userName}`, err)
         throw err
     }
 }
@@ -50,7 +51,7 @@ async function add(userName: string, password: string, firstName: string, lastNa
         await collection.insertOne(newUser)
         return newUser
     } catch(err) {
-        console.log('error while adding user')
+        console.log('error accrued while adding user')
         throw err
     }
 }

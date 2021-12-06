@@ -17,7 +17,7 @@ async function getCollection(collectionName: string) {
         const collection = await db.collection(collectionName)
         return collection
     } catch (err) {
-        console.log(err)
+        console.log('error while getting collection', err)
         throw err
     }
 }
@@ -30,7 +30,7 @@ async function connect() {
         dbConn = db
         return db
     } catch (err) {
-        console.log(err)
+        console.log('error while connection to MongoDB', err)
         throw err
     }
 }

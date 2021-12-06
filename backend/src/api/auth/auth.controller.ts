@@ -20,7 +20,7 @@ async function signup(req: Request, res: Response) {
         }
     } catch (err) {
         console.log('could not sign up', err)
-        throw err
+        res.json(null)
     }
 }
 
@@ -29,12 +29,12 @@ async function login(req: Request, res: Response) {
         const { userName, password } = req.body
         
         const user = await authService.login(userName, password)
-        
+
         req.session.user = user
         res.json(user)
     } catch(err){
-        console.log('could not login', err)
-        throw err
+        console.log('could not log in', err)
+        res.json(null)
     }
 }
 

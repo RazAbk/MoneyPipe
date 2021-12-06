@@ -55,8 +55,12 @@ export const HomePage = () => {
 
         if (isValid) {
             (async () => {
-                const user: any = await dispatch(signup(formData))
-                navigate(`/${user.userName}`)
+                const user: any = await dispatch(login(formData))
+                if(user){
+                    navigate(`/${user.userName}`)
+                } else {
+                    setErrors({...errors, userName: true, password: true})
+                }
             })()
 
         } else {
@@ -81,11 +85,15 @@ export const HomePage = () => {
             errorsCopy.password = true
         }
 
-
+        
         if (isValid) {
             (async () => {
                 const user: any = await dispatch(login(formData))
-                navigate(`/${user.userName}`)
+                if(user){
+                    navigate(`/${user.userName}`)
+                } else {
+                    setErrors(prevState => {return {...prevState, userName: true, password: true}})
+                }
             })()
         } else {
             setErrors(errorsCopy)
