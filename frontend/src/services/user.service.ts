@@ -1,7 +1,8 @@
 import { localStorageService } from "./local-storage.service"
-import { IAction, ICategory, ILabel, IUser } from "../interfaces/dataInterfaces"
+import { IAction, ICategory, ILabel } from "../interfaces/dataInterfaces"
 import { utilService } from "./util.service"
 import Axios from "axios"
+import { IUser } from "../interfaces/userInterfaces"
 
 const axios = Axios.create({
     withCredentials: true
