@@ -1,7 +1,7 @@
 import express from 'express'
 import { IUser } from './interfaces/userInterfaces';
 const expressSession = require('express-session')
-const MongoDBStore = require('connect-mongodb-session')(expressSession);
+// const MongoDBStore = require('connect-mongodb-session')(expressSession);
 const cors = require('cors')
 const path = require('path')
 
@@ -13,16 +13,16 @@ declare module 'express-session' {
 
 const app = express();
 
-const { configuration } = require('./config/index')
+// const { configuration } = require('./config/index')
 
-const sessionStore = new MongoDBStore({
-  uri: configuration,
-  collection: 'sessionStore'
-})
+// const sessionStore = new MongoDBStore({
+//   uri: configuration,
+//   collection: 'sessionStore'
+// })
 
-sessionStore.on('error', function(error: any) {
-  console.log(error)
-})
+// sessionStore.on('error', function(error: any) {
+//   console.log(error)
+// })
 
 const { getCollection } = require('./services/db.service')
 
@@ -30,7 +30,7 @@ const session = expressSession({
   secret: 'bla bla',
   resave: false,
   saveUninitialized: true,
-  store: sessionStore,
+  // store: sessionStore,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24
   }

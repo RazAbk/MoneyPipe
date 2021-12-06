@@ -4,7 +4,7 @@ import { MainAppMenu } from '../components/MainAppMenu'
 import { MobileMenu } from '../components/MobileMenu'
 import { Screen } from '../components/Screen'
 import { HeaderBlock } from '../components/HeaderBlock'
-import { getData } from '../store/actions/user.action'
+import { setData } from '../store/actions/user.action'
 import { BalanceBlock } from '../components/BalanceBlock'
 import { GoPrimitiveDot as MobileIdx } from 'react-icons/go'
 import { SummeryBlock } from '../components/SummeryBlock'
@@ -21,6 +21,7 @@ export const MainApp = () => {
 
     const dispatch = useDispatch()
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
+    const user = useSelector((state: RootState) => state.userModule.loggedInUser)
 
     const [isMenuOpen, setMenuOpen] = useState(false)
     const [isSearchModalOpen, setSearchModalOpen] = useState(false)
@@ -37,8 +38,10 @@ export const MainApp = () => {
     })
 
     useEffect(() => {
-        dispatch(getData())
-    }, [dispatch])
+        if(user){
+            dispatch(setData(user.data))
+        }
+    }, [dispatch, user])
 
     useEffect(() => {
         if (!isActionAddEditModalOpen) dispatch(setSelectedAction(null))

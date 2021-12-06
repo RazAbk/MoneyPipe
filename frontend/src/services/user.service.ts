@@ -10,6 +10,7 @@ const axios = Axios.create({
 
 export const userService = {
     signup,
+    login,
     getLoggedInUser,
     getData,
     addAction,
@@ -20,15 +21,20 @@ export const userService = {
 
 const BASE_URL = process.env.NODE_ENV === 'production' ? '' : '//localhost:3030'
 
-interface ISignupCredentials {
+interface ICredentials {
     userName: string,
     password: string,
-    firstName: string,
-    lastName: string
+    firstName?: string,
+    lastName?: string
 }
 
-async function signup(credentials: ISignupCredentials) {
+async function signup(credentials: ICredentials) {
     const user = await axios.post(`${BASE_URL}/api/auth/signup`, credentials)
+    return user
+}
+
+async function login(credentials: ICredentials) {
+    const user = await axios.post(`${BASE_URL}/api/auth/login`, credentials)
     return user
 }
 

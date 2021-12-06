@@ -46,7 +46,7 @@ function getStyles(title: string, labels: readonly string[], theme: Theme) {
 export const ActionAddEditModal = ({ closeModal }: IActionAddEditModalProps) => {
 
     const selectedAction: IAction | null = useSelector((state: RootState) => state.appStateModule.selectedAction)
-    const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
+    const data: IDataObject = useSelector((state: RootState) => state.userModule.loggedInUser).data
     const dispatch = useDispatch()
     const theme = useTheme();
 
@@ -149,7 +149,7 @@ export const ActionAddEditModal = ({ closeModal }: IActionAddEditModalProps) => 
                                     <FormControl className="input-field" fullWidth>
                                         <InputLabel id="category">Category</InputLabel>
                                         <Select fullWidth labelId="category" id="category" error={errors.category} value={formData.category} label="Category" name="category" onChange={handleChange}>
-                                            {rawData && rawData.categories.map(category => <MenuItem key={`cat-add-${category.title}`} value={category.title}>{category.title}</MenuItem>)}
+                                            {data && data.categories.map(category => <MenuItem key={`cat-add-${category.title}`} value={category.title}>{category.title}</MenuItem>)}
                                         </Select>
                                     </FormControl>
                                     <Button variant="contained" onClick={() => { setAddCategoryModal(true) }}>Add</Button>
@@ -168,7 +168,7 @@ export const ActionAddEditModal = ({ closeModal }: IActionAddEditModalProps) => 
                                             )}
                                             MenuProps={MenuProps}
                                         >
-                                            {rawData.labels.map((label) => (
+                                            {data.labels.map((label) => (
                                                 <MenuItem
                                                     key={'options-' + label.labelName}
                                                     value={label.labelName}

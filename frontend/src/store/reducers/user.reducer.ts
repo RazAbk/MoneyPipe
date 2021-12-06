@@ -1,9 +1,11 @@
+import { IDataObject } from "../../interfaces/dataInterfaces"
+import { IUser } from "../../interfaces/userInterfaces"
 
-interface IState  {
-    loggedInUser:  any,
+interface IState {
+    loggedInUser: IUser | null,
     currentViewMode: string
-    currentLabel: string | null,
-    data: any
+    currentLabel: string | null
+    data: IDataObject | null
 }
 
 interface IAction {
@@ -12,7 +14,7 @@ interface IAction {
 }
 
 const initialState: IState = {
-    loggedInUser:  null,
+    loggedInUser: null,
     currentViewMode: 'Summery',
     currentLabel: null,
     data: null

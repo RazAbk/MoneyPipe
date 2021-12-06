@@ -9,3 +9,10 @@ export interface IUser {
     picture: string;
     data: IDataObject;
 }
+
+export interface ICredentials {
+    userName: string,
+    password: string,
+    firstName?: string,
+    lastName?: string
+}

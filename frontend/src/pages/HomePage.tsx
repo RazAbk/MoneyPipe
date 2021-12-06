@@ -1,14 +1,19 @@
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button, TextField } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import graphSvg from '../assets/images/graphssvg.svg'
-import { userService } from '../services/user.service'
+import { signup, login } from '../store/actions/user.action'
 
 interface IErrors {
     [key: string]: boolean
 }
 
 export const HomePage = () => {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [formState, setFormState] = useState('login')
     const [formData, setFormData] = useState({
@@ -49,11 +54,11 @@ export const HomePage = () => {
         }
 
         if (isValid) {
-            // Todo: Preform a signup
-            console.log('sign up')
-            const user = await userService.signup(formData)
+            (async () => {
+                const user: any = await dispatch(signup(formData))
+                navigate(`/${user.userName}`)
+            })()
 
-            console.log('user from backend:', user)
         } else {
             setErrors(errorsCopy)
         }
@@ -63,25 +68,25 @@ export const HomePage = () => {
         const userName = formData.userName
         const password = formData.password
 
-        const errorsCopy = {...errors}
+        const errorsCopy = { ...errors }
 
         let isValid = true
 
-        if(!userName){
+        if (!userName) {
             isValid = false
             errorsCopy.userName = true
         }
-        if(!password){
+        if (!password) {
             isValid = false
             errorsCopy.password = true
         }
 
 
-        if(isValid){
-            // Todo: preform a login
-            console.log('login!')
-            console.log('userName', userName)
-            console.log('password', password)
+        if (isValid) {
+            (async () => {
+                const user: any = await dispatch(login(formData))
+                navigate(`/${user.userName}`)
+            })()
         } else {
             setErrors(errorsCopy)
         }

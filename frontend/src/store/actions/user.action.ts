@@ -1,11 +1,13 @@
-import { IAction, ICategory, ILabel } from "../../interfaces/dataInterfaces"
+import { IAction, ICategory, IDataObject, ILabel } from "../../interfaces/dataInterfaces"
+import { ICredentials } from "../../interfaces/userInterfaces"
 import { userService } from "../../services/user.service"
 import { AppDispatch } from "../store"
 
-export const setUser = () => {
+export const signup = (credentials: ICredentials) => {
     return async (dispatch: AppDispatch) => {
+        const res = await userService.signup(credentials)
+        const user = res.data
         try {
-            const user = await userService.getLoggedInUser()
             dispatch({
                 type: "SET_USER",
                 user
@@ -17,10 +19,25 @@ export const setUser = () => {
     }
 }
 
-export const getData = (filterBy = {}) => {
+export const login = (credentials: ICredentials) => {
     return async (dispatch: AppDispatch) => {
+        const res = await userService.login(credentials)
+        const user = res.data
         try {
-            const data = await userService.getData(filterBy)
+            dispatch({
+                type: "SET_USER",
+                user
+            })
+            return user
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+export const setData = (data: IDataObject) => {
+    return (dispatch: AppDispatch) => {
+        try {
             dispatch({
                 type: "SET_DATA",
                 data
