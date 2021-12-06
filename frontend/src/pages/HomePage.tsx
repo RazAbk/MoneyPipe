@@ -9,7 +9,7 @@ interface IErrors {
 
 export const HomePage = () => {
 
-    const [formState, setFormState] = useState('signup')
+    const [formState, setFormState] = useState('login')
     const [formData, setFormData] = useState({
         userName: '',
         firstName: '',
@@ -57,10 +57,29 @@ export const HomePage = () => {
     const handleLogin = () => {
         const userName = formData.userName
         const password = formData.password
-        console.log('login!')
-        console.log('userName', userName)
-        console.log('password', password)
-        // Todo: preform a login
+
+        const errorsCopy = {...errors}
+
+        let isValid = true
+
+        if(!userName){
+            isValid = false
+            errorsCopy.userName = true
+        }
+        if(!password){
+            isValid = false
+            errorsCopy.password = true
+        }
+
+
+        if(isValid){
+            // Todo: preform a login
+            console.log('login!')
+            console.log('userName', userName)
+            console.log('password', password)
+        } else {
+            setErrors(errorsCopy)
+        }
     }
 
     const switchFormState = () => {
