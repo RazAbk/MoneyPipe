@@ -2,6 +2,7 @@ import { Button, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import graphSvg from '../assets/images/graphssvg.svg'
+import { userService } from '../services/user.service'
 
 interface IErrors {
     [key: string]: boolean
@@ -29,7 +30,7 @@ export const HomePage = () => {
         setFormData(prevState => { return { ...prevState, [ev.target.name]: ev.target.value } })
     }
 
-    const handleSignup = () => {
+    const handleSignup = async () => {
         const errorsCopy = { ...errors }
 
         // Todo: Improve userName and password validation
@@ -48,7 +49,11 @@ export const HomePage = () => {
         }
 
         if (isValid) {
-            console.log(formData)
+            // Todo: Preform a signup
+            console.log('sign up')
+            const user = await userService.signup(formData)
+
+            console.log('user from backend:', user)
         } else {
             setErrors(errorsCopy)
         }

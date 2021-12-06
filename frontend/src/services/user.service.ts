@@ -1,10 +1,14 @@
 import { localStorageService } from "./local-storage.service"
-import { storageService as asyncLocalStorage } from '../services/async-storage.service'
 import { IAction, ICategory, ILabel, IUser } from "../interfaces/dataInterfaces"
 import { utilService } from "./util.service"
-import axios from "axios"
+import Axios from "axios"
+
+const axios = Axios.create({
+    withCredentials: true
+})
 
 export const userService = {
+    signup,
     getLoggedInUser,
     getData,
     addAction,
@@ -14,6 +18,18 @@ export const userService = {
 }
 
 const BASE_URL = process.env.NODE_ENV === 'production' ? '' : '//localhost:3030'
+
+interface ISignupCredentials {
+    userName: string,
+    password: string,
+    firstName: string,
+    lastName: string
+}
+
+async function signup(credentials: ISignupCredentials) {
+    const user = await axios.post(`${BASE_URL}/api/auth/signup`, credentials)
+    return user
+}
 
 function getLoggedInUser() {
     const loggedInUser = localStorageService.load('loggedInUser')
