@@ -9,6 +9,7 @@ import { logout } from '../store/actions/user.action'
 import { IDataObject } from '../interfaces/dataInterfaces'
 import { setFilterBy } from '../store/actions/app-state.action'
 import { useNavigate } from 'react-router'
+import { IUser } from '../interfaces/userInterfaces'
 
 interface IMainAppMenuProps {
     isMenuOpen: boolean;
@@ -23,6 +24,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
     const currentLabel = useSelector((state: RootState) => state.appStateModule.currentLabel)
     const filterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
+    const user: IUser = useSelector((state: RootState) => state.userModule.loggedInUser)
     const data: IDataObject = useSelector((state: RootState) => state.userModule.data)
 
     const dispatch = useDispatch()
@@ -51,8 +53,8 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen
         <div className={`main-app-menu ${isMenuOpen ? 'open-menu' : ''}`}>
             <h1 className="app-logo">MoneyPipe</h1>
             <div className="user-details">
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" />
-                <h3>User Name</h3>
+                <img src={user && user.picture} alt="" />
+                <h3>{user && user.firstName} {user && user.lastName}</h3>
             </div>
             <div className="main-menu">
                 <div className="inner-menu">

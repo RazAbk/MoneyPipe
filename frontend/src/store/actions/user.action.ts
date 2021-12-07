@@ -5,8 +5,7 @@ import { AppDispatch } from "../store"
 
 export const signup = (credentials: ICredentials) => {
     return async (dispatch: AppDispatch) => {
-        const res = await userService.signup(credentials)
-        const user = res.data
+        const user = await userService.signup(credentials)
         try {
             dispatch({
                 type: "SET_USER",
@@ -21,8 +20,7 @@ export const signup = (credentials: ICredentials) => {
 
 export const login = (credentials: ICredentials) => {
     return async (dispatch: AppDispatch) => {
-        const res = await userService.login(credentials)
-        const user = res.data
+        const user = await userService.login(credentials)
         try {
             dispatch({
                 type: "SET_USER",

@@ -15,13 +15,14 @@ import { ActionAddEditModal } from '../components/ActionAddEditModal'
 import { setSelectedAction } from '../store/actions/app-state.action'
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
+import { sessionStorageService } from '../services/session-storage.service'
 
 
 export const MainApp = () => {
 
     const dispatch = useDispatch()
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
-    const user = useSelector((state: RootState) => state.userModule.loggedInUser)
+    const user = useSelector((state: RootState) => state.userModule.loggedInUser) || sessionStorageService.load('loggedInUser')
 
     const [isMenuOpen, setMenuOpen] = useState(false)
     const [isSearchModalOpen, setSearchModalOpen] = useState(false)

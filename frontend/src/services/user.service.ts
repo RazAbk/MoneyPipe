@@ -3,6 +3,7 @@ import { IAction, ICategory, ILabel } from "../interfaces/dataInterfaces"
 import { utilService } from "./util.service"
 import Axios from "axios"
 import { IUser } from "../interfaces/userInterfaces"
+import { sessionStorageService } from "./session-storage.service"
 
 const axios = Axios.create({
     withCredentials: true
@@ -30,17 +31,20 @@ interface ICredentials {
 }
 
 async function signup(credentials: ICredentials) {
-    const user = await axios.post(`${BASE_URL}/api/auth/signup`, credentials)
-    return user
+    const res = await axios.post(`${BASE_URL}/api/auth/signup`, credentials)
+    sessionStorageService.save('loggedInUser', res.data)
+    return res.data
 }
 
 async function login(credentials: ICredentials) {
-    const user = await axios.post(`${BASE_URL}/api/auth/login`, credentials)
-    return user
+    const res = await axios.post(`${BASE_URL}/api/auth/login`, credentials)
+    sessionStorageService.save('loggedInUser', res.data)
+    return res.data
 }
 
 async function logout() {
     await axios.post(`${BASE_URL}/api/auth/logout`)
+    sessionStorageService.remove('loggedInUser')
 }
 
 function getLoggedInUser() {
