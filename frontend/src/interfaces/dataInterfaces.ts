@@ -21,7 +21,6 @@ export interface IAction {
 
 export interface IDataObject {
     currencySign: string;
-    currency: string;
     labels: ILabel[];
     categories: ICategory[];
     actions: IAction[];

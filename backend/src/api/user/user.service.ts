@@ -58,7 +58,6 @@ async function addUser(userName: string, password: string, firstName: string, la
             picture: '',
             data: {
                 currencySign: '₪',
-                currency: 'nis',
                 labels: [],
                 categories: [],
                 actions: []

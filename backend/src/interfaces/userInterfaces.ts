@@ -17,7 +17,6 @@ export interface IUser {
         picture: string,
         data: {
             currencySign: string,
-            currency: string,
             labels: ILabel[],
             categories: ICategory[],
             actions: IAction[]
