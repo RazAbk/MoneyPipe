@@ -158,13 +158,13 @@
     width: 100vw;
     height: 100vh;
 
-    animation: gradient 12s ease infinite;
+    animation: gradient 10s ease infinite;
     background-size: 400% 400% !important;
 
     transition: 0.5s;
-    opacity: 0.35;
+    opacity: 0.3;
 
-    background: linear-gradient(-45deg, #292929, #584b17, #2c5f33, #5a2f2f);
+    background: linear-gradient(-45deg, #292929, #1a5c70, #32723a, #753838);
 
 }
 
