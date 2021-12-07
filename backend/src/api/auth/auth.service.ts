@@ -1,3 +1,4 @@
+import { IDateFilterBy } from "../../interfaces/dataInterfaces"
 import { ICredentials } from "../../interfaces/userInterfaces"
 
 const bcrypt = require('bcrypt')
@@ -18,13 +19,14 @@ async function signup(userName: string, password: string, firstName: string, las
     return await userService.addUser(userName, hash, firstName, lastName)
 }
 
-async function login(userName: string, password: string) {
-    const user = await userService.getByUsername(userName)
+async function login(userName: string, password: string, filterBy: IDateFilterBy) {
+    const user = await userService.getByUsername(userName, filterBy)
     if (!user) return Promise.reject('Invalid username or password')
 
     const match = await bcrypt.compare(password, user.password)
     if (!match) return Promise.reject('Invalid username or password')
 
     delete user.password
+    delete user.data
     return user
 }

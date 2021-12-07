@@ -12,7 +12,8 @@ export const dateService = {
     getRelativeDate,
     getDateAsString,
     getShortYear,
-    calculatePeriodDays
+    calculatePeriodDays,
+    getDateFilterBy
 }
 
 function getDayTimestampByHour(date: number, hour: string) {
@@ -159,4 +160,11 @@ function calculatePeriodDays(startDate: number, endDate: number){
     const rawResult = endDate - startDate
 
     return Math.ceil(rawResult / 86400000)
+}
+
+function getDateFilterBy(filterBy: IFilterBy){
+    return {
+        startDate: filterBy.startDate,
+        endDate: filterBy.endDate
+    }
 }

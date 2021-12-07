@@ -4,7 +4,7 @@ import { MainAppMenu } from '../components/MainAppMenu'
 import { MobileMenu } from '../components/MobileMenu'
 import { Screen } from '../components/Screen'
 import { HeaderBlock } from '../components/HeaderBlock'
-import { setData } from '../store/actions/user.action'
+import { getData } from '../store/actions/user.action'
 import { BalanceBlock } from '../components/BalanceBlock'
 import { GoPrimitiveDot as MobileIdx } from 'react-icons/go'
 import { SummeryBlock } from '../components/SummeryBlock'
@@ -16,6 +16,7 @@ import { setSelectedAction } from '../store/actions/app-state.action'
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 import { sessionStorageService } from '../services/session-storage.service'
+import { dateService } from '../services/date.service'
 
 
 export const MainApp = () => {
@@ -23,6 +24,7 @@ export const MainApp = () => {
     const dispatch = useDispatch()
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
     const user = useSelector((state: RootState) => state.userModule.loggedInUser) || sessionStorageService.load('loggedInUser')
+    const filterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
 
     const [isMenuOpen, setMenuOpen] = useState(false)
     const [isSearchModalOpen, setSearchModalOpen] = useState(false)
@@ -40,9 +42,9 @@ export const MainApp = () => {
 
     useEffect(() => {
         if(user){
-            dispatch(setData(user.data))
+            dispatch(getData(dateService.getDateFilterBy(filterBy)))
         }
-    }, [dispatch, user])
+    }, [dispatch, user, filterBy])
 
     useEffect(() => {
         if (!isActionAddEditModalOpen) dispatch(setSelectedAction(null))

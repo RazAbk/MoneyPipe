@@ -1,4 +1,4 @@
-import { IAction, ICategory, ILabel } from "../../interfaces/dataInterfaces"
+import { IAction, ICategory, ILabel, IDateFilterBy } from "../../interfaces/dataInterfaces"
 import { ICredentials } from "../../interfaces/userInterfaces"
 
 const dbService = require('../../services/db.service')
@@ -32,11 +32,19 @@ async function getByUsername(userName: string) {
     try {
         const collection = await dbService.getCollection('users')
         const user = await collection.findOne({ userName: userName })
+
         return user
     } catch (err) {
         console.log(`error accrued while finding user ${userName}`, err)
         throw err
     }
+}
+
+async function _filterActions(actions: IAction[], filterBy: IDateFilterBy) {
+    return await actions.filter((action: IAction) => {
+        if(action.createdAt < filterBy.startDate || action.createdAt > filterBy.endDate) return false
+        return true
+    })
 }
 
 async function addUser(userName: string, password: string, firstName: string, lastName: string) {

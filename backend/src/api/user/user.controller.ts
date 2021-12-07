@@ -1,22 +1,36 @@
 import { Request, Response } from "express"
+import { IAction } from "../../interfaces/dataInterfaces"
 
 const userService = require('./user.service')
 
 module.exports = {
-    getUserById,
+    getData,
     addAction,
     deleteAction,
     addCategory,
     addLabel
 }
 
-async function getUserById(req: Request, res: Response) {
-    try {
-        const user = await userService.getById(req.params.userId)
-        res.send(user)
-    } catch (err) {
-        console.log(err)
-        res.status(500).send({ err: 'Failed to get user' })
+async function getData(req: Request, res: Response) {
+    try{
+        if(req.session.user){
+            const user = await userService.getById(req.session.user._id)
+            
+            const { startDate, endDate } = req.query
+            
+            if(startDate && endDate){
+                const filteredActions = user.data.actions.filter((action: IAction) => {
+                    if(action.createdAt < +startDate || action.createdAt > +endDate) return false
+                    return true
+                })
+
+                user.data.actions = filteredActions
+            }
+            res.json(user.data)
+            
+        }
+    } catch(err) {
+        console.log('could not fetch data', err)
     }
 }
 

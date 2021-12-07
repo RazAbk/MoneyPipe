@@ -35,6 +35,11 @@ export interface IFilterBy {
     category: string
 }
 
+export interface IDateFilterBy {
+    startDate: number,
+    endDate: number
+}
+
 
 export interface IDataMap {
     [key: string]: {

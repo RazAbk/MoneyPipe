@@ -18,3 +18,8 @@ export interface IAction {
     amount: number,
     createdAt: number
 }
+
+export interface IDateFilterBy {
+    startDate: number,
+    endDate: number
+}

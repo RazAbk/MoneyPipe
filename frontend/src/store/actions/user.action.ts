@@ -1,4 +1,4 @@
-import { IAction, ICategory, IDataObject, ILabel } from "../../interfaces/dataInterfaces"
+import { IAction, ICategory, ILabel, IDateFilterBy } from "../../interfaces/dataInterfaces"
 import { ICredentials } from "../../interfaces/userInterfaces"
 import { userService } from "../../services/user.service"
 import { AppDispatch } from "../store"
@@ -47,9 +47,10 @@ export const logout = () => {
     }
 }
 
-export const setData = (data: IDataObject) => {
-    return (dispatch: AppDispatch) => {
+export const getData = (filterBy: IDateFilterBy) => {
+    return async (dispatch: AppDispatch) => {
         try {
+            const data = await userService.getData(filterBy)
             dispatch({
                 type: "SET_DATA",
                 data
