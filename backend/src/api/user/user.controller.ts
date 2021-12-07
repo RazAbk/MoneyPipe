@@ -12,6 +12,20 @@ async function getUserById(req: Request, res: Response) {
     }
 }
 
+async function addAction(req: Request, res: Response) {
+    try{
+        if(req.session.user){
+            const action = req.body
+            const userId = req.session.user._id
+            const data = await userService.addAction(action, userId)
+            res.json(data)
+        }
+    } catch(err){
+        console.log('could not add action', err)
+    }
+}
+
 module.exports = {
-    getUserById
+    getUserById,
+    addAction
 }

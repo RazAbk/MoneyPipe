@@ -55,7 +55,7 @@ export const HomePage = () => {
 
         if (isValid) {
             (async () => {
-                const user: any = await dispatch(login(formData))
+                const user: any = await dispatch(signup(formData))
                 if(user){
                     navigate(`/${user.userName}`)
                 } else {

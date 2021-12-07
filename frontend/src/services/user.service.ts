@@ -14,7 +14,6 @@ export const userService = {
     login,
     logout,
     getLoggedInUser,
-    getData,
     addAction,
     deleteAction,
     addCategory,
@@ -29,6 +28,8 @@ interface ICredentials {
     firstName?: string,
     lastName?: string
 }
+
+// User Functions
 
 async function signup(credentials: ICredentials) {
     const res = await axios.post(`${BASE_URL}/api/auth/signup`, credentials)
@@ -52,34 +53,21 @@ function getLoggedInUser() {
     return loggedInUser
 }
 
-async function getData(filterBy = {}) {
-    const response = await axios.get(`${BASE_URL}/api/user/61ade6373c54ca6aa67dbfc2`)
-    return response.data.data
-}
+// CURD Functions
 
 async function addAction(action: IAction) {
-    const loggedInUser = getLoggedInUser()
-    const users = localStorageService.load('users')
-    
-    const userIdx = users.findIndex((user: IUser) => user.userName === loggedInUser)
-    
-    // If ID already exists - update, else - Add new
-    if(action._id){
-        const actionIdx = users[userIdx].data.actions.findIndex((currAction: IAction) => currAction._id === action._id)
-        users[userIdx].data.actions[actionIdx] = action
-    } else {
-        action._id = utilService.makeId()
-        users[userIdx].data.actions.push(action)
+    try {
+        const res = await axios.post(`${BASE_URL}/api/user/action`, action)
+        return res.data
+    } catch (err) {
+        console.log(err)
     }
-    localStorageService.save('users', users)
-
-    return users[userIdx].data
 }
 
 async function deleteAction(actionId: string) {
     const loggedInUser = getLoggedInUser()
     const users = localStorageService.load('users')
-    
+
     const userIdx = users.findIndex((user: IUser) => user.userName === loggedInUser)
 
     const actionIdx = users[userIdx].data.actions.findIndex((action: IAction) => action._id === actionId)
@@ -510,7 +498,7 @@ function _loadToStorage() {
                         category: 'Car',
                         description: 'דלק',
                         amount: 226,
-                        createdAt: 1633433520000 - ( 2* 2629800000)
+                        createdAt: 1633433520000 - (2 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -519,7 +507,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'קפה',
                         amount: 12,
-                        createdAt: 1633339920000 - ( 2* 2629800000)
+                        createdAt: 1633339920000 - (2 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -528,7 +516,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'ארוחת צהריים בחוץ',
                         amount: 62,
-                        createdAt: 1633357920000 - ( 2* 2629800000)
+                        createdAt: 1633357920000 - (2 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -537,7 +525,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'קפה',
                         amount: 15,
-                        createdAt: 1633249920000 - ( 2* 2629800000)
+                        createdAt: 1633249920000 - (2 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -546,7 +534,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'מסעדה בערב',
                         amount: 180,
-                        createdAt: 1634077920000 - ( 2* 2629800000)
+                        createdAt: 1634077920000 - (2 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -555,7 +543,7 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 70,
-                        createdAt: 1634167920000 - ( 2* 2629800000)
+                        createdAt: 1634167920000 - (2 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -564,7 +552,7 @@ function _loadToStorage() {
                         category: 'Car',
                         description: 'דלק',
                         amount: 221,
-                        createdAt: 1634200320000 - ( 2* 2629800000)
+                        createdAt: 1634200320000 - (2 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -573,7 +561,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'ירקות מהשוק',
                         amount: 52,
-                        createdAt: 1634371920000 - ( 2* 2629800000)
+                        createdAt: 1634371920000 - (2 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -582,7 +570,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1026,
-                        createdAt: 1636056000000 - ( 2* 2629800000)
+                        createdAt: 1636056000000 - (2 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -591,7 +579,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1221,
-                        createdAt: 1634631120000 - ( 2* 2629800000)
+                        createdAt: 1634631120000 - (2 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -600,7 +588,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1421,
-                        createdAt: 1635279120000 - ( 2* 2629800000)
+                        createdAt: 1635279120000 - (2 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -609,7 +597,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1201,
-                        createdAt: 1634069520000 - ( 2* 2629800000)
+                        createdAt: 1634069520000 - (2 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -618,19 +606,19 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 121,
-                        createdAt: 1635538320000 - ( 2* 2629800000)
+                        createdAt: 1635538320000 - (2 * 2629800000)
                     },
                     // 
 
-                     // JUL
-                     {
+                    // JUL
+                    {
                         _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#car', '#fuel'],
                         category: 'Car',
                         description: 'דלק',
                         amount: 196,
-                        createdAt: 1633433520000 - ( 3* 2629800000)
+                        createdAt: 1633433520000 - (3 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -639,7 +627,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'קפה',
                         amount: 15,
-                        createdAt: 1633339920000 - ( 3* 2629800000)
+                        createdAt: 1633339920000 - (3 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -648,7 +636,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'ארוחת צהריים בחוץ',
                         amount: 48,
-                        createdAt: 1633357920000 - ( 3* 2629800000)
+                        createdAt: 1633357920000 - (3 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -657,7 +645,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'קפה',
                         amount: 11,
-                        createdAt: 1633249920000 - ( 3* 2629800000)
+                        createdAt: 1633249920000 - (3 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -666,7 +654,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'מסעדה בערב',
                         amount: 125,
-                        createdAt: 1634077920000 - ( 3* 2629800000)
+                        createdAt: 1634077920000 - (3 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -675,7 +663,7 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 80,
-                        createdAt: 1634167920000 - ( 3* 2629800000)
+                        createdAt: 1634167920000 - (3 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -684,7 +672,7 @@ function _loadToStorage() {
                         category: 'Car',
                         description: 'דלק',
                         amount: 183,
-                        createdAt: 1634200320000 - ( 3* 2629800000)
+                        createdAt: 1634200320000 - (3 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -693,7 +681,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'ירקות מהשוק',
                         amount: 22,
-                        createdAt: 1634371920000 - ( 3* 2629800000)
+                        createdAt: 1634371920000 - (3 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -702,7 +690,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1126,
-                        createdAt: 1636056000000 - ( 3* 2629800000)
+                        createdAt: 1636056000000 - (3 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -711,7 +699,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1260,
-                        createdAt: 1634631120000 - ( 3* 2629800000)
+                        createdAt: 1634631120000 - (3 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -720,7 +708,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 931,
-                        createdAt: 1635279120000 - ( 3* 2629800000)
+                        createdAt: 1635279120000 - (3 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -729,7 +717,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1101,
-                        createdAt: 1634069520000 - ( 3* 2629800000)
+                        createdAt: 1634069520000 - (3 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -738,19 +726,19 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 75,
-                        createdAt: 1635538320000 - ( 3* 2629800000)
+                        createdAt: 1635538320000 - (3 * 2629800000)
                     },
                     // 
 
-                     // JUN
-                     {
+                    // JUN
+                    {
                         _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#car', '#fuel'],
                         category: 'Car',
                         description: 'דלק',
                         amount: 187,
-                        createdAt: 1633433520000 - ( 4* 2629800000)
+                        createdAt: 1633433520000 - (4 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -759,7 +747,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'קפה',
                         amount: 15,
-                        createdAt: 1633339920000 - ( 4* 2629800000)
+                        createdAt: 1633339920000 - (4 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -768,7 +756,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'ארוחת צהריים בחוץ',
                         amount: 42,
-                        createdAt: 1633357920000 - ( 4* 2629800000)
+                        createdAt: 1633357920000 - (4 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -777,7 +765,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'קפה',
                         amount: 11,
-                        createdAt: 1633249920000 - ( 4* 2629800000)
+                        createdAt: 1633249920000 - (4 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -786,7 +774,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'מסעדה בערב',
                         amount: 80,
-                        createdAt: 1634077920000 - ( 4* 2629800000)
+                        createdAt: 1634077920000 - (4 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -795,7 +783,7 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 60,
-                        createdAt: 1634167920000 - ( 4* 2629800000)
+                        createdAt: 1634167920000 - (4 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -804,7 +792,7 @@ function _loadToStorage() {
                         category: 'Car',
                         description: 'דלק',
                         amount: 183,
-                        createdAt: 1634200320000 - ( 4* 2629800000)
+                        createdAt: 1634200320000 - (4 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -813,7 +801,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'ירקות מהשוק',
                         amount: 30,
-                        createdAt: 1634371920000 - ( 4* 2629800000)
+                        createdAt: 1634371920000 - (4 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -822,7 +810,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 815,
-                        createdAt: 1636056000000 - ( 4* 2629800000)
+                        createdAt: 1636056000000 - (4 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -831,7 +819,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 523,
-                        createdAt: 1634631120000 - ( 4* 2629800000)
+                        createdAt: 1634631120000 - (4 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -840,7 +828,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 656,
-                        createdAt: 1635279120000 - ( 4* 2629800000)
+                        createdAt: 1635279120000 - (4 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -849,7 +837,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1231,
-                        createdAt: 1634069520000 - ( 4* 2629800000)
+                        createdAt: 1634069520000 - (4 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -858,19 +846,19 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 43,
-                        createdAt: 1635538320000 - ( 4* 2629800000)
+                        createdAt: 1635538320000 - (4 * 2629800000)
                     },
                     // 
 
-                     // MAY
-                     {
+                    // MAY
+                    {
                         _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#car', '#fuel'],
                         category: 'Car',
                         description: 'דלק',
                         amount: 131,
-                        createdAt: 1633433520000 - ( 5* 2629800000)
+                        createdAt: 1633433520000 - (5 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -879,7 +867,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'קפה',
                         amount: 15,
-                        createdAt: 1633339920000 - ( 5* 2629800000)
+                        createdAt: 1633339920000 - (5 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -888,7 +876,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'ארוחת צהריים בחוץ',
                         amount: 22,
-                        createdAt: 1633357920000 - ( 5* 2629800000)
+                        createdAt: 1633357920000 - (5 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -897,7 +885,7 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 60,
-                        createdAt: 1634167920000 - ( 5* 2629800000)
+                        createdAt: 1634167920000 - (5 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -906,7 +894,7 @@ function _loadToStorage() {
                         category: 'Car',
                         description: 'דלק',
                         amount: 132,
-                        createdAt: 1634200320000 - ( 5* 2629800000)
+                        createdAt: 1634200320000 - (5 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -915,7 +903,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'ירקות מהשוק',
                         amount: 22,
-                        createdAt: 1634371920000 - ( 5* 2629800000)
+                        createdAt: 1634371920000 - (5 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -924,7 +912,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 876,
-                        createdAt: 1636056000000 - ( 5* 2629800000)
+                        createdAt: 1636056000000 - (5 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -933,7 +921,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 558,
-                        createdAt: 1634631120000 - ( 5* 2629800000)
+                        createdAt: 1634631120000 - (5 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -942,7 +930,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 667,
-                        createdAt: 1635279120000 - ( 5* 2629800000)
+                        createdAt: 1635279120000 - (5 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -951,7 +939,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 887,
-                        createdAt: 1634069520000 - ( 5* 2629800000)
+                        createdAt: 1634069520000 - (5 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -960,19 +948,19 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 75,
-                        createdAt: 1635538320000 - ( 5* 2629800000)
+                        createdAt: 1635538320000 - (5 * 2629800000)
                     },
                     // 
 
-                     // APR
-                     {
+                    // APR
+                    {
                         _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#car', '#fuel'],
                         category: 'Car',
                         description: 'דלק',
                         amount: 121,
-                        createdAt: 1633433520000 - ( 6* 2629800000)
+                        createdAt: 1633433520000 - (6 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -981,7 +969,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'קפה',
                         amount: 12,
-                        createdAt: 1633339920000 - ( 6* 2629800000)
+                        createdAt: 1633339920000 - (6 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -990,7 +978,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'ארוחת צהריים בחוץ',
                         amount: 56,
-                        createdAt: 1633357920000 - ( 6* 2629800000)
+                        createdAt: 1633357920000 - (6 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -999,7 +987,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'קפה',
                         amount: 12,
-                        createdAt: 1633249920000 - ( 6* 2629800000)
+                        createdAt: 1633249920000 - (6 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1008,7 +996,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'מסעדה בערב',
                         amount: 123,
-                        createdAt: 1634077920000 - ( 6* 2629800000)
+                        createdAt: 1634077920000 - (6 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1017,7 +1005,7 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 70,
-                        createdAt: 1634167920000 - ( 6* 2629800000)
+                        createdAt: 1634167920000 - (6 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1026,7 +1014,7 @@ function _loadToStorage() {
                         category: 'Car',
                         description: 'דלק',
                         amount: 121,
-                        createdAt: 1634200320000 - ( 6* 2629800000)
+                        createdAt: 1634200320000 - (6 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1035,7 +1023,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'ירקות מהשוק',
                         amount: 67,
-                        createdAt: 1634371920000 - ( 6* 2629800000)
+                        createdAt: 1634371920000 - (6 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1044,7 +1032,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 815,
-                        createdAt: 1636056000000 - ( 6* 2629800000)
+                        createdAt: 1636056000000 - (6 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1053,7 +1041,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1390,
-                        createdAt: 1634631120000 - ( 6* 2629800000)
+                        createdAt: 1634631120000 - (6 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1062,7 +1050,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1212,
-                        createdAt: 1635279120000 - ( 6* 2629800000)
+                        createdAt: 1635279120000 - (6 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1071,7 +1059,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 412,
-                        createdAt: 1634069520000 - ( 6* 2629800000)
+                        createdAt: 1634069520000 - (6 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1080,19 +1068,19 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 75,
-                        createdAt: 1635538320000 - ( 6* 2629800000)
+                        createdAt: 1635538320000 - (6 * 2629800000)
                     },
                     // 
 
-                     // MAR
-                     {
+                    // MAR
+                    {
                         _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#car', '#fuel'],
                         category: 'Car',
                         description: 'דלק',
                         amount: 221,
-                        createdAt: 1633433520000 - ( 7* 2629800000)
+                        createdAt: 1633433520000 - (7 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1101,7 +1089,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'קפה',
                         amount: 12,
-                        createdAt: 1633339920000 - ( 7* 2629800000)
+                        createdAt: 1633339920000 - (7 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1110,7 +1098,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'ארוחת צהריים בחוץ',
                         amount: 42,
-                        createdAt: 1633357920000 - ( 7* 2629800000)
+                        createdAt: 1633357920000 - (7 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1119,7 +1107,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'קפה',
                         amount: 51,
-                        createdAt: 1633249920000 - ( 7* 2629800000)
+                        createdAt: 1633249920000 - (7 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1128,7 +1116,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'מסעדה בערב',
                         amount: 220,
-                        createdAt: 1634077920000 - ( 7* 2629800000)
+                        createdAt: 1634077920000 - (7 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1137,7 +1125,7 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 75,
-                        createdAt: 1634167920000 - ( 7* 2629800000)
+                        createdAt: 1634167920000 - (7 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1146,7 +1134,7 @@ function _loadToStorage() {
                         category: 'Car',
                         description: 'דלק',
                         amount: 123,
-                        createdAt: 1634200320000 - ( 7* 2629800000)
+                        createdAt: 1634200320000 - (7 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1155,7 +1143,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'ירקות מהשוק',
                         amount: 80,
-                        createdAt: 1634371920000 - ( 7* 2629800000)
+                        createdAt: 1634371920000 - (7 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1164,7 +1152,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1231,
-                        createdAt: 1636056000000 - ( 7* 2629800000)
+                        createdAt: 1636056000000 - (7 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1173,7 +1161,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1254,
-                        createdAt: 1634631120000 - ( 7* 2629800000)
+                        createdAt: 1634631120000 - (7 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1182,7 +1170,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 653,
-                        createdAt: 1635279120000 - ( 7* 2629800000)
+                        createdAt: 1635279120000 - (7 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1191,7 +1179,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 871,
-                        createdAt: 1634069520000 - ( 7* 2629800000)
+                        createdAt: 1634069520000 - (7 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1200,19 +1188,19 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 95,
-                        createdAt: 1635538320000 - ( 7* 2629800000)
+                        createdAt: 1635538320000 - (7 * 2629800000)
                     },
                     // 
 
-                     // FEB
-                     {
+                    // FEB
+                    {
                         _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#car', '#fuel'],
                         category: 'Car',
                         description: 'דלק',
                         amount: 214,
-                        createdAt: 1633433520000 - ( 8* 2629800000)
+                        createdAt: 1633433520000 - (8 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1221,7 +1209,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'קפה',
                         amount: 12,
-                        createdAt: 1633339920000 - ( 8* 2629800000)
+                        createdAt: 1633339920000 - (8 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1230,7 +1218,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'ארוחת צהריים בחוץ',
                         amount: 67,
-                        createdAt: 1633357920000 - ( 8* 2629800000)
+                        createdAt: 1633357920000 - (8 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1239,7 +1227,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'קפה',
                         amount: 15,
-                        createdAt: 1633249920000 - ( 8* 2629800000)
+                        createdAt: 1633249920000 - (8 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1248,7 +1236,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'מסעדה בערב',
                         amount: 85,
-                        createdAt: 1634077920000 - ( 8* 2629800000)
+                        createdAt: 1634077920000 - (8 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1257,7 +1245,7 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 120,
-                        createdAt: 1634167920000 - ( 8* 2629800000)
+                        createdAt: 1634167920000 - (8 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1266,7 +1254,7 @@ function _loadToStorage() {
                         category: 'Car',
                         description: 'דלק',
                         amount: 123,
-                        createdAt: 1634200320000 - ( 8* 2629800000)
+                        createdAt: 1634200320000 - (8 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1275,7 +1263,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'ירקות מהשוק',
                         amount: 32,
-                        createdAt: 1634371920000 - ( 8* 2629800000)
+                        createdAt: 1634371920000 - (8 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1284,7 +1272,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1226,
-                        createdAt: 1636056000000 - ( 8* 2629800000)
+                        createdAt: 1636056000000 - (8 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1293,7 +1281,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1160,
-                        createdAt: 1634631120000 - ( 8* 2629800000)
+                        createdAt: 1634631120000 - (8 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1302,7 +1290,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 631,
-                        createdAt: 1635279120000 - ( 8* 2629800000)
+                        createdAt: 1635279120000 - (8 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1311,7 +1299,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 860,
-                        createdAt: 1634069520000 - ( 8* 2629800000)
+                        createdAt: 1634069520000 - (8 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1320,19 +1308,19 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 90,
-                        createdAt: 1635538320000 - ( 8* 2629800000)
+                        createdAt: 1635538320000 - (8 * 2629800000)
                     },
                     // 
 
-                     // JAN
-                     {
+                    // JAN
+                    {
                         _id: utilService.makeId(),
                         type: 'expense',
                         labels: ['#car', '#fuel'],
                         category: 'Car',
                         description: 'דלק',
                         amount: 196,
-                        createdAt: 1633433520000 - ( 9* 2629800000)
+                        createdAt: 1633433520000 - (9 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1341,7 +1329,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'קפה',
                         amount: 12,
-                        createdAt: 1633339920000 - ( 9* 2629800000)
+                        createdAt: 1633339920000 - (9 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1350,7 +1338,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'ארוחת צהריים בחוץ',
                         amount: 78,
-                        createdAt: 1633357920000 - ( 9* 2629800000)
+                        createdAt: 1633357920000 - (9 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1359,7 +1347,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'קפה',
                         amount: 15,
-                        createdAt: 1633249920000 - ( 9* 2629800000)
+                        createdAt: 1633249920000 - (9 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1368,7 +1356,7 @@ function _loadToStorage() {
                         category: 'Food',
                         description: 'מסעדה בערב',
                         amount: 185,
-                        createdAt: 1634077920000 - ( 9* 2629800000)
+                        createdAt: 1634077920000 - (9 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1377,7 +1365,7 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 122,
-                        createdAt: 1634167920000 - ( 9* 2629800000)
+                        createdAt: 1634167920000 - (9 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1386,7 +1374,7 @@ function _loadToStorage() {
                         category: 'Car',
                         description: 'דלק',
                         amount: 232,
-                        createdAt: 1634200320000 - ( 9* 2629800000)
+                        createdAt: 1634200320000 - (9 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1395,7 +1383,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'ירקות מהשוק',
                         amount: 32,
-                        createdAt: 1634371920000 - ( 9* 2629800000)
+                        createdAt: 1634371920000 - (9 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1404,7 +1392,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1126,
-                        createdAt: 1636056000000 - ( 9* 2629800000)
+                        createdAt: 1636056000000 - (9 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1413,7 +1401,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 1231,
-                        createdAt: 1634631120000 - ( 9* 2629800000)
+                        createdAt: 1634631120000 - (9 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1422,7 +1410,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 513,
-                        createdAt: 1635279120000 - ( 9* 2629800000)
+                        createdAt: 1635279120000 - (9 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1431,7 +1419,7 @@ function _loadToStorage() {
                         category: 'Shopping',
                         description: 'קניות שבועיות',
                         amount: 862,
-                        createdAt: 1634069520000 - ( 9* 2629800000)
+                        createdAt: 1634069520000 - (9 * 2629800000)
                     },
                     {
                         _id: utilService.makeId(),
@@ -1440,7 +1428,7 @@ function _loadToStorage() {
                         category: 'Hangout',
                         description: 'בירה עם חברים',
                         amount: 68,
-                        createdAt: 1635538320000 - ( 9* 2629800000)
+                        createdAt: 1635538320000 - (9 * 2629800000)
                     },
                     // 
 
@@ -1484,7 +1472,7 @@ function _loadToStorage() {
                     {
                         _id: utilService.makeId(),
                         type: 'expense',
-                        labels: ['#household','#technology'],
+                        labels: ['#household', '#technology'],
                         category: 'Shopping',
                         description: 'מסך טלוויזיה 52 אינץ',
                         amount: 4200,
@@ -1574,7 +1562,7 @@ function _loadToStorage() {
 
 
 
-                    
+
 
 
 
@@ -1893,11 +1881,11 @@ function _loadToStorage() {
     const usersFromStorage = localStorageService.load('users')
     const loggedInUserFromStorage = localStorageService.load('loggedInUser')
 
-    if(!usersFromStorage){
+    if (!usersFromStorage) {
         localStorageService.save('users', users)
     }
 
-    if(!loggedInUserFromStorage){
+    if (!loggedInUserFromStorage) {
         localStorageService.save('loggedInUser', loggedInUser)
     }
 }

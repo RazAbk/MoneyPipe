@@ -1,17 +1,19 @@
+import { IAction } from "../../interfaces/dataInterfaces"
 import { ICredentials } from "../../interfaces/userInterfaces"
 
 const dbService = require('../../services/db.service')
 const { ObjectId } = require('mongodb')
+const utilService = require('../../services/util.service')
 
 
 
 async function getById(userId: string) {
-    try{
+    try {
         const collection = await dbService.getCollection('users')
-        const user = await collection.findOne({'_id': ObjectId(userId)})
+        const user = await collection.findOne({ '_id': ObjectId(userId) })
         delete user.password
         return user
-    } catch(err) {
+    } catch (err) {
         console.log('could not get user by id')
         console.log(err)
         throw err
@@ -29,8 +31,8 @@ async function getByUsername(userName: string) {
     }
 }
 
-async function add(userName: string, password: string, firstName: string, lastName: string) {
-    try{
+async function addUser(userName: string, password: string, firstName: string, lastName: string) {
+    try {
         const newUser = {
             userName,
             password,
@@ -50,8 +52,31 @@ async function add(userName: string, password: string, firstName: string, lastNa
         const collection = await dbService.getCollection('users')
         await collection.insertOne(newUser)
         return newUser
-    } catch(err) {
+    } catch (err) {
         console.log('error accrued while adding user')
+        throw err
+    }
+}
+
+async function addAction(action: IAction, userId: string) {
+    try {
+        const collection = await dbService.getCollection('users')
+        const user = await collection.findOne({ '_id': ObjectId(userId) })
+
+        
+        if(action._id){
+            const actionIdx = user.data.actions.findIndex((currAction: IAction) => action._id === currAction._id)
+            user.data.actions[actionIdx] = action
+        } else {
+            action._id = utilService.makeId()
+            user.data.actions.push(action)
+        }
+        
+        await collection.updateOne({"_id": ObjectId(userId)}, { $set: { "data" : user.data }})
+
+        return user.data
+    } catch (err) {
+        console.log('could not add new action', err)
         throw err
     }
 }
@@ -59,5 +84,6 @@ async function add(userName: string, password: string, firstName: string, lastNa
 module.exports = {
     getById,
     getByUsername,
-    add
+    addUser,
+    addAction
 }
