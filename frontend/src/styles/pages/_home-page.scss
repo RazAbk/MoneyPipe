@@ -62,7 +62,7 @@
                 background-color: $main-dark-color;
                 color: $txt-light-color;
 
-                width: 15rem;
+                width: 9.25rem;
                 height: 3rem;
                 margin: 1.5rem 0;
             }
@@ -133,11 +133,16 @@
                         max-width: 37.5%;
                     }
                 }
+
+                button{
+                    width: 12rem;
+                }
             }
 
             h4{
                 font-size: 1rem;
             }
+
         }
 
     }
