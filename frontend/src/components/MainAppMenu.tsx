@@ -43,7 +43,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen
     const handleLogout = () => {
         (async () => {
             await dispatch(logout())
-            // navigate('/')
+            navigate('/')
         })()
     }
 
