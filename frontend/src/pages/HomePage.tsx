@@ -57,7 +57,7 @@ export const HomePage = () => {
             (async () => {
                 const user: any = await dispatch(signup(formData))
                 if(user){
-                    navigate(`/${user.userName}`)
+                    navigate(`/mydata`)
                 } else {
                     setErrors({...errors, userName: true, password: true})
                 }
@@ -90,7 +90,7 @@ export const HomePage = () => {
             (async () => {
                 const user: any = await dispatch(login(formData))
                 if(user){
-                    navigate(`/${user.userName}`)
+                    navigate(`/mydata`)
                 } else {
                     setErrors(prevState => {return {...prevState, userName: true, password: true}})
                 }
