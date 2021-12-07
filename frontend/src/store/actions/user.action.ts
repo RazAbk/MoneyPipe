@@ -35,6 +35,20 @@ export const login = (credentials: ICredentials) => {
     }
 }
 
+export const logout = () => {
+    return async (dispatch: AppDispatch) => {
+        await userService.logout()
+        try{
+            dispatch({
+                type: "SET_USER",
+                user: null
+            })
+        } catch (err){
+            console.log(err)
+        }
+    }
+}
+
 export const setData = (data: IDataObject) => {
     return (dispatch: AppDispatch) => {
         try {

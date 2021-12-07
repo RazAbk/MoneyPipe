@@ -7,9 +7,9 @@ async function signup(req: Request, res: Response) {
     try{
         const { userName, password, firstName, lastName } = req.body
         
-        const isUser = await userService.getByUsername(userName)
+        const isUserTaken = await userService.getByUsername(userName)
         
-        if(isUser){
+        if(isUserTaken){
             res.status(500).send('username is taken')
         } else {
             await authService.signup(userName, password, firstName, lastName)
@@ -38,7 +38,22 @@ async function login(req: Request, res: Response) {
     }
 }
 
+async function logout(req: Request, res: Response) {
+    try{
+        const user = req.session.user?.userName
+
+        req.session.destroy(() => {
+            console.log('user logged out:', user)
+        })
+        res.send('logged out successfully')
+    } catch(err){
+        console.log('could not logout', err)
+        res.status(500).send('could not log out')
+    }
+}
+
 module.exports = {
     signup,
-    login
+    login,
+    logout
 }

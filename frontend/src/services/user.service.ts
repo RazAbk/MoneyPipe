@@ -11,6 +11,7 @@ const axios = Axios.create({
 export const userService = {
     signup,
     login,
+    logout,
     getLoggedInUser,
     getData,
     addAction,
@@ -36,6 +37,10 @@ async function signup(credentials: ICredentials) {
 async function login(credentials: ICredentials) {
     const user = await axios.post(`${BASE_URL}/api/auth/login`, credentials)
     return user
+}
+
+async function logout() {
+    await axios.post(`${BASE_URL}/api/auth/logout`)
 }
 
 function getLoggedInUser() {

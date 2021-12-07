@@ -113,6 +113,10 @@
         width: 100%;
         font-size: 1.75rem;
 
+        .logout-btn{
+            transform: rotate(180deg);
+        }
+
         .account-actions{
             display: flex;
             gap: 1rem;

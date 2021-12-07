@@ -5,8 +5,10 @@ import { MdAddCircle } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import { setCurrentViewMode, setCurrentLabel } from '../store/actions/app-state.action'
+import { logout } from '../store/actions/user.action'
 import { IDataObject } from '../interfaces/dataInterfaces'
 import { setFilterBy } from '../store/actions/app-state.action'
+import { useNavigate } from 'react-router'
 
 interface IMainAppMenuProps {
     isMenuOpen: boolean;
@@ -15,6 +17,8 @@ interface IMainAppMenuProps {
 }
 
 export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen }: IMainAppMenuProps) => {
+
+    const navigate = useNavigate()
 
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
     const currentLabel = useSelector((state: RootState) => state.appStateModule.currentLabel)
@@ -34,6 +38,13 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen
         dispatch(setCurrentLabel(label))
         dispatch(setFilterBy(newFilterBy))
         setMenuOpen(false)
+    }
+
+    const handleLogout = () => {
+        (async () => {
+            await dispatch(logout())
+            // navigate('/')
+        })()
     }
 
     return (
@@ -74,7 +85,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen
 
             <div className="actions-bar">
                 <div className="account-actions">
-                    <IoMdExit />
+                    <IoMdExit className="logout-btn" onClick={handleLogout}/>
                     <FaUserAlt />
                 </div>
                 <div className="quick-actions">
