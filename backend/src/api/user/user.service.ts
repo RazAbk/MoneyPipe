@@ -5,7 +5,15 @@ const dbService = require('../../services/db.service')
 const { ObjectId } = require('mongodb')
 const utilService = require('../../services/util.service')
 
-
+module.exports = {
+    getById,
+    getByUsername,
+    addUser,
+    addAction,
+    deleteAction,
+    addCategory,
+    addLabel
+}
 
 async function getById(userId: string) {
     try {
@@ -63,16 +71,16 @@ async function addAction(action: IAction, userId: string) {
         const collection = await dbService.getCollection('users')
         const user = await collection.findOne({ '_id': ObjectId(userId) })
 
-        
-        if(action._id){
+
+        if (action._id) {
             const actionIdx = user.data.actions.findIndex((currAction: IAction) => action._id === currAction._id)
             user.data.actions[actionIdx] = action
         } else {
             action._id = utilService.makeId()
             user.data.actions.push(action)
         }
-        
-        await collection.updateOne({"_id": ObjectId(userId)}, { $set: { "data" : user.data }})
+
+        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
 
         return user.data
     } catch (err) {
@@ -88,8 +96,8 @@ async function deleteAction(actionId: string, userId: string) {
 
         const actionIdx = user.data.actions.findIndex((currAction: IAction) => currAction._id === actionId)
         user.data.actions.splice(actionIdx, 1)
-        
-        await collection.updateOne({"_id": ObjectId(userId)}, { $set: { "data" : user.data }})
+
+        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
 
         return user.data
     } catch (err) {
@@ -104,13 +112,13 @@ async function addCategory(category: ICategory, userId: string) {
         const user = await collection.findOne({ '_id': ObjectId(userId) })
 
         const isCategoryExist = user.data.categories.find((cat: ICategory) => cat.title === category.title)
-        if(isCategoryExist){
+        if (isCategoryExist) {
             return
         } else {
             user.data.categories.push(category)
         }
 
-        await collection.updateOne({"_id": ObjectId(userId)}, { $set: { "data" : user.data }})
+        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
 
         return user.data
     } catch (err) {
@@ -125,27 +133,17 @@ async function addLabel(label: ILabel, userId: string) {
         const user = await collection.findOne({ '_id': ObjectId(userId) })
 
         const isLabelExist = user.data.labels.find((lab: ILabel) => lab.labelName === label.labelName)
-        if(isLabelExist){
+        if (isLabelExist) {
             return
         } else {
             user.data.labels.push(label)
         }
 
-        await collection.updateOne({"_id": ObjectId(userId)}, { $set: { "data" : user.data }})
+        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
 
         return user.data
     } catch (err) {
         console.log('could not add label', err)
         throw err
     }
-}
-
-module.exports = {
-    getById,
-    getByUsername,
-    addUser,
-    addAction,
-    deleteAction,
-    addCategory,
-    addLabel
 }
