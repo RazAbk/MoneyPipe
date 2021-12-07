@@ -10,6 +10,7 @@ import { IDataObject } from '../interfaces/dataInterfaces'
 import { setFilterBy } from '../store/actions/app-state.action'
 import { useNavigate } from 'react-router'
 import { IUser } from '../interfaces/userInterfaces'
+import { sessionStorageService } from '../services/session-storage.service'
 
 interface IMainAppMenuProps {
     isMenuOpen: boolean;
@@ -24,7 +25,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
     const currentLabel = useSelector((state: RootState) => state.appStateModule.currentLabel)
     const filterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
-    const user: IUser = useSelector((state: RootState) => state.userModule.loggedInUser)
+    const user: IUser = useSelector((state: RootState) => state.userModule.loggedInUser) || sessionStorageService.load('loggedInUser')
     const data: IDataObject = useSelector((state: RootState) => state.userModule.data)
 
     const dispatch = useDispatch()
