@@ -38,8 +38,37 @@ async function deleteAction(req: Request, res: Response) {
     }
 }
 
+async function addCategory(req: Request, res: Response) {
+    try{
+        if(req.session.user){
+            const category = req.body
+            const userId = req.session.user._id
+            const data = await userService.addCategory(category, userId)
+            res.json(data)
+        }
+    } catch(err){
+        console.log('could not add category', err)
+    }
+}
+
+async function addLabel(req: Request, res: Response) {
+    try{
+        if(req.session.user){
+            const label = req.body
+            const userId = req.session.user._id
+            const data = await userService.addLabel(label, userId)
+            res.json(data)
+        }
+    } catch(err){
+        console.log('could not add label', err)
+    }
+}
+
+
 module.exports = {
     getUserById,
     addAction,
-    deleteAction
+    deleteAction,
+    addCategory,
+    addLabel
 }

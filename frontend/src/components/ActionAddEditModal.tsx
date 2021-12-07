@@ -1,7 +1,7 @@
 import { Theme, useTheme } from '@mui/material/styles';
 import { Button, Chip, FormControl, InputLabel, MenuItem, OutlinedInput, Select, Stack, TextField } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { IAction, IDataObject } from '../interfaces/dataInterfaces'
@@ -46,7 +46,7 @@ function getStyles(title: string, labels: readonly string[], theme: Theme) {
 export const ActionAddEditModal = ({ closeModal }: IActionAddEditModalProps) => {
 
     const selectedAction: IAction | null = useSelector((state: RootState) => state.appStateModule.selectedAction)
-    const data: IDataObject = useSelector((state: RootState) => state.userModule.loggedInUser).data
+    const data: IDataObject = useSelector((state: RootState) => state.userModule.data)
     const dispatch = useDispatch()
     const theme = useTheme();
 

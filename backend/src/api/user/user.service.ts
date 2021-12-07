@@ -1,4 +1,4 @@
-import { IAction } from "../../interfaces/dataInterfaces"
+import { IAction, ICategory, ILabel } from "../../interfaces/dataInterfaces"
 import { ICredentials } from "../../interfaces/userInterfaces"
 
 const dbService = require('../../services/db.service')
@@ -98,10 +98,54 @@ async function deleteAction(actionId: string, userId: string) {
     }
 }
 
+async function addCategory(category: ICategory, userId: string) {
+    try {
+        const collection = await dbService.getCollection('users')
+        const user = await collection.findOne({ '_id': ObjectId(userId) })
+
+        const isCategoryExist = user.data.categories.find((cat: ICategory) => cat.title === category.title)
+        if(isCategoryExist){
+            return
+        } else {
+            user.data.categories.push(category)
+        }
+
+        await collection.updateOne({"_id": ObjectId(userId)}, { $set: { "data" : user.data }})
+
+        return user.data
+    } catch (err) {
+        console.log('could not add category', err)
+        throw err
+    }
+}
+
+async function addLabel(label: ILabel, userId: string) {
+    try {
+        const collection = await dbService.getCollection('users')
+        const user = await collection.findOne({ '_id': ObjectId(userId) })
+
+        const isLabelExist = user.data.labels.find((lab: ILabel) => lab.labelName === label.labelName)
+        if(isLabelExist){
+            return
+        } else {
+            user.data.labels.push(label)
+        }
+
+        await collection.updateOne({"_id": ObjectId(userId)}, { $set: { "data" : user.data }})
+
+        return user.data
+    } catch (err) {
+        console.log('could not add label', err)
+        throw err
+    }
+}
+
 module.exports = {
     getById,
     getByUsername,
     addUser,
     addAction,
-    deleteAction
+    deleteAction,
+    addCategory,
+    addLabel
 }
