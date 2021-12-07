@@ -1,7 +1,7 @@
 import { Theme, useTheme } from '@mui/material/styles';
 import { Button, Chip, FormControl, InputLabel, MenuItem, OutlinedInput, Select, Stack, TextField } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { IAction, IDataObject } from '../interfaces/dataInterfaces'

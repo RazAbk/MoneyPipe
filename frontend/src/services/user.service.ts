@@ -1,4 +1,3 @@
-import { localStorageService } from "./local-storage.service"
 import { IAction, ICategory, ILabel } from "../interfaces/dataInterfaces"
 import Axios from "axios"
 import { sessionStorageService } from "./session-storage.service"
