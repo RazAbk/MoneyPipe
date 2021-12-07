@@ -65,17 +65,12 @@ async function addAction(action: IAction) {
 }
 
 async function deleteAction(actionId: string) {
-    const loggedInUser = getLoggedInUser()
-    const users = localStorageService.load('users')
-
-    const userIdx = users.findIndex((user: IUser) => user.userName === loggedInUser)
-
-    const actionIdx = users[userIdx].data.actions.findIndex((action: IAction) => action._id === actionId)
-    users[userIdx].data.actions.splice(actionIdx, 1)
-
-    localStorageService.save('users', users)
-
-    return users[userIdx].data
+    try{
+        const res = await axios.delete(`${BASE_URL}/api/user/action/${actionId}`)
+        return res.data
+    } catch(err) {
+        console.log(err)
+    }
 }
 
 async function addCategory(category: ICategory) {

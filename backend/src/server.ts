@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === 'production') {
   // Express serves static files on dev environment
   const corsOptions = {
       origin: ['http://127.0.0.1:8080', 'http://localhost:8080', 'http://127.0.0.1:3000', 'http://localhost:3000', 'http://10.100.102.21:3000/'],
-      methods: ['GET', 'POST'],
+      methods: ['GET', 'POST', 'DELETE', 'PUT'],
       credentials: true
   }
   app.use(cors(corsOptions))

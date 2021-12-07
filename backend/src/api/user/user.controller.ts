@@ -25,7 +25,21 @@ async function addAction(req: Request, res: Response) {
     }
 }
 
+async function deleteAction(req: Request, res: Response) {
+    try{
+        if(req.session.user){
+            const { actionId } = req.params
+            const userId = req.session.user._id
+            const data = await userService.deleteAction(actionId, userId)
+            return res.json(data)
+        }
+    } catch(err) {
+        console.log('could not delete action', err)
+    }
+}
+
 module.exports = {
     getUserById,
-    addAction
+    addAction,
+    deleteAction
 }

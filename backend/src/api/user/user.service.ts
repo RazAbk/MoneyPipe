@@ -81,9 +81,27 @@ async function addAction(action: IAction, userId: string) {
     }
 }
 
+async function deleteAction(actionId: string, userId: string) {
+    try {
+        const collection = await dbService.getCollection('users')
+        const user = await collection.findOne({ '_id': ObjectId(userId) })
+
+        const actionIdx = user.data.actions.findIndex((currAction: IAction) => currAction._id === actionId)
+        user.data.actions.splice(actionIdx, 1)
+        
+        await collection.updateOne({"_id": ObjectId(userId)}, { $set: { "data" : user.data }})
+
+        return user.data
+    } catch (err) {
+        console.log('could not delete action', err)
+        throw err
+    }
+}
+
 module.exports = {
     getById,
     getByUsername,
     addUser,
-    addAction
+    addAction,
+    deleteAction
 }
