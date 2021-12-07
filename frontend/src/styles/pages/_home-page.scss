@@ -4,9 +4,12 @@
     left: 50%;
     transform: translate(-50%,-50%);
 
+    box-shadow: 5px 5px 22px 11px rgba(0,0,0,0.32);
+
     display: flex;
 
-    background-color: $main-gray-color;
+    background-color: #eaeaea78;
+    backdrop-filter: blur(10px);
     border-radius: 10px;
 
     width: 95vw;
@@ -149,4 +152,25 @@
     background-color: rgba(0, 0, 0, 0.35);
     width: 100vw;
     height: 100vh;
+
+    animation: gradient 12s ease infinite;
+    background-size: 400% 400% !important;
+
+    transition: 0.5s;
+    opacity: 0.35;
+
+    background: linear-gradient(-45deg, #292929, #584b17, #2c5f33, #5a2f2f);
+
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
