@@ -1,14 +1,16 @@
 import { IAction, ICategory, ILabel, IDateFilterBy } from "../../interfaces/dataInterfaces"
-import { ICredentials } from "../../interfaces/userInterfaces"
+import { ICredentials, IUpdateForm } from "../../interfaces/userInterfaces"
 
-const dbService = require('../../services/db.service')
 const { ObjectId } = require('mongodb')
+const bcrypt = require('bcrypt')
+const dbService = require('../../services/db.service')
 const utilService = require('../../services/util.service')
 
 module.exports = {
     getById,
     getByUsername,
     addUser,
+    updateUser,
     addAction,
     deleteAction,
     addCategory,
@@ -42,7 +44,7 @@ async function getByUsername(userName: string) {
 
 async function _filterActions(actions: IAction[], filterBy: IDateFilterBy) {
     return await actions.filter((action: IAction) => {
-        if(action.createdAt < filterBy.startDate || action.createdAt > filterBy.endDate) return false
+        if (action.createdAt < filterBy.startDate || action.createdAt > filterBy.endDate) return false
         return true
     })
 }
@@ -70,6 +72,24 @@ async function addUser(userName: string, password: string, firstName: string, la
     } catch (err) {
         console.log('error accrued while adding user')
         throw err
+    }
+}
+
+async function updateUser(data: IUpdateForm, userId: string) {
+    try {
+        const collection = await dbService.getCollection('users')
+        
+        if(data.password){
+            const saltRound = 10
+            const hash = await bcrypt.hash(data.password, saltRound)
+            data.password = hash
+        }
+
+        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: data})
+        const user = await collection.findOne({ "_id": ObjectId(userId)})
+        return user
+    } catch (err) {
+
     }
 }
 

@@ -1,5 +1,4 @@
 import { IDateFilterBy } from "../../interfaces/dataInterfaces"
-import { ICredentials } from "../../interfaces/userInterfaces"
 
 const bcrypt = require('bcrypt')
 const userService = require('../user/user.service')

@@ -1,6 +1,7 @@
 import { IAction, ICategory, ILabel, IDateFilterBy } from "../interfaces/dataInterfaces"
 import Axios from "axios"
 import { sessionStorageService } from "./session-storage.service"
+import { IUpdateForm } from "../interfaces/userInterfaces"
 
 const axios = Axios.create({
     withCredentials: true
@@ -10,6 +11,7 @@ export const userService = {
     signup,
     login,
     logout,
+    update,
     getData,
     addAction,
     deleteAction,
@@ -44,6 +46,12 @@ async function login(credentials: ICredentials) {
 async function logout() {
     await axios.post(`${BASE_URL}/api/auth/logout`)
     sessionStorageService.remove('loggedInUser')
+}
+
+async function update(data: IUpdateForm) {
+    const res = await axios.put(`${BASE_URL}/api/user`, data)
+    sessionStorageService.save('loggedInUser', res.data)
+    return res.data
 }
 
 // CURD Functions

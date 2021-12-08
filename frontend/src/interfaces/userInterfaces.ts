@@ -8,7 +8,7 @@ export interface IUser {
     password?: string;
     createdAt: number;
     picture: string;
-    data: IDataObject;
+    data?: IDataObject;
 }
 
 export interface ICredentials {
@@ -16,4 +16,11 @@ export interface ICredentials {
     password: string,
     firstName?: string,
     lastName?: string
+}
+
+export interface IUpdateForm {
+    firstName?: string,
+    lastName?: string,
+    password?: string,
+    picture?: string
 }

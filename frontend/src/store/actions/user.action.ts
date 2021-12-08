@@ -1,5 +1,5 @@
 import { IAction, ICategory, ILabel, IDateFilterBy } from "../../interfaces/dataInterfaces"
-import { ICredentials } from "../../interfaces/userInterfaces"
+import { ICredentials, IUser } from "../../interfaces/userInterfaces"
 import { userService } from "../../services/user.service"
 import { AppDispatch } from "../store"
 
@@ -42,6 +42,19 @@ export const logout = () => {
                 user: null
             })
         } catch (err){
+            console.log(err)
+        }
+    }
+}
+
+export const setUser = (user: IUser) => {
+    return (dispatch: AppDispatch) => {
+        try{
+            dispatch({
+                type: "SET_USER",
+                user
+            })
+        } catch(err) {
             console.log(err)
         }
     }

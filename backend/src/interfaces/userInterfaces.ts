@@ -22,3 +22,10 @@ export interface IUser {
             actions: IAction[]
         }
 }
+
+export interface IUpdateForm {
+    firstName?: string,
+    lastName?: string,
+    password?: string,
+    picture?: string
+}

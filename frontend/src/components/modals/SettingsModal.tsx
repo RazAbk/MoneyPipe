@@ -2,9 +2,11 @@ import { Button, TextField } from '@mui/material'
 import React, { useRef, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { FiUpload } from 'react-icons/fi'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { IUpdateForm } from '../../interfaces/userInterfaces'
 import { sessionStorageService } from '../../services/session-storage.service'
 import { userService } from '../../services/user.service'
+import { setUser } from '../../store/actions/user.action'
 import { RootState } from '../../store/store'
 // import { IUser } from '../../interfaces/userInterfaces'
 
@@ -29,7 +31,7 @@ export const SettingsModal = ({ closeModal }: IModalProps) => {
                     {tabs.map(tab => <h2 key={tab} onClick={() => { setCurrentTab(tab) }} style={currentTab === tab ? { color: 'black', fontWeight: '600', borderBottom: '3px black solid' } : {}}>{tab}</h2>)}
                 </div>
                 <div className="settings-body">
-                    {currentTab === 'Account' && <AccountSettings />}
+                    {currentTab === 'Account' && <AccountSettings closeModal={closeModal}/>}
                     {currentTab === 'Preferences' && <PreferencesSettings />}
                     {currentTab === 'Categories' && <CategoriesSettings />}
                     {currentTab === 'Labels' && <LabelsSettings />}
@@ -39,7 +41,7 @@ export const SettingsModal = ({ closeModal }: IModalProps) => {
     )
 }
 
-const AccountSettings = () => {
+const AccountSettings = ({closeModal}: IModalProps) => {
 
     interface IForm {
         firstName: string,
@@ -49,6 +51,7 @@ const AccountSettings = () => {
         picture: string | null
     }
 
+    const dispatch = useDispatch()
     const user = useSelector((state: RootState) => state.userModule.loggedInUser) || sessionStorageService.load('loggedInUser')
 
     const [formData, setFormData] = useState<IForm>({
@@ -85,8 +88,8 @@ const AccountSettings = () => {
         }
     }
 
-    const handleSubmit = () => {
-        const formToSubmit: any = {}
+    const handleSubmit = async () => {
+        const formToSubmit: IUpdateForm = {}
 
         if(formData.password1 || formData.password2){
             if(formData.password1 !== formData.password2){
@@ -109,9 +112,10 @@ const AccountSettings = () => {
             formToSubmit.picture = formData.picture
         }
 
-
-        console.log(formToSubmit)
-
+        
+        const updatedUser = await userService.update(formToSubmit)
+        dispatch(setUser(updatedUser))
+        closeModal(false)
     }
 
     return (
