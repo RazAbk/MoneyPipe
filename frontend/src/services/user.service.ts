@@ -12,6 +12,7 @@ export const userService = {
     login,
     logout,
     updateUser,
+    updateData,
     getData,
     addAction,
     deleteAction,
@@ -32,26 +33,51 @@ interface ICredentials {
 // User Functions
 
 async function signup(credentials: ICredentials) {
-    const res = await axios.post(`${BASE_URL}/api/auth/signup`, credentials)
-    sessionStorageService.save('loggedInUser', res.data)
-    return res.data
+    try {
+        const res = await axios.post(`${BASE_URL}/api/auth/signup`, credentials)
+        sessionStorageService.save('loggedInUser', res.data)
+        return res.data
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 async function login(credentials: ICredentials) {
-    const res = await axios.post(`${BASE_URL}/api/auth/login`, credentials)
-    sessionStorageService.save('loggedInUser', res.data)
-    return res.data
+    try {
+        const res = await axios.post(`${BASE_URL}/api/auth/login`, credentials)
+        sessionStorageService.save('loggedInUser', res.data)
+        return res.data
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 async function logout() {
-    await axios.post(`${BASE_URL}/api/auth/logout`)
-    sessionStorageService.remove('loggedInUser')
+    try {
+        await axios.post(`${BASE_URL}/api/auth/logout`)
+        sessionStorageService.remove('loggedInUser')
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 async function updateUser(data: IUpdateForm) {
-    const res = await axios.put(`${BASE_URL}/api/user`, data)
-    sessionStorageService.save('loggedInUser', res.data)
-    return res.data
+    try {
+        const res = await axios.put(`${BASE_URL}/api/user/user`, data)
+        sessionStorageService.save('loggedInUser', res.data)
+        return res.data
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+async function updateData(data: any) {
+    try {
+        const res = await axios.put(`${BASE_URL}/api/user/data`, data)
+        return res.data
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 // CURD Functions
