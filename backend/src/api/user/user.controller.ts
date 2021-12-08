@@ -6,6 +6,7 @@ const userService = require('./user.service')
 module.exports = {
     getData,
     updateUser,
+    updateData,
     addAction,
     deleteAction,
     addCategory,
@@ -46,9 +47,22 @@ async function updateUser(req: Request, res: Response) {
             res.json(user)
         }
     } catch(err) {
-
+        console.log('could not update user', err)
     }
 }
+
+async function updateData(req: Request, res: Response) {
+    try{
+        if(req.session.user){
+            const user = await userService.updateData(req.body, req.session.user._id)
+            req.session.user = user
+            res.json(user.data)
+        }
+    } catch(err) {
+        console.log('could not update users data', err)
+    }
+}
+
 
 // Crud
 

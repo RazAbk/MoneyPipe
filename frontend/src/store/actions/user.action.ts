@@ -1,4 +1,4 @@
-import { IAction, ICategory, ILabel, IDateFilterBy } from "../../interfaces/dataInterfaces"
+import { IAction, ICategory, ILabel, IDateFilterBy, IDataObject } from "../../interfaces/dataInterfaces"
 import { ICredentials, IUser } from "../../interfaces/userInterfaces"
 import { userService } from "../../services/user.service"
 import { AppDispatch } from "../store"
@@ -64,6 +64,20 @@ export const getData = (filterBy: IDateFilterBy) => {
     return async (dispatch: AppDispatch) => {
         try {
             const data = await userService.getData(filterBy)
+            dispatch({
+                type: "SET_DATA",
+                data
+            })
+            return data
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+export const setData = (data: IDataObject) => {
+    return async (dispatch: AppDispatch) => {
+        try {
             dispatch({
                 type: "SET_DATA",
                 data

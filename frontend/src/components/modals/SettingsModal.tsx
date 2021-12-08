@@ -9,7 +9,7 @@ import { IUpdateForm } from '../../interfaces/userInterfaces'
 import { sessionStorageService } from '../../services/session-storage.service'
 import { userService } from '../../services/user.service'
 import { utilService } from '../../services/util.service'
-import { setUser } from '../../store/actions/user.action'
+import { setData, setUser } from '../../store/actions/user.action'
 import { RootState } from '../../store/store'
 
 interface IModalProps {
@@ -34,7 +34,7 @@ export const SettingsModal = ({ closeModal }: IModalProps) => {
                 </div>
                 <div className="settings-body">
                     {currentTab === 'Account' && <AccountSettings closeModal={closeModal} />}
-                    {currentTab === 'Preferences' && <PreferencesSettings />}
+                    {currentTab === 'Preferences' && <PreferencesSettings closeModal={closeModal} />}
                     {currentTab === 'Categories' && <CategoriesSettings />}
                     {currentTab === 'Labels' && <LabelsSettings />}
                 </div>
@@ -136,7 +136,7 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
     )
 }
 
-const PreferencesSettings = () => {
+const PreferencesSettings = ({ closeModal }: IModalProps) => {
 
     interface ICurrencyData {
         currencyName: string,
@@ -144,6 +144,7 @@ const PreferencesSettings = () => {
         id: string
     }
 
+    const dispatch = useDispatch()
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
 
     const [formData, setFormData] = useState({
@@ -163,8 +164,10 @@ const PreferencesSettings = () => {
         setFormData({...formData, [ev.target.name]: ev.target.value})
     }
 
-    const handleSubmit = () => {
-        console.log('formData', formData)
+    const handleSubmit = async () => {
+        const updatedData = await userService.updateData(formData)
+        dispatch(setData(updatedData))
+        closeModal(false)
     }
 
 

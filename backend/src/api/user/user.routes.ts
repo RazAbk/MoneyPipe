@@ -1,10 +1,11 @@
 import express from 'express'
-const { getData, updateUser, addAction, deleteAction, addCategory, addLabel } = require('./user.controller')
+const { getData, updateUser, updateData, addAction, deleteAction, addCategory, addLabel } = require('./user.controller')
 
 const userRouter = express.Router()
 
 userRouter.get('/data', getData)
-userRouter.put('/', updateUser)
+userRouter.put('/user', updateUser)
+userRouter.put('/data', updateData)
 
 userRouter.post('/action', addAction)
 userRouter.delete('/action/:actionId', deleteAction)

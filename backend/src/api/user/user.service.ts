@@ -1,5 +1,5 @@
 import { IAction, ICategory, ILabel, IDateFilterBy } from "../../interfaces/dataInterfaces"
-import { ICredentials, IUpdateForm } from "../../interfaces/userInterfaces"
+import { ICredentials, IUserUpdateForm, IDataUpdateForm, IUser } from "../../interfaces/userInterfaces"
 
 const { ObjectId } = require('mongodb')
 const bcrypt = require('bcrypt')
@@ -11,6 +11,7 @@ module.exports = {
     getByUsername,
     addUser,
     updateUser,
+    updateData,
     addAction,
     deleteAction,
     addCategory,
@@ -75,7 +76,7 @@ async function addUser(userName: string, password: string, firstName: string, la
     }
 }
 
-async function updateUser(data: IUpdateForm, userId: string) {
+async function updateUser(data: IUserUpdateForm, userId: string) {
     try {
         const collection = await dbService.getCollection('users')
         
@@ -86,6 +87,23 @@ async function updateUser(data: IUpdateForm, userId: string) {
         }
 
         await collection.updateOne({ "_id": ObjectId(userId) }, { $set: data})
+        const user = await collection.findOne({ "_id": ObjectId(userId)})
+        return user
+    } catch (err) {
+        
+    }
+}
+
+async function updateData(data: IDataUpdateForm, userId: string) {
+    try {
+        const fieldToUpdate = Object.keys(data)[0]
+        
+        const $setObj = { $set: {[`data.${fieldToUpdate}`]: data[fieldToUpdate as keyof IDataUpdateForm]}}
+        
+        const collection = await dbService.getCollection('users')
+        
+        await collection.updateOne({ "_id": ObjectId(userId) }, $setObj)
+        
         const user = await collection.findOne({ "_id": ObjectId(userId)})
         return user
     } catch (err) {
