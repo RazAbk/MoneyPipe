@@ -54,7 +54,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen
         <div className={`main-app-menu ${isMenuOpen ? 'open-menu' : ''}`}>
             <h1 className="app-logo">MoneyPipe</h1>
             <div className="user-details">
-                <img src={user && user.picture} alt="" />
+                <div className="image" style={{backgroundImage: `url(${user.picture})`}}></div>
                 <h3>{user && user.firstName} {user && user.lastName}</h3>
             </div>
             <div className="main-menu">

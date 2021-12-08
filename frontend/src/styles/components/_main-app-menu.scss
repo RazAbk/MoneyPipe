@@ -40,8 +40,13 @@
         width: 100%;
         gap: 1rem;
 
-        img{
+        .image{
+            border-radius: 50%;
             width: 80px;
+            height: 80px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
         }
         h3{
             font-size: 1.5rem;
