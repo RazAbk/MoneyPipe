@@ -1,6 +1,5 @@
 import React from 'react'
-import { IoMdExit } from 'react-icons/io'
-import { FaUserAlt } from 'react-icons/fa'
+import { IoMdExit, IoMdSettings } from 'react-icons/io'
 import { MdAddCircle } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
@@ -89,7 +88,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen
             <div className="actions-bar">
                 <div className="account-actions">
                     <IoMdExit className="logout-btn" onClick={handleLogout}/>
-                    <FaUserAlt />
+                    <IoMdSettings />
                 </div>
                 <div className="quick-actions">
                     <MdAddCircle onClick={() => {setActionAddEditModalOpen(true); setMenuOpen(false)}}/>
