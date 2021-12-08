@@ -4,10 +4,10 @@ import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-import { IAction, IDataObject } from '../interfaces/dataInterfaces'
-import { RootState } from '../store/store'
-import { addAction } from '../store/actions/user.action';
-import { Screen } from './Screen';
+import { IAction, IDataObject } from '../../interfaces/dataInterfaces'
+import { RootState } from '../../store/store'
+import { addAction } from '../../store/actions/user.action';
+import { Screen } from '../Screen';
 import { CategoryAddModal } from './CategoryAddModal';
 import { LabelAddModal } from './LabelAddModal';
 import { MobileDateTimePicker, LocalizationProvider } from '@mui/lab';

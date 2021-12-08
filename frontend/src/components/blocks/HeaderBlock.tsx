@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { RootState } from '../store/store'
+import { RootState } from '../../store/store'
 import { BiSearchAlt } from 'react-icons/bi'
-import { dateService } from '../services/date.service'
+import { dateService } from '../../services/date.service'
 
 interface IHeaderProps {
     setSearchModalOpen: React.Dispatch<React.SetStateAction<boolean>>;

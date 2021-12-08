@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
-import { IDataObject, IFilterBy } from '../interfaces/dataInterfaces';
-import { dateService } from '../services/date.service';
+import { RootState } from '../../store/store';
+import { IDataObject, IFilterBy } from '../../interfaces/dataInterfaces';
+import { dateService } from '../../services/date.service';
 
 ChartJS.register(
     CategoryScale,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store/store';
+import { RootState } from '../../store/store';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -10,10 +10,10 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { AiOutlineClose } from 'react-icons/ai'
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { IDataObject } from '../interfaces/dataInterfaces';
-import { setFilterBy as setGlobalFilterBy } from '../store/actions/app-state.action'
-import { setCurrentLabel } from '../store/actions/app-state.action';
-import { dateService } from '../services/date.service';
+import { IDataObject } from '../../interfaces/dataInterfaces';
+import { setFilterBy as setGlobalFilterBy } from '../../store/actions/app-state.action'
+import { setCurrentLabel } from '../../store/actions/app-state.action';
+import { dateService } from '../../services/date.service';
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;

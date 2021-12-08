@@ -2,13 +2,13 @@ import { Button, Stack, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
-import { GetIcon } from './GetIcon'
+import { GetIcon } from '../GetIcon'
 import { BsApp } from 'react-icons/bs'
-import { Screen } from './Screen'
+import { Screen } from '../Screen'
 import { useDispatch } from 'react-redux'
-import { addCategory } from '../store/actions/user.action'
-import { IAction } from '../interfaces/dataInterfaces'
-import { utilService } from '../services/util.service'
+import { addCategory } from '../../store/actions/user.action'
+import { IAction } from '../../interfaces/dataInterfaces'
+import { utilService } from '../../services/util.service'
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;

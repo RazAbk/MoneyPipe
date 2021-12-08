@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { IActionsData, IDataMap, IDataObject, IPieData } from '../interfaces/dataInterfaces'
-import { RootState } from '../store/store'
+import { IActionsData, IDataMap, IDataObject, IPieData } from '../../interfaces/dataInterfaces'
+import { RootState } from '../../store/store'
 import { Pie } from 'react-chartjs-2';
-import { ActionPreview } from './ActionPreview';
-import { utilService } from '../services/util.service';
-import { dateService } from '../services/date.service';
+import { ActionPreview } from '../ActionPreview';
+import { utilService } from '../../services/util.service';
+import { dateService } from '../../services/date.service';
 
 interface ISummeryBlockProps {
     type: string;

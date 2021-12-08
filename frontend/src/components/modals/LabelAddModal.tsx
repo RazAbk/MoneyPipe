@@ -3,8 +3,8 @@ import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
-import { IAction } from '../interfaces/dataInterfaces'
-import { addLabel } from '../store/actions/user.action'
+import { IAction } from '../../interfaces/dataInterfaces'
+import { addLabel } from '../../store/actions/user.action'
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;

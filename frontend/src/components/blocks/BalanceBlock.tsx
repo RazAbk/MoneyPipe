@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { IDataObject } from '../interfaces/dataInterfaces'
-import { RootState } from '../store/store'
+import { IDataObject } from '../../interfaces/dataInterfaces'
+import { RootState } from '../../store/store'
 
 export const BalanceBlock = () => {
 
