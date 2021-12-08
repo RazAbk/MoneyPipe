@@ -19,8 +19,13 @@ export interface IAction {
     createdAt: any;
 }
 
+export interface ICurrency {
+    sign: string;
+    code: string;
+}
+
 export interface IDataObject {
-    currencySign: string;
+    currency: ICurrency;
     labels: ILabel[];
     categories: ICategory[];
     actions: IAction[];

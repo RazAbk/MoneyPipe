@@ -8,19 +8,24 @@ export interface ICredentials {
 }
 
 export interface IUser {
-        _id: string,
-        userName: string,
-        password?: string,
-        firstName: string,
-        lastName: string,
-        createdAt: number,
-        picture: string,
-        data: {
-            currencySign: string,
-            labels: ILabel[],
-            categories: ICategory[],
-            actions: IAction[]
-        }
+    _id: string,
+    userName: string,
+    password?: string,
+    firstName: string,
+    lastName: string,
+    createdAt: number,
+    picture: string,
+    data: {
+        currency: ICurrency,
+        labels: ILabel[],
+        categories: ICategory[],
+        actions: IAction[]
+    }
+}
+
+export interface ICurrency {
+    sign: string;
+    code: string;
 }
 
 export interface IUserUpdateForm {
@@ -31,7 +36,7 @@ export interface IUserUpdateForm {
 }
 
 export interface IDataUpdateForm {
-    currencySign?: string;
+    currency?: ICurrency;
     labels?: ILabel[];
     categories?: ICategory[];
 }

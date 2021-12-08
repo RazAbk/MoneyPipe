@@ -41,7 +41,7 @@ export const BalanceBlock = () => {
                 <h2>Balance</h2>
                 <p>Total balance</p>
             </div>
-            <div className="balance-amount" style={{color: balanceColor}}>{balance ? balance.toLocaleString() : '0'}{rawData && rawData.currencySign}</div>
+            <div className="balance-amount" style={{color: balanceColor}}>{balance ? balance.toLocaleString() : '0'}{rawData && rawData.currency.sign}</div>
         </div>
     )
 }

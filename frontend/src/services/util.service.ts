@@ -6,6 +6,7 @@ export const utilService = {
     makeId,
     getFormatedDigits,
     getCurrencies,
+    getSymbolFromCode,
     getIcons,
     getColors
 }
@@ -51,6 +52,11 @@ async function getCurrencies() {
     } catch(err) {
         console.log(err)
     }
+}
+
+function getSymbolFromCode(currencyCode: string) {
+    const currencies = localStorageService.load('currencies')
+    return currencies[currencyCode].currencySymbol
 }
 
 function getIcons() {

@@ -60,7 +60,10 @@ async function addUser(userName: string, password: string, firstName: string, la
             createdAt: Date.now(),
             picture: '',
             data: {
-                currencySign: '₪',
+                currency : {
+                    sign : "₪",
+                    code : "ILS"
+                },
                 labels: [],
                 categories: [],
                 actions: []

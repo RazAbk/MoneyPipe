@@ -138,30 +138,38 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
 
 const PreferencesSettings = ({ closeModal }: IModalProps) => {
 
-    interface ICurrencyData {
-        currencyName: string,
+    interface ICurrencyObj {
+        id: string,
         currencySymbol?: string,
-        id: string
+        currencyName: string
     }
 
     const dispatch = useDispatch()
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
 
     const [formData, setFormData] = useState({
-        currencySign: rawData.currencySign
+        currency: rawData.currency
     })
-    const [currencies, setCurrencies] = useState<ICurrencyData[] | null>(null)
+    const [currencies, setCurrencies] = useState<ICurrencyObj[] | null>(null)
 
     useEffect(() => {
         (async () => {
             const data = await utilService.getCurrencies()
-            const currencies = Object.entries(data).filter((currency: any) => {return currency[1].currencySymbol ? true : false}).map((currency: any) => currency[1])
+            const currencies = Object.entries(data).filter((currency: any) => { return currency[1].currencySymbol ? true : false }).map((currency: any) => currency[1])
             setCurrencies(currencies)
         })()
     }, [])
 
     const handleChange = (ev: SelectChangeEvent<string>) => {
-        setFormData({...formData, [ev.target.name]: ev.target.value})
+        if(ev.target.name === 'currency'){
+            const currency = {
+                code: ev.target.value,
+                sign: utilService.getSymbolFromCode(ev.target.value)
+            }
+            setFormData({ ...formData, [ev.target.name]: currency })
+        } else {
+            // If other fields come in the future...
+        }
     }
 
     const handleSubmit = async () => {
@@ -177,8 +185,8 @@ const PreferencesSettings = ({ closeModal }: IModalProps) => {
                 <Box sx={{ minWidth: 120 }}>
                     <FormControl fullWidth>
                         <FormHelperText>Currency sign</FormHelperText>
-                        <Select value={formData.currencySign} name="currencySign" onChange={handleChange}>
-                            {currencies && currencies.map((currency: ICurrencyData) => <MenuItem key={currency.id} value={currency.currencySymbol}>{currency.currencyName} {currency.currencySymbol}</MenuItem>)}
+                        <Select value={formData.currency.code} name="currency" onChange={handleChange}>
+                            {currencies && currencies.map((currency: ICurrencyObj) => <MenuItem key={currency.id} value={currency.id}>{currency.currencyName} {currency.currencySymbol}</MenuItem>)}
                         </Select>
                     </FormControl>
                 </Box>
