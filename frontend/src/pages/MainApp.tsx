@@ -17,6 +17,7 @@ import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 import { sessionStorageService } from '../services/session-storage.service'
 import { dateService } from '../services/date.service'
+import { SettingsModal } from '../components/modals/SettingsModal'
 
 
 export const MainApp = () => {
@@ -28,6 +29,7 @@ export const MainApp = () => {
 
     const [isMenuOpen, setMenuOpen] = useState(false)
     const [isSearchModalOpen, setSearchModalOpen] = useState(false)
+    const [isSettingsModalOpen, setSettingsModalOpen] = useState(false)
     const [isActionAddEditModalOpen, setActionAddEditModalOpen] = useState(false)
     const [currentBlock, setCurrentBlock] = useState(0)
 
@@ -54,7 +56,7 @@ export const MainApp = () => {
     return (
         <>
             <div className="main-app">
-                <MainAppMenu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} setActionAddEditModalOpen={setActionAddEditModalOpen} />
+                <MainAppMenu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} setActionAddEditModalOpen={setActionAddEditModalOpen} setSettingsModalOpen={setSettingsModalOpen} />
                 <div className="app-content">
                     <div className="full-screen-content">
                         <MobileMenu setMenuOpen={setMenuOpen} setActionAddEditModalOpen={setActionAddEditModalOpen} />
@@ -83,9 +85,11 @@ export const MainApp = () => {
             <Screen isOpen={isMenuOpen} exitScreen={setMenuOpen} />
             <Screen isOpen={isSearchModalOpen} exitScreen={setSearchModalOpen} />
             <Screen isOpen={isActionAddEditModalOpen} exitScreen={setActionAddEditModalOpen} />
+            <Screen isOpen={isSettingsModalOpen} exitScreen={setSettingsModalOpen} />
 
             {isSearchModalOpen && <SearchModal closeModal={setSearchModalOpen} />}
             {isActionAddEditModalOpen && <ActionAddEditModal closeModal={setActionAddEditModalOpen} />}
+            {isSettingsModalOpen && <SettingsModal closeModal={setSettingsModalOpen} />}
         </>
     )
 }

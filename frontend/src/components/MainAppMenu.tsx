@@ -15,9 +15,10 @@ interface IMainAppMenuProps {
     isMenuOpen: boolean;
     setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setActionAddEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setSettingsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen }: IMainAppMenuProps) => {
+export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen, setSettingsModalOpen }: IMainAppMenuProps) => {
 
     const navigate = useNavigate()
 
@@ -88,7 +89,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen
             <div className="actions-bar">
                 <div className="account-actions">
                     <IoMdExit className="logout-btn" onClick={handleLogout}/>
-                    <IoMdSettings />
+                    <IoMdSettings onClick={() => {setSettingsModalOpen(true); setMenuOpen(false)}}/>
                 </div>
                 <div className="quick-actions">
                     <MdAddCircle onClick={() => {setActionAddEditModalOpen(true); setMenuOpen(false)}}/>
