@@ -321,7 +321,7 @@
         }
     }
 
-    .account-settings{
+    .account-settings, .preferences-settings{
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -341,10 +341,9 @@
                 }
             }
         }
-
-        .MuiTextField-root{
-            background-color: #fff;
-        }
     }
-
+    
+    .MuiTextField-root, .MuiInputBase-root{
+        background-color: #fff;
+    }
 }

@@ -1,10 +1,16 @@
+import axios from "axios"
+import { localStorageService } from "./local-storage.service"
+
 export const utilService = {
     debounce,
     makeId,
     getFormatedDigits,
+    getCurrencies,
     getIcons,
     getColors
 }
+
+const CURRENCY_API = process.env.REACT_APP_CURRENCY_API
 
 function debounce<Params extends any[]>(func: (...args: Params) => any, timeout: number,): (...args: Params) => void {
     let timer: NodeJS.Timeout
@@ -30,6 +36,21 @@ function makeId(length: number = 6) {
 
 function getFormatedDigits(num: number) {
     return num < 10 ? '0' + num : num
+}
+
+async function getCurrencies() {
+    try{
+        const currencies = localStorageService.load('currencies')
+        if(currencies){
+            return currencies
+        } else {
+            const res = await axios.get(`https://free.currconv.com/api/v7/currencies?apiKey=${CURRENCY_API}`)
+            localStorageService.save('currencies', res.data.results)
+            return res.data.results
+        }
+    } catch(err) {
+        console.log(err)
+    }
 }
 
 function getIcons() {
