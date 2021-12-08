@@ -1,4 +1,4 @@
-import { Button, FormControl, FormHelperText, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material'
+import { Button, FormControl, FormHelperText, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useEffect, useRef, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
@@ -11,7 +11,6 @@ import { userService } from '../../services/user.service'
 import { utilService } from '../../services/util.service'
 import { setUser } from '../../store/actions/user.action'
 import { RootState } from '../../store/store'
-// import { IUser } from '../../interfaces/userInterfaces'
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -116,7 +115,7 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
         }
 
 
-        const updatedUser = await userService.update(formToSubmit)
+        const updatedUser = await userService.updateUser(formToSubmit)
         dispatch(setUser(updatedUser))
         closeModal(false)
     }

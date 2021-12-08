@@ -11,7 +11,7 @@ export const userService = {
     signup,
     login,
     logout,
-    update,
+    updateUser,
     getData,
     addAction,
     deleteAction,
@@ -48,7 +48,7 @@ async function logout() {
     sessionStorageService.remove('loggedInUser')
 }
 
-async function update(data: IUpdateForm) {
+async function updateUser(data: IUpdateForm) {
     const res = await axios.put(`${BASE_URL}/api/user`, data)
     sessionStorageService.save('loggedInUser', res.data)
     return res.data
