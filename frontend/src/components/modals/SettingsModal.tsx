@@ -4,6 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { FiUpload } from 'react-icons/fi'
 import { useSelector } from 'react-redux'
 import { sessionStorageService } from '../../services/session-storage.service'
+import { userService } from '../../services/user.service'
 import { RootState } from '../../store/store'
 // import { IUser } from '../../interfaces/userInterfaces'
 
@@ -14,8 +15,6 @@ interface IModalProps {
 const tabs = ['Account', 'Preferences', 'Categories', 'Labels']
 
 export const SettingsModal = ({ closeModal }: IModalProps) => {
-
-
 
     const [currentTab, setCurrentTab] = useState('Account')
 
@@ -42,14 +41,26 @@ export const SettingsModal = ({ closeModal }: IModalProps) => {
 
 const AccountSettings = () => {
 
+    interface IForm {
+        firstName: string,
+        lastName: string,
+        password1: string,
+        password2: string,
+        picture: string | null
+    }
+
     const user = useSelector((state: RootState) => state.userModule.loggedInUser) || sessionStorageService.load('loggedInUser')
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<IForm>({
         firstName: user.firstName,
         lastName: user.lastName,
         password1: '',
         password2: '',
-        picture: ''
+        picture: null
+    })
+
+    const [errors, setErrors] = useState({
+        password: false
     })
 
     const pictureRef = useRef(null)
@@ -65,7 +76,41 @@ const AccountSettings = () => {
         }
     }
 
+    const handlePictureUpload = async (ev: React.ChangeEvent<HTMLInputElement>) => {
+        if(ev.target.files && ev.target.files.length > 0){
+            // Todo: Insert some loader in here
+            const url = await userService.uploadImg(ev.target.files[0])
+            // Todo: remove the loader here
+            setFormData({...formData, picture: url})
+        }
+    }
+
     const handleSubmit = () => {
+        const formToSubmit: any = {}
+
+        if(formData.password1 || formData.password2){
+            if(formData.password1 !== formData.password2){
+                setErrors({...errors, password: true})
+                return
+            } else {
+                formToSubmit.password = formData.password1
+            }
+        }
+
+        if(formData.firstName && formData.firstName !== user.firstName){
+            formToSubmit.firstName = formData.firstName
+        }
+
+        if(formData.lastName && formData.lastName !== user.lastName){
+            formToSubmit.lastName = formData.lastName
+        }
+
+        if(formData.picture){
+            formToSubmit.picture = formData.picture
+        }
+
+
+        console.log(formToSubmit)
 
     }
 
@@ -74,10 +119,11 @@ const AccountSettings = () => {
             <div className="inputs">
                 <TextField value={formData.firstName} name="firstName" onChange={handleChange} label="first name" variant="outlined" />
                 <TextField value={formData.lastName} name="lastName" onChange={handleChange} label="last name" variant="outlined" />
-                <TextField type="password" value={formData.password1} name="password1" onChange={handleChange} label="new password" variant="outlined" />
-                <TextField type="password" value={formData.password2} name="password2" onChange={handleChange} label="verify password" variant="outlined" />
+                <TextField type="password" error={errors.password} value={formData.password1} name="password1" onChange={handleChange} label="new password" variant="outlined" />
+                <TextField type="password" error={errors.password} value={formData.password2} name="password2" onChange={handleChange} label="verify password" variant="outlined" />
                 <Button onClick={handleUploadClick}>upload new picture<FiUpload/></Button>
-                <input ref={pictureRef} type="file" style={{display: 'none'}} />
+                <input ref={pictureRef} type="file" onChange={handlePictureUpload} style={{display: 'none'}} />
+                <p>*change only what's needed</p>
             </div>
             <Button onClick={handleSubmit}>submit</Button>
         </div>
