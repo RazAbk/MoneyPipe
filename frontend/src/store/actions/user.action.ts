@@ -36,12 +36,12 @@ export const login = (credentials: ICredentials) => {
 export const logout = () => {
     return async (dispatch: AppDispatch) => {
         await userService.logout()
-        try{
+        try {
             dispatch({
                 type: "SET_USER",
                 user: null
             })
-        } catch (err){
+        } catch (err) {
             console.log(err)
         }
     }
@@ -49,12 +49,12 @@ export const logout = () => {
 
 export const setUser = (user: IUser) => {
     return (dispatch: AppDispatch) => {
-        try{
+        try {
             dispatch({
                 type: "SET_USER",
                 user
             })
-        } catch(err) {
+        } catch (err) {
             console.log(err)
         }
     }
@@ -137,7 +137,7 @@ export const deleteCategory = (categoryId: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             const data = await userService.deleteCategory(categoryId)
-            if(data){
+            if (data) {
                 dispatch({
                     type: "SET_DATA",
                     data
@@ -154,6 +154,21 @@ export const addLabel = (label: ILabel) => {
     return async (dispatch: AppDispatch) => {
         try {
             const data = await userService.addLabel(label)
+            dispatch({
+                type: "SET_DATA",
+                data
+            })
+            return data
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+export const deleteLabel = (labelId: string) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const data = await userService.deleteLabel(labelId)
             dispatch({
                 type: "SET_DATA",
                 data

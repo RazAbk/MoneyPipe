@@ -11,7 +11,7 @@ import { IUpdateForm } from '../../interfaces/userInterfaces'
 import { sessionStorageService } from '../../services/session-storage.service'
 import { userService } from '../../services/user.service'
 import { utilService } from '../../services/util.service'
-import { deleteCategory, setData, setUser } from '../../store/actions/user.action'
+import { deleteCategory, deleteLabel, setData, setUser } from '../../store/actions/user.action'
 import { RootState } from '../../store/store'
 import { GetIcon } from '../GetIcon'
 import { Screen } from '../Screen'
@@ -255,10 +255,20 @@ const CategoriesSettings = () => {
 
 const LabelsSettings = () => {
 
+    const dispatch = useDispatch()
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
 
     const [addLabelModal, setAddLabelModal] = useState(false)
     const [selectedLabel, setSelectedLabel] = useState<ILabel | null>(null)
+
+    const handleDelete = async (labelId: string) => {
+        const res = await dispatch(deleteCategory(labelId))
+        if(!res){
+            // Todo: better UI
+            await dispatch(deleteLabel(labelId))
+            console.log('label deleted!')
+        }
+    }
 
     return (
         <>
@@ -272,7 +282,7 @@ const LabelsSettings = () => {
                                 </div>
                                 <div className="right-side">
                                     <div onClick={() => { setSelectedLabel(label); setAddLabelModal(true) }}><FaRegEdit /></div>
-                                    <div className="delete-btn"><VscTrash /></div>
+                                    <div className="delete-btn" onClick={() => {handleDelete(label._id)}}><VscTrash /></div>
                                 </div>
                             </div>
                         )

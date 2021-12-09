@@ -11,7 +11,8 @@ module.exports = {
     deleteAction,
     addCategory,
     deleteCategory,
-    addLabel
+    addLabel,
+    deleteLabel
 }
 
 // User
@@ -125,6 +126,19 @@ async function addLabel(req: Request, res: Response) {
             const label = req.body
             const userId = req.session.user._id
             const data = await userService.addLabel(label, userId)
+            res.json(data)
+        }
+    } catch (err) {
+        console.log('could not add label', err)
+    }
+}
+
+async function deleteLabel(req: Request, res: Response) {
+    try {
+        if (req.session.user) {
+            const { labelId } = req.params
+            const userId = req.session.user._id
+            const data = await userService.deleteLabel(labelId, userId)
             res.json(data)
         }
     } catch (err) {

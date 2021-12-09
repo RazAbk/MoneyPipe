@@ -16,7 +16,8 @@ module.exports = {
     deleteAction,
     addCategory,
     deleteCategory,
-    addLabel
+    addLabel,
+    deleteLabel
 }
 
 async function getById(userId: string) {
@@ -61,9 +62,9 @@ async function addUser(userName: string, password: string, firstName: string, la
             createdAt: Date.now(),
             picture: '',
             data: {
-                currency : {
-                    sign : "₪",
-                    code : "ILS"
+                currency: {
+                    sign: "₪",
+                    code: "ILS"
                 },
                 labels: [],
                 categories: [],
@@ -83,32 +84,32 @@ async function addUser(userName: string, password: string, firstName: string, la
 async function updateUser(data: IUserUpdateForm, userId: string) {
     try {
         const collection = await dbService.getCollection('users')
-        
-        if(data.password){
+
+        if (data.password) {
             const saltRound = 10
             const hash = await bcrypt.hash(data.password, saltRound)
             data.password = hash
         }
 
-        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: data})
-        const user = await collection.findOne({ "_id": ObjectId(userId)})
+        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: data })
+        const user = await collection.findOne({ "_id": ObjectId(userId) })
         return user
     } catch (err) {
-        
+
     }
 }
 
 async function updateData(data: IDataUpdateForm, userId: string) {
     try {
         const fieldToUpdate = Object.keys(data)[0]
-        
-        const $setObj = { $set: {[`data.${fieldToUpdate}`]: data[fieldToUpdate as keyof IDataUpdateForm]}}
-        
+
+        const $setObj = { $set: { [`data.${fieldToUpdate}`]: data[fieldToUpdate as keyof IDataUpdateForm] } }
+
         const collection = await dbService.getCollection('users')
-        
+
         await collection.updateOne({ "_id": ObjectId(userId) }, $setObj)
-        
-        const user = await collection.findOne({ "_id": ObjectId(userId)})
+
+        const user = await collection.findOne({ "_id": ObjectId(userId) })
         return user
     } catch (err) {
 
@@ -165,23 +166,23 @@ async function addCategory(category: ICategory, userId: string) {
         // Checks if the category already exists
         const existingCategory = user.data.categories.find((cat: ICategory) => cat.title.toLowerCase() === category.title.toLowerCase())
         // Cannot have same category title duplicates
-        if(existingCategory && existingCategory.bgColor === category.bgColor && existingCategory.icon === category.bgColor){
+        if (existingCategory && existingCategory.bgColor === category.bgColor && existingCategory.icon === category.bgColor) {
             return user.data
         }
 
         // Update
-        if(category._id){
+        if (category._id) {
             const categoryIdx = user.data.categories.findIndex((cat: ICategory) => cat._id === category._id)
             const oldCategoryTitle = user.data.categories[categoryIdx].title
             user.data.categories[categoryIdx] = category
 
             user.data.actions = user.data.actions.map((action: IAction) => {
-                if(action.category === oldCategoryTitle){
+                if (action.category === oldCategoryTitle) {
                     action.category = category.title
                 }
                 return action
             })
-        // Add
+            // Add
         } else {
             category._id = utilService.makeId()
             user.data.categories.push(category)
@@ -197,16 +198,16 @@ async function addCategory(category: ICategory, userId: string) {
 }
 
 async function deleteCategory(categoryId: string, userId: string) {
-    try{
+    try {
         const collection = await dbService.getCollection('users')
         const user = await collection.findOne({ '_id': ObjectId(userId) })
 
         const categoryIdx = user.data.categories.findIndex((category: ICategory) => category._id === categoryId)
 
-        if(categoryIdx !== -1){
+        if (categoryIdx !== -1) {
             const isCategoryUsed = user.data.actions.some((action: IAction) => action.category === user.data.categories[categoryIdx].title)
             // Do not allow to delete category if it's in use!
-            if(isCategoryUsed){
+            if (isCategoryUsed) {
                 return null
             } else {
                 user.data.categories.splice(categoryIdx, 1)
@@ -214,7 +215,7 @@ async function deleteCategory(categoryId: string, userId: string) {
                 return user.data
             }
         }
-    } catch(err) {
+    } catch (err) {
         console.log('could not delete category', err)
         throw err
     }
@@ -227,24 +228,24 @@ async function addLabel(label: ILabel, userId: string) {
 
         const isLabelExist = user.data.labels.some((lab: ILabel) => lab.labelName === label.labelName)
         // Cannot have same label name duplicates
-        if(isLabelExist){
+        if (isLabelExist) {
             return user.data
         }
 
         // Update
-        if(label._id){
+        if (label._id) {
             const labelIdx = user.data.labels.findIndex((lab: ILabel) => lab._id === label._id)
             const oldLabelName = user.data.labels[labelIdx].labelName
             user.data.labels[labelIdx] = label
 
             user.data.actions = user.data.actions.map((action: IAction) => {
-                if(action.labels.includes(oldLabelName)){
+                if (action.labels.includes(oldLabelName)) {
                     const idx = action.labels.findIndex((lab: string) => lab === oldLabelName)
                     action.labels[idx] = label.labelName
                 }
                 return action
             })
-        // Add
+            // Add
         } else {
             label._id = utilService.makeId()
             user.data.labels.push(label)
@@ -255,6 +256,32 @@ async function addLabel(label: ILabel, userId: string) {
         return user.data
     } catch (err) {
         console.log('could not add label', err)
+        throw err
+    }
+}
+
+async function deleteLabel(labelId: string, userId: string) {
+    try {
+        const collection = await dbService.getCollection('users')
+        const user = await collection.findOne({ '_id': ObjectId(userId) })
+
+        const labelIdx = user.data.labels.findIndex((label: ILabel) => label._id === labelId)
+        
+        // Remove label from labels, and from any action including it
+        if (labelIdx !== -1) {
+            const deletedLabel: ILabel = user.data.labels.splice(labelIdx, 1)[0]
+            user.data.actions = user.data.actions.map((action: IAction) => {
+                if(action.labels.includes(deletedLabel.labelName)){
+                    const labelIdx = action.labels.findIndex((label: string) => label === deletedLabel.labelName)
+                    action.labels.splice(labelIdx, 1)
+                }
+                return action
+            })
+            await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
+            return user.data
+        }
+    } catch (err) {
+        console.log('could not delete category', err)
         throw err
     }
 }

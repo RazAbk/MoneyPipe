@@ -19,6 +19,7 @@ export const userService = {
     addCategory,
     deleteCategory,
     addLabel,
+    deleteLabel,
     uploadImg
 }
 
@@ -131,6 +132,15 @@ async function deleteCategory(categoryId: string) {
 async function addLabel(label: ILabel) {
     try {
         const res = await axios.post(`${BASE_URL}/api/user/label`, label)
+        return res.data
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+async function deleteLabel(labelId: string) {
+    try {
+        const res = await axios.delete(`${BASE_URL}/api/user/label/${labelId}`)
         return res.data
     } catch (err) {
         console.log(err)
