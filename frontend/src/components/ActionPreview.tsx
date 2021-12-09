@@ -57,7 +57,7 @@ export const ActionPreview = ({ action, setActionAddEditModalOpen }: IActionProp
     return (
         <div className={`action-preview ${selectedAction?._id === action._id ? 'selected-action' : ''}`} onClick={handleActionClick}>
             <div className="left-side ">
-                <div className="action-details-icon " style={{ backgroundColor: categoryData.bgColor }}>
+                <div className="action-details-icon" style={{ backgroundColor: categoryData.bgColor }}>
                     <GetIcon iconName={categoryData.icon} />
                 </div>
                 <div className="action-data ">

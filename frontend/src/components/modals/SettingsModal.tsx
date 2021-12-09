@@ -2,15 +2,18 @@ import { Button, FormControl, FormHelperText, MenuItem, Select, SelectChangeEven
 import { Box } from '@mui/system'
 import React, { useEffect, useRef, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
+import { FaRegEdit } from 'react-icons/fa'
 import { FiUpload } from 'react-icons/fi'
+import { VscTrash } from 'react-icons/vsc'
 import { useDispatch, useSelector } from 'react-redux'
-import { IDataObject } from '../../interfaces/dataInterfaces'
+import { ICategory, IDataObject } from '../../interfaces/dataInterfaces'
 import { IUpdateForm } from '../../interfaces/userInterfaces'
 import { sessionStorageService } from '../../services/session-storage.service'
 import { userService } from '../../services/user.service'
 import { utilService } from '../../services/util.service'
 import { setData, setUser } from '../../store/actions/user.action'
 import { RootState } from '../../store/store'
+import { GetIcon } from '../GetIcon'
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -161,7 +164,7 @@ const PreferencesSettings = ({ closeModal }: IModalProps) => {
     }, [])
 
     const handleChange = (ev: SelectChangeEvent<string>) => {
-        if(ev.target.name === 'currency'){
+        if (ev.target.name === 'currency') {
             const currency = {
                 code: ev.target.value,
                 sign: utilService.getSymbolFromCode(ev.target.value)
@@ -197,10 +200,49 @@ const PreferencesSettings = ({ closeModal }: IModalProps) => {
 }
 
 const CategoriesSettings = () => {
-    return <h2>Categories</h2>
+
+    const dispatch = useDispatch()
+    const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
+
+    return (
+        <div className="categories-settings">
+            <div className="select-modal">
+                {rawData && rawData.categories.map((category: ICategory) => {
+                    return (
+                        <div key={category.title} className="category-preview">
+                            <div className="left-side">
+                                <div className="icon" style={{ backgroundColor: category.bgColor }}>
+                                    <GetIcon iconName={category.icon} />
+                                </div>
+                                {category.title}
+                            </div>
+                            <div className="right-side">
+                                <div><FaRegEdit /></div>
+                                <div className="delete-btn"><VscTrash /></div>
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+
+            <Button>add new</Button>
+        </div>
+    )
 }
 
 const LabelsSettings = () => {
-    return <h2>Labels</h2>
+
+    const dispatch = useDispatch()
+    const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
+
+    return (
+        <div className="labels-settings">
+            <div className="select-modal">
+
+            </div>
+
+            <Button>add new</Button>
+        </div>
+    )
 }
 
