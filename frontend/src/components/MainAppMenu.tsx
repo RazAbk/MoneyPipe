@@ -14,11 +14,11 @@ import { sessionStorageService } from '../services/session-storage.service'
 interface IMainAppMenuProps {
     isMenuOpen: boolean;
     setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    setActionAddEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setActionModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setSettingsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen, setSettingsModalOpen }: IMainAppMenuProps) => {
+export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionModalOpen, setSettingsModalOpen }: IMainAppMenuProps) => {
 
     const navigate = useNavigate()
 
@@ -94,7 +94,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen
                     <IoMdSettings onClick={() => {setSettingsModalOpen(true); setMenuOpen(false)}}/>
                 </div>
                 <div className="quick-actions">
-                    <MdAddCircle onClick={() => {setActionAddEditModalOpen(true); setMenuOpen(false)}}/>
+                    <MdAddCircle onClick={() => {setActionModalOpen(true); setMenuOpen(false)}}/>
                 </div>
             </div>
         </div>

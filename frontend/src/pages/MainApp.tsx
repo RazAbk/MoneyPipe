@@ -11,7 +11,7 @@ import { SummeryBlock } from '../components/blocks/SummeryBlock'
 import { RootState } from '../store/store'
 import { GraphBlock } from '../components/blocks/GraphBlock'
 import { SearchModal } from '../components/modals/SearchModal'
-import { ActionAddEditModal } from '../components/modals/ActionAddEditModal'
+import { ActionModal } from '../components/modals/ActionModal'
 import { setSelectedAction } from '../store/actions/app-state.action'
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
@@ -30,7 +30,7 @@ export const MainApp = () => {
     const [isMenuOpen, setMenuOpen] = useState(false)
     const [isSearchModalOpen, setSearchModalOpen] = useState(false)
     const [isSettingsModalOpen, setSettingsModalOpen] = useState(false)
-    const [isActionAddEditModalOpen, setActionAddEditModalOpen] = useState(false)
+    const [isActionModalOpen, setActionModalOpen] = useState(false)
     const [currentBlock, setCurrentBlock] = useState(0)
 
     // Mobile slider
@@ -49,28 +49,28 @@ export const MainApp = () => {
     }, [dispatch, user, filterBy])
 
     useEffect(() => {
-        if (!isActionAddEditModalOpen) dispatch(setSelectedAction(null))
-    }, [dispatch, isActionAddEditModalOpen])
+        if (!isActionModalOpen) dispatch(setSelectedAction(null))
+    }, [dispatch, isActionModalOpen])
 
 
     return (
         <>
             <div className="main-app">
-                <MainAppMenu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} setActionAddEditModalOpen={setActionAddEditModalOpen} setSettingsModalOpen={setSettingsModalOpen} />
+                <MainAppMenu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} setActionModalOpen={setActionModalOpen} setSettingsModalOpen={setSettingsModalOpen} />
                 <div className="app-content">
                     <div className="full-screen-content">
-                        <MobileMenu setMenuOpen={setMenuOpen} setActionAddEditModalOpen={setActionAddEditModalOpen} />
+                        <MobileMenu setMenuOpen={setMenuOpen} setActionModalOpen={setActionModalOpen} />
                         <HeaderBlock setSearchModalOpen={setSearchModalOpen} />
                         <BalanceBlock />
                         {currentViewMode === 'Graph' && <GraphBlock />}
                         <div ref={ref} className="main-content-blocks mobile-only keen-slider">
-                            <SummeryBlock type="expense" setActionAddEditModalOpen={setActionAddEditModalOpen} />
-                            <SummeryBlock type="income" setActionAddEditModalOpen={setActionAddEditModalOpen} />
+                            <SummeryBlock type="expense" setActionModalOpen={setActionModalOpen} />
+                            <SummeryBlock type="income" setActionModalOpen={setActionModalOpen} />
                         </div>
 
                         <div className="main-content-blocks above-mobile">
-                            <SummeryBlock type="expense" setActionAddEditModalOpen={setActionAddEditModalOpen} />
-                            <SummeryBlock type="income" setActionAddEditModalOpen={setActionAddEditModalOpen} />
+                            <SummeryBlock type="expense" setActionModalOpen={setActionModalOpen} />
+                            <SummeryBlock type="income" setActionModalOpen={setActionModalOpen} />
                         </div>
                     </div>
 
@@ -84,11 +84,11 @@ export const MainApp = () => {
 
             <Screen isOpen={isMenuOpen} exitScreen={setMenuOpen} />
             <Screen isOpen={isSearchModalOpen} exitScreen={setSearchModalOpen} />
-            <Screen isOpen={isActionAddEditModalOpen} exitScreen={setActionAddEditModalOpen} />
+            <Screen isOpen={isActionModalOpen} exitScreen={setActionModalOpen} />
             <Screen isOpen={isSettingsModalOpen} exitScreen={setSettingsModalOpen} />
 
             {isSearchModalOpen && <SearchModal closeModal={setSearchModalOpen} />}
-            {isActionAddEditModalOpen && <ActionAddEditModal closeModal={setActionAddEditModalOpen} />}
+            {isActionModalOpen && <ActionModal closeModal={setActionModalOpen} />}
             {isSettingsModalOpen && <SettingsModal closeModal={setSettingsModalOpen} />}
         </>
     )

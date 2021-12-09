@@ -11,11 +11,11 @@ import { dateService } from '../services/date.service'
 
 interface IActionProps {
     action: IAction;
-    setActionAddEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setActionModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 
-export const ActionPreview = ({ action, setActionAddEditModalOpen }: IActionProps) => {
+export const ActionPreview = ({ action, setActionModalOpen }: IActionProps) => {
 
     const dispatch = useDispatch()
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
@@ -36,7 +36,7 @@ export const ActionPreview = ({ action, setActionAddEditModalOpen }: IActionProp
 
     const onEdit = (ev: any) => {
         ev.stopPropagation()
-        setActionAddEditModalOpen(true)
+        setActionModalOpen(true)
     }
 
     const handleActionClick = () => {

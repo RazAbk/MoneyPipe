@@ -23,7 +23,7 @@ const btnErrorStyle = {
     border: '2px #E34C4C solid'
 }
 
-export const CategoryAddModal = ({ closeModal, setFormData, categoryToEdit }: IModalProps) => {
+export const CategoryModal = ({ closeModal, setFormData, categoryToEdit }: IModalProps) => {
 
     const dispatch = useDispatch()
 

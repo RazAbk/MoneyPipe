@@ -15,8 +15,8 @@ import { setData, setUser } from '../../store/actions/user.action'
 import { RootState } from '../../store/store'
 import { GetIcon } from '../GetIcon'
 import { Screen } from '../Screen'
-import { CategoryAddModal } from './CategoryAddModal'
-import { LabelAddModal } from './LabelAddModal'
+import { CategoryModal } from './CategoryModal'
+import { LabelModal } from './LabelModal'
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -237,7 +237,7 @@ const CategoriesSettings = () => {
             {selectedCategory &&
                 <>
                     <Screen isOpen={addCategoryModal} exitScreen={setAddCategoryModal} zIndex="100" />
-                    {addCategoryModal && <CategoryAddModal closeModal={setAddCategoryModal} categoryToEdit={selectedCategory} />}
+                    {addCategoryModal && <CategoryModal closeModal={setAddCategoryModal} categoryToEdit={selectedCategory} />}
                 </>
             }
         </>
@@ -275,7 +275,7 @@ const LabelsSettings = () => {
             {selectedLabel &&
                 <>
                     <Screen isOpen={addLabelModal} exitScreen={setAddLabelModal} zIndex="100" />
-                    {addLabelModal && <LabelAddModal closeModal={setAddLabelModal} labelToEdit={selectedLabel} />}
+                    {addLabelModal && <LabelModal closeModal={setAddLabelModal} labelToEdit={selectedLabel} />}
                 </>
             }
         </>

@@ -8,12 +8,12 @@ import { IAction, IDataObject } from '../../interfaces/dataInterfaces'
 import { RootState } from '../../store/store'
 import { addAction } from '../../store/actions/user.action';
 import { Screen } from '../Screen';
-import { CategoryAddModal } from './CategoryAddModal';
-import { LabelAddModal } from './LabelAddModal';
+import { CategoryModal } from './CategoryModal';
+import { LabelModal } from './LabelModal';
 import { MobileDateTimePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
-interface IActionAddEditModalProps {
+interface IActionModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -43,7 +43,7 @@ function getStyles(title: string, labels: readonly string[], theme: Theme) {
     };
 }
 
-export const ActionAddEditModal = ({ closeModal }: IActionAddEditModalProps) => {
+export const ActionModal = ({ closeModal }: IActionModalProps) => {
 
     const selectedAction: IAction | null = useSelector((state: RootState) => state.appStateModule.selectedAction)
     const data: IDataObject = useSelector((state: RootState) => state.userModule.data)
@@ -193,8 +193,8 @@ export const ActionAddEditModal = ({ closeModal }: IActionAddEditModalProps) => 
 
             <Screen isOpen={addCategoryModal} exitScreen={setAddCategoryModal} zIndex="100" />
             <Screen isOpen={addLabelModal} exitScreen={setAddLabelModal} zIndex="100" />
-            {addCategoryModal && <CategoryAddModal closeModal={setAddCategoryModal} setFormData={setFormData} />}
-            {addLabelModal && <LabelAddModal closeModal={setAddLabelModal} setFormData={setFormData} />}
+            {addCategoryModal && <CategoryModal closeModal={setAddCategoryModal} setFormData={setFormData} />}
+            {addLabelModal && <LabelModal closeModal={setAddLabelModal} setFormData={setFormData} />}
         </>
     )
 }

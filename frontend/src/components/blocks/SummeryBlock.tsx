@@ -9,7 +9,7 @@ import { dateService } from '../../services/date.service';
 
 interface ISummeryBlockProps {
     type: string;
-    setActionAddEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setActionModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const options = {
@@ -27,7 +27,7 @@ const options = {
     aspectRatio: 1,
 }
 
-export const SummeryBlock = ({ type, setActionAddEditModalOpen }: ISummeryBlockProps) => {
+export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) => {
 
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
@@ -138,7 +138,7 @@ export const SummeryBlock = ({ type, setActionAddEditModalOpen }: ISummeryBlockP
                         <React.Fragment key={`${month[0]}-${type}`}>
                             <h3 className="actions-month">{`${month[0]} - ${month[1].reduce((sum, action) => { sum += +action.amount; return sum}, 0).toLocaleString()}${rawData.currency.sign}`}</h3>
                             {
-                                month[1].sort((a, b) => b.createdAt - a.createdAt).map(action => <ActionPreview key={action._id} action={action} setActionAddEditModalOpen={setActionAddEditModalOpen} />)
+                                month[1].sort((a, b) => b.createdAt - a.createdAt).map(action => <ActionPreview key={action._id} action={action} setActionModalOpen={setActionModalOpen} />)
                             }
                         </React.Fragment>
                     )

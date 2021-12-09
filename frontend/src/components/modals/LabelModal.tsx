@@ -12,7 +12,7 @@ interface IModalProps {
     labelToEdit?: ILabel;
 }
 
-export const LabelAddModal = ({ closeModal, setFormData, labelToEdit }: IModalProps) => {
+export const LabelModal = ({ closeModal, setFormData, labelToEdit }: IModalProps) => {
 
     const dispatch = useDispatch()
 
