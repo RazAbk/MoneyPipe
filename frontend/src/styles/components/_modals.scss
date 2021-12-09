@@ -20,7 +20,7 @@
         padding: 1rem;
         width: 100%;
         height: 3rem;
-        background-color: #9A9A9A;
+        background-color: $main-dark-color;
         border-radius: 10px 10px 0 0;
         font-size: 1.5rem;  
         color: $txt-light-color;
@@ -51,15 +51,20 @@
     }
 
     button{
-        background-color: $main-light-color;
-        color: $txt-dark-color;
+        border-radius: 10px;
+        background-color: $main-dark-color;
+        color: $txt-light-color;
         &:hover, &:active{
-            background-color: $main-light-color;
+            background-color: #464646;
         }
     }
 
-    .txt-input{
+    .MuiTextField-root, .MuiInputBase-root{
+        border-radius: 10px;
         background-color: $main-light-color;
+    }
+
+    .txt-input{
         width: 100%;
     }
 }
@@ -321,19 +326,21 @@
         }
     }
 
-    .account-settings, .preferences-settings{
+    .account-settings, .preferences-settings, .categories-settings, .labels-settings{
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        
+    }
+    
+    .account-settings, .preferences-settings{
         .inputs{
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 0.75rem;
-
+    
             button{
                 &>*{
                     padding-left: 1rem;
@@ -342,8 +349,16 @@
             }
         }
     }
-    
-    .MuiTextField-root, .MuiInputBase-root{
-        background-color: #fff;
+
+    .categories-settings, .labels-settings{
+        .select-modal{
+            height: 100%;
+            width: 100%;
+            background-color: $main-light-color;
+            border-radius: 10px;
+
+        }
     }
+    
+    
 }
