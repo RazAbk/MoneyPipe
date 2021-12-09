@@ -365,7 +365,7 @@
             overflow-y: auto;
             padding: 1rem;
 
-            .category-preview{
+            .category-preview, .label-preview{
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -374,6 +374,7 @@
                     align-items: center;
                     gap: 0.5rem;
                     font-size: 1.25rem;
+
                     .icon{
                         font-size: 1.25rem;
                         color: $txt-light-color;
@@ -384,6 +385,11 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                    }
+
+                    .label{
+                        font-size: 1.25rem;
+                        color: #1d5de6;
                     }
                 }
 
@@ -402,7 +408,7 @@
                 }
                 
                 @include for-tablet{
-                    .category-preview{
+                    .category-preview, .label-preview{
                         .left-side{
                             font-size: 1.5rem;
                             .icon{
@@ -410,8 +416,9 @@
                                 height: 40px;
                                 font-size: 1.5rem;
                             }
+
                         }
-                        .rigth-side{
+                        .right-side{
                             font-size: 1.4rem;
                         }
                     }

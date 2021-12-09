@@ -6,7 +6,7 @@ import { FaRegEdit } from 'react-icons/fa'
 import { FiUpload } from 'react-icons/fi'
 import { VscTrash } from 'react-icons/vsc'
 import { useDispatch, useSelector } from 'react-redux'
-import { ICategory, IDataObject } from '../../interfaces/dataInterfaces'
+import { ICategory, IDataObject, ILabel } from '../../interfaces/dataInterfaces'
 import { IUpdateForm } from '../../interfaces/userInterfaces'
 import { sessionStorageService } from '../../services/session-storage.service'
 import { userService } from '../../services/user.service'
@@ -16,6 +16,7 @@ import { RootState } from '../../store/store'
 import { GetIcon } from '../GetIcon'
 import { Screen } from '../Screen'
 import { CategoryAddModal } from './CategoryAddModal'
+import { LabelAddModal } from './LabelAddModal'
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -203,11 +204,10 @@ const PreferencesSettings = ({ closeModal }: IModalProps) => {
 
 const CategoriesSettings = () => {
 
-    // const dispatch = useDispatch()
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
 
     const [addCategoryModal, setAddCategoryModal] = useState(false)
-    const [selectedCategory, setSelectedCaregory] = useState<ICategory | null>(null)
+    const [selectedCategory, setSelectedCategory] = useState<ICategory | null>(null)
 
     return (
         <>
@@ -215,7 +215,7 @@ const CategoriesSettings = () => {
                 <div className="select-modal">
                     {rawData && rawData.categories.map((category: ICategory) => {
                         return (
-                            <div key={category.title} className="category-preview">
+                            <div key={category._id} className="category-preview">
                                 <div className="left-side">
                                     <div className="icon" style={{ backgroundColor: category.bgColor }}>
                                         <GetIcon iconName={category.icon} />
@@ -223,7 +223,7 @@ const CategoriesSettings = () => {
                                     {category.title}
                                 </div>
                                 <div className="right-side">
-                                    <div onClick={() => { setSelectedCaregory(category); setAddCategoryModal(true) }}><FaRegEdit /></div>
+                                    <div onClick={() => { setSelectedCategory(category); setAddCategoryModal(true) }}><FaRegEdit /></div>
                                     <div className="delete-btn"><VscTrash /></div>
                                 </div>
                             </div>
@@ -235,10 +235,10 @@ const CategoriesSettings = () => {
             </div>
 
             {selectedCategory &&
-            <>
-                <Screen isOpen={addCategoryModal} exitScreen={setAddCategoryModal} zIndex="100" />
-                {addCategoryModal && <CategoryAddModal closeModal={setAddCategoryModal} categoryToEdit={selectedCategory} />}
-            </>
+                <>
+                    <Screen isOpen={addCategoryModal} exitScreen={setAddCategoryModal} zIndex="100" />
+                    {addCategoryModal && <CategoryAddModal closeModal={setAddCategoryModal} categoryToEdit={selectedCategory} />}
+                </>
             }
         </>
     )
@@ -246,17 +246,39 @@ const CategoriesSettings = () => {
 
 const LabelsSettings = () => {
 
-    // const dispatch = useDispatch()
-    // const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
+    const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
+
+    const [addLabelModal, setAddLabelModal] = useState(false)
+    const [selectedLabel, setSelectedLabel] = useState<ILabel | null>(null)
 
     return (
-        <div className="labels-settings">
-            <div className="select-modal">
+        <>
+            <div className="labels-settings">
+                <div className="select-modal">
+                    {rawData && rawData.labels.map((label: ILabel) => {
+                        return (
+                            <div key={label._id} className="label-preview">
+                                <div className="left-side">
+                                    <h2 className="label">{label.labelName}</h2>
+                                </div>
+                                <div className="right-side">
+                                    <div onClick={() => { setSelectedLabel(label); setAddLabelModal(true) }}><FaRegEdit /></div>
+                                    <div className="delete-btn"><VscTrash /></div>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
 
+                <Button>add new</Button>
             </div>
-
-            <Button>add new</Button>
-        </div>
+            {selectedLabel &&
+                <>
+                    <Screen isOpen={addLabelModal} exitScreen={setAddLabelModal} zIndex="100" />
+                    {addLabelModal && <LabelAddModal closeModal={setAddLabelModal} labelToEdit={selectedLabel} />}
+                </>
+            }
+        </>
     )
 }
 
