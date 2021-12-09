@@ -8,6 +8,7 @@ import { VscTrash } from 'react-icons/vsc'
 import { useDispatch, useSelector } from 'react-redux'
 import { ICategory, IDataObject, ILabel } from '../../interfaces/dataInterfaces'
 import { IUpdateForm } from '../../interfaces/userInterfaces'
+import { alertMessage } from '../../services/alert.service'
 import { sessionStorageService } from '../../services/session-storage.service'
 import { userService } from '../../services/user.service'
 import { utilService } from '../../services/util.service'
@@ -213,8 +214,7 @@ const CategoriesSettings = () => {
     const handleDelete = async (categoryId: string) => {
         const res = await dispatch(deleteCategory(categoryId))
         if(!res){
-            // Todo: better UI
-            alert('cannt delete!')
+            alertMessage("Cannot delete a category while it's in use", 'danger', 3500)
         }
     }
 
@@ -264,7 +264,7 @@ const LabelsSettings = () => {
     const handleDelete = async (labelId: string) => {
         const res = await dispatch(deleteCategory(labelId))
         if(!res){
-            // Todo: better UI
+            // Todo: better UI - add warning message of cannot be undone and exc...
             await dispatch(deleteLabel(labelId))
             console.log('label deleted!')
         }
