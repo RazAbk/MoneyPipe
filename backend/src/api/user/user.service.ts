@@ -207,14 +207,14 @@ async function addLabel(label: ILabel, userId: string) {
 
         // Update
         if(label._id){
-            const labelIdx = user.data.labels.findIndex((lab: ILabel) => lab.labelName.toLowerCase() === label.labelName.toLowerCase())
-            const oldLabel = user.data.labels[labelIdx].labelName
+            const labelIdx = user.data.labels.findIndex((lab: ILabel) => lab._id === label._id)
+            const oldLabelName = user.data.labels[labelIdx].labelName
             user.data.labels[labelIdx] = label
 
             user.data.actions = user.data.actions.map((action: IAction) => {
-                if(action.labels.includes(oldLabel)){
-                    const idx = action.labels.findIndex((lab: ILabel) => lab.labelName === oldLabel)
-                    action.labels[idx].labelName = label.labelName
+                if(action.labels.includes(oldLabelName)){
+                    const idx = action.labels.findIndex((lab: string) => lab === oldLabelName)
+                    action.labels[idx] = label.labelName
                 }
                 return action
             })
@@ -224,7 +224,7 @@ async function addLabel(label: ILabel, userId: string) {
             user.data.labels.push(label)
         }
 
-        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data.labels": user.data.labels } })
+        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
 
         return user.data
     } catch (err) {

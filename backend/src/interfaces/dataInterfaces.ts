@@ -14,7 +14,7 @@ export interface ICategory {
 export interface IAction {
     _id: string,
     type: string,
-    labels: ILabel[],
+    labels: string[],
     category: string,
     description: string,
     amount: number,
