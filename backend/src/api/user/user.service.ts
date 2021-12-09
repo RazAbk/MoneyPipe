@@ -159,14 +159,15 @@ async function addCategory(category: ICategory, userId: string) {
         const collection = await dbService.getCollection('users')
         const user = await collection.findOne({ '_id': ObjectId(userId) })
 
-        const isCategoryExist = user.data.categories.find((cat: ICategory) => cat.title === category.title)
-        if (isCategoryExist) {
-            return
+        const categoryIdx = user.data.categories.findIndex((cat: ICategory) => cat.title === category.title)
+
+        if (categoryIdx !== -1) {
+            user.data.categories[categoryIdx] = category
         } else {
             user.data.categories.push(category)
         }
 
-        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
+        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data.categories": user.data.categories } })
 
         return user.data
     } catch (err) {
