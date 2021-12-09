@@ -231,10 +231,10 @@ const CategoriesSettings = () => {
                     })}
                 </div>
 
-                <Button>add new</Button>
+                <Button onClick={() => {setAddCategoryModal(true)}}>add new</Button>
             </div>
 
-            {selectedCategory &&
+            {addCategoryModal &&
                 <>
                     <Screen isOpen={addCategoryModal} exitScreen={setAddCategoryModal} zIndex="100" />
                     {addCategoryModal && <CategoryModal closeModal={setAddCategoryModal} categoryToEdit={selectedCategory} />}
@@ -270,9 +270,9 @@ const LabelsSettings = () => {
                     })}
                 </div>
 
-                <Button>add new</Button>
+                <Button onClick={() => {setAddLabelModal(true)}}>add new</Button>
             </div>
-            {selectedLabel &&
+            {addLabelModal &&
                 <>
                     <Screen isOpen={addLabelModal} exitScreen={setAddLabelModal} zIndex="100" />
                     {addLabelModal && <LabelModal closeModal={setAddLabelModal} labelToEdit={selectedLabel} />}

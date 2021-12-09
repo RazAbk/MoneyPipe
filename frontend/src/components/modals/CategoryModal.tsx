@@ -13,7 +13,7 @@ import { utilService } from '../../services/util.service'
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
     setFormData?: React.Dispatch<React.SetStateAction<IAction>>;
-    categoryToEdit?: ICategory;
+    categoryToEdit?: ICategory | null;
 }
 
 const colors = utilService.getColors()

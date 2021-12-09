@@ -9,7 +9,7 @@ import { addLabel } from '../../store/actions/user.action'
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
     setFormData?: React.Dispatch<React.SetStateAction<IAction>>;
-    labelToEdit?: ILabel;
+    labelToEdit?: ILabel | null;
 }
 
 export const LabelModal = ({ closeModal, setFormData, labelToEdit }: IModalProps) => {
