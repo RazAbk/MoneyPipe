@@ -154,20 +154,38 @@ async function deleteAction(actionId: string, userId: string) {
     }
 }
 
+// Todo: use regex to compare, uppercase the categorie's first chart (check if front end does so?)
+
 async function addCategory(category: ICategory, userId: string) {
     try {
         const collection = await dbService.getCollection('users')
         const user = await collection.findOne({ '_id': ObjectId(userId) })
 
-        const categoryIdx = user.data.categories.findIndex((cat: ICategory) => cat.title === category.title)
+        const isCategoryExist = user.data.categories.some((cat: ICategory) => cat.title.toLowerCase() === category.title.toLowerCase())
+        // Cannot have same category title duplicates
+        if(isCategoryExist){
+            return user.data
+        }
 
-        if (categoryIdx !== -1) {
+        // Update
+        if(category._id){
+            const categoryIdx = user.data.categories.findIndex((cat: ICategory) => cat._id === category._id)
+            const oldCategoryTitle = user.data.categories[categoryIdx].title
             user.data.categories[categoryIdx] = category
+
+            user.data.actions = user.data.actions.map((action: IAction) => {
+                if(action.category === oldCategoryTitle){
+                    action.category = category.title
+                }
+                return action
+            })
+        // Add
         } else {
+            category._id = utilService.makeId()
             user.data.categories.push(category)
         }
 
-        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data.categories": user.data.categories } })
+        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
 
         return user.data
     } catch (err) {
@@ -181,10 +199,28 @@ async function addLabel(label: ILabel, userId: string) {
         const collection = await dbService.getCollection('users')
         const user = await collection.findOne({ '_id': ObjectId(userId) })
 
-        const labelIdx = user.data.labels.findIndex((lab: ILabel) => lab.labelName === label.labelName)
-        if (labelIdx !== -1) {
+        const isLabelExist = user.data.labels.some((lab: ILabel) => lab.labelName === label.labelName)
+        // Cannot have same label name duplicates
+        if(isLabelExist){
+            return user.data
+        }
+
+        // Update
+        if(label._id){
+            const labelIdx = user.data.labels.findIndex((lab: ILabel) => lab.labelName.toLowerCase() === label.labelName.toLowerCase())
+            const oldLabel = user.data.labels[labelIdx].labelName
             user.data.labels[labelIdx] = label
+
+            user.data.actions = user.data.actions.map((action: IAction) => {
+                if(action.labels.includes(oldLabel)){
+                    const idx = action.labels.findIndex((lab: ILabel) => lab.labelName === oldLabel)
+                    action.labels[idx].labelName = label.labelName
+                }
+                return action
+            })
+        // Add
         } else {
+            label._id = utilService.makeId()
             user.data.labels.push(label)
         }
 

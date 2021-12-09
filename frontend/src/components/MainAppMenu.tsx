@@ -80,7 +80,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionAddEditModalOpen
                         {data && data.labels.map(label => {
                             return <li onClick={() => {handleLabelClick(label.labelName)}}
                                        className={`${currentLabel === label.labelName ? 'menu-li-active' : ''}`}
-                                       key={label.labelName}>
+                                       key={label._id}>
                                        {label.title}
                                     </li>
                         })}

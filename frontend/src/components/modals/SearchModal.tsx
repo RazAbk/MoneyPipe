@@ -89,7 +89,7 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
                             <FormControl className="input-field" fullWidth>
                                 <InputLabel id="label">Label</InputLabel>
                                 <Select fullWidth labelId="label" id="label" value={filterBy.label} label="Label" name="label" onChange={handleChange}>
-                                    {rawData && rawData.labels.map(label => <MenuItem key={`lab-filter-${label.labelName}`} value={label.labelName}>{label.title}</MenuItem>)}
+                                    {rawData && rawData.labels.map(label => <MenuItem key={`lab-filter-${label._id}`} value={label.labelName}>{label.title}</MenuItem>)}
                                 </Select>
                             </FormControl>
                         </div>

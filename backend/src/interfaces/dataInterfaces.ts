@@ -1,9 +1,11 @@
 export interface ILabel {
+    _id: string,
     title: string,
     labelName: string
 }
 
 export interface ICategory {
+    _id: string,
     title: string,
     icon: string,
     bgColor: string

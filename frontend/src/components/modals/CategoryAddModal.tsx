@@ -7,12 +7,13 @@ import { BsApp } from 'react-icons/bs'
 import { Screen } from '../Screen'
 import { useDispatch } from 'react-redux'
 import { addCategory } from '../../store/actions/user.action'
-import { IAction } from '../../interfaces/dataInterfaces'
+import { IAction, ICategory } from '../../interfaces/dataInterfaces'
 import { utilService } from '../../services/util.service'
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
-    setFormData: React.Dispatch<React.SetStateAction<IAction>>;
+    setFormData?: React.Dispatch<React.SetStateAction<IAction>>;
+    categoryToEdit?: ICategory;
 }
 
 const colors = utilService.getColors()
@@ -22,13 +23,13 @@ const btnErrorStyle = {
     border: '2px #E34C4C solid'
 }
 
-export const CategoryAddModal = ({ closeModal, setFormData }: IModalProps) => {
+export const CategoryAddModal = ({ closeModal, setFormData, categoryToEdit }: IModalProps) => {
 
     const dispatch = useDispatch()
 
-    const [categoryName, setCategoryName] = useState('')
-    const [selectedIcon, setSelectedIcon] = useState('')
-    const [selectedColor, setSelectedColor] = useState('gray')
+    const [categoryName, setCategoryName] = useState(categoryToEdit?.title || '')
+    const [selectedIcon, setSelectedIcon] = useState(categoryToEdit?.icon || '')
+    const [selectedColor, setSelectedColor] = useState(categoryToEdit?.bgColor || 'gray')
 
     const [isColorsModalOpen, setColorsModal] = useState(false)
     const [isIconsModalOpen, setIconsModal] = useState(false)
@@ -66,13 +67,16 @@ export const CategoryAddModal = ({ closeModal, setFormData }: IModalProps) => {
             const categoryFormatedName = categoryName[0].toUpperCase() + categoryName.substr(1)
 
             const newCategory = {
+                _id: categoryToEdit?._id || '',
                 title: categoryFormatedName,
                 icon: selectedIcon,
                 bgColor: selectedColor
             }
 
             dispatch(addCategory(newCategory))
-            setFormData(formData => { return { ...formData, category: categoryFormatedName } })
+            if(!categoryToEdit && setFormData){
+                setFormData(formData => { return { ...formData, category: categoryFormatedName } })
+            }
             closeModal(false)
         }
     }

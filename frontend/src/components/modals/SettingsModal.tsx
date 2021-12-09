@@ -14,6 +14,8 @@ import { utilService } from '../../services/util.service'
 import { setData, setUser } from '../../store/actions/user.action'
 import { RootState } from '../../store/store'
 import { GetIcon } from '../GetIcon'
+import { Screen } from '../Screen'
+import { CategoryAddModal } from './CategoryAddModal'
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -201,39 +203,51 @@ const PreferencesSettings = ({ closeModal }: IModalProps) => {
 
 const CategoriesSettings = () => {
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
 
+    const [addCategoryModal, setAddCategoryModal] = useState(false)
+    const [selectedCategory, setSelectedCaregory] = useState<ICategory | null>(null)
+
     return (
-        <div className="categories-settings">
-            <div className="select-modal">
-                {rawData && rawData.categories.map((category: ICategory) => {
-                    return (
-                        <div key={category.title} className="category-preview">
-                            <div className="left-side">
-                                <div className="icon" style={{ backgroundColor: category.bgColor }}>
-                                    <GetIcon iconName={category.icon} />
+        <>
+            <div className="categories-settings">
+                <div className="select-modal">
+                    {rawData && rawData.categories.map((category: ICategory) => {
+                        return (
+                            <div key={category.title} className="category-preview">
+                                <div className="left-side">
+                                    <div className="icon" style={{ backgroundColor: category.bgColor }}>
+                                        <GetIcon iconName={category.icon} />
+                                    </div>
+                                    {category.title}
                                 </div>
-                                {category.title}
+                                <div className="right-side">
+                                    <div onClick={() => { setSelectedCaregory(category); setAddCategoryModal(true) }}><FaRegEdit /></div>
+                                    <div className="delete-btn"><VscTrash /></div>
+                                </div>
                             </div>
-                            <div className="right-side">
-                                <div><FaRegEdit /></div>
-                                <div className="delete-btn"><VscTrash /></div>
-                            </div>
-                        </div>
-                    )
-                })}
+                        )
+                    })}
+                </div>
+
+                <Button>add new</Button>
             </div>
 
-            <Button>add new</Button>
-        </div>
+            {selectedCategory &&
+            <>
+                <Screen isOpen={addCategoryModal} exitScreen={setAddCategoryModal} zIndex="100" />
+                {addCategoryModal && <CategoryAddModal closeModal={setAddCategoryModal} categoryToEdit={selectedCategory} />}
+            </>
+            }
+        </>
     )
 }
 
 const LabelsSettings = () => {
 
-    const dispatch = useDispatch()
-    const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
+    // const dispatch = useDispatch()
+    // const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
 
     return (
         <div className="labels-settings">

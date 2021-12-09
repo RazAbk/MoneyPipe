@@ -149,7 +149,7 @@ export const ActionAddEditModal = ({ closeModal }: IActionAddEditModalProps) => 
                                     <FormControl className="input-field" fullWidth>
                                         <InputLabel id="category">Category</InputLabel>
                                         <Select fullWidth labelId="category" id="category" error={errors.category} value={formData.category} label="Category" name="category" onChange={handleChange}>
-                                            {data && data.categories.map(category => <MenuItem key={`cat-add-${category.title}`} value={category.title}>{category.title}</MenuItem>)}
+                                            {data && data.categories.map(category => <MenuItem key={category._id} value={category.title}>{category.title}</MenuItem>)}
                                         </Select>
                                     </FormControl>
                                     <Button variant="contained" onClick={() => { setAddCategoryModal(true) }}>Add</Button>
@@ -170,7 +170,7 @@ export const ActionAddEditModal = ({ closeModal }: IActionAddEditModalProps) => 
                                         >
                                             {data.labels.map((label) => (
                                                 <MenuItem
-                                                    key={'options-' + label.labelName}
+                                                    key={'options-' + label._id}
                                                     value={label.labelName}
                                                     style={getStyles(label.title, formData.labels, theme)}
                                                 >

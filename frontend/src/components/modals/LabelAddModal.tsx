@@ -30,6 +30,7 @@ export const LabelAddModal = ({ closeModal, setFormData }: IModalProps) => {
             const formatedLabel = '#' + label.toLowerCase().split('').filter(char => char !== ' ').join('')
 
             const newLabel = {
+                _id: '',
                 title: label,
                 labelName: formatedLabel
             }
