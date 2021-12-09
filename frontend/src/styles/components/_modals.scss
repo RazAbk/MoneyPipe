@@ -432,7 +432,28 @@
                 width: 85%;
             }
         }
+    }   
+}
+
+.confirm-modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+
+    width: 17.5rem;
+    height: 15rem;
+    background-color: $main-light-color;
+    z-index: 150;
+    overflow-y: scroll;
+
+    .buttons{
+        display: flex;
+        gap: 1rem;
+
+        button{
+            width: 5.5rem;
+        }
     }
-    
-    
 }
