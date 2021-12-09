@@ -17,6 +17,7 @@ import { RootState } from '../../store/store'
 import { GetIcon } from '../GetIcon'
 import { Screen } from '../Screen'
 import { CategoryModal } from './CategoryModal'
+import { ConfirmModal } from './ConfirmModal'
 import { LabelModal } from './LabelModal'
 
 interface IModalProps {
@@ -213,7 +214,7 @@ const CategoriesSettings = () => {
 
     const handleDelete = async (categoryId: string) => {
         const res = await dispatch(deleteCategory(categoryId))
-        if(!res){
+        if (!res) {
             alertMessage("Cannot delete a category while it's in use", 'danger', 3500)
         }
     }
@@ -233,14 +234,14 @@ const CategoriesSettings = () => {
                                 </div>
                                 <div className="right-side">
                                     <div onClick={() => { setSelectedCategory(category); setAddCategoryModal(true) }}><FaRegEdit /></div>
-                                    <div className="delete-btn" onClick={() => {handleDelete(category._id)}}><VscTrash /></div>
+                                    <div className="delete-btn" onClick={() => { handleDelete(category._id) }}><VscTrash /></div>
                                 </div>
                             </div>
                         )
                     })}
                 </div>
 
-                <Button onClick={() => {setAddCategoryModal(true)}}>add new</Button>
+                <Button onClick={() => { setAddCategoryModal(true) }}>add new</Button>
             </div>
 
             {addCategoryModal &&
@@ -261,14 +262,26 @@ const LabelsSettings = () => {
     const [addLabelModal, setAddLabelModal] = useState(false)
     const [selectedLabel, setSelectedLabel] = useState<ILabel | null>(null)
 
-    const handleDelete = async (labelId: string) => {
-        const res = await dispatch(deleteCategory(labelId))
-        if(!res){
-            // Todo: better UI - add warning message of cannot be undone and exc...
-            await dispatch(deleteLabel(labelId))
-            console.log('label deleted!')
+    const [confirmModal, setConfirmModal] = useState(false)
+
+    const handleModalAnswer = async (answer: boolean) => {
+        if (answer && selectedLabel) {
+            await dispatch(deleteLabel(selectedLabel._id))
         }
+        setSelectedLabel(null)
     }
+
+    const handleConfirmModal = async (label: ILabel) => {
+        setSelectedLabel(label)
+        setConfirmModal(true)
+    }
+
+    const modalMessage = (
+        <div>
+            <h3>This is irreversible.</h3>
+            <h3>Deleting a label will remove it from all of it's occurrences forever.</h3>
+        </div>
+    )
 
     return (
         <>
@@ -282,14 +295,14 @@ const LabelsSettings = () => {
                                 </div>
                                 <div className="right-side">
                                     <div onClick={() => { setSelectedLabel(label); setAddLabelModal(true) }}><FaRegEdit /></div>
-                                    <div className="delete-btn" onClick={() => {handleDelete(label._id)}}><VscTrash /></div>
+                                    <div className="delete-btn" onClick={() => { handleConfirmModal(label) }}><VscTrash /></div>
                                 </div>
                             </div>
                         )
                     })}
                 </div>
 
-                <Button onClick={() => {setAddLabelModal(true)}}>add new</Button>
+                <Button onClick={() => { setAddLabelModal(true) }}>add new</Button>
             </div>
             {addLabelModal &&
                 <>
@@ -297,6 +310,8 @@ const LabelsSettings = () => {
                     {addLabelModal && <LabelModal closeModal={setAddLabelModal} labelToEdit={selectedLabel} />}
                 </>
             }
+            <Screen isOpen={confirmModal} exitScreen={setConfirmModal} zIndex="120" />
+            {confirmModal && <ConfirmModal title="Warning" message={modalMessage} setAnswer={handleModalAnswer} closeModal={setConfirmModal} />}
         </>
     )
 }
