@@ -161,9 +161,10 @@ async function addCategory(category: ICategory, userId: string) {
         const collection = await dbService.getCollection('users')
         const user = await collection.findOne({ '_id': ObjectId(userId) })
 
-        const isCategoryExist = user.data.categories.some((cat: ICategory) => cat.title.toLowerCase() === category.title.toLowerCase())
+        // Checks if the category already exists
+        const existingCategory = user.data.categories.find((cat: ICategory) => cat.title.toLowerCase() === category.title.toLowerCase())
         // Cannot have same category title duplicates
-        if(isCategoryExist){
+        if(existingCategory && existingCategory.bgColor === category.bgColor && existingCategory.icon === category.bgColor){
             return user.data
         }
 
