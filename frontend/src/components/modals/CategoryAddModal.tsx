@@ -85,7 +85,7 @@ export const CategoryAddModal = ({ closeModal, setFormData, categoryToEdit }: IM
         <>
             <div className="category-add-modal modal">
                 <div className="modal-header">
-                    <h3>Add new category</h3>
+                    <h3>{categoryToEdit ? 'Edit category' : 'Add new category'}</h3>
                     <AiOutlineClose className="exit-modal-btn" onClick={() => { closeModal(false) }} />
                 </div>
                 <div className="modal-body">
@@ -99,7 +99,7 @@ export const CategoryAddModal = ({ closeModal, setFormData, categoryToEdit }: IM
                         {selectedIcon && <GetIcon iconName={selectedIcon} />}
                     </div>
                     <Stack className="form-buttons" spacing={2} direction="row">
-                        <Button variant="contained" onClick={onSubmit}>Add</Button>
+                        <Button variant="contained" onClick={onSubmit}>{categoryToEdit ? 'submit' : 'Add'}</Button>
                     </Stack>
                 </div>
             </div>
