@@ -11,7 +11,7 @@ import { IUpdateForm } from '../../interfaces/userInterfaces'
 import { sessionStorageService } from '../../services/session-storage.service'
 import { userService } from '../../services/user.service'
 import { utilService } from '../../services/util.service'
-import { setData, setUser } from '../../store/actions/user.action'
+import { deleteCategory, setData, setUser } from '../../store/actions/user.action'
 import { RootState } from '../../store/store'
 import { GetIcon } from '../GetIcon'
 import { Screen } from '../Screen'
@@ -204,10 +204,19 @@ const PreferencesSettings = ({ closeModal }: IModalProps) => {
 
 const CategoriesSettings = () => {
 
+    const dispatch = useDispatch()
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
 
     const [addCategoryModal, setAddCategoryModal] = useState(false)
     const [selectedCategory, setSelectedCategory] = useState<ICategory | null>(null)
+
+    const handleDelete = async (categoryId: string) => {
+        const res = await dispatch(deleteCategory(categoryId))
+        if(!res){
+            // Todo: better UI
+            alert('cannt delete!')
+        }
+    }
 
     return (
         <>
@@ -224,7 +233,7 @@ const CategoriesSettings = () => {
                                 </div>
                                 <div className="right-side">
                                     <div onClick={() => { setSelectedCategory(category); setAddCategoryModal(true) }}><FaRegEdit /></div>
-                                    <div className="delete-btn"><VscTrash /></div>
+                                    <div className="delete-btn" onClick={() => {handleDelete(category._id)}}><VscTrash /></div>
                                 </div>
                             </div>
                         )

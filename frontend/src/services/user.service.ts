@@ -17,6 +17,7 @@ export const userService = {
     addAction,
     deleteAction,
     addCategory,
+    deleteCategory,
     addLabel,
     uploadImg
 }
@@ -94,7 +95,6 @@ async function getData(filterBy: IDateFilterBy) {
 async function addAction(action: IAction) {
     try {
         const res = await axios.post(`${BASE_URL}/api/user/action`, action)
-        sessionStorageService.save('loggedInUser', res.data)
         return res.data
     } catch (err) {
         console.log(err)
@@ -104,7 +104,6 @@ async function addAction(action: IAction) {
 async function deleteAction(actionId: string) {
     try {
         const res = await axios.delete(`${BASE_URL}/api/user/action/${actionId}`)
-        sessionStorageService.save('loggedInUser', res.data)
         return res.data
     } catch (err) {
         console.log(err)
@@ -114,7 +113,15 @@ async function deleteAction(actionId: string) {
 async function addCategory(category: ICategory) {
     try {
         const res = await axios.post(`${BASE_URL}/api/user/category`, category)
-        sessionStorageService.save('loggedInUser', res.data)
+        return res.data
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+async function deleteCategory(categoryId: string) {
+    try {
+        const res = await axios.delete(`${BASE_URL}/api/user/category/${categoryId}`)
         return res.data
     } catch (err) {
         console.log(err)
@@ -124,7 +131,6 @@ async function addCategory(category: ICategory) {
 async function addLabel(label: ILabel) {
     try {
         const res = await axios.post(`${BASE_URL}/api/user/label`, label)
-        sessionStorageService.save('loggedInUser', res.data)
         return res.data
     } catch (err) {
         console.log(err)

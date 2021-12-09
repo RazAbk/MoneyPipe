@@ -1,5 +1,5 @@
 import { IAction, ICategory, ILabel, IDateFilterBy } from "../../interfaces/dataInterfaces"
-import { ICredentials, IUserUpdateForm, IDataUpdateForm, IUser } from "../../interfaces/userInterfaces"
+import { IUserUpdateForm, IDataUpdateForm } from "../../interfaces/userInterfaces"
 
 const { ObjectId } = require('mongodb')
 const bcrypt = require('bcrypt')
@@ -15,6 +15,7 @@ module.exports = {
     addAction,
     deleteAction,
     addCategory,
+    deleteCategory,
     addLabel
 }
 
@@ -191,6 +192,30 @@ async function addCategory(category: ICategory, userId: string) {
         return user.data
     } catch (err) {
         console.log('could not add category', err)
+        throw err
+    }
+}
+
+async function deleteCategory(categoryId: string, userId: string) {
+    try{
+        const collection = await dbService.getCollection('users')
+        const user = await collection.findOne({ '_id': ObjectId(userId) })
+
+        const categoryIdx = user.data.categories.findIndex((category: ICategory) => category._id === categoryId)
+
+        if(categoryIdx !== -1){
+            const isCategoryUsed = user.data.actions.some((action: IAction) => action.category === user.data.categories[categoryIdx].title)
+            // Do not allow to delete category if it's in use!
+            if(isCategoryUsed){
+                return null
+            } else {
+                user.data.categories.splice(categoryIdx, 1)
+                await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data.categories": user.data.categories } })
+                return user.data
+            }
+        }
+    } catch(err) {
+        console.log('could not delete category', err)
         throw err
     }
 }

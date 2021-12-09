@@ -10,6 +10,7 @@ module.exports = {
     addAction,
     deleteAction,
     addCategory,
+    deleteCategory,
     addLabel
 }
 
@@ -98,6 +99,19 @@ async function addCategory(req: Request, res: Response) {
             const category = req.body
             const userId = req.session.user._id
             const data = await userService.addCategory(category, userId)
+            res.json(data)
+        }
+    } catch (err) {
+        console.log('could not add category', err)
+    }
+}
+
+async function deleteCategory(req: Request, res: Response) {
+    try {
+        if (req.session.user) {
+            const { categoryId } = req.params
+            const userId = req.session.user._id
+            const data = await userService.deleteCategory(categoryId, userId)
             res.json(data)
         }
     } catch (err) {

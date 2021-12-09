@@ -133,6 +133,23 @@ export const addCategory = (category: ICategory) => {
     }
 }
 
+export const deleteCategory = (categoryId: string) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const data = await userService.deleteCategory(categoryId)
+            if(data){
+                dispatch({
+                    type: "SET_DATA",
+                    data
+                })
+            }
+            return data
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+
 export const addLabel = (label: ILabel) => {
     return async (dispatch: AppDispatch) => {
         try {
