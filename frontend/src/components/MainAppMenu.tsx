@@ -50,13 +50,19 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionModalOpen, setSe
         })()
     }
 
-    const defaultUserImage = 'https://res.cloudinary.com/dfj4zd14o/image/upload/v1638993249/MoneyPipe_Users_assets/user_xco1rj.png'
+    const _getUserImage = () => {
+        if(user && user.picture){
+            return user.picture
+        } else {
+            return 'https://res.cloudinary.com/dfj4zd14o/image/upload/v1638993249/MoneyPipe_Users_assets/user_xco1rj.png'
+        }
+    }
 
     return (
         <div className={`main-app-menu ${isMenuOpen ? 'open-menu' : ''}`}>
             <h1 className="app-logo">MoneyPipe</h1>
             <div className="user-details">
-                <div className="image" style={{backgroundImage: user ? `url(${user.picture})` : `url(${defaultUserImage})`}}></div>
+                <div className="image" style={{backgroundImage: `url(${_getUserImage()})`}}></div>
                 <h3>{user && user.firstName} {user && user.lastName}</h3>
             </div>
             <div className="main-menu">
