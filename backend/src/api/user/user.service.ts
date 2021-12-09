@@ -181,14 +181,14 @@ async function addLabel(label: ILabel, userId: string) {
         const collection = await dbService.getCollection('users')
         const user = await collection.findOne({ '_id': ObjectId(userId) })
 
-        const isLabelExist = user.data.labels.find((lab: ILabel) => lab.labelName === label.labelName)
-        if (isLabelExist) {
-            return
+        const labelIdx = user.data.labels.findIndex((lab: ILabel) => lab.labelName === label.labelName)
+        if (labelIdx !== -1) {
+            user.data.labels[labelIdx] = label
         } else {
             user.data.labels.push(label)
         }
 
-        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
+        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data.labels": user.data.labels } })
 
         return user.data
     } catch (err) {
