@@ -5,9 +5,14 @@ import App from './App';
 import { store } from './store/store';
 import './styles/style.scss'
 
+import ReactNotification from 'react-notifications-component'
+import "animate.css"
+import 'react-notifications-component/dist/theme.css'
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ReactNotification />
       <App />
     </Provider>
   </React.StrictMode>,

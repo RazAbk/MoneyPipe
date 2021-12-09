@@ -1,12 +1,13 @@
+import { width } from '@mui/system';
 import { store } from 'react-notifications-component';
 
 export interface IAlertMessage{
     message: string;
-    type: "success" | "danger" | "info" | "default" | "warning";
+    type: "success" | "danger" | "info" | "default" | "warning" | undefined;
     duration: number;
 }
 
-export const alertMessage = (message: string, type: IAlertMessage["type"], duration: number = 0) => {
+export function alertMessage(message: string, type: IAlertMessage["type"], duration: number = 0) {
     return store.addNotification({
         message,
         type,
@@ -21,6 +22,6 @@ export const alertMessage = (message: string, type: IAlertMessage["type"], durat
     });
 }
 
-export const removeMessage = (messageId: string) => {
+export function removeMessage(messageId: string) {
     store.removeNotification(messageId)
 }
