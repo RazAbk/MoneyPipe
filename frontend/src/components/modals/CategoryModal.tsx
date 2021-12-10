@@ -53,7 +53,7 @@ export const CategoryModal = ({ closeModal, setFormData, categoryToEdit }: IModa
         setIconsModal(false)
     }
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
         const errorsCopy = { ...errors }
 
         errorsCopy.categoryName = categoryName ? false : true
@@ -73,7 +73,7 @@ export const CategoryModal = ({ closeModal, setFormData, categoryToEdit }: IModa
                 bgColor: selectedColor
             }
 
-            dispatch(addCategory(newCategory))
+            await dispatch(addCategory(newCategory))
             if(!categoryToEdit && setFormData){
                 setFormData(formData => { return { ...formData, category: categoryFormatedName } })
             }

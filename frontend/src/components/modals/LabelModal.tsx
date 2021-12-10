@@ -23,7 +23,7 @@ export const LabelModal = ({ closeModal, setFormData, labelToEdit }: IModalProps
         setLabel(ev.target.value)
     }
 
-    const onSubmitLabel = () => {
+    const onSubmitLabel = async () => {
         if (!label) {
             setError(true)
             return
@@ -36,8 +36,8 @@ export const LabelModal = ({ closeModal, setFormData, labelToEdit }: IModalProps
                 labelName: formatedLabel
             }
 
-            dispatch(addLabel(newLabel))
-            if(!labelToEdit && setFormData){
+            const res = await dispatch(addLabel(newLabel))
+            if(!labelToEdit && setFormData && res){
                 setFormData(formData => { return { ...formData, labels: [...formData.labels, formatedLabel] } })
             }
             closeModal(false)

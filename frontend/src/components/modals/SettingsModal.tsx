@@ -6,13 +6,13 @@ import { FaRegEdit } from 'react-icons/fa'
 import { FiUpload } from 'react-icons/fi'
 import { VscTrash } from 'react-icons/vsc'
 import { useDispatch, useSelector } from 'react-redux'
-import { ICategory, IDataObject, ILabel } from '../../interfaces/dataInterfaces'
+import { ICategory, IDataObject, IDataUpdateForm, ILabel } from '../../interfaces/dataInterfaces'
 import { IUpdateForm } from '../../interfaces/userInterfaces'
 import { alertMessage } from '../../services/alert.service'
 import { sessionStorageService } from '../../services/session-storage.service'
 import { userService } from '../../services/user.service'
 import { utilService } from '../../services/util.service'
-import { deleteCategory, deleteLabel, setData, setUser } from '../../store/actions/user.action'
+import { deleteCategory, deleteLabel, updateData, updateUser } from '../../store/actions/user.action'
 import { RootState } from '../../store/store'
 import { GetIcon } from '../GetIcon'
 import { Screen } from '../Screen'
@@ -92,6 +92,7 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
     const handlePictureUpload = async (ev: React.ChangeEvent<HTMLInputElement>) => {
         if (ev.target.files && ev.target.files.length > 0) {
             // Todo: Insert some loader in here
+            // Todo: Handle errors!
             const url = await userService.uploadImg(ev.target.files[0])
             // Todo: remove the loader here
             setFormData({ ...formData, picture: url })
@@ -123,8 +124,7 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
         }
 
 
-        const updatedUser = await userService.updateUser(formToSubmit)
-        dispatch(setUser(updatedUser))
+        await dispatch(updateUser(formToSubmit))
         closeModal(false)
     }
 
@@ -155,7 +155,7 @@ const PreferencesSettings = ({ closeModal }: IModalProps) => {
     const dispatch = useDispatch()
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<IDataUpdateForm>({
         currency: rawData.currency
     })
     const [currencies, setCurrencies] = useState<ICurrencyObj[] | null>(null)
@@ -181,8 +181,7 @@ const PreferencesSettings = ({ closeModal }: IModalProps) => {
     }
 
     const handleSubmit = async () => {
-        const updatedData = await userService.updateData(formData)
-        dispatch(setData(updatedData))
+        await dispatch(updateData(formData))
         closeModal(false)
     }
 
@@ -190,14 +189,16 @@ const PreferencesSettings = ({ closeModal }: IModalProps) => {
     return (
         <div className="preferences-settings">
             <div className="inputs">
-                <Box sx={{ minWidth: 120 }}>
-                    <FormControl fullWidth>
-                        <FormHelperText>Currency sign</FormHelperText>
-                        <Select value={formData.currency.code} name="currency" onChange={handleChange}>
-                            {currencies && currencies.map((currency: ICurrencyObj) => <MenuItem key={currency.id} value={currency.id}>{currency.currencyName} {currency.currencySymbol}</MenuItem>)}
-                        </Select>
-                    </FormControl>
-                </Box>
+                {formData.currency &&
+                    <Box sx={{ minWidth: 120 }}>
+                        <FormControl fullWidth>
+                            <FormHelperText>Currency sign</FormHelperText>
+                            <Select value={formData.currency.code} name="currency" onChange={handleChange}>
+                                {currencies && currencies.map((currency: ICurrencyObj) => <MenuItem key={currency.id} value={currency.id}>{currency.currencyName} {currency.currencySymbol}</MenuItem>)}
+                            </Select>
+                        </FormControl>
+                    </Box>
+                }
             </div>
             <Button onClick={handleSubmit}>submit</Button>
         </div>

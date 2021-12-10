@@ -1,4 +1,4 @@
-import { IAction, ICategory, ILabel, IDateFilterBy } from "../interfaces/dataInterfaces"
+import { IAction, ICategory, ILabel, IDateFilterBy, IDataUpdateForm } from "../interfaces/dataInterfaces"
 import Axios from "axios"
 import { sessionStorageService } from "./session-storage.service"
 import { IUpdateForm } from "../interfaces/userInterfaces"
@@ -37,7 +37,9 @@ interface ICredentials {
 async function signup(credentials: ICredentials) {
     try {
         const res = await axios.post(`${BASE_URL}/api/auth/signup`, credentials)
-        sessionStorageService.save('loggedInUser', res.data)
+        if (!res.data.msg) {
+            sessionStorageService.save('loggedInUser', res.data)
+        }
         return res.data
     } catch (err) {
         console.error(err)
@@ -47,7 +49,9 @@ async function signup(credentials: ICredentials) {
 async function login(credentials: ICredentials) {
     try {
         const res = await axios.post(`${BASE_URL}/api/auth/login`, credentials)
-        sessionStorageService.save('loggedInUser', res.data)
+        if (!res.data.msg) {
+            sessionStorageService.save('loggedInUser', res.data)
+        }
         return res.data
     } catch (err) {
         console.error(err)
@@ -66,14 +70,16 @@ async function logout() {
 async function updateUser(data: IUpdateForm) {
     try {
         const res = await axios.put(`${BASE_URL}/api/user/user`, data)
-        sessionStorageService.save('loggedInUser', res.data)
+        if (!res.data.msg) {
+            sessionStorageService.save('loggedInUser', res.data)
+        }
         return res.data
     } catch (err) {
         console.error(err)
     }
 }
 
-async function updateData(data: any) {
+async function updateData(data: IDataUpdateForm) {
     try {
         const res = await axios.put(`${BASE_URL}/api/user/data`, data)
         return res.data

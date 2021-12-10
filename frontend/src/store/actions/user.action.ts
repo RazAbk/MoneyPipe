@@ -1,5 +1,5 @@
-import { IAction, ICategory, ILabel, IDateFilterBy, IDataObject } from "../../interfaces/dataInterfaces"
-import { ICredentials, IUser } from "../../interfaces/userInterfaces"
+import { IAction, ICategory, ILabel, IDateFilterBy, IDataObject, IDataUpdateForm } from "../../interfaces/dataInterfaces"
+import { ICredentials, IUpdateForm, IUser } from "../../interfaces/userInterfaces"
 import { alertTitleMessage } from "../../services/alert.service"
 import { userService } from "../../services/user.service"
 import { AppDispatch } from "../store"
@@ -48,27 +48,19 @@ export const logout = () => {
     }
 }
 
-export const setUser = (user: IUser) => {
-    return (dispatch: AppDispatch) => {
-        try {
-            dispatch({
-                type: "SET_USER",
-                user
-            })
-        } catch (err) {
-            console.error(err)
-        }
-    }
-}
 
 export const getData = (filterBy: IDateFilterBy) => {
     return async (dispatch: AppDispatch) => {
         try {
             const data = await userService.getData(filterBy)
-            dispatch({
-                type: "SET_DATA",
-                data
-            })
+            if (!data.msg) {
+                dispatch({
+                    type: "SET_DATA",
+                    data
+                })
+            } else {
+                alertTitleMessage(data.title, data.msg, data.type, 3500)
+            }
             return data
         } catch (err) {
             console.error(err)
@@ -76,19 +68,44 @@ export const getData = (filterBy: IDateFilterBy) => {
     }
 }
 
-export const setData = (data: IDataObject) => {
+export const updateUser = (updatedUser: IUpdateForm) => {
     return async (dispatch: AppDispatch) => {
         try {
-            dispatch({
-                type: "SET_DATA",
-                data
-            })
+            const data = await userService.updateUser(updatedUser)
+            if (!data.msg) {
+                dispatch({
+                    type: "SET_USER",
+                    data
+                })
+            } else {
+                alertTitleMessage(data.title, data.msg, data.type, 3500)
+            }
+        } catch (err) {
+            console.error(err)
+        }
+    }
+}
+
+export const updateData = (updatedData: IDataUpdateForm) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const data = await userService.updateData(updatedData)
+            if(!data.msg){
+
+                dispatch({
+                    type: "SET_DATA",
+                    data
+                })
+            } else {
+                alertTitleMessage(data.title, data.msg, data.type, 3500)
+            }
             return data
         } catch (err) {
             console.error(err)
         }
     }
 }
+
 
 export const addAction = (action: IAction) => {
     return async (dispatch: AppDispatch) => {
@@ -113,10 +130,14 @@ export const deleteAction = (actionId: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             const data = await userService.deleteAction(actionId)
-            dispatch({
-                type: "SET_DATA",
-                data
-            })
+            if (!data.msg) {
+                dispatch({
+                    type: "SET_DATA",
+                    data
+                })
+            } else {
+                alertTitleMessage(data.title, data.msg, data.type, 3500)
+            }
         } catch (err) {
             console.error(err)
         }
@@ -127,10 +148,14 @@ export const addCategory = (category: ICategory) => {
     return async (dispatch: AppDispatch) => {
         try {
             const data = await userService.addCategory(category)
-            dispatch({
-                type: "SET_DATA",
-                data
-            })
+            if (!data.msg) {
+                dispatch({
+                    type: "SET_DATA",
+                    data
+                })
+            } else {
+                alertTitleMessage(data.title, data.msg, data.type, 3500)
+            }
             return data
         } catch (err) {
             console.error(err)
@@ -143,10 +168,14 @@ export const deleteCategory = (categoryId: string) => {
         try {
             const data = await userService.deleteCategory(categoryId)
             if (data) {
-                dispatch({
-                    type: "SET_DATA",
-                    data
-                })
+                if (!data.msg) {
+                    dispatch({
+                        type: "SET_DATA",
+                        data
+                    })
+                } else {
+                    alertTitleMessage(data.title, data.msg, data.type, 3500)
+                }
             }
             return data
         } catch (err) {
@@ -159,11 +188,16 @@ export const addLabel = (label: ILabel) => {
     return async (dispatch: AppDispatch) => {
         try {
             const data = await userService.addLabel(label)
-            dispatch({
-                type: "SET_DATA",
-                data
-            })
-            return data
+            if (!data.msg) {
+                dispatch({
+                    type: "SET_DATA",
+                    data
+                })
+                return data
+            } else {
+                alertTitleMessage(data.title, data.msg, data.type, 3500)
+                return null
+            }
         } catch (err) {
             console.error(err)
         }
@@ -174,10 +208,14 @@ export const deleteLabel = (labelId: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             const data = await userService.deleteLabel(labelId)
-            dispatch({
-                type: "SET_DATA",
-                data
-            })
+            if (!data.msg) {
+                dispatch({
+                    type: "SET_DATA",
+                    data
+                })
+            } else {
+                alertTitleMessage(data.title, data.msg, data.type, 3500)
+            }
             return data
         } catch (err) {
             console.error(err)

@@ -33,6 +33,12 @@ export interface IDataObject {
     actions: IAction[];
 }
 
+export interface IDataUpdateForm {
+    currency?: ICurrency;
+    labels?: ILabel[];
+    categories?: ICategory[];
+}
+
 export interface IFilterBy {
     searchTxt: string,
     startDate: number,

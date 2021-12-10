@@ -28,9 +28,9 @@ export const ActionPreview = ({ action, setActionModalOpen }: IActionProps) => {
         }
     }
 
-    const onDelete = (ev: any) => {
+    const onDelete = async (ev: any) => {
         ev.stopPropagation()
-        dispatch(deleteAction(action._id))
+        await dispatch(deleteAction(action._id))
         dispatch(setSelectedAction(null))
     }
 

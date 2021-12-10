@@ -43,8 +43,11 @@ export const MainApp = () => {
     })
 
     useEffect(() => {
+        const _getData = async () => {
+            await dispatch(getData(dateService.getDateFilterBy(filterBy)))
+        }
         if(user){
-            dispatch(getData(dateService.getDateFilterBy(filterBy)))
+            _getData()
         }
     }, [dispatch, user, filterBy])
 
