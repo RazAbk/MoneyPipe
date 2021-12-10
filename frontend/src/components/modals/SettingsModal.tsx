@@ -92,10 +92,11 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
     const handlePictureUpload = async (ev: React.ChangeEvent<HTMLInputElement>) => {
         if (ev.target.files && ev.target.files.length > 0) {
             // Todo: Insert some loader in here
-            // Todo: Handle errors!
             const url = await userService.uploadImg(ev.target.files[0])
-            // Todo: remove the loader here
-            setFormData({ ...formData, picture: url })
+            if(url){
+                // Todo: remove the loader here
+                setFormData({ ...formData, picture: url })
+            }
         }
     }
 

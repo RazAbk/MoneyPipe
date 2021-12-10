@@ -1,7 +1,8 @@
-import { IAction, ICategory, ILabel, IDateFilterBy, IDataUpdateForm } from "../interfaces/dataInterfaces"
+import { IAction, ICategory, ILabel, IDateFilterBy, IDataUpdateForm, IErrorMsg } from "../interfaces/dataInterfaces"
 import Axios from "axios"
 import { sessionStorageService } from "./session-storage.service"
 import { IUpdateForm } from "../interfaces/userInterfaces"
+import { alertTitleMessage } from "./alert.service"
 
 const axios = Axios.create({
     withCredentials: true
@@ -170,7 +171,11 @@ async function uploadImg(file: File) {
             .then(res => {
                 return res.url
             })
-            .catch(err => console.error(err))
+            .catch(err => {
+                console.error(err)
+                alertTitleMessage('Opps, an error occurred', 'Could not upload image, try again later', 'danger', 3500)
+                return null
+            })
     } catch (err) {
         console.error(err)
     }
