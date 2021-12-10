@@ -1,4 +1,4 @@
-import { IAction, ICategory, ILabel, IDateFilterBy, IDataUpdateForm, IErrorMsg } from "../interfaces/dataInterfaces"
+import { IAction, ICategory, ILabel, IDateFilterBy, IDataUpdateForm } from "../interfaces/dataInterfaces"
 import Axios from "axios"
 import { sessionStorageService } from "./session-storage.service"
 import { IUpdateForm } from "../interfaces/userInterfaces"
