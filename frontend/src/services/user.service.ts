@@ -40,7 +40,7 @@ async function signup(credentials: ICredentials) {
         sessionStorageService.save('loggedInUser', res.data)
         return res.data
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -50,7 +50,7 @@ async function login(credentials: ICredentials) {
         sessionStorageService.save('loggedInUser', res.data)
         return res.data
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -59,7 +59,7 @@ async function logout() {
         await axios.post(`${BASE_URL}/api/auth/logout`)
         sessionStorageService.remove('loggedInUser')
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -69,7 +69,7 @@ async function updateUser(data: IUpdateForm) {
         sessionStorageService.save('loggedInUser', res.data)
         return res.data
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -78,7 +78,7 @@ async function updateData(data: any) {
         const res = await axios.put(`${BASE_URL}/api/user/data`, data)
         return res.data
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -89,7 +89,7 @@ async function getData(filterBy: IDateFilterBy) {
         const res = await axios.get(`${BASE_URL}/api/user/data?startDate=${filterBy.startDate}&endDate=${filterBy.endDate}`)
         return res.data
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -98,7 +98,7 @@ async function addAction(action: IAction) {
         const res = await axios.post(`${BASE_URL}/api/user/action`, action)
         return res.data
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -107,7 +107,7 @@ async function deleteAction(actionId: string) {
         const res = await axios.delete(`${BASE_URL}/api/user/action/${actionId}`)
         return res.data
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -116,7 +116,7 @@ async function addCategory(category: ICategory) {
         const res = await axios.post(`${BASE_URL}/api/user/category`, category)
         return res.data
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -125,7 +125,7 @@ async function deleteCategory(categoryId: string) {
         const res = await axios.delete(`${BASE_URL}/api/user/category/${categoryId}`)
         return res.data
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -134,7 +134,7 @@ async function addLabel(label: ILabel) {
         const res = await axios.post(`${BASE_URL}/api/user/label`, label)
         return res.data
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -143,7 +143,7 @@ async function deleteLabel(labelId: string) {
         const res = await axios.delete(`${BASE_URL}/api/user/label/${labelId}`)
         return res.data
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -166,6 +166,6 @@ async function uploadImg(file: File) {
             })
             .catch(err => console.error(err))
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }

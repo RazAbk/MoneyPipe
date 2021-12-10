@@ -71,3 +71,8 @@ export interface IActionsData {
     [key: string]: IAction[]
 }
 
+export interface IErrorMsg {
+    title?: string;
+    msg: string;
+    type: string;
+}

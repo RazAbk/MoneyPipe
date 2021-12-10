@@ -1,5 +1,6 @@
 import { IAction, ICategory, ILabel, IDateFilterBy, IDataObject } from "../../interfaces/dataInterfaces"
 import { ICredentials, IUser } from "../../interfaces/userInterfaces"
+import { alertTitleMessage } from "../../services/alert.service"
 import { userService } from "../../services/user.service"
 import { AppDispatch } from "../store"
 
@@ -13,7 +14,7 @@ export const signup = (credentials: ICredentials) => {
             })
             return user
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
 }
@@ -28,7 +29,7 @@ export const login = (credentials: ICredentials) => {
             })
             return user
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
 }
@@ -42,7 +43,7 @@ export const logout = () => {
                 user: null
             })
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -55,7 +56,7 @@ export const setUser = (user: IUser) => {
                 user
             })
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -70,7 +71,7 @@ export const getData = (filterBy: IDateFilterBy) => {
             })
             return data
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -84,7 +85,7 @@ export const setData = (data: IDataObject) => {
             })
             return data
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -93,13 +94,17 @@ export const addAction = (action: IAction) => {
     return async (dispatch: AppDispatch) => {
         try {
             const data = await userService.addAction(action)
-            dispatch({
-                type: "SET_DATA",
-                data
-            })
+            if (!data.msg) {
+                dispatch({
+                    type: "SET_DATA",
+                    data
+                })
+            } else {
+                alertTitleMessage(data.title, data.msg, data.type, 3500)
+            }
             return data
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -113,7 +118,7 @@ export const deleteAction = (actionId: string) => {
                 data
             })
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -128,7 +133,7 @@ export const addCategory = (category: ICategory) => {
             })
             return data
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -145,7 +150,7 @@ export const deleteCategory = (categoryId: string) => {
             }
             return data
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -160,7 +165,7 @@ export const addLabel = (label: ILabel) => {
             })
             return data
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
@@ -175,7 +180,7 @@ export const deleteLabel = (labelId: string) => {
             })
             return data
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }

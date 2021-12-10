@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { IAction } from "../../interfaces/dataInterfaces"
+import { IAction, IErrorMsg } from "../../interfaces/dataInterfaces"
 
 const userService = require('./user.service')
 
@@ -18,49 +18,49 @@ module.exports = {
 // User
 
 async function getData(req: Request, res: Response) {
-    try{
-        if(req.session.user){
+    try {
+        if (req.session.user) {
             const user = await userService.getById(req.session.user._id)
-            
+
             const { startDate, endDate } = req.query
 
-            if(startDate && endDate){
+            if (startDate && endDate) {
                 const filteredActions = user.data.actions.filter((action: IAction) => {
-                    if(action.createdAt < +startDate || action.createdAt > +endDate) return false
+                    if (action.createdAt < +startDate || action.createdAt > +endDate) return false
                     return true
                 })
 
                 user.data.actions = filteredActions
             }
             res.json(user.data)
-            
+
         }
-    } catch(err) {
+    } catch (err) {
         console.log('could not fetch data', err)
     }
 }
 
 async function updateUser(req: Request, res: Response) {
-    try{
-        if(req.session.user){
+    try {
+        if (req.session.user) {
             const user = await userService.updateUser(req.body, req.session.user._id)
             req.session.user = user
             delete user.data
             res.json(user)
         }
-    } catch(err) {
+    } catch (err) {
         console.log('could not update user', err)
     }
 }
 
 async function updateData(req: Request, res: Response) {
-    try{
-        if(req.session.user){
+    try {
+        if (req.session.user) {
             const user = await userService.updateData(req.body, req.session.user._id)
             req.session.user = user
             res.json(user.data)
         }
-    } catch(err) {
+    } catch (err) {
         console.log('could not update users data', err)
     }
 }
@@ -77,7 +77,8 @@ async function addAction(req: Request, res: Response) {
             res.json(data)
         }
     } catch (err) {
-        console.log('could not add action', err)
+        const errorMsg: IErrorMsg = { title: 'Opps, an error occurred', msg: 'Could not add new action, try again later', type: 'danger' }
+        res.status(200).send(errorMsg)
     }
 }
 

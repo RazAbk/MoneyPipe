@@ -25,3 +25,9 @@ export interface IDateFilterBy {
     startDate: number,
     endDate: number
 }
+
+export interface IErrorMsg {
+    title?: string;
+    msg: string;
+    type: string;
+}

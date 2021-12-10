@@ -91,7 +91,7 @@ export const ActionModal = ({ closeModal }: IActionModalProps) => {
         }
     }
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
         let isValid = true
 
         const errorsCopy = { ...errors }
@@ -111,7 +111,7 @@ export const ActionModal = ({ closeModal }: IActionModalProps) => {
             setErrors(errorsCopy)
             return
         } else {
-            dispatch(addAction(formData))
+            await dispatch(addAction(formData))
             closeModal(false)
         }
     }
