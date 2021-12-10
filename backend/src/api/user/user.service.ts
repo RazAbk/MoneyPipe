@@ -76,7 +76,7 @@ async function addUser(userName: string, password: string, firstName: string, la
         await collection.insertOne(newUser)
         return newUser
     } catch (err) {
-        console.log('error accrued while adding user')
+        console.log('error occurred while adding user')
         throw err
     }
 }
@@ -95,7 +95,8 @@ async function updateUser(data: IUserUpdateForm, userId: string) {
         const user = await collection.findOne({ "_id": ObjectId(userId) })
         return user
     } catch (err) {
-
+        console.log('error occurred while updating user')
+        throw err
     }
 }
 
@@ -112,7 +113,8 @@ async function updateData(data: IDataUpdateForm, userId: string) {
         const user = await collection.findOne({ "_id": ObjectId(userId) })
         return user
     } catch (err) {
-
+        console.log('err occurred white updating data')
+        throw err
     }
 }
 
@@ -120,7 +122,6 @@ async function addAction(action: IAction, userId: string) {
     try {
         const collection = await dbService.getCollection('users')
         const user = await collection.findOne({ '_id': ObjectId(userId) })
-
 
         if (action._id) {
             const actionIdx = user.data.actions.findIndex((currAction: IAction) => action._id === currAction._id)
@@ -134,7 +135,7 @@ async function addAction(action: IAction, userId: string) {
 
         return user.data
     } catch (err) {
-        console.log('could not add new action', err)
+        console.log('could not add new action')
         throw err
     }
 }
@@ -151,7 +152,7 @@ async function deleteAction(actionId: string, userId: string) {
 
         return user.data
     } catch (err) {
-        console.log('could not delete action', err)
+        console.log('could not delete action')
         throw err
     }
 }
@@ -192,7 +193,7 @@ async function addCategory(category: ICategory, userId: string) {
 
         return user.data
     } catch (err) {
-        console.log('could not add category', err)
+        console.error('could not add category')
         throw err
     }
 }
@@ -216,7 +217,7 @@ async function deleteCategory(categoryId: string, userId: string) {
             }
         }
     } catch (err) {
-        console.log('could not delete category', err)
+        console.log('could not delete category')
         throw err
     }
 }
@@ -255,7 +256,7 @@ async function addLabel(label: ILabel, userId: string) {
 
         return user.data
     } catch (err) {
-        console.log('could not add label', err)
+        console.log('could not add label')
         throw err
     }
 }
@@ -281,7 +282,7 @@ async function deleteLabel(labelId: string, userId: string) {
             return user.data
         }
     } catch (err) {
-        console.log('could not delete category', err)
+        console.log('could not delete category')
         throw err
     }
 }

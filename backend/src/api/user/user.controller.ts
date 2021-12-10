@@ -36,7 +36,8 @@ async function getData(req: Request, res: Response) {
 
         }
     } catch (err) {
-        console.log('could not fetch data', err)
+        const errorMsg: IErrorMsg = { title: 'Opps, an error occurred', msg: 'Could not get your account data, try again later', type: 'danger' }
+        res.status(200).send(errorMsg)
     }
 }
 
@@ -49,7 +50,8 @@ async function updateUser(req: Request, res: Response) {
             res.json(user)
         }
     } catch (err) {
-        console.log('could not update user', err)
+        const errorMsg: IErrorMsg = { title: 'Opps, an error occurred', msg: 'Could not update your account data, try again later', type: 'danger' }
+        res.status(200).send(errorMsg)
     }
 }
 
@@ -61,7 +63,8 @@ async function updateData(req: Request, res: Response) {
             res.json(user.data)
         }
     } catch (err) {
-        console.log('could not update users data', err)
+        const errorMsg: IErrorMsg = { title: 'Opps, an error occurred', msg: 'Could not update your account data, try again later', type: 'danger' }
+        res.status(200).send(errorMsg)
     }
 }
 
@@ -91,7 +94,8 @@ async function deleteAction(req: Request, res: Response) {
             return res.json(data)
         }
     } catch (err) {
-        console.log('could not delete action', err)
+        const errorMsg: IErrorMsg = { title: 'Opps, an error occurred', msg: 'Could not delete action, try again later', type: 'danger' }
+        res.status(200).send(errorMsg)
     }
 }
 
@@ -99,12 +103,13 @@ async function addCategory(req: Request, res: Response) {
     try {
         if (req.session.user) {
             const category = req.body
-            const userId = req.session.user._id
+            const userId = req.session.user._id + 5
             const data = await userService.addCategory(category, userId)
             res.json(data)
         }
     } catch (err) {
-        console.log('could not add category', err)
+        const errorMsg: IErrorMsg = { title: 'Opps, an error occurred', msg: 'Could not add new category, try again later', type: 'danger' }
+        res.status(200).send(errorMsg)
     }
 }
 
@@ -117,7 +122,8 @@ async function deleteCategory(req: Request, res: Response) {
             res.json(data)
         }
     } catch (err) {
-        console.log('could not add category', err)
+        const errorMsg: IErrorMsg = { title: 'Opps, an error occurred', msg: 'Could not delete category, try again later', type: 'danger' }
+        res.status(200).send(errorMsg)
     }
 }
 
@@ -130,7 +136,8 @@ async function addLabel(req: Request, res: Response) {
             res.json(data)
         }
     } catch (err) {
-        console.log('could not add label', err)
+        const errorMsg: IErrorMsg = { title: 'Opps, an error occurred', msg: 'Could not add new label, try again later', type: 'danger' }
+        res.status(200).send(errorMsg)
     }
 }
 
@@ -143,6 +150,7 @@ async function deleteLabel(req: Request, res: Response) {
             res.json(data)
         }
     } catch (err) {
-        console.log('could not add label', err)
+        const errorMsg: IErrorMsg = { title: 'Opps, an error occurred', msg: 'Could not delete later, try again later', type: 'danger' }
+        res.status(200).send(errorMsg)
     }
 }
