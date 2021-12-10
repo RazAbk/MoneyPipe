@@ -1,5 +1,5 @@
-import { IAction, ICategory, ILabel, IDateFilterBy, IDataObject, IDataUpdateForm } from "../../interfaces/dataInterfaces"
-import { ICredentials, IUpdateForm, IUser } from "../../interfaces/userInterfaces"
+import { IAction, ICategory, ILabel, IDateFilterBy, IDataUpdateForm } from "../../interfaces/dataInterfaces"
+import { ICredentials, IUpdateForm } from "../../interfaces/userInterfaces"
 import { alertTitleMessage } from "../../services/alert.service"
 import { userService } from "../../services/user.service"
 import { AppDispatch } from "../store"
