@@ -134,8 +134,8 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
             <div className="inputs">
                 <TextField value={formData.firstName} name="firstName" onChange={handleChange} label="first name" variant="outlined" />
                 <TextField value={formData.lastName} name="lastName" onChange={handleChange} label="last name" variant="outlined" />
-                <TextField type="password" error={errors.password} value={formData.password1} name="password1" onChange={handleChange} label="new password" variant="outlined" />
-                <TextField type="password" error={errors.password} value={formData.password2} name="password2" onChange={handleChange} label="verify password" variant="outlined" />
+                <TextField value={formData.password1} name="password1" onChange={handleChange} label="new password" type="password" error={errors.password} variant="outlined" />
+                <TextField value={formData.password2} name="password2" onChange={handleChange} label="verify password" type="password" error={errors.password} variant="outlined" />
                 <Button onClick={handleUploadClick}>upload new picture<FiUpload /></Button>
                 <input ref={pictureRef} type="file" onChange={handlePictureUpload} style={{ display: 'none' }} />
                 <p>*change only what's needed</p>
