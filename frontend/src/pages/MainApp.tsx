@@ -12,7 +12,7 @@ import { RootState } from '../store/store'
 import { GraphBlock } from '../components/blocks/GraphBlock'
 import { SearchModal } from '../components/modals/SearchModal'
 import { ActionModal } from '../components/modals/ActionModal'
-import { setSelectedAction } from '../store/actions/app-state.action'
+import { setLoader, setSelectedAction } from '../store/actions/app-state.action'
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 import { sessionStorageService } from '../services/session-storage.service'
@@ -44,7 +44,9 @@ export const MainApp = () => {
 
     useEffect(() => {
         const _getData = async () => {
+            dispatch(setLoader(true))
             await dispatch(getData(dateService.getDateFilterBy(filterBy)))
+            dispatch(setLoader(false))
         }
         if(user){
             _getData()

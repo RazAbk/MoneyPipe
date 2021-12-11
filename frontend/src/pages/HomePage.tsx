@@ -5,6 +5,7 @@ import { Box } from '@mui/system'
 import { useDispatch } from 'react-redux'
 import graphSvg from '../assets/images/graphssvg.svg'
 import { signup, login } from '../store/actions/user.action'
+import { setLoader } from '../store/actions/app-state.action'
 
 interface IErrors {
     [key: string]: boolean
@@ -55,7 +56,9 @@ export const HomePage = () => {
 
         if (isValid) {
             (async () => {
+                dispatch(setLoader(true))
                 const user: any = await dispatch(signup(formData))
+                dispatch(setLoader(false))
                 if(user){
                     navigate(`/mydata`)
                 } else {
@@ -88,7 +91,9 @@ export const HomePage = () => {
         
         if (isValid) {
             (async () => {
+                dispatch(setLoader(true))
                 const user: any = await dispatch(login(formData))
+                dispatch(setLoader(false))
                 if(user){
                     navigate(`/mydata`)
                 } else {

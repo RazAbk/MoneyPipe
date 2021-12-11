@@ -4,7 +4,7 @@ import { RootState } from '../store/store'
 import { GetIcon } from './GetIcon'
 import { FaRegEdit } from 'react-icons/fa'
 import { VscTrash } from 'react-icons/vsc'
-import { setSelectedAction } from '../store/actions/app-state.action'
+import { setLoader, setSelectedAction } from '../store/actions/app-state.action'
 import { deleteAction } from '../store/actions/user.action'
 import { dateService } from '../services/date.service'
 
@@ -30,7 +30,9 @@ export const ActionPreview = ({ action, setActionModalOpen }: IActionProps) => {
 
     const onDelete = async (ev: any) => {
         ev.stopPropagation()
+        dispatch(setLoader(true))
         await dispatch(deleteAction(action._id))
+        dispatch(setLoader(false))
         dispatch(setSelectedAction(null))
     }
 
@@ -40,12 +42,12 @@ export const ActionPreview = ({ action, setActionModalOpen }: IActionProps) => {
     }
 
     const handleActionClick = () => {
-        if(!selectedAction){
+        if (!selectedAction) {
             dispatch(setSelectedAction(action))
         } else {
-            if(selectedAction._id !== action._id){
+            if (selectedAction._id !== action._id) {
                 dispatch(setSelectedAction(action))
-            } else{
+            } else {
                 dispatch(setSelectedAction(null))
             }
         }

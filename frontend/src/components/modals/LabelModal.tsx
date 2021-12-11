@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
 import { IAction, ILabel } from '../../interfaces/dataInterfaces'
+import { setLoader } from '../../store/actions/app-state.action'
 import { addLabel } from '../../store/actions/user.action'
 
 interface IModalProps {
@@ -35,8 +36,9 @@ export const LabelModal = ({ closeModal, setFormData, labelToEdit }: IModalProps
                 title: label,
                 labelName: formatedLabel
             }
-
+            dispatch(setLoader(true))
             const res = await dispatch(addLabel(newLabel))
+            dispatch(setLoader(false))
             if(!labelToEdit && setFormData && res){
                 setFormData(formData => { return { ...formData, labels: [...formData.labels, formatedLabel] } })
             }

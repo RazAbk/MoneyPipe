@@ -12,6 +12,7 @@ import { CategoryModal } from './CategoryModal';
 import { LabelModal } from './LabelModal';
 import { MobileDateTimePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import { setLoader } from '../../store/actions/app-state.action';
 
 interface IActionModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -111,7 +112,9 @@ export const ActionModal = ({ closeModal }: IActionModalProps) => {
             setErrors(errorsCopy)
             return
         } else {
+            dispatch(setLoader(true))
             await dispatch(addAction(formData))
+            dispatch(setLoader(false))
             closeModal(false)
         }
     }

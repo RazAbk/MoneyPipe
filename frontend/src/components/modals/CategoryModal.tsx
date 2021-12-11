@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux'
 import { addCategory } from '../../store/actions/user.action'
 import { IAction, ICategory } from '../../interfaces/dataInterfaces'
 import { utilService } from '../../services/util.service'
+import { setLoader } from '../../store/actions/app-state.action'
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -72,8 +73,9 @@ export const CategoryModal = ({ closeModal, setFormData, categoryToEdit }: IModa
                 icon: selectedIcon,
                 bgColor: selectedColor
             }
-
+            dispatch(setLoader(true))
             await dispatch(addCategory(newCategory))
+            dispatch(setLoader(false))
             if(!categoryToEdit && setFormData){
                 setFormData(formData => { return { ...formData, category: categoryFormatedName } })
             }

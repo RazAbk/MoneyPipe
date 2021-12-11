@@ -12,6 +12,7 @@ import { alertMessage } from '../../services/alert.service'
 import { sessionStorageService } from '../../services/session-storage.service'
 import { userService } from '../../services/user.service'
 import { utilService } from '../../services/util.service'
+import { setLoader } from '../../store/actions/app-state.action'
 import { deleteCategory, deleteLabel, updateData, updateUser } from '../../store/actions/user.action'
 import { RootState } from '../../store/store'
 import { GetIcon } from '../GetIcon'
@@ -91,12 +92,13 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
 
     const handlePictureUpload = async (ev: React.ChangeEvent<HTMLInputElement>) => {
         if (ev.target.files && ev.target.files.length > 0) {
-            // Todo: Insert some loader in here
+            dispatch(setLoader(true))
+            alertMessage('Uploading image to cloud...', 'info', 3500)
             const url = await userService.uploadImg(ev.target.files[0])
-            if(url){
-                // Todo: remove the loader here
+            if (url) {
                 setFormData({ ...formData, picture: url })
             }
+            dispatch(setLoader(false))
         }
     }
 
@@ -124,8 +126,9 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
             formToSubmit.picture = formData.picture
         }
 
-
+        dispatch(setLoader(true))
         await dispatch(updateUser(formToSubmit))
+        dispatch(setLoader(false))
         closeModal(false)
     }
 
@@ -182,7 +185,9 @@ const PreferencesSettings = ({ closeModal }: IModalProps) => {
     }
 
     const handleSubmit = async () => {
+        dispatch(setLoader(true))
         await dispatch(updateData(formData))
+        dispatch(setLoader(false))
         closeModal(false)
     }
 
@@ -215,7 +220,9 @@ const CategoriesSettings = () => {
     const [selectedCategory, setSelectedCategory] = useState<ICategory | null>(null)
 
     const handleDelete = async (categoryId: string) => {
+        dispatch(setLoader(true))
         const res = await dispatch(deleteCategory(categoryId))
+        dispatch(setLoader(false))
         if (!res) {
             alertMessage("Cannot delete a category while it's in use", 'danger', 3500)
         }
@@ -268,7 +275,9 @@ const LabelsSettings = () => {
 
     const handleModalAnswer = async (answer: boolean) => {
         if (answer && selectedLabel) {
+            dispatch(setLoader(true))
             await dispatch(deleteLabel(selectedLabel._id))
+            dispatch(setLoader(false))
         }
         setSelectedLabel(null)
     }

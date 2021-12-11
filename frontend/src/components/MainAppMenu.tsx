@@ -3,7 +3,7 @@ import { IoMdExit, IoMdSettings } from 'react-icons/io'
 import { MdAddCircle } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
-import { setCurrentViewMode, setCurrentLabel } from '../store/actions/app-state.action'
+import { setCurrentViewMode, setCurrentLabel, setLoader } from '../store/actions/app-state.action'
 import { logout } from '../store/actions/user.action'
 import { IDataObject } from '../interfaces/dataInterfaces'
 import { setFilterBy } from '../store/actions/app-state.action'
@@ -45,7 +45,9 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionModalOpen, setSe
 
     const handleLogout = () => {
         (async () => {
+            dispatch(setLoader(true))
             await dispatch(logout())
+            dispatch(setLoader(false))
             navigate('/')
         })()
     }
