@@ -1,6 +1,15 @@
 import { IAction, IFilterBy } from "../../interfaces/dataInterfaces"
 import { AppDispatch } from "../store"
 
+export const setLoader = (loaderState: boolean) => {
+    return (dispatch: AppDispatch) => {
+        dispatch({
+            type: "SET_LOADER",
+            loaderState
+        })
+    }
+}
+
 export const setCurrentViewMode = (viewMode: string) => {
     return (dispatch: AppDispatch) => {
         dispatch({

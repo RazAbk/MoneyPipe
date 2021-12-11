@@ -2,6 +2,7 @@ import { IAction, IFilterBy } from "../../interfaces/dataInterfaces"
 import { dateService } from "../../services/date.service"
 
 interface IState {
+    loaderState: boolean;
     currentViewMode: string;
     currentLabel: string | null;
     selectedAction: IAction | null;
@@ -14,6 +15,7 @@ interface IReducerAction {
 }
 
 const initialState: IState = {
+    loaderState: false,
     currentViewMode: 'Summery',
     currentLabel: null,
     selectedAction: null,
@@ -29,6 +31,8 @@ const initialState: IState = {
 
 export const appStateReducer = (state = initialState, action: IReducerAction) => {
     switch (action.type) {
+        case 'SET_LOADER':
+            return state = { ...state, loaderState: action.loaderState }
         case 'SET_VIEWMODE':
             return state = { ...state, currentViewMode: action.viewMode }
         case 'SET_LABEL':
