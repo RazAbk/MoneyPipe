@@ -103,7 +103,7 @@ async function addCategory(req: Request, res: Response) {
     try {
         if (req.session.user) {
             const category = req.body
-            const userId = req.session.user._id + 5
+            const userId = req.session.user._id
             const data = await userService.addCategory(category, userId)
             res.json(data)
         }
