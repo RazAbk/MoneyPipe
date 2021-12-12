@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 
+const jwt = require('jsonwebtoken')
 const authService = require('./auth.service')
 const userService = require('../user/user.service')
 
@@ -21,7 +22,14 @@ async function signup(req: Request, res: Response) {
             await authService.signup(userName, password, firstName, lastName)
             const user = await authService.login(userName, password)
 
-            req.session.user = user
+            if (!user) res.json(null)
+
+            const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
+
+            res.cookie("token", accessToken, {
+                httpOnly: true
+            })
+
             res.json(user)
         }
     } catch (err) {
@@ -36,7 +44,14 @@ async function login(req: Request, res: Response) {
 
         const user = await authService.login(userName, password)
 
-        req.session.user = user
+        if (!user) res.json(null)
+
+        const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
+
+        res.cookie("token", accessToken, {
+            httpOnly: true
+        })
+
         res.json(user)
     } catch (err) {
         console.log('could not log in', err)
@@ -46,11 +61,7 @@ async function login(req: Request, res: Response) {
 
 async function logout(req: Request, res: Response) {
     try {
-        const user = req.session.user?.userName
-
-        req.session.destroy(() => {
-            console.log('user logged out:', user)
-        })
+        res.clearCookie('token')
         res.send('logged out successfully')
     } catch (err) {
         console.log('could not logout', err)

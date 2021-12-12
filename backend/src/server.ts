@@ -1,43 +1,23 @@
-import express from 'express'
-import { IUser } from './interfaces/userInterfaces';
-const expressSession = require('express-session')
-// const MongoDBStore = require('connect-mongodb-session')(expressSession);
-const cors = require('cors')
-const path = require('path')
+require('dotenv').config()
 
-declare module 'express-session' {
-  interface SessionData {
-    user: IUser;
+import express from 'express'
+const cors = require('cors')
+// const path = require('path')
+const cookieParser = require('cookie-parser')
+
+// Todo: change from any to user
+declare global {
+  namespace Express {
+    interface Request {
+      user: any
+    }
   }
 }
 
 const app = express();
 
-// const { configuration } = require('./config/index')
-
-// const sessionStore = new MongoDBStore({
-//   uri: configuration,
-//   collection: 'sessionStore'
-// })
-
-// sessionStore.on('error', function(error: any) {
-//   console.log(error)
-// })
-
-const { getCollection } = require('./services/db.service')
-
-const session = expressSession({
-  secret: 'bla bla',
-  resave: false,
-  saveUninitialized: true,
-  // store: sessionStore,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24
-  }
-})
-
 app.use(express.json())
-app.use(session)
+app.use(cookieParser())
 
 if (process.env.NODE_ENV === 'production') {
   // Express serves static files on production environment
