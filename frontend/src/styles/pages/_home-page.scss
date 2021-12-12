@@ -147,6 +147,15 @@
 
     }
 
+    .MuiTextField-root, .MuiInputBase-root{
+        border-radius: 10px;
+        background-color: $main-light-color;
+    }
+
+    .txt-input{
+        width: 100%;
+    }
+
 }
 
 .dimmer-screen{
