@@ -5,6 +5,7 @@ const userService = require('./user.service')
 
 module.exports = {
     getData,
+    getUser,
     updateUser,
     updateData,
     addAction,
@@ -32,6 +33,18 @@ async function getData(req: Request, res: Response) {
             user.data.actions = filteredActions
         }
         res.json(user.data)
+
+    } catch (err) {
+        const errorMsg: IErrorMsg = { title: 'Opps, an error occurred', msg: 'Could not get your account data, try again later', type: 'danger' }
+        res.status(200).send(errorMsg)
+    }
+}
+
+async function getUser(req: Request, res: Response) {
+    try {
+        const user = await userService.getById(req.user._id)
+        delete user.data
+        res.json(user)
 
     } catch (err) {
         const errorMsg: IErrorMsg = { title: 'Opps, an error occurred', msg: 'Could not get your account data, try again later', type: 'danger' }

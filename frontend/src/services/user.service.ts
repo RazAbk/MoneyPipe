@@ -15,6 +15,7 @@ export const userService = {
     updateUser,
     updateData,
     getData,
+    getUser,
     addAction,
     deleteAction,
     addCategory,
@@ -99,6 +100,16 @@ async function getData(filterBy: IDateFilterBy) {
         console.error(err)
     }
 }
+
+async function getUser() {
+    try {
+        const res = await axios.get(`${BASE_URL}/api/user/user`)
+        return res.data
+    } catch (err) {
+        console.error(err)
+    }
+}
+
 
 async function addAction(action: IAction) {
     try {

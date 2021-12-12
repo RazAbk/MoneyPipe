@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, TextField } from '@mui/material'
 import { Box } from '@mui/system'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import graphSvg from '../assets/images/graphssvg.svg'
-import { signup, login } from '../store/actions/user.action'
+import { signup, login, getUser } from '../store/actions/user.action'
 import { setLoader } from '../store/actions/app-state.action'
+import { RootState } from '../store/store'
 
 interface IErrors {
     [key: string]: boolean
@@ -15,6 +16,8 @@ export const HomePage = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const loggedInUser = useSelector((state: RootState) => state.userModule.loggedInUser)
 
     const [formState, setFormState] = useState('login')
     const [formData, setFormData] = useState({
@@ -31,6 +34,19 @@ export const HomePage = () => {
         password: false
     })
 
+    useEffect(() => {
+        const _getUser = async () => {
+            await dispatch(getUser())
+        }
+        _getUser()
+        
+    }, [dispatch])
+
+    useEffect(() => {
+        if(loggedInUser){
+            navigate('/mydata')
+        }
+    }, [loggedInUser, navigate])
 
     const handleChange = (ev: React.ChangeEvent<HTMLFormElement>) => {
         setFormData(prevState => { return { ...prevState, [ev.target.name]: ev.target.value } })

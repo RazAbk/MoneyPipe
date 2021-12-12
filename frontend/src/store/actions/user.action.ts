@@ -68,6 +68,28 @@ export const getData = (filterBy: IDateFilterBy) => {
     }
 }
 
+export const getUser = () => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const data = await userService.getUser()
+            if (!data?.msg) {
+                dispatch({
+                    type: "SET_USER",
+                    user: data
+                })
+            return data
+            } else {
+                alertTitleMessage(data.title, data.msg, data.type, 3500)
+            }
+            return data
+        } catch (err) {
+            console.error(err)
+        }
+    }
+}
+
+
+
 export const updateUser = (updatedUser: IUpdateForm) => {
     return async (dispatch: AppDispatch) => {
         try {

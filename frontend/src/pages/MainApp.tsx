@@ -4,7 +4,7 @@ import { MainAppMenu } from '../components/MainAppMenu'
 import { MobileMenu } from '../components/MobileMenu'
 import { Screen } from '../components/Screen'
 import { HeaderBlock } from '../components/blocks/HeaderBlock'
-import { getData } from '../store/actions/user.action'
+import { getData, getUser } from '../store/actions/user.action'
 import { BalanceBlock } from '../components/blocks/BalanceBlock'
 import { GoPrimitiveDot as MobileIdx } from 'react-icons/go'
 import { SummeryBlock } from '../components/blocks/SummeryBlock'
@@ -18,10 +18,12 @@ import "keen-slider/keen-slider.min.css"
 import { sessionStorageService } from '../services/session-storage.service'
 import { dateService } from '../services/date.service'
 import { SettingsModal } from '../components/modals/SettingsModal'
+import { useNavigate } from 'react-router'
 
 
 export const MainApp = () => {
 
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
     const user = useSelector((state: RootState) => state.userModule.loggedInUser) || sessionStorageService.load('loggedInUser')
@@ -48,10 +50,20 @@ export const MainApp = () => {
             await dispatch(getData(dateService.getDateFilterBy(filterBy)))
             dispatch(setLoader(false))
         }
+
+        const _getUser = async () => {
+            return await dispatch(getUser())
+        }
+
         if(user){
             _getData()
+        } else {
+            const fetchedUser = _getUser()
+            if(!fetchedUser){
+                navigate('/')
+            }
         }
-    }, [dispatch, user, filterBy])
+    }, [dispatch, user, filterBy, navigate])
 
     useEffect(() => {
         if (!isActionModalOpen) dispatch(setSelectedAction(null))

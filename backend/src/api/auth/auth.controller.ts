@@ -27,7 +27,9 @@ async function signup(req: Request, res: Response) {
             const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
 
             res.cookie("token", accessToken, {
-                httpOnly: true
+                httpOnly: true,
+                maxAge: 1000 * 60 * 60 * 24,
+                secure: true
             })
 
             res.json(user)
@@ -49,7 +51,9 @@ async function login(req: Request, res: Response) {
         const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
 
         res.cookie("token", accessToken, {
-            httpOnly: true
+            httpOnly: true,
+            maxAge: 1000 * 60 * 60 * 24,
+            secure: true
         })
 
         res.json(user)
