@@ -137,13 +137,13 @@ export const HomePage = () => {
                     <h4 className="form-state-header">{formState === 'signup' ? 'Have an account? ' : `Don't have an account? `}<span onClick={switchFormState}>{formState === 'signup' ? 'Login' : 'Signup'}</span></h4>
                     <h2>{formState === 'signup' ? 'Create account' : 'Login'}</h2>
                     <Box onChange={handleChange} component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }} autoComplete="off">
-                        <TextField label="username" error={errors.userName} name="userName" value={formData.userName} helperText={errors.userName ? 'invalid user name' : ''} />
+                        <TextField autoComplete="off" label="username" error={errors.userName} name="userName" value={formData.userName} helperText={errors.userName ? 'invalid user name' : ''} />
                         {formState === 'signup' && <div className="name-fields">
-                            <TextField label="first name" error={errors.firstName} name="firstName" value={formData.firstName} />
-                            <TextField label="last name" error={errors.lastName} name="lastName" value={formData.lastName} />
+                            <TextField autoComplete="off" label="first name" error={errors.firstName} name="firstName" value={formData.firstName} />
+                            <TextField autoComplete="off" label="last name" error={errors.lastName} name="lastName" value={formData.lastName} />
                         </div>
                         }
-                        <TextField type="password" label="password" error={errors.password} name="password" value={formData.password} helperText={errors.password ? 'invalid password' : ''} />
+                        <TextField autoComplete="off" type="password" label="password" error={errors.password} name="password" value={formData.password} helperText={errors.password ? 'invalid password' : ''} />
                         <Button onClick={formState === 'signup' ? handleSignup : handleLogin}>{formState === 'signup' ? 'Sign up' : 'Login'}</Button>
                     </Box>
                     <hr></hr>

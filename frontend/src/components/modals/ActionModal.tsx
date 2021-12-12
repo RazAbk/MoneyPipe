@@ -127,7 +127,7 @@ export const ActionModal = ({ closeModal }: IActionModalProps) => {
                     <AiOutlineClose className="exit-modal-btn" onClick={() => { closeModal(false) }} />
                 </div>
                 <div className="modal-body">
-                    <TextField className="txt-input" error={errors.description} value={formData.description} name="description" onChange={handleChange} label="Description" variant="outlined" />
+                    <TextField autoComplete="off" className="txt-input" error={errors.description} value={formData.description} name="description" onChange={handleChange} label="Description" variant="outlined" />
                     <Box className="modal-form" component="form" noValidate autoComplete="off" onChange={handleChange}>
                         <div className="input-selectors">
                             <div className="input-select">
@@ -142,7 +142,7 @@ export const ActionModal = ({ closeModal }: IActionModalProps) => {
                             <div className="input-select">
                                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                                     <Stack spacing={3}>
-                                        <MobileDateTimePicker label="Date & Time" ampm={false} inputFormat="dd/MM/yyyy HH:mm" value={formData.createdAt} onAccept={(date) => {handleDateChange(date)}} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
+                                        <MobileDateTimePicker label="Date & Time" ampm={false} inputFormat="dd/MM/yyyy HH:mm" value={formData.createdAt} onAccept={(date) => {handleDateChange(date)}} onChange={(date) => { }} renderInput={(params) => <TextField autoComplete="off" className="input-field" {...params} />} />
                                     </Stack>
                                 </LocalizationProvider>
 
@@ -186,7 +186,7 @@ export const ActionModal = ({ closeModal }: IActionModalProps) => {
                                 </div>
                             </div>
                         </div>
-                        <TextField className="txt-input amount-input" type="number" error={errors.amount} value={formData.amount} name="amount" label="Amount" variant="outlined" />
+                        <TextField autoComplete="off" className="txt-input amount-input" type="number" error={errors.amount} value={formData.amount} name="amount" label="Amount" variant="outlined" />
                     </Box>
                     <Stack className="form-buttons" spacing={2} direction="row">
                         <Button variant="contained" onClick={onSubmit}>{selectedAction ? 'Submit' : 'Add new action'}</Button>

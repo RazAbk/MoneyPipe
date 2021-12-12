@@ -92,7 +92,7 @@ export const CategoryModal = ({ closeModal, setFormData, categoryToEdit }: IModa
                 </div>
                 <div className="modal-body">
                     <Box className="modal-form" component="form" noValidate autoComplete="off" onChange={categoryNameChange}>
-                        <TextField className="txt-input" error={errors.categoryName} value={categoryName} name="category" label="category name" variant="outlined" />
+                        <TextField autoComplete="off" className="txt-input" error={errors.categoryName} value={categoryName} name="category" label="category name" variant="outlined" />
                     </Box>
                     <Button variant="contained" style={errors.selectedIcon ? btnErrorStyle : {}} onClick={() => { setIconsModal(true) }}>Pick icon</Button>
                     <Button variant="contained" onClick={() => { setColorsModal(true) }}>Pick color</Button>

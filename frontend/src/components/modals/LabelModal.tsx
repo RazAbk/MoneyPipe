@@ -54,7 +54,7 @@ export const LabelModal = ({ closeModal, setFormData, labelToEdit }: IModalProps
             </div>
             <div className="modal-body">
                 <Box className="modal-form" component="form" noValidate autoComplete="off" onChange={handleLabelChange}>
-                    <TextField className="txt-input" error={error} value={label} name="label" label="label name" variant="outlined" />
+                    <TextField autoComplete="off" className="txt-input" error={error} value={label} name="label" label="label name" variant="outlined" />
                 </Box>
                 <Stack className="form-buttons" spacing={2} direction="row">
                     <Button variant="contained" onClick={onSubmitLabel}>{labelToEdit ? 'Submit' : 'Add'}</Button>

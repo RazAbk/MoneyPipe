@@ -68,12 +68,12 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
                 <AiOutlineClose className="exit-modal-btn" onClick={() => { closeModal(false) }} />
             </div>
             <div className="modal-body">
-                <TextField className="txt-input" value={filterBy.searchTxt} name="searchTxt" onChange={handleChange} label="Search by text" variant="outlined" />
+                <TextField autoComplete="off" className="txt-input" value={filterBy.searchTxt} name="searchTxt" onChange={handleChange} label="Search by text" variant="outlined" />
                 <Box className="modal-form" component="form" noValidate autoComplete="off" onChange={handleChange}>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <Stack spacing={3} className="date-filters">
-                            <MobileDatePicker label="Start date" inputFormat="dd/MM/yyyy" value={filterBy.startDate} onAccept={(date) => { handleDateChange(date, 'startDate') }} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
-                            <MobileDatePicker label="End date" inputFormat="dd/MM/yyyy" value={filterBy.endDate} onAccept={(date) => { handleDateChange(date, 'endDate') }} onChange={(date) => { }} renderInput={(params) => <TextField className="input-field" {...params} />} />
+                            <MobileDatePicker label="Start date" inputFormat="dd/MM/yyyy" value={filterBy.startDate} onAccept={(date) => { handleDateChange(date, 'startDate') }} onChange={(date) => { }} renderInput={(params) => <TextField autoComplete="off" className="input-field" {...params} />} />
+                            <MobileDatePicker label="End date" inputFormat="dd/MM/yyyy" value={filterBy.endDate} onAccept={(date) => { handleDateChange(date, 'endDate') }} onChange={(date) => { }} renderInput={(params) => <TextField autoComplete="off" className="input-field" {...params} />} />
                         </Stack>
                     </LocalizationProvider>
                     <div className="input-selectors">
