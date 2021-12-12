@@ -50,6 +50,9 @@ export const MainApp = () => {
         }
         if(user){
             _getData()
+        } else {
+            // Todo: Do something if no user (check if req.session is alive?)
+            console.log('no user')
         }
     }, [dispatch, user, filterBy])
 

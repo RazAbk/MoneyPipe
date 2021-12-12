@@ -6,7 +6,7 @@ interface IScreenProps {
 
 export const Screen = ({ isOpen, exitScreen, zIndex }: IScreenProps) => {
     return (
-        <div onClick={() => {exitScreen(false)}} style={{zIndex: zIndex}} className={`screen ${isOpen ? 'screen-active' : ''}`}>
+        <div onClick={() => {exitScreen(false)}} style={{zIndex: zIndex, backdropFilter: isOpen ? 'blur(1.5px) saturate(85%)' : ''}} className={`screen ${isOpen ? 'screen-active' : ''}`}>
         </div>
     )
 }

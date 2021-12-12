@@ -1,8 +1,8 @@
 .screen {
+    background: rgba(0, 0, 0, 0);
     pointer-events: none;
     cursor: pointer;
     position: fixed;
-    background: rgba(0, 0, 0, 0);
     top: 50%;
     left: 50%;
     transform: translate((-50%, -50%));
@@ -14,7 +14,7 @@
 }
 
 .screen-active {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
     pointer-events: visible;
     transition: 0.3s;
 }
