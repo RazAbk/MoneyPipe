@@ -156,12 +156,13 @@ async function deleteLabel(labelId: string) {
 
 async function uploadImg(file: File) {
     try {
-        const CLOUD_NAME = 'dfj4zd14o'
+        const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME
+        const UPLOAD_PRESET: any = process.env.REACT_APP_UPLOAD_PRESET
         const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
 
         const formData = new FormData();
         formData.append('file', file)
-        formData.append('upload_preset', 'k1qiifqe');
+        formData.append('upload_preset', UPLOAD_PRESET);
 
         return fetch(UPLOAD_URL, {
             method: 'POST',
