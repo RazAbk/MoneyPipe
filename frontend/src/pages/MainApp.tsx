@@ -66,8 +66,8 @@ export const MainApp = () => {
     }, [dispatch, user, filterBy, navigate])
 
     useEffect(() => {
-        if (!isActionModalOpen) dispatch(setSelectedAction(null))
-    }, [dispatch, isActionModalOpen])
+        if (!isActionModalOpen || isMenuOpen || isSettingsModalOpen) dispatch(setSelectedAction(null))
+    }, [dispatch, isActionModalOpen, isMenuOpen, isSettingsModalOpen])
 
 
     return (
