@@ -13,7 +13,7 @@
     border-radius: 10px;
 
     width: 95vw;
-    height: 80vh;
+    height: 95vh;
 
     overflow-y: auto;
 
@@ -25,18 +25,28 @@
         display: none;
     }
 
+
+    background-image: url('../../assets/images/graphssvg.svg');
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+
     .right-side{
+
+        backdrop-filter: saturate(0%) blur(20px);
+   
         position: relative;
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
 
         padding: 2rem 1rem;
 
         h2{
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.75rem;
+            margin: 0.5rem 0;
         }
 
         form{
@@ -100,6 +110,15 @@
         
     }
 
+    @include for-small-phone{
+        .right-side{
+            h2{
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+    
     @include for-tablet{
         height: 80vh;
         max-height: 50rem;
@@ -107,6 +126,11 @@
         min-width: 50rem;
         width: 80vw;
         max-width: 70rem;
+        
+        background-image: unset;
+        background-size:unset;
+        background-repeat: unset;
+        background-position: unset;
 
         .left-side{
             width: 45%;
@@ -146,6 +170,7 @@
         .right-side{
             width: 55%;
             padding: 2.5rem 1rem;
+            justify-content: unset;
 
             form{
                 .name-fields{
