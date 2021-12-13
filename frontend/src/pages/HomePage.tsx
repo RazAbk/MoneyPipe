@@ -135,7 +135,7 @@ export const HomePage = () => {
             isGoogle: true
         };
 
-        
+
         (async () => {
             dispatch(setLoader(true))
             const user: any = await dispatch(login({ userName: credendials.userName, password: credendials.password, isGoogle: true }))
@@ -173,6 +173,10 @@ export const HomePage = () => {
             <div className="homepage">
                 <div className="left-side">
                     <h2>MoneyPipe</h2>
+                    <div className="prase">
+                        <h3>Tracking your money</h3>
+                        <h3>has never been so simple</h3>
+                    </div>
                     <img src={graphSvg} alt="graph" />
                 </div>
                 <div className="right-side">

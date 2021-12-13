@@ -64,7 +64,7 @@
 
                 width: 9.25rem;
                 height: 3rem;
-                margin: 1.5rem 0;
+                margin-top: 1.5rem;
             }
 
         }
@@ -104,6 +104,7 @@
             width: 45%;
             height: 100%;
             background-color: #292929;
+            color: $txt-light-color;
             border-radius: 10px 0 0 10px;
 
             display: flex;
@@ -113,8 +114,19 @@
             padding: 2.5rem 1rem;
 
             h2{
-                color: $txt-light-color;
-                font-size: 2.25rem;
+                font-size: 2.5rem;
+            }
+
+            .prase{
+                display: flex;
+                flex-direction: column;
+                gap:0.5rem;
+
+                text-align: center;
+
+                h3{
+                    font-size: 1.5rem;
+                }
             }
 
             img{
