@@ -101,6 +101,9 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
             const url = await userService.uploadImg(ev.target.files[0])
             if (url) {
                 setFormData({ ...formData, picture: url })
+                alertMessage('Image uploaded to cloud...', 'success', 3500)
+            } else {
+                alertMessage('Something went wrong, try again later...', 'warning', 3500)
             }
             dispatch(setLoader(false))
         }
