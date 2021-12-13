@@ -84,6 +84,10 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
     }
 
     const handleUploadClick = () => {
+        if(user.userName === 'DemoUser'){
+            alertTitleMessage('Opps...', 'Changes cannot be made on demo user', 'warning', 3500)
+            return
+        }
         if (pictureRef.current) {
             const element: HTMLInputElement = pictureRef.current
             element.click()
@@ -91,10 +95,6 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
     }
 
     const handlePictureUpload = async (ev: React.ChangeEvent<HTMLInputElement>) => {
-        if(user.userName === 'DemoUser'){
-            alertTitleMessage('Opps...', 'Changes cannot be made on demo user', 'warning', 3500)
-            return
-        }
         if (ev.target.files && ev.target.files.length > 0) {
             dispatch(setLoader(true))
             alertMessage('Uploading image to cloud...', 'info', 3500)
