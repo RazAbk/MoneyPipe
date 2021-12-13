@@ -75,13 +75,21 @@
             border-color: rgba(0, 0, 0, 0.247)
         }
 
-        .form-state-header{
+        .form-state-header, .demo-user-btn{
             position: absolute;
             top: 0;
-            right: 0;
             padding: 0.6rem;
-
         }
+
+        .form-state-header{
+            right: 0;
+        }
+
+        .demo-user-btn{
+            left: 0;
+        }
+
+
         h4{
             font-size: 0.8rem;
             span{

@@ -165,6 +165,19 @@ export const HomePage = () => {
         else setFormState('signup')
     }
 
+    const demoLogin = () => {
+        (async () => {
+            dispatch(setLoader(true))
+            const user: any = await dispatch(login({userName: 'DemoUser', password: '1234', isGoogle: false}))
+            dispatch(setLoader(false))
+            if (user) {
+                navigate(`/mydata`)
+            } else {
+                setErrors(prevState => { return { ...prevState, userName: true, password: true } })
+            }
+        })()
+    }
+
 
     const googleClientId: string = process.env.REACT_APP_GOOGLE_CLIENT_ID || ''
 
@@ -180,6 +193,7 @@ export const HomePage = () => {
                     <img src={graphSvg} alt="graph" />
                 </div>
                 <div className="right-side">
+                    <h4 className="demo-user-btn">Watch the <span onClick={demoLogin}>demo</span></h4>
                     <h4 className="form-state-header">{formState === 'signup' ? 'Have an account? ' : `Don't have an account? `}<span onClick={switchFormState}>{formState === 'signup' ? 'Login' : 'Signup'}</span></h4>
                     <h2>{formState === 'signup' ? 'Create account' : 'Login'}</h2>
                     <Box onChange={handleChange} component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }} autoComplete="off">
