@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { Button, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import { useDispatch, useSelector } from 'react-redux'
-import graphSvg from '../assets/images/graphssvg.svg'
 import { signup, login, getUser } from '../store/actions/user.action'
 import { setLoader } from '../store/actions/app-state.action'
 import { RootState } from '../store/store'
 import { GoogleLogin } from 'react-google-login';
 import { alertMessage } from '../services/alert.service'
+import graphSvg from '../assets/images/graphssvg.svg'
 
 interface IErrors {
     [key: string]: boolean
@@ -193,8 +193,8 @@ export const HomePage = () => {
                     <img src={graphSvg} alt="graph" />
                 </div>
                 <div className="right-side">
-                    <h4 className="demo-user-btn">Watch the <span onClick={demoLogin}>demo</span></h4>
-                    <h4 className="form-state-header">{formState === 'signup' ? 'Have an account? ' : `Don't have an account? `}<span onClick={switchFormState}>{formState === 'signup' ? 'Login' : 'Signup'}</span></h4>
+                    <h4 className="demo-user-btn">Watch the <span onClick={demoLogin}><b>demo</b></span></h4>
+                    <h4 className="form-state-header">{formState === 'signup' ? 'Have an account? ' : `Don't have an account? `}<span onClick={switchFormState}><b>{formState === 'signup' ? 'Login' : 'Signup'}</b></span></h4>
                     <h2>{formState === 'signup' ? 'Create account' : 'Login'}</h2>
                     <Box onChange={handleChange} component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }} autoComplete="off">
                         <TextField autoComplete="off" label="username" error={errors.userName} name="userName" value={formData.userName} helperText={errors.userName ? 'invalid user name' : ''} />
