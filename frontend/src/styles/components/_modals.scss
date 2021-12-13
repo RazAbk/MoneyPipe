@@ -240,6 +240,7 @@
             justify-content: center;
             align-items: center;
         }
+
     }
 }
 
@@ -453,6 +454,10 @@
                         }
                     }
                 }
+            }
+            
+            .empty-msg{
+                text-align: center;
             }
 
         }

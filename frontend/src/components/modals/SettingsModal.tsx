@@ -236,6 +236,7 @@ const CategoriesSettings = () => {
         <>
             <div className="categories-settings">
                 <div className="select-modal">
+                    {rawData.categories.length === 0 && <h2 className="empty-msg">No categories to show</h2>}
                     {rawData && rawData.categories.map((category: ICategory) => {
                         return (
                             <div key={category._id} className="category-preview">
@@ -302,6 +303,7 @@ const LabelsSettings = () => {
         <>
             <div className="labels-settings">
                 <div className="select-modal">
+                    {rawData.labels.length === 0 && <h2 className="empty-msg">No labels to show</h2>}
                     {rawData && rawData.labels.map((label: ILabel) => {
                         return (
                             <div key={label._id} className="label-preview">
