@@ -18,7 +18,7 @@ export interface IAction {
     category: string;
     description: string;
     amount: number;
-    createdAt: any;
+    createdAt: number;
 }
 
 export interface ICurrency {
