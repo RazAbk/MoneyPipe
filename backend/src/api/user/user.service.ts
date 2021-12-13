@@ -158,7 +158,6 @@ async function deleteAction(actionId: string, userId: string) {
     }
 }
 
-// Todo: use regex to compare, uppercase the categorie's first chart (check if front end does so?)
 
 async function addCategory(category: ICategory, userId: string) {
     try {

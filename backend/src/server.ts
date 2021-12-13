@@ -6,7 +6,6 @@ const cors = require('cors')
 // const path = require('path')
 const cookieParser = require('cookie-parser')
 
-// Todo: change from any to user
 declare global {
   namespace Express {
     interface Request {
