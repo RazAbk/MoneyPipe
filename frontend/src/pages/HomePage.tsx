@@ -58,9 +58,23 @@ export const HomePage = () => {
     const handleSignup = async () => {
         const errorsCopy = { ...errors }
 
-        // Todo: Improve userName and password validation
+        const passwordTest = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
+        const userNameTest = /^(?=[a-zA-Z0-9._]{4,25}$)(?!.*[_.]{2})[^_.].*[^_.]$/
+
         errorsCopy.userName = !formData.userName ? true : false
-        errorsCopy.password = !formData.password ? true : false
+
+        if(!formData.userName || !userNameTest.test(formData.userName)){
+            errorsCopy.userName = true
+        } else {
+            errorsCopy.userName = false
+        }
+
+        if(!formData.password || !passwordTest.test(formData.password)){
+            errorsCopy.password = true
+        } else {
+            errorsCopy.password = false
+        }
+
         errorsCopy.firstName = !formData.firstName ? true : false
         errorsCopy.lastName = !formData.lastName ? true : false
 
