@@ -7,6 +7,8 @@ import graphSvg from '../assets/images/graphssvg.svg'
 import { signup, login, getUser } from '../store/actions/user.action'
 import { setLoader } from '../store/actions/app-state.action'
 import { RootState } from '../store/store'
+import { GoogleLogin } from 'react-google-login';
+import { alertMessage } from '../services/alert.service'
 
 interface IErrors {
     [key: string]: boolean
@@ -24,7 +26,8 @@ export const HomePage = () => {
         userName: '',
         firstName: '',
         lastName: '',
-        password: ''
+        password: '',
+        isGoogle: false
     })
 
     const [errors, setErrors] = useState<IErrors>({
@@ -39,11 +42,11 @@ export const HomePage = () => {
             await dispatch(getUser())
         }
         _getUser()
-        
+
     }, [dispatch])
 
     useEffect(() => {
-        if(loggedInUser){
+        if (loggedInUser) {
             navigate('/mydata')
         }
     }, [loggedInUser, navigate])
@@ -75,10 +78,10 @@ export const HomePage = () => {
                 dispatch(setLoader(true))
                 const user: any = await dispatch(signup(formData))
                 dispatch(setLoader(false))
-                if(user){
+                if (user) {
                     navigate(`/mydata`)
                 } else {
-                    setErrors({...errors, userName: true, password: true})
+                    setErrors({ ...errors, userName: true, password: true })
                 }
             })()
 
@@ -104,16 +107,16 @@ export const HomePage = () => {
             errorsCopy.password = true
         }
 
-        
+
         if (isValid) {
             (async () => {
                 dispatch(setLoader(true))
                 const user: any = await dispatch(login(formData))
                 dispatch(setLoader(false))
-                if(user){
+                if (user) {
                     navigate(`/mydata`)
                 } else {
-                    setErrors(prevState => {return {...prevState, userName: true, password: true}})
+                    setErrors(prevState => { return { ...prevState, userName: true, password: true } })
                 }
             })()
         } else {
@@ -121,10 +124,49 @@ export const HomePage = () => {
         }
     }
 
+    const handleGoogleLogin = (responseGoogle: any) => {
+
+        const credendials = {
+            userName: responseGoogle.profileObj.email,
+            firstName: responseGoogle.profileObj.givenName,
+            lastName: responseGoogle.profileObj.familyName,
+            password: responseGoogle.profileObj.googleId,
+            picture: responseGoogle.profileObj.imageUrl,
+            isGoogle: true
+        };
+
+        
+        (async () => {
+            dispatch(setLoader(true))
+            const user: any = await dispatch(login({ userName: credendials.userName, password: credendials.password, isGoogle: true }))
+            dispatch(setLoader(false))
+            if (user) {
+                navigate(`/mydata`)
+            } else {
+                dispatch(setLoader(true))
+                const user: any = await dispatch(signup(credendials))
+                dispatch(setLoader(false))
+                if (user) {
+                    navigate(`/mydata`)
+                } else {
+                    setErrors({ ...errors, userName: true, password: true })
+                }
+            }
+        })()
+
+    }
+
+    const handleGoogleFail = () => {
+        alertMessage('Something went wrong, try again later...', 'warning', 3500)
+    }
+
     const switchFormState = () => {
         if (formState === 'signup') setFormState('login')
         else setFormState('signup')
     }
+
+
+    const googleClientId: string = process.env.REACT_APP_GOOGLE_CLIENT_ID || ''
 
     return (
         <>
@@ -147,7 +189,13 @@ export const HomePage = () => {
                         <Button onClick={formState === 'signup' ? handleSignup : handleLogin}>{formState === 'signup' ? 'Sign up' : 'Login'}</Button>
                     </Box>
                     <hr></hr>
-                    <Button>Google btn</Button>
+                    <GoogleLogin
+                        clientId={googleClientId}
+                        buttonText='Continue with Google'
+                        onSuccess={handleGoogleLogin}
+                        onFailure={handleGoogleFail}
+                        cookiePolicy={'single_host_origin'}
+                    />
                 </div>
             </div>
             <div className="dimmer-screen"></div>

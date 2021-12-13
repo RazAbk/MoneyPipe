@@ -8,6 +8,7 @@ export interface IUser {
     password?: string;
     createdAt: number;
     picture: string;
+    isGoogle: boolean;
     data?: IDataObject;
 }
 
@@ -15,7 +16,9 @@ export interface ICredentials {
     userName: string,
     password: string,
     firstName?: string,
-    lastName?: string
+    lastName?: string,
+    picture?: string,
+    isGoogle: boolean
 }
 
 export interface IUpdateForm {

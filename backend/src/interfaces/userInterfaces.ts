@@ -15,6 +15,7 @@ export interface IUser {
     lastName: string,
     createdAt: number,
     picture: string,
+    isGoogle: boolean,
     data: {
         currency: ICurrency,
         labels: ILabel[],

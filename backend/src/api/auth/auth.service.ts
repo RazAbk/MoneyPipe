@@ -8,14 +8,14 @@ module.exports = {
     login
 }
 
-async function signup(userName: string, password: string, firstName: string, lastName: string) {
+async function signup(userName: string, password: string, firstName: string, lastName: string, picture: string | undefined, isGoogle: boolean) {
     const saltRound = 10
 
     if (!userName || !password || !firstName || !lastName) return Promise.reject('fullname, username and password are required!')
 
     const hash = await bcrypt.hash(password, saltRound)
 
-    return await userService.addUser(userName, hash, firstName, lastName)
+    return await userService.addUser(userName, hash, firstName, lastName, picture, isGoogle)
 }
 
 async function login(userName: string, password: string, filterBy: IDateFilterBy) {

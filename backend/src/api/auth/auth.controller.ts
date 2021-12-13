@@ -12,14 +12,14 @@ module.exports = {
 
 async function signup(req: Request, res: Response) {
     try {
-        const { userName, password, firstName, lastName } = req.body
+        const { userName, password, firstName, lastName, picture, isGoogle } = req.body
 
         const isUserTaken = await userService.getByUsername(userName)
 
         if (isUserTaken) {
             res.status(500).send('username is taken')
         } else {
-            await authService.signup(userName, password, firstName, lastName)
+            await authService.signup(userName, password, firstName, lastName, picture, isGoogle)
             const user = await authService.login(userName, password)
 
             if (!user) res.json(null)

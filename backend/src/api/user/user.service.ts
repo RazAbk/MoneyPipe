@@ -52,7 +52,7 @@ async function _filterActions(actions: IAction[], filterBy: IDateFilterBy) {
     })
 }
 
-async function addUser(userName: string, password: string, firstName: string, lastName: string) {
+async function addUser(userName: string, password: string, firstName: string, lastName: string, picture: string | undefined, isGoogle: boolean) {
     try {
         const newUser = {
             userName,
@@ -60,7 +60,8 @@ async function addUser(userName: string, password: string, firstName: string, la
             firstName,
             lastName,
             createdAt: Date.now(),
-            picture: '',
+            picture: picture || '',
+            isGoogle,
             data: {
                 currency: {
                     sign: "₪",
