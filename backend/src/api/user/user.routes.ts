@@ -1,6 +1,7 @@
 import express from 'express'
 const { getData, getUser, updateUser, updateData, addAction, deleteAction, addCategory, deleteCategory, deleteLabel, addLabel } = require('./user.controller')
 const { authenticateToken } = require('../../middlewares/requireAuth.middleware')
+const { blockDemoUser } = require('../../middlewares/blockDemoUser.middleware')
 
 const userRouter = express.Router()
 
@@ -8,6 +9,8 @@ userRouter.use(authenticateToken)
 
 userRouter.get('/data', getData)
 userRouter.get('/user', getUser)
+
+userRouter.use(blockDemoUser)
 
 userRouter.put('/user', updateUser)
 userRouter.put('/data', updateData)
