@@ -8,7 +8,7 @@ import { VscTrash } from 'react-icons/vsc'
 import { useDispatch, useSelector } from 'react-redux'
 import { ICategory, IDataObject, IDataUpdateForm, ILabel } from '../../interfaces/dataInterfaces'
 import { IUpdateForm } from '../../interfaces/userInterfaces'
-import { alertMessage } from '../../services/alert.service'
+import { alertMessage, alertTitleMessage } from '../../services/alert.service'
 import { sessionStorageService } from '../../services/session-storage.service'
 import { userService } from '../../services/user.service'
 import { utilService } from '../../services/util.service'
@@ -91,6 +91,10 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
     }
 
     const handlePictureUpload = async (ev: React.ChangeEvent<HTMLInputElement>) => {
+        if(user.userName === 'DemoUser'){
+            alertTitleMessage('Opps...', 'Changes cannot be made on demo user', 'warning', 3500)
+            return
+        }
         if (ev.target.files && ev.target.files.length > 0) {
             dispatch(setLoader(true))
             alertMessage('Uploading image to cloud...', 'info', 3500)
