@@ -15,8 +15,6 @@ export const BalanceBlock = () => {
     useEffect(() => {
         if(rawData){
             const balance = rawData.actions.reduce((balance, action) => {
-                // Todo: remove dateFilter
-                // if (action.createdAt < filterBy.startDate || action.createdAt > filterBy.endDate) return balance
                 if (filterBy.category && action.category !== filterBy.category) return balance
                 if (filterBy.label && !action.labels.includes(filterBy.label)) return balance
                 if (!action.description.includes(filterBy.searchTxt)) return balance

@@ -136,7 +136,6 @@ function getRelativeDate(timeStamp: number) {
         return `Today ${date.hours}:${date.minutes}`
         // Yesterday
     } else if (now.day === utilService.getFormatedDigits(+date.day + 1) && now.year === date.year && now.month === date.month) {
-        // Todo: Improve! not accurate!
         return `Yesterday ${date.hours}:${date.minutes}`
     // Some Date
     } else {

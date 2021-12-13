@@ -43,8 +43,6 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
 
             setDataMap(rawData.actions.reduce((dataMap, action) => {
                 if (action.type !== type) return dataMap
-                // Todo: remove dateFilter
-                // if (action.createdAt < filterBy.startDate || action.createdAt > filterBy.endDate) return dataMap
                 if (filterBy.category && action.category !== filterBy.category) return dataMap
                 if (filterBy.label && !action.labels.includes(filterBy.label)) return dataMap
                 if (!action.description.includes(filterBy.searchTxt)) return dataMap
@@ -66,8 +64,6 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
 
             rawData.actions.filter(action => {
                 if (action.type !== type) return false
-                // Todo: remove dateFilter
-                // if (action.createdAt < filterBy.startDate || action.createdAt > filterBy.endDate) return false
                 if (filterBy.category && action.category !== filterBy.category) return false
                 if (filterBy.label && !action.labels.includes(filterBy.label)) return false
                 if (!action.description.includes(filterBy.searchTxt)) return false
