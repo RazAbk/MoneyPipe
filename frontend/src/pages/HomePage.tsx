@@ -185,7 +185,7 @@ export const HomePage = () => {
         <>
             <div className="homepage">
                 <div className="left-side">
-                    <h2>MoneyPipe</h2>
+                    <h2 className="app-logo">MoneyPipe</h2>
                     <div className="prase">
                         <h3>Tracking your money</h3>
                         <h3>has never been so simple</h3>
@@ -194,6 +194,7 @@ export const HomePage = () => {
                 </div>
                 <div className="right-side">
                     <h4 className="demo-user-btn">Watch the <span onClick={demoLogin}><b>demo</b></span></h4>
+                    <h2 className="app-logo">MoneyPipe</h2>
                     <h4 className="form-state-header">{formState === 'signup' ? 'Have an account? ' : `Don't have an account? `}<span onClick={switchFormState}><b>{formState === 'signup' ? 'Login' : 'Signup'}</b></span></h4>
                     <h2>{formState === 'signup' ? 'Create account' : 'Login'}</h2>
                     <Box onChange={handleChange} component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }} autoComplete="off">
