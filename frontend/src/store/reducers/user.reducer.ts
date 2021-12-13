@@ -8,7 +8,7 @@ interface IState {
     data: IDataObject | null
 }
 
-interface IAction {
+interface IReducerAction {
     type: string,
     [key: string]: any
 }
@@ -20,7 +20,7 @@ const initialState: IState = {
     data: null
 }
 
-export const userReducer = (state = initialState, action: IAction) => {
+export const userReducer = (state = initialState, action: IReducerAction) => {
     switch (action.type) {
         case 'SET_USER':
             return state = { ...state, loggedInUser: action.user }
