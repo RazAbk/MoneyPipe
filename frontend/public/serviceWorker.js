@@ -1,7 +1,7 @@
 const self = this;
 
 const staticCacheName = "static-assets-v1";
-// const dynamicCache = 'dynamic-assets-v1'
+const dynamicCache = 'dynamic-assets-v1'
 
 const assets = ["/", "/mydata"];
 
@@ -23,8 +23,8 @@ self.addEventListener("activate", (event) => {
     caches.keys().then((keys) => {
       return Promise.all(
         keys
-          .filter((key) => key !== staticCacheName)
-          .map((key) => caches.delete())
+          .filter((key) => key !== staticCacheName && key !== dynamicCache)
+          .map((key) => caches.delete(key))
       );
     })
   );
@@ -41,7 +41,7 @@ self.addEventListener("fetch", (event) => {
 //               cache.put(event.request.url, response.clone())
 //               return response
 //           })
-//       })
+//       }).catch(() => caches.match('/pages/fallback.html'))
     })
   );
 });
