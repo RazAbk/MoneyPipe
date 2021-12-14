@@ -8,6 +8,7 @@ import './styles/style.scss'
 import ReactNotification from 'react-notifications-component'
 import "animate.css"
 import 'react-notifications-component/dist/theme.css'
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,3 +19,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+serviceWorkerRegistration.register();
