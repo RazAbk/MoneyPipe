@@ -19,6 +19,7 @@
     "animate.css": "^4.1.1",
     "axios": "^0.24.0",
     "chart.js": "^3.6.0",
+    "cra-template-pwa": "^1.0.3",
     "date-fns": "^2.26.0",
     "keen-slider": "^5.5.1",
     "react": "^17.0.2",
@@ -33,7 +34,19 @@
     "redux-thunk": "^2.4.0",
     "sass": "^1.43.4",
     "typescript": "^4.4.4",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "workbox-background-sync": "^5.1.4",
+    "workbox-broadcast-update": "^5.1.4",
+    "workbox-cacheable-response": "^5.1.4",
+    "workbox-core": "^5.1.4",
+    "workbox-expiration": "^5.1.4",
+    "workbox-google-analytics": "^5.1.4",
+    "workbox-navigation-preload": "^5.1.4",
+    "workbox-precaching": "^5.1.4",
+    "workbox-range-requests": "^5.1.4",
+    "workbox-routing": "^5.1.4",
+    "workbox-strategies": "^5.1.4",
+    "workbox-streams": "^5.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
