@@ -6,8 +6,7 @@
   "background_color": "#292929",
   "display": "fullscreen",
   "scope": "/",
-  "start_url": "/index.html",
-  "favicon": "",
+  "start_url": "/",
   "icons": [
       {
           "src": "favicon.ico",
