@@ -10,6 +10,7 @@ import { setFilterBy } from '../store/actions/app-state.action'
 import { useNavigate } from 'react-router'
 import { IUser } from '../interfaces/userInterfaces'
 import { sessionStorageService } from '../services/session-storage.service'
+import { dateService } from '../services/date.service'
 
 interface IMainAppMenuProps {
     isMenuOpen: boolean;
@@ -37,7 +38,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionModalOpen, setSe
 
     const handleLabelClick = (value: string) => {
         const label = currentLabel === value ? '' : value
-        const newFilterBy = {...filterBy, label}
+        const newFilterBy = { ...filterBy, label }
         dispatch(setCurrentLabel(label))
         dispatch(setFilterBy(newFilterBy))
         setMenuOpen(false)
@@ -48,12 +49,21 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionModalOpen, setSe
             dispatch(setLoader(true))
             await dispatch(logout())
             dispatch(setLoader(false))
+
+            // Reset the global filterBy
+            dispatch(setFilterBy({
+                searchTxt: '',
+                startDate: dateService.getMonthStartTimeStamp(),
+                endDate: dateService.getDayMaxHour(Date.now()),
+                label: '',
+                category: ''
+            }))
             navigate('/')
         })()
     }
 
     const _getUserImage = () => {
-        if(user && user.picture){
+        if (user && user.picture) {
             return user.picture
         } else {
             return 'https://res.cloudinary.com/dfj4zd14o/image/upload/v1638993249/MoneyPipe_Users_assets/user_xco1rj.png'
@@ -64,7 +74,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionModalOpen, setSe
         <div className={`main-app-menu ${isMenuOpen ? 'open-menu' : ''}`}>
             <h1 className="app-logo">MoneyPipe</h1>
             <div className="user-details">
-                <div className="image" style={{backgroundImage: `url(${_getUserImage()})`}}></div>
+                <div className="image" style={{ backgroundImage: `url(${_getUserImage()})` }}></div>
                 <h3>{user && user.firstName} {user && user.lastName}</h3>
             </div>
             <div className="main-menu">
@@ -86,11 +96,11 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionModalOpen, setSe
                     <h2>My labels</h2>
                     <ul>
                         {data && data.labels.map(label => {
-                            return <li onClick={() => {handleLabelClick(label.labelName)}}
-                                       className={`${currentLabel === label.labelName ? 'menu-li-active' : ''}`}
-                                       key={label._id}>
-                                       {label.title}
-                                    </li>
+                            return <li onClick={() => { handleLabelClick(label.labelName) }}
+                                className={`${currentLabel === label.labelName ? 'menu-li-active' : ''}`}
+                                key={label._id}>
+                                {label.title}
+                            </li>
                         })}
                     </ul>
                 </div>
@@ -98,11 +108,11 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionModalOpen, setSe
 
             <div className="actions-bar">
                 <div className="account-actions">
-                    <IoMdExit className="logout-btn" onClick={handleLogout}/>
-                    <IoMdSettings onClick={() => {setSettingsModalOpen(true); setMenuOpen(false)}}/>
+                    <IoMdExit className="logout-btn" onClick={handleLogout} />
+                    <IoMdSettings onClick={() => { setSettingsModalOpen(true); setMenuOpen(false) }} />
                 </div>
                 <div className="quick-actions">
-                    <MdAddCircle onClick={() => {setActionModalOpen(true); setMenuOpen(false)}}/>
+                    <MdAddCircle onClick={() => { setActionModalOpen(true); setMenuOpen(false) }} />
                 </div>
             </div>
         </div>

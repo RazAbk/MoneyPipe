@@ -22,7 +22,6 @@ const initialState: IState = {
     filterBy: {
         searchTxt: '',
         startDate: dateService.getMonthStartTimeStamp(),
-        // startDate: new Date('01/01/2021'),
         endDate: dateService.getDayMaxHour(Date.now()),
         label: '',
         category: ''
