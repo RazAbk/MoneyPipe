@@ -8,6 +8,8 @@ module.exports = {
 function authenticateToken(req: Request, res: Response, next: NextFunction) {
     try{
         const token = req.cookies.token
+
+        if(!token) return res.status(200).send('')
         
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err: any, user: any) => {
             if (err) return res.status(401).send({title: 'Not authenticated!', msg: 'Please login to continue', type: 'danger'})
