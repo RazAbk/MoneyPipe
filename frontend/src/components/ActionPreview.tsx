@@ -28,7 +28,7 @@ export const ActionPreview = ({ action, setActionModalOpen }: IActionProps) => {
         }
     }
 
-    const onDelete = async (ev: any) => {
+    const onDelete = async (ev: React.MouseEvent<HTMLElement>) => {
         ev.stopPropagation()
         dispatch(setLoader(true))
         await dispatch(deleteAction(action._id))
@@ -36,7 +36,7 @@ export const ActionPreview = ({ action, setActionModalOpen }: IActionProps) => {
         dispatch(setSelectedAction(null))
     }
 
-    const onEdit = (ev: any) => {
+    const onEdit = (ev: React.MouseEvent<HTMLElement>) => {
         ev.stopPropagation()
         setActionModalOpen(true)
     }
