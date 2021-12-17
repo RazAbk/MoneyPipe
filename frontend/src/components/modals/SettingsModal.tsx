@@ -230,6 +230,12 @@ const CategoriesSettings = () => {
     const [addCategoryModal, setAddCategoryModal] = useState(false)
     const [selectedCategory, setSelectedCategory] = useState<ICategory | null>(null)
 
+    useEffect(() => {
+        if(!addCategoryModal){
+            setSelectedCategory(null)
+        }
+    }, [addCategoryModal])
+
     const handleDelete = async (categoryId: string) => {
         dispatch(setLoader(true))
         const res = await dispatch(deleteCategory(categoryId))
