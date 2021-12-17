@@ -3,7 +3,7 @@ require('dotenv').config()
 import express from 'express'
 import { IUser } from './interfaces/userInterfaces';
 const cors = require('cors')
-// const path = require('path')
+const path = require('path')
 const cookieParser = require('cookie-parser')
 
 declare global {
@@ -21,7 +21,7 @@ app.use(cookieParser())
 
 if (process.env.NODE_ENV === 'production') {
   // Express serves static files on production environment
-  // app.use(express.static(path.resolve(__dirname, 'public')))
+  app.use(express.static(path.resolve(__dirname, 'public')))
 } else {
   // Configuring CORS
   // Express serves static files on dev environment
@@ -43,7 +43,7 @@ app.use('/api/user', userRoutes)
 app.use('/api/auth', authRoutes)
 
 app.get('/**', (req, res) => {
-  res.status(200).send('hello!')
+  res.status(200).send(path.join(__dirname, 'public', 'index.html'))
 })
 
 const PORT = process.env.PORT || 3030;
