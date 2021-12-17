@@ -12,6 +12,7 @@ export const userService = {
     signup,
     login,
     logout,
+    deleteUser,
     updateUser,
     updateData,
     getData,
@@ -64,6 +65,19 @@ async function logout() {
     try {
         await axios.post(`${BASE_URL}/api/auth/logout`)
         sessionStorageService.remove('loggedInUser')
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+
+async function deleteUser() {
+    try {
+        const res = await axios.delete(`${BASE_URL}/api/user`)
+        if(!res.data.msg){
+            sessionStorageService.remove('loggedInUser')
+        }
+        return res.data
     } catch (err) {
         console.error(err)
     }

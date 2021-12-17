@@ -17,7 +17,8 @@ module.exports = {
     addCategory,
     deleteCategory,
     addLabel,
-    deleteLabel
+    deleteLabel,
+    deleteUser
 }
 
 async function getById(userId: string) {
@@ -267,12 +268,12 @@ async function deleteLabel(labelId: string, userId: string) {
         const user = await collection.findOne({ '_id': ObjectId(userId) })
 
         const labelIdx = user.data.labels.findIndex((label: ILabel) => label._id === labelId)
-        
+
         // Remove label from labels, and from any action including it
         if (labelIdx !== -1) {
             const deletedLabel: ILabel = user.data.labels.splice(labelIdx, 1)[0]
             user.data.actions = user.data.actions.map((action: IAction) => {
-                if(action.labels.includes(deletedLabel.labelName)){
+                if (action.labels.includes(deletedLabel.labelName)) {
                     const labelIdx = action.labels.findIndex((label: string) => label === deletedLabel.labelName)
                     action.labels.splice(labelIdx, 1)
                 }
@@ -283,6 +284,19 @@ async function deleteLabel(labelId: string, userId: string) {
         }
     } catch (err) {
         console.log('could not delete category')
+        throw err
+    }
+}
+
+
+async function deleteUser(userId: string) {
+    try {
+        const collection = await dbService.getCollection('users')
+        const result = await collection.deleteOne({ '_id': ObjectId(userId) })
+
+        return result.deletedCount
+    } catch (err) {
+        console.log('could not delete user')
         throw err
     }
 }

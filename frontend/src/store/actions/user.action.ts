@@ -6,8 +6,8 @@ import { AppDispatch } from "../store"
 
 export const signup = (credentials: ICredentials) => {
     return async (dispatch: AppDispatch) => {
-        const user = await userService.signup(credentials)
         try {
+            const user = await userService.signup(credentials)
             dispatch({
                 type: "SET_USER",
                 user
@@ -21,8 +21,8 @@ export const signup = (credentials: ICredentials) => {
 
 export const login = (credentials: ICredentials) => {
     return async (dispatch: AppDispatch) => {
-        const user = await userService.login(credentials)
         try {
+            const user = await userService.login(credentials)
             dispatch({
                 type: "SET_USER",
                 user
@@ -36,12 +36,35 @@ export const login = (credentials: ICredentials) => {
 
 export const logout = () => {
     return async (dispatch: AppDispatch) => {
-        await userService.logout()
         try {
+            await userService.logout()
             dispatch({
                 type: "SET_USER",
                 user: null
             })
+        } catch (err) {
+            console.error(err)
+        }
+    }
+}
+
+export const deleteUser = () => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const data = await userService.deleteUser()
+            if (data) {
+                if(!data.msg){
+                    dispatch({
+                        type: "SET_USER",
+                        user: null
+                    })
+                } else {
+                    alertTitleMessage(data.title, data.msg, data.type, 3500)
+                }
+            } else {
+                alertTitleMessage('Opps, an error occurred', 'Could not delete your account, try again later', 'danger', 3500)
+            }
+            return data
         } catch (err) {
             console.error(err)
         }
@@ -77,7 +100,6 @@ export const getUser = () => {
                     type: "SET_USER",
                     user: data
                 })
-            return data
             } else {
                 alertTitleMessage(data.title, data.msg, data.type, 3500)
             }
@@ -112,7 +134,7 @@ export const updateData = (updatedData: IDataUpdateForm) => {
     return async (dispatch: AppDispatch) => {
         try {
             const data = await userService.updateData(updatedData)
-            if(!data.msg){
+            if (!data.msg) {
 
                 dispatch({
                     type: "SET_DATA",

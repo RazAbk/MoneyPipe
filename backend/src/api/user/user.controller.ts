@@ -13,7 +13,8 @@ module.exports = {
     addCategory,
     deleteCategory,
     addLabel,
-    deleteLabel
+    deleteLabel,
+    deleteUser
 }
 
 // User
@@ -144,6 +145,19 @@ async function deleteLabel(req: Request, res: Response) {
         res.json(data)
     } catch (err) {
         const errorMsg: IErrorMsg = { title: 'Opps, an error occurred', msg: 'Could not delete later, try again later', type: 'danger' }
+        res.status(200).send(errorMsg)
+    }
+}
+
+async function deleteUser(req: Request, res: Response) {
+    try{
+        const data = await userService.deleteUser(req.user._id)
+        if(data){
+            res.clearCookie('token')
+        }
+        res.json(data)
+    } catch(err) {
+        const errorMsg: IErrorMsg = { title: 'Opps, an error occurred', msg: 'Could not delete your account, try again later', type: 'danger' }
         res.status(200).send(errorMsg)
     }
 }

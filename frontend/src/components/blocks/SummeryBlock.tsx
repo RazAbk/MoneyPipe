@@ -6,6 +6,7 @@ import { Pie } from 'react-chartjs-2';
 import { ActionPreview } from '../ActionPreview';
 import { utilService } from '../../services/util.service';
 import { dateService } from '../../services/date.service';
+import { Loader } from '../Loader';
 
 interface ISummeryBlockProps {
     type: string;
@@ -68,7 +69,7 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
                 if (filterBy.label && !action.labels.includes(filterBy.label)) return false
                 if (!action.description.includes(filterBy.searchTxt)) return false
                 return true
-            }).sort((a,b) => b.createdAt - a.createdAt).forEach(action => {
+            }).sort((a, b) => b.createdAt - a.createdAt).forEach(action => {
                 const date = new Date(action.createdAt)
                 const dateStr = `${utilService.getFormatedDigits(date.getMonth() + 1)}/${dateService.getShortYear(date.getFullYear())}`
                 if (actionsObj[dateStr]) actionsObj[dateStr].push(action)
@@ -97,6 +98,8 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
         }
     }, [dataMap])
 
+    if(!rawData) return <Loader />
+
     return (
         <div className="summery-blocks keen-slider__slide">
             {currentViewMode === 'Summery' &&
@@ -118,12 +121,12 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
                             </div>
                         })}
                     </div>
-                    {pieData && <h2 className="summery-block-total" style={{color: type === 'expense' ? '#8A0000' : '#00600F'}}>
-                                    {pieData?.datasets[0].data.reduce((sum, expense) => {
-                                        sum += expense
-                                        return sum
-                                    }, 0).toLocaleString()}{rawData.currency.sign}
-                                </h2>
+                    {pieData && <h2 className="summery-block-total" style={{ color: type === 'expense' ? '#8A0000' : '#00600F' }}>
+                        {pieData?.datasets[0].data.reduce((sum, expense) => {
+                            sum += expense
+                            return sum
+                        }, 0).toLocaleString()}{rawData.currency.sign}
+                    </h2>
                     }
                 </div>
             }
@@ -132,7 +135,7 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
                 {actionsData && Object.entries(actionsData).map(month => {
                     return (
                         <React.Fragment key={`${month[0]}-${type}`}>
-                            <h3 className="actions-month">{`${month[0]} - ${month[1].reduce((sum, action) => { sum += +action.amount; return sum}, 0).toLocaleString()}${rawData.currency.sign}`}</h3>
+                            <h3 className="actions-month">{`${month[0]} - ${month[1].reduce((sum, action) => { sum += +action.amount; return sum }, 0).toLocaleString()}${rawData.currency.sign}`}</h3>
                             {
                                 month[1].sort((a, b) => b.createdAt - a.createdAt).map(action => <ActionPreview key={action._id} action={action} setActionModalOpen={setActionModalOpen} />)
                             }

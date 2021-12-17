@@ -6,6 +6,7 @@ import { FaRegEdit } from 'react-icons/fa'
 import { FiUpload } from 'react-icons/fi'
 import { VscTrash } from 'react-icons/vsc'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { ICategory, IDataObject, IDataUpdateForm, ILabel } from '../../interfaces/dataInterfaces'
 import { IUpdateForm } from '../../interfaces/userInterfaces'
 import { alertMessage, alertTitleMessage } from '../../services/alert.service'
@@ -13,9 +14,10 @@ import { sessionStorageService } from '../../services/session-storage.service'
 import { userService } from '../../services/user.service'
 import { utilService } from '../../services/util.service'
 import { setLoader } from '../../store/actions/app-state.action'
-import { deleteCategory, deleteLabel, updateData, updateUser } from '../../store/actions/user.action'
+import { deleteCategory, deleteLabel, deleteUser, updateData, updateUser } from '../../store/actions/user.action'
 import { RootState } from '../../store/store'
 import { GetIcon } from '../GetIcon'
+import { Loader } from '../Loader'
 import { Screen } from '../Screen'
 import { CategoryModal } from './CategoryModal'
 import { ConfirmModal } from './ConfirmModal'
@@ -63,15 +65,18 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
     }
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const user = useSelector((state: RootState) => state.userModule.loggedInUser) || sessionStorageService.load('loggedInUser')
 
     const [formData, setFormData] = useState<IForm>({
-        firstName: user.firstName,
-        lastName: user.lastName,
+        firstName: user?.firstName || '',
+        lastName: user?.lastName || '',
         password1: '',
         password2: '',
         picture: null
     })
+
+    const [confirmModal, setConfirmModal] = useState(false)
 
     const [errors, setErrors] = useState({
         password: false
@@ -84,7 +89,7 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
     }
 
     const handleUploadClick = () => {
-        if(user.userName === 'DemoUser'){
+        if (user.userName === 'DemoUser') {
             alertTitleMessage('Opps...', 'Changes cannot be made on demo user', 'warning', 3500)
             return
         }
@@ -139,23 +144,54 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
         closeModal(false)
     }
 
-    return (
-        <div className="account-settings">
-            <div className="inputs">
-                <TextField autoComplete="off" value={formData.firstName} name="firstName" onChange={handleChange} label="first name" variant="outlined" />
-                <TextField autoComplete="off" value={formData.lastName} name="lastName" onChange={handleChange} label="last name" variant="outlined" />
-                {!user.isGoogle &&
-                    <>
-                        <TextField autoComplete="off" value={formData.password1} name="password1" onChange={handleChange} label="new password" type="password" error={errors.password} variant="outlined" />
-                        <TextField autoComplete="off" value={formData.password2} name="password2" onChange={handleChange} label="verify password" type="password" error={errors.password} variant="outlined" />
-                    </>
-                }
-                <Button onClick={handleUploadClick}>upload new picture<FiUpload /></Button>
-                <input ref={pictureRef} type="file" onChange={handlePictureUpload} style={{ display: 'none' }} />
-                <p>*change only what's needed</p>
-            </div>
-            <Button onClick={handleSubmit}>submit</Button>
+    const handleConfirmModal = async () => {
+        setConfirmModal(true)
+    }
+
+    const modalMessage = (
+        <div>
+            <h3>This is irreversible.</h3>
+            <h3>Deleting your account will delete all of it's data forever.</h3>
         </div>
+    )
+
+    const handleModalAnswer = async (answer: boolean) => {
+        if (answer) {
+            dispatch(setLoader(true))
+            const res = await dispatch(deleteUser())
+            dispatch(setLoader(false))
+            if(!res){
+                console.log('could not delete user')
+            } else {
+                navigate('/')
+            }
+        }
+    }
+
+    if(!user) return <Loader/>
+
+    return (
+        <>
+            <div className="account-settings">
+                <div className="inputs">
+                    <TextField autoComplete="off" value={formData.firstName} name="firstName" onChange={handleChange} label="first name" variant="outlined" />
+                    <TextField autoComplete="off" value={formData.lastName} name="lastName" onChange={handleChange} label="last name" variant="outlined" />
+                    {!user.isGoogle &&
+                        <>
+                            <TextField autoComplete="off" value={formData.password1} name="password1" onChange={handleChange} label="new password" type="password" error={errors.password} variant="outlined" />
+                            <TextField autoComplete="off" value={formData.password2} name="password2" onChange={handleChange} label="verify password" type="password" error={errors.password} variant="outlined" />
+                        </>
+                    }
+                    <Button onClick={handleUploadClick}>upload new picture<FiUpload /></Button>
+                    <input ref={pictureRef} type="file" onChange={handlePictureUpload} style={{ display: 'none' }} />
+                    <p>*change only what's needed</p>
+                </div>
+                <Button onClick={handleSubmit}>submit</Button>
+                <Button className="delete-account-btn" onClick={handleConfirmModal}>delete account</Button>
+            </div>
+            <Screen isOpen={confirmModal} exitScreen={setConfirmModal} zIndex="120" />
+            {confirmModal && <ConfirmModal title="Warning" message={modalMessage} setAnswer={handleModalAnswer} closeModal={setConfirmModal} />}
+        </>
     )
 }
 
@@ -231,7 +267,7 @@ const CategoriesSettings = () => {
     const [selectedCategory, setSelectedCategory] = useState<ICategory | null>(null)
 
     useEffect(() => {
-        if(!addCategoryModal){
+        if (!addCategoryModal) {
             setSelectedCategory(null)
         }
     }, [addCategoryModal])

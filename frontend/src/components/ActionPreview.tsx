@@ -7,6 +7,7 @@ import { VscTrash } from 'react-icons/vsc'
 import { setLoader, setSelectedAction } from '../store/actions/app-state.action'
 import { deleteAction } from '../store/actions/user.action'
 import { dateService } from '../services/date.service'
+import { Loader } from './Loader'
 
 
 interface IActionProps {
@@ -55,7 +56,7 @@ export const ActionPreview = ({ action, setActionModalOpen }: IActionProps) => {
 
     const categoryData = findCategoryData(action.category)
 
-    if (!categoryData) return <h1>Loading</h1>
+    if (!categoryData) return <Loader />
     return (
         <div className={`action-preview ${selectedAction?._id === action._id ? 'selected-action' : ''}`} onClick={handleActionClick}>
             <div className="left-side ">

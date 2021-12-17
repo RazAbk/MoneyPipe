@@ -1,5 +1,5 @@
 import express from 'express'
-const { getData, getUser, updateUser, updateData, addAction, deleteAction, addCategory, deleteCategory, deleteLabel, addLabel } = require('./user.controller')
+const { getData, getUser, updateUser, updateData, addAction, deleteAction, addCategory, deleteCategory, deleteLabel, addLabel, deleteUser } = require('./user.controller')
 const { authenticateToken } = require('../../middlewares/requireAuth.middleware')
 const { blockDemoUser } = require('../../middlewares/blockDemoUser.middleware')
 
@@ -22,5 +22,6 @@ userRouter.post('/label', addLabel)
 userRouter.delete('/action/:actionId', deleteAction)
 userRouter.delete('/category/:categoryId', deleteCategory)
 userRouter.delete('/label/:labelId', deleteLabel)
+userRouter.delete('/', deleteUser)
 
 module.exports = userRouter
