@@ -3,7 +3,30 @@
 App is in the proccess!
 
 \
-•03/12/2021 update:
+18/12/2021 update
+\
+\
+• First successfull deploy to heroku:\
+https://moneypipe.herokuapp.com/
+
+
+\
+10/12/2021 update:
+
+\
+• Node.js server is 🔥:
+
+
+  • Full CRUD - Full control on data: add, edit and delete actions, categories, labels 
+
+  • User can change his settings: (name, password, picture, currency...) 
+
+  • Error handling - when something goes wrong, the user is informed with nice alerts UI 
+
+
+
+\
+03/12/2021 update:
 
 \
 • Live page is ready to view & experience:\
@@ -21,23 +44,7 @@ https://money-pipe.netlify.app/
 • Add custom categories & labels by your own personal needs
 
 • Use on desktop, mobile & tablet
-\
-\
-\
-•10/12/2021 update:
 
-\
-• Node.js server is 🔥:
-
-
-  • Full CRUD - Full control on data: add, edit and delete actions, categories, labels 
-
-  • User can change his settings: (name, password, picture, currency...) 
-
-  • Error handling - when something goes wrong, the user is informed with nice alerts UI 
-
-
-\
 \
 MoneyPipe is an incomes & expenses personal managment app.
 
