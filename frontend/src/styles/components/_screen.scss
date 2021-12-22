@@ -9,12 +9,13 @@
     width: 100vw;
     height: 100vh;
     z-index: 90;
-    transition: 0.3s;
     
+    transition: 0.3s;
 }
 
 .screen-active {
     background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(1.5px) saturate(85%);
     pointer-events: visible;
     transition: 0.3s;
 }
