@@ -21,7 +21,6 @@
     "chart.js": "^3.6.0",
     "cra-template-pwa": "^1.0.3",
     "date-fns": "^2.26.0",
-    "keen-slider": "^5.5.1",
     "react": "^17.0.2",
     "react-chartjs-2": "^3.3.0",
     "react-dom": "^17.0.2",

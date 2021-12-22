@@ -101,7 +101,7 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
     if(!rawData) return <Loader />
 
     return (
-        <div className="summery-blocks keen-slider__slide">
+        <div className="summery-blocks">
             {currentViewMode === 'Summery' &&
                 <div className="summery-block">
                     <h2 className="summery-block-title">{type === 'expense' ? 'Expenses' : 'Incomes'}</h2>
