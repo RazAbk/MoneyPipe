@@ -22,7 +22,6 @@ interface IModalProps {
 const emptyFilterBy = {
     category: "",
     startDate: dateService.getMonthStartTimeStamp(),
-    // startDate: new Date('01/01/2021').getTime(),
     endDate: dateService.getDayMaxHour(Date.now()),
     label: "",
     searchTxt: ""
@@ -81,6 +80,7 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
                             <FormControl className="input-field" fullWidth>
                                 <InputLabel id="category">Category</InputLabel>
                                 <Select fullWidth labelId="category" id="category" value={filterBy.category} label="Category" name="category" onChange={handleChange}>
+                                    <MenuItem key={`cat-filter-none-option`} value={""}>None</MenuItem>
                                     {rawData && rawData.categories.map(category => <MenuItem key={`cat-filter-${category.title}`} value={category.title}>{category.title}</MenuItem>)}
                                 </Select>
                             </FormControl>
@@ -89,6 +89,7 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
                             <FormControl className="input-field" fullWidth>
                                 <InputLabel id="label">Label</InputLabel>
                                 <Select fullWidth labelId="label" id="label" value={filterBy.label} label="Label" name="label" onChange={handleChange}>
+                                    <MenuItem key={`lab-filter-none-option`} value={""}>None</MenuItem>
                                     {rawData && rawData.labels.map(label => <MenuItem key={`lab-filter-${label._id}`} value={label.labelName}>{label.title}</MenuItem>)}
                                 </Select>
                             </FormControl>
