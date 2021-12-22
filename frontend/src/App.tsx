@@ -4,9 +4,6 @@ import { Route, Routes } from 'react-router'
 import { HomePage } from './pages/HomePage';
 import { MainApp } from './pages/MainApp';
 import { Loader } from './components/Loader';
-import { PaginationDots } from './components/PaginationDots';
-
-
 
 function App() {
   return (
@@ -16,7 +13,6 @@ function App() {
         <Route path='/mydata' element={<MainApp />} />
         <Route path='/' element={<HomePage />} />
       </Routes>
-      <PaginationDots />
     </Router>
   );
 }

@@ -17,6 +17,7 @@ import { dateService } from '../services/date.service'
 import { SettingsModal } from '../components/modals/SettingsModal'
 import { useNavigate } from 'react-router'
 import { utilService } from '../services/util.service'
+import { PaginationDots } from '../components/PaginationDots'
 
 
 export const MainApp = () => {
@@ -88,6 +89,8 @@ export const MainApp = () => {
 
                 </div>
             </div>
+
+            <PaginationDots />
 
             <Screen isOpen={isMenuOpen} exitScreen={setMenuOpen} />
             <Screen isOpen={isSearchModalOpen} exitScreen={setSearchModalOpen} />
