@@ -32,7 +32,7 @@
     background-position: 100% 100%;
 
     .right-side{
-        backdrop-filter: saturate(0%) blur(5px);
+        backdrop-filter: saturate(40%) blur(7px);
    
         position: relative;
         width: 100%;
@@ -106,6 +106,13 @@
                 color: #357DB1;
             }
         }
+
+        .form-title{
+            display: none;
+            @include for-tablet{
+                display: initial;
+            }
+        }
         
     }
 
@@ -169,7 +176,7 @@
         .right-side{
             width: 55%;
             padding: 2.5rem 1rem;
-            justify-content: unset;
+            justify-content: space-evenly;
 
             form{
                 .name-fields{
