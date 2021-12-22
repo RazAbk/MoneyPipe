@@ -159,19 +159,6 @@
   }
 }
 
-// .mobile-only {
-//   @include for-tablet {
-//     display: none;
-//   }
-// }
-
-// .above-mobile {
-//   display: none;
-//   @include for-tablet {
-//     display: flex;
-//   }
-// }
-
 .swipe-btn {
   position: fixed;
   top: 50%;
@@ -180,23 +167,6 @@
   margin: 0.5rem;
 
   transition: color 0.1s;
-}
-
-.pagination-dots {
-  position: fixed;
-  bottom: 0%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-
-.pagination-dot {
-  color: rgba(29, 29, 29, 0.8);
-  transition: 0.2s;
-}
-
-.fade-dot {
-  color: rgba(83, 83, 83, 0.6);
 }
 
 .no-data-title {

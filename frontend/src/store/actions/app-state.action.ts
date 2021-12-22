@@ -1,6 +1,16 @@
 import { IAction, IFilterBy } from "../../interfaces/dataInterfaces"
 import { AppDispatch } from "../store"
 
+export const setBlocksIdx = (blocksIdx: number) => {
+    return (dispatch: AppDispatch) => {
+        dispatch({
+            type: "SET_BLOCKS_IDX",
+            blocksIdx
+        })
+    }
+}
+
+
 export const setLoader = (loaderState: boolean) => {
     return (dispatch: AppDispatch) => {
         dispatch({
