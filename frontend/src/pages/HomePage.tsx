@@ -7,7 +7,7 @@ import { signup, login, getUser } from '../store/actions/user.action'
 import { setLoader } from '../store/actions/app-state.action'
 import { RootState } from '../store/store'
 import { GoogleLogin } from 'react-google-login';
-import { alertMessage } from '../services/alert.service'
+import { alertMessage, alertTitleMessage } from '../services/alert.service'
 import graphSvg from '../assets/images/graphssvg.svg'
 
 interface IErrors {
@@ -58,18 +58,24 @@ export const HomePage = () => {
     const handleSignup = async () => {
         const errorsCopy = { ...errors }
 
-        const passwordTest = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
-        const userNameTest = /^(?=[a-zA-Z0-9._]{4,25}$)(?!.*[_.]{2})[^_.].*[^_.]$/
+        const userNameTest = /^[A-Za-z][A-Za-z0-9!@#$%^&*\(\)_]{5,30}$/ // First char is a letter, rest can be numbers, letters or symbols, 5-30 length
+        const passwordTest = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*_-]).{8,}$/ // At least on of each: uppercase letter, lowercase letter, digit, symbol, length of at least 8
+
+        const isValidUserName = userNameTest.test(formData.userName)
+        const isValidPassword = passwordTest.test(formData.password)
+
+        if(!isValidPassword) alertTitleMessage('Invalid password', 'Must include at least 8 characters: upper and lower case, symbols and numbers', 'danger', 12000)
+        if(!isValidUserName) alertTitleMessage('Invalid username', 'Must include at least 5 characters: letters, numbers and symbols', 'danger', 12000)
 
         errorsCopy.userName = !formData.userName ? true : false
 
-        if(!formData.userName || !userNameTest.test(formData.userName)){
+        if (!formData.userName || !isValidUserName) {
             errorsCopy.userName = true
         } else {
             errorsCopy.userName = false
         }
 
-        if(!formData.password || !passwordTest.test(formData.password)){
+        if (!formData.password || !isValidPassword) {
             errorsCopy.password = true
         } else {
             errorsCopy.password = false
@@ -182,7 +188,7 @@ export const HomePage = () => {
     const demoLogin = () => {
         (async () => {
             dispatch(setLoader(true))
-            const user: any = await dispatch(login({userName: 'DemoUser', password: '1234', isGoogle: false}))
+            const user: any = await dispatch(login({ userName: 'DemoUser', password: '1234', isGoogle: false }))
             dispatch(setLoader(false))
             if (user) {
                 navigate(`/mydata`)
@@ -212,7 +218,7 @@ export const HomePage = () => {
                     <h4 className="form-state-header">{formState === 'signup' ? 'Have an account? ' : `Don't have an account? `}<span onClick={switchFormState}><b>{formState === 'signup' ? 'Login' : 'Signup'}</b></span></h4>
                     <h2>{formState === 'signup' ? 'Create account' : 'Login'}</h2>
                     <Box onChange={handleChange} component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }} autoComplete="off">
-                        <TextField autoComplete="off" label="username" error={errors.userName} name="userName" value={formData.userName} helperText={errors.userName ? 'invalid user name' : ''} />
+                        <TextField autoComplete="off" label="username" error={errors.userName} name="userName" value={formData.userName} helperText={errors.userName ? 'invalid username' : ''} />
                         {formState === 'signup' && <div className="name-fields">
                             <TextField autoComplete="off" label="first name" error={errors.firstName} name="firstName" value={formData.firstName} />
                             <TextField autoComplete="off" label="last name" error={errors.lastName} name="lastName" value={formData.lastName} />
