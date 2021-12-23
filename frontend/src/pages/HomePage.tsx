@@ -59,10 +59,11 @@ export const HomePage = () => {
         const errorsCopy = { ...errors }
 
         const userNameTest = /^[A-Za-z][A-Za-z0-9!@#$%^&*_]{5,30}$/ // First char is a letter, rest can be numbers, letters or symbols, 5-30 length
-        const passwordTest = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*_-]).{8,}$/ // At least on of each: uppercase letter, lowercase letter, digit, symbol, length of at least 8
+        const passwordTests = [/^[A-Za-z0-9!@#$%^&*_].{8,}$/, /[A-Z]/, /[a-z]/, /[!@#$%^&*_]/] // At least on of each: uppercase letter, lowercase letter, digit, symbol, length of at least 8
+
 
         const isValidUserName = userNameTest.test(formData.userName)
-        const isValidPassword = passwordTest.test(formData.password)
+        const isValidPassword = passwordTests.every(test => test.test(formData.password))
 
         if(!isValidPassword) alertTitleMessage('Invalid password', 'Must include at least 8 characters: upper and lower case, symbols and numbers', 'danger', 12000)
         if(!isValidUserName) alertTitleMessage('Invalid username', 'Must include at least 5 characters: letters, numbers and symbols', 'danger', 12000)
