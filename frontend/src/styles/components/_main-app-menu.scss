@@ -2,7 +2,7 @@
     background-color: $main-dark-color;
     color: $txt-light-color;
     width: 17rem;
-    height: 100vh;
+    height: 100%;
     box-sizing: border-box;
     
     position: fixed;
@@ -144,8 +144,11 @@
             }
         }
     }
+
+    
     
     @include for-desktop{
+        height: 100vh;
         min-width: 23rem;
         position: static;
         transform: unset;
