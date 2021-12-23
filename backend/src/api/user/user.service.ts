@@ -26,6 +26,18 @@ async function getById(userId: string) {
         const collection = await dbService.getCollection('users')
         const user = await collection.findOne({ '_id': ObjectId(userId) })
         delete user.password
+
+        user.data.labels.sort((a:ILabel ,b:ILabel) => {
+            if(a.labelName > b.labelName) return 1
+            if(a.labelName < b.labelName) return -1
+            return 0
+        })
+        user.data.categories.sort((a: ICategory, b: ICategory) => {
+            if(a.title > b.title) return 1
+            if(a.title < b.title) return -1
+            return 0
+        })
+
         return user
     } catch (err) {
         console.log('could not get user by id')
@@ -38,7 +50,6 @@ async function getByUsername(userName: string) {
     try {
         const collection = await dbService.getCollection('users')
         const user = await collection.findOne({ userName: userName })
-
         return user
     } catch (err) {
         console.log(`error accrued while finding user ${userName}`, err)
