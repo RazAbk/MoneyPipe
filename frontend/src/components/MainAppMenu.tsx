@@ -58,6 +58,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionModalOpen, setSe
                 label: '',
                 category: ''
             }))
+            dispatch(setCurrentViewMode('Summery'))
             navigate('/')
         })()
     }
