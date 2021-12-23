@@ -112,7 +112,10 @@ function getIcons() {
         'old-phone',
         'text',
         'apple',
-        'globe'
+        'globe',
+        'gym',
+        'clothes',
+        'plane'
     ]
 }
 

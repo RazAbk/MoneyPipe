@@ -3,9 +3,10 @@ import { IoIosWarning } from 'react-icons/io'
 
 import { HiShoppingCart } from 'react-icons/hi'
 import { MdDirectionsCar, MdFastfood } from 'react-icons/md'
-import { FaMotorcycle, FaBeer, FaEnvira, FaFly, FaHotjar, FaItunesNote, FaUntappd, FaBabyCarriage, FaBasketballBall, FaBicycle, FaBoxOpen, FaBook, FaBone, FaBus, FaBuilding, FaCampground, FaCamera, FaCapsules, FaCity, FaChartPie, FaChurch, FaCocktail, FaCode, FaCoins, FaDog, FaExclamationCircle, FaFaucet, FaExclamationTriangle, FaFilm, FaGasPump, FaGuitar, FaHamburger, FaHammer, FaHeart, FaInfoCircle, FaLaptop, FaMobileAlt, FaPeopleCarry, FaSmoking, FaSubway, FaUserGraduate } from 'react-icons/fa'
+import { FaMotorcycle, FaBeer, FaEnvira, FaFly, FaHotjar, FaItunesNote, FaUntappd, FaBabyCarriage, FaBasketballBall, FaBicycle, FaBoxOpen, FaBook, FaBone, FaBus, FaBuilding, FaCampground, FaCamera, FaCapsules, FaCity, FaChartPie, FaChurch, FaCocktail, FaCode, FaCoins, FaDog, FaExclamationCircle, FaFaucet, FaExclamationTriangle, FaFilm, FaGasPump, FaGuitar, FaHamburger, FaHammer, FaHeart, FaInfoCircle, FaLaptop, FaMobileAlt, FaPeopleCarry, FaSmoking, FaSubway, FaUserGraduate, FaPlane } from 'react-icons/fa'
 import { BsFillHouseDoorFill } from 'react-icons/bs'
-import { GiMoneyStack } from 'react-icons/gi'
+import { GiClothes, GiMoneyStack } from 'react-icons/gi'
+import { CgGym } from 'react-icons/cg'
 import { AiFillBank, AiFillCodeSandboxCircle, AiFillPhone,AiOutlineAlignLeft, AiOutlineApple, AiOutlineGlobal } from 'react-icons/ai'
 
 
@@ -35,6 +36,7 @@ export const GetIcon = ({ iconName }: IconProps) => {
         {iconName === 'baby' && <FaBabyCarriage />}
         {iconName === 'ball' && <FaBasketballBall />}
         {iconName === 'bicycle' && <FaBicycle />}
+        {iconName === 'plane' && <FaPlane />}
         {iconName === 'box' && <FaBoxOpen />}
         {iconName === 'book' && <FaBook />}
         {iconName === 'student' && <FaUserGraduate />}
@@ -67,6 +69,8 @@ export const GetIcon = ({ iconName }: IconProps) => {
         {iconName === 'text' && <AiOutlineAlignLeft />}
         {iconName === 'apple' && <AiOutlineApple />}
         {iconName === 'globe' && <AiOutlineGlobal />}
+        {iconName === 'gym' && <CgGym />}
+        {iconName === 'clothes' && <GiClothes />}
 
         {!iconName && <IoIosWarning />}
     </>
