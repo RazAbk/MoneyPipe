@@ -57,15 +57,15 @@
   justify-content: space-between;
   gap: 0.5rem;
 
-  height: calc(100vh - 6rem - 4.5rem - 4.5rem);
+  height: calc(100vh - 15rem);
 
   @include for-tablet {
-    height: calc(100vh - 7.25rem - 4.5rem - 4.5rem);
+    height: calc(100vh - 16.25rem);
   }
 
   @include for-desktop {
     gap: 2rem;
-    height: calc(100vh - 2.75rem - 4.5rem - 4.5rem);
+    height: calc(100vh - 11.75rem);
   }
 
   .summery-block-title,
@@ -122,16 +122,17 @@
 
   margin: 0.4rem 0;
   width: calc(99vw - 1rem);
-  height: calc(100vh - 5.75rem - 4.5rem - 4.5rem);
+  height: calc(100vh - 15rem);
 
   @include for-tablet {
-    min-height: calc(100vh - 7rem - 4.5rem - 4.5rem);
+    height: calc(100vh - 16.25rem);
+    min-height: calc(100vh - 16.25rem);
   }
 
   @include for-desktop {
     width: 98%;
     gap: 2rem;
-    min-height: calc(100vh - 2.5rem - 4.5rem - 4.5rem);
+    min-height: calc(100vh - 11.75rem);
   }
 
   .graph{
