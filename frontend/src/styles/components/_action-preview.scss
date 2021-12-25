@@ -78,6 +78,16 @@
     .right-side{
         transition: 0.2s;
     }
+
+    @include for-desktop{
+        &:hover {
+            background-color: rgba(150, 150, 150, 0.1);
+        }
+    }
+
+    &:last-child{
+        border-radius: 0 0 10px 10px;
+    }
 }
 
 .selected-action{
