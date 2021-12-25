@@ -1,52 +1,40 @@
-# MoneyPipe
+# MoneyPipe - <a href="https://moneypipe.herokuapp.com/">View Live Site</a>
 
-App is in the proccess!
-
-\
-18/12/2021 update
-\
-\
-• First successfull deploy to heroku:\
-https://moneypipe.herokuapp.com/
-
-
-\
-10/12/2021 update:
-
-\
-• Node.js server is 🔥:
-
-
-  • Full CRUD - Full control on data: add, edit and delete actions, categories, labels 
-
-  • User can change his settings: (name, password, picture, currency...) 
-
-  • Error handling - when something goes wrong, the user is informed with nice alerts UI 
+MoneyPipe is an incomes & expenses personal managment app, with emphasis on data visualization.
+<br>
 
 
 
-\
-03/12/2021 update:
+## About The Project
+The 2 main reasons why I built this project:
+* Since I'm used to track all of my incomes and expenses for the past 3 years, I figured why not building my own personal tool that does exactly what I need.
+* Learning new technologies, and the best practices for building a great web app.
 
-\
-• Live page is ready to view & experience:\
-(front end only)\
-https://money-pipe.netlify.app/
+<br>
+MoneyPipe is a <a href="https://web.dev/progressive-web-apps/">PWA</a>(Progressive web app) - which means you can install it on your device - mobile or desktop.
+<br>
+It will allow you a better user experience, as well as a native app like experience.
 
-• Data from all over 2021 is available
 
-• use the 🔎 to filter different periods of time
+## Technologies I Used
 
-• Choose between 'Summery' and 'Graph' view modes
+* [React.js](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [TypeScript](https://www.typescriptlang.org/) (Both client and server)
+* [Sass](https://sass-lang.com/)
+* [Node.js](https://nodejs.org/en/)
+* [Express.js](https://expressjs.com/)
+* [MongoDB](https://www.mongodb.com/)
+* [JWT](https://jwt.io/)
+* [PWA](https://web.dev/progressive-web-apps/)
 
-• Add, Edit & Delete actions
 
-• Add custom categories & labels by your own personal needs
 
-• Use on desktop, mobile & tablet
+## screen-shots
+![s1](https://user-images.githubusercontent.com/85071405/147366342-f2dedf7d-a8ac-440e-b5f3-aa38e820aa4d.jpg)
+![s2](https://user-images.githubusercontent.com/85071405/147366347-31b5e0b7-64d2-410a-b7eb-9ff2a645f5c8.jpg)
+![s3](https://user-images.githubusercontent.com/85071405/147366358-4e831c12-83ec-429a-a3a0-51ab6bded818.jpg)
+![s4](https://user-images.githubusercontent.com/85071405/147366367-d1fba11d-0b74-4956-b789-6108df80ee1e.jpg)![s5](https://user-images.githubusercontent.com/85071405/147366370-7a39498d-6cb3-4460-ad07-699fd2451e06.jpg)![s6](https://user-images.githubusercontent.com/85071405/147366373-6b451a15-f942-4549-ad41-b6cb448fe48a.jpg)
 
-\
-MoneyPipe is an incomes & expenses personal managment app.
-
-Check out the design I've made with figma:\
+Check out the initial design I've made with figma:\
 https://www.figma.com/file/Ox36b9FvEGqqYOzAwyL2XJ/Finance-App?node-id=0%3A1
