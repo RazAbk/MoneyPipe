@@ -52,7 +52,7 @@ async function login(req: Request, res: Response) {
 
         res.cookie("token", accessToken, {
             httpOnly: true,
-            maxAge: user.userName === 'DemoUser' ?  1000 * 60 * 5 : 1000 * 60 * 60 * 48,
+            maxAge: 1000 * 60 * 60 * 48,
             secure: true
         })
 
