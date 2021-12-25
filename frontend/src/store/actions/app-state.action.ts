@@ -10,6 +10,14 @@ export const setBlocksIdx = (blocksIdx: number) => {
     }
 }
 
+export const setPaginationDots = (isPaginationDots: boolean) => {
+    return (dispatch: AppDispatch) => {
+        dispatch({
+            type: "SET_PAGINATION_DOTS",
+            isPaginationDots
+        })
+    }
+}
 
 export const setLoader = (loaderState: boolean) => {
     return (dispatch: AppDispatch) => {

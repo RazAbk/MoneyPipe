@@ -11,7 +11,7 @@ import { RootState } from '../store/store'
 import { GraphBlock } from '../components/blocks/GraphBlock'
 import { SearchModal } from '../components/modals/SearchModal'
 import { ActionModal } from '../components/modals/ActionModal'
-import { setBlocksIdx, setLoader, setSelectedAction } from '../store/actions/app-state.action'
+import { setBlocksIdx, setLoader, setPaginationDots, setSelectedAction } from '../store/actions/app-state.action'
 import { sessionStorageService } from '../services/session-storage.service'
 import { dateService } from '../services/date.service'
 import { SettingsModal } from '../components/modals/SettingsModal'
@@ -27,6 +27,7 @@ export const MainApp = () => {
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
     const user = useSelector((state: RootState) => state.userModule.loggedInUser) || sessionStorageService.load('loggedInUser')
     const filterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
+    
 
     const [isMenuOpen, setMenuOpen] = useState(false)
     const [isSearchModalOpen, setSearchModalOpen] = useState(false)
@@ -59,6 +60,32 @@ export const MainApp = () => {
     useEffect(() => {
         if (!isActionModalOpen || isMenuOpen || isSettingsModalOpen) dispatch(setSelectedAction(null))
     }, [dispatch, isActionModalOpen, isMenuOpen, isSettingsModalOpen])
+
+    useEffect(() => {
+        const updatePaginationDots = utilService.debounce((ev: any) => {
+            if(ev.target.scrollingElement.scrollTop > 0) {
+                dispatch(setPaginationDots(true))
+            } else {
+                dispatch(setPaginationDots(false))
+            }
+        }, 100)
+        
+        if(currentViewMode === 'Graph'){
+            if(window.scrollY > 0){
+                dispatch(setPaginationDots(true))
+            } else {
+                dispatch(setPaginationDots(false))
+            }
+            window.addEventListener('scroll', updatePaginationDots)
+        } else {
+            dispatch(setPaginationDots(true))
+            window.removeEventListener('scroll', updatePaginationDots)
+        }
+        
+        return () => {
+            window.removeEventListener('scroll', updatePaginationDots)
+        }
+    }, [dispatch, currentViewMode])
 
 
     const _handleScroll = (ev: any) => {

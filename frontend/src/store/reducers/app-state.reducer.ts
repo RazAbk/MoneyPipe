@@ -3,6 +3,7 @@ import { dateService } from "../../services/date.service"
 
 interface IState {
     blocksIdx: number,
+    isPaginationDots: boolean,
     loaderState: boolean;
     currentViewMode: string;
     currentLabel: string | null;
@@ -17,6 +18,7 @@ interface IReducerAction {
 
 const initialState: IState = {
     blocksIdx: 0,
+    isPaginationDots: false,
     loaderState: false,
     currentViewMode: 'Summery',
     currentLabel: null,
@@ -34,6 +36,8 @@ export const appStateReducer = (state = initialState, action: IReducerAction) =>
     switch (action.type) {
         case 'SET_BLOCKS_IDX':
             return state = { ...state, blocksIdx: action.blocksIdx }
+        case 'SET_PAGINATION_DOTS':
+            return state = { ...state, isPaginationDots: action.isPaginationDots }
         case 'SET_LOADER':
             return state = { ...state, loaderState: action.loaderState }
         case 'SET_VIEWMODE':
