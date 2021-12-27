@@ -118,10 +118,10 @@ export const MainApp = () => {
 
             <PaginationDots />
 
-            <ReactDimmer isOpen={isMenuOpen} exitDimmer={setMenuOpen} />
-            <ReactDimmer isOpen={isSearchModalOpen} exitDimmer={setSearchModalOpen} />
-            <ReactDimmer isOpen={isActionModalOpen} exitDimmer={setActionModalOpen} />
-            <ReactDimmer isOpen={isSettingsModalOpen} exitDimmer={setSettingsModalOpen} />
+            <ReactDimmer isOpen={isMenuOpen} exitDimmer={setMenuOpen} blur={1.5} saturate={85} />
+            <ReactDimmer isOpen={isSearchModalOpen} exitDimmer={setSearchModalOpen} blur={1.5} saturate={85} />
+            <ReactDimmer isOpen={isActionModalOpen} exitDimmer={setActionModalOpen} blur={1.5} saturate={85} />
+            <ReactDimmer isOpen={isSettingsModalOpen} exitDimmer={setSettingsModalOpen} blur={1.5} saturate={85} />
 
             {isSearchModalOpen && <SearchModal closeModal={setSearchModalOpen} />}
             {isActionModalOpen && <ActionModal closeModal={setActionModalOpen} />}

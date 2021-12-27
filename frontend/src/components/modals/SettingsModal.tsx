@@ -189,7 +189,7 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
                 <Button onClick={handleSubmit}>submit</Button>
                 <Button className="delete-account-btn" onClick={handleConfirmModal}>delete account</Button>
             </div>
-            <ReactDimmer isOpen={confirmModal} exitDimmer={setConfirmModal} zIndex={120} />
+            <ReactDimmer isOpen={confirmModal} exitDimmer={setConfirmModal} zIndex={120} blur={1.5} saturate={85} />
             {confirmModal && <ConfirmModal title="Warning" message={modalMessage} setAnswer={handleModalAnswer} closeModal={setConfirmModal} />}
         </>
     )
@@ -312,7 +312,7 @@ const CategoriesSettings = () => {
                     {addCategoryModal && <CategoryModal closeModal={setAddCategoryModal} categoryToEdit={selectedCategory} />}
                 </>
             }
-            <ReactDimmer isOpen={addCategoryModal} exitDimmer={setAddCategoryModal} zIndex={100} />
+            <ReactDimmer isOpen={addCategoryModal} exitDimmer={setAddCategoryModal} zIndex={100} blur={1.5} saturate={85} />
         </>
     )
 }
@@ -375,8 +375,8 @@ const LabelsSettings = () => {
                     {addLabelModal && <LabelModal closeModal={setAddLabelModal} labelToEdit={selectedLabel} />}
                 </>
             }
-            <ReactDimmer isOpen={addLabelModal} exitDimmer={setAddLabelModal} zIndex={100} />
-            <ReactDimmer isOpen={confirmModal} exitDimmer={setConfirmModal} zIndex={120} />
+            <ReactDimmer isOpen={addLabelModal} exitDimmer={setAddLabelModal} zIndex={100} blur={1.5} saturate={85} />
+            <ReactDimmer isOpen={confirmModal} exitDimmer={setConfirmModal} zIndex={120} blur={1.5} saturate={85} />
             {confirmModal && <ConfirmModal title="Warning" message={modalMessage} setAnswer={handleModalAnswer} closeModal={setConfirmModal} />}
         </>
     )

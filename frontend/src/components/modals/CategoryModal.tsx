@@ -105,8 +105,8 @@ export const CategoryModal = ({ closeModal, setFormData, categoryToEdit }: IModa
                     </Stack>
                 </div>
             </div>
-            <ReactDimmer isOpen={isColorsModalOpen} exitDimmer={setColorsModal} zIndex={120} />
-            <ReactDimmer isOpen={isIconsModalOpen} exitDimmer={setIconsModal} zIndex={120} />
+            <ReactDimmer isOpen={isColorsModalOpen} exitDimmer={setColorsModal} zIndex={120} blur={1.5} saturate={85} />
+            <ReactDimmer isOpen={isIconsModalOpen} exitDimmer={setIconsModal} zIndex={120} blur={1.5} saturate={85} />
 
             {isColorsModalOpen && <div className="colors-pick-modal pick-modal">
                 {colors.map(color => <div key={color} onClick={() => { selectColorHandle(color) }} className="color" style={{ backgroundColor: color }}></div>)}

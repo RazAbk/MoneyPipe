@@ -194,8 +194,8 @@ export const ActionModal = ({ closeModal }: IActionModalProps) => {
                 </div>
             </div>
 
-            <ReactDimmer isOpen={addCategoryModal} exitDimmer={setAddCategoryModal} zIndex={105} />
-            <ReactDimmer isOpen={addLabelModal} exitDimmer={setAddLabelModal} zIndex={105} />
+            <ReactDimmer isOpen={addCategoryModal} exitDimmer={setAddCategoryModal} zIndex={105} blur={1.5} saturate={85} />
+            <ReactDimmer isOpen={addLabelModal} exitDimmer={setAddLabelModal} zIndex={105} blur={1.5} saturate={85} />
             {addCategoryModal && <CategoryModal closeModal={setAddCategoryModal} setFormData={setFormData} />}
             {addLabelModal && <LabelModal closeModal={setAddLabelModal} setFormData={setFormData} />}
         </>
