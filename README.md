@@ -10,10 +10,18 @@ The 2 main reasons why I built this project:
 * Since I'm used to track all of my incomes and expenses for the past 3 years, I figured why not building my own personal tool that does exactly what I need.
 * Learning new technologies, and the best practices for building a great web app.
 
-<br>
+## How to Install as PWA (Progressive web app)
 MoneyPipe is a <a href="https://web.dev/progressive-web-apps/">PWA</a>(Progressive web app) - which means you can install it on your device - mobile or desktop.
 <br>
 It will allow you a better user experience, as well as a native app like experience.
+<br>
+<br>
+How to install:
+<br>
+https://support.google.com/chrome/answer/9658361?hl=en&co=GENIE.Platform%3DAndroid
+<br>
+<br>
+On ios - enter the <a href="https://moneypipe.herokuapp.com/">app</a> from safari, click the share button and click "Add to Home Screen"
 
 
 ## Technologies I Used
@@ -28,6 +36,40 @@ It will allow you a better user experience, as well as a native app like experie
 * [JWT](https://jwt.io/)
 * [PWA](https://web.dev/progressive-web-apps/)
 
+## Usage
+
+Start with cloning this repo on your local machine:
+
+```sh
+git clone https://github.com/RazAbk/MoneyPipe.git
+cd MoneyPipe
+```
+
+Run 2 terminals for both Client and Server:
+
+```sh
+cd frontend
+```
+```sh
+cd backend
+```
+Install the project's dependencies on each directory:
+
+```sh
+npm install
+```
+
+To run the Client run:
+
+```sh
+npm start
+```
+
+To run the Server run:
+
+```sh
+npm run start:dev
+```
 
 
 ## screen-shots
