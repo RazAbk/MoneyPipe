@@ -160,7 +160,7 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
             dispatch(setLoader(true))
             const res = await dispatch(deleteUser())
             dispatch(setLoader(false))
-            if(!res){
+            if (!res) {
                 console.log('could not delete user')
             } else {
                 navigate('/')
@@ -168,7 +168,7 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
         }
     }
 
-    if(!user) return <Loader/>
+    if (!user) return <Loader />
 
     return (
         <>
@@ -309,10 +309,10 @@ const CategoriesSettings = () => {
 
             {addCategoryModal &&
                 <>
-                    <ReactDimmer isOpen={addCategoryModal} exitDimmer={setAddCategoryModal} zIndex={100} />
                     {addCategoryModal && <CategoryModal closeModal={setAddCategoryModal} categoryToEdit={selectedCategory} />}
                 </>
             }
+            <ReactDimmer isOpen={addCategoryModal} exitDimmer={setAddCategoryModal} zIndex={100} />
         </>
     )
 }
@@ -372,10 +372,10 @@ const LabelsSettings = () => {
             </div>
             {addLabelModal &&
                 <>
-                    <ReactDimmer isOpen={addLabelModal} exitDimmer={setAddLabelModal} zIndex={100} />
                     {addLabelModal && <LabelModal closeModal={setAddLabelModal} labelToEdit={selectedLabel} />}
                 </>
             }
+            <ReactDimmer isOpen={addLabelModal} exitDimmer={setAddLabelModal} zIndex={100} />
             <ReactDimmer isOpen={confirmModal} exitDimmer={setConfirmModal} zIndex={120} />
             {confirmModal && <ConfirmModal title="Warning" message={modalMessage} setAnswer={handleModalAnswer} closeModal={setConfirmModal} />}
         </>
