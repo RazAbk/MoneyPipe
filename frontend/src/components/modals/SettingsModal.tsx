@@ -1,6 +1,7 @@
 import { Button, FormControl, FormHelperText, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useEffect, useRef, useState } from 'react'
+import { ReactDimmer } from 'react-dimmer'
 import { AiOutlineClose } from 'react-icons/ai'
 import { FaRegEdit } from 'react-icons/fa'
 import { FiUpload } from 'react-icons/fi'
@@ -18,7 +19,6 @@ import { deleteCategory, deleteLabel, deleteUser, updateData, updateUser } from 
 import { RootState } from '../../store/store'
 import { GetIcon } from '../GetIcon'
 import { Loader } from '../Loader'
-import { Screen } from '../Screen'
 import { CategoryModal } from './CategoryModal'
 import { ConfirmModal } from './ConfirmModal'
 import { LabelModal } from './LabelModal'
@@ -189,7 +189,7 @@ const AccountSettings = ({ closeModal }: IModalProps) => {
                 <Button onClick={handleSubmit}>submit</Button>
                 <Button className="delete-account-btn" onClick={handleConfirmModal}>delete account</Button>
             </div>
-            <Screen isOpen={confirmModal} exitScreen={setConfirmModal} zIndex="120" />
+            <ReactDimmer isOpen={confirmModal} exitDimmer={setConfirmModal} zIndex={120} />
             {confirmModal && <ConfirmModal title="Warning" message={modalMessage} setAnswer={handleModalAnswer} closeModal={setConfirmModal} />}
         </>
     )
@@ -309,7 +309,7 @@ const CategoriesSettings = () => {
 
             {addCategoryModal &&
                 <>
-                    <Screen isOpen={addCategoryModal} exitScreen={setAddCategoryModal} zIndex="100" />
+                    <ReactDimmer isOpen={addCategoryModal} exitDimmer={setAddCategoryModal} zIndex={100} />
                     {addCategoryModal && <CategoryModal closeModal={setAddCategoryModal} categoryToEdit={selectedCategory} />}
                 </>
             }
@@ -372,11 +372,11 @@ const LabelsSettings = () => {
             </div>
             {addLabelModal &&
                 <>
-                    <Screen isOpen={addLabelModal} exitScreen={setAddLabelModal} zIndex="100" />
+                    <ReactDimmer isOpen={addLabelModal} exitDimmer={setAddLabelModal} zIndex={100} />
                     {addLabelModal && <LabelModal closeModal={setAddLabelModal} labelToEdit={selectedLabel} />}
                 </>
             }
-            <Screen isOpen={confirmModal} exitScreen={setConfirmModal} zIndex="120" />
+            <ReactDimmer isOpen={confirmModal} exitDimmer={setConfirmModal} zIndex={120} />
             {confirmModal && <ConfirmModal title="Warning" message={modalMessage} setAnswer={handleModalAnswer} closeModal={setConfirmModal} />}
         </>
     )

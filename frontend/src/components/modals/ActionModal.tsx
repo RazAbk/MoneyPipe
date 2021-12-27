@@ -7,12 +7,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { IAction, IDataObject } from '../../interfaces/dataInterfaces'
 import { RootState } from '../../store/store'
 import { addAction } from '../../store/actions/user.action';
-import { Screen } from '../Screen';
 import { CategoryModal } from './CategoryModal';
 import { LabelModal } from './LabelModal';
 import { MobileDateTimePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { setLoader } from '../../store/actions/app-state.action';
+import { ReactDimmer } from 'react-dimmer';
 
 interface IActionModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -194,8 +194,8 @@ export const ActionModal = ({ closeModal }: IActionModalProps) => {
                 </div>
             </div>
 
-            <Screen isOpen={addCategoryModal} exitScreen={setAddCategoryModal} zIndex="100" />
-            <Screen isOpen={addLabelModal} exitScreen={setAddLabelModal} zIndex="100" />
+            <ReactDimmer isOpen={addCategoryModal} exitDimmer={setAddCategoryModal} zIndex={105} />
+            <ReactDimmer isOpen={addLabelModal} exitDimmer={setAddLabelModal} zIndex={105} />
             {addCategoryModal && <CategoryModal closeModal={setAddCategoryModal} setFormData={setFormData} />}
             {addLabelModal && <LabelModal closeModal={setAddLabelModal} setFormData={setFormData} />}
         </>

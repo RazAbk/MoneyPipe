@@ -4,12 +4,12 @@ import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { GetIcon } from '../GetIcon'
 import { BsApp } from 'react-icons/bs'
-import { Screen } from '../Screen'
 import { useDispatch } from 'react-redux'
 import { addCategory } from '../../store/actions/user.action'
 import { IAction, ICategory } from '../../interfaces/dataInterfaces'
 import { utilService } from '../../services/util.service'
 import { setLoader } from '../../store/actions/app-state.action'
+import { ReactDimmer } from 'react-dimmer'
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -105,8 +105,8 @@ export const CategoryModal = ({ closeModal, setFormData, categoryToEdit }: IModa
                     </Stack>
                 </div>
             </div>
-            <Screen isOpen={isColorsModalOpen} exitScreen={setColorsModal} zIndex="120" />
-            <Screen isOpen={isIconsModalOpen} exitScreen={setIconsModal} zIndex="120" />
+            <ReactDimmer isOpen={isColorsModalOpen} exitDimmer={setColorsModal} zIndex={120} />
+            <ReactDimmer isOpen={isIconsModalOpen} exitDimmer={setIconsModal} zIndex={120} />
 
             {isColorsModalOpen && <div className="colors-pick-modal pick-modal">
                 {colors.map(color => <div key={color} onClick={() => { selectColorHandle(color) }} className="color" style={{ backgroundColor: color }}></div>)}

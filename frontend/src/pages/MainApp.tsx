@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { MainAppMenu } from '../components/MainAppMenu'
 import { MobileMenu } from '../components/MobileMenu'
-import { Screen } from '../components/Screen'
 import { HeaderBlock } from '../components/blocks/HeaderBlock'
 import { getData, getUser } from '../store/actions/user.action'
 import { BalanceBlock } from '../components/blocks/BalanceBlock'
@@ -18,7 +17,7 @@ import { SettingsModal } from '../components/modals/SettingsModal'
 import { useNavigate } from 'react-router'
 import { utilService } from '../services/util.service'
 import { PaginationDots } from '../components/PaginationDots'
-
+import { ReactDimmer } from 'react-dimmer'
 
 export const MainApp = () => {
 
@@ -119,10 +118,10 @@ export const MainApp = () => {
 
             <PaginationDots />
 
-            <Screen isOpen={isMenuOpen} exitScreen={setMenuOpen} />
-            <Screen isOpen={isSearchModalOpen} exitScreen={setSearchModalOpen} />
-            <Screen isOpen={isActionModalOpen} exitScreen={setActionModalOpen} />
-            <Screen isOpen={isSettingsModalOpen} exitScreen={setSettingsModalOpen} />
+            <ReactDimmer isOpen={isMenuOpen} exitDimmer={setMenuOpen} />
+            <ReactDimmer isOpen={isSearchModalOpen} exitDimmer={setSearchModalOpen} />
+            <ReactDimmer isOpen={isActionModalOpen} exitDimmer={setActionModalOpen} />
+            <ReactDimmer isOpen={isSettingsModalOpen} exitDimmer={setSettingsModalOpen} />
 
             {isSearchModalOpen && <SearchModal closeModal={setSearchModalOpen} />}
             {isActionModalOpen && <ActionModal closeModal={setActionModalOpen} />}
