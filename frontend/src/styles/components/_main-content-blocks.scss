@@ -98,20 +98,34 @@
 
     .action-details {
       display: flex;
-      justify-content: space-between;
-
-      .left-side {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-
-        .action-color-dot {
-          width: 16px;
-          height: 16px;
-          border: black 1px solid;
-          border-radius: 5px;
-        }
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      
+      .action-color-dot {
+        width: 16px;
+        height: 16px;
+        min-width: 16px;
+        min-height: 16px;
+        border: black 1px solid;
+        border-radius: 5px;
       }
+
+      .category{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex-grow: 0.95;
+      }
+
+      .sum{
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-end;
+        
+      }
+
+
     }
   }
 }

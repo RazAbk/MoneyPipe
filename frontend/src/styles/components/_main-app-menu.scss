@@ -81,6 +81,10 @@
                 color: $txt-gray-color;
                 transition: background-color 0.2s;
 
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
                 @include for-tablet{
                     &:hover{
                         color: $txt-light-color;

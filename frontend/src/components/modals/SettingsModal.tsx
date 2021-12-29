@@ -293,7 +293,7 @@ const CategoriesSettings = () => {
                                     <div className="icon" style={{ backgroundColor: category.bgColor }}>
                                         <GetIcon iconName={category.icon} />
                                     </div>
-                                    {category.title}
+                                    <p>{category.title}</p>
                                 </div>
                                 <div className="right-side">
                                     <div onClick={() => { setSelectedCategory(category); setAddCategoryModal(true) }}><FaRegEdit /></div>

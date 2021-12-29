@@ -111,13 +111,13 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
                     <div className="summery-block-details">
                         {dataMap && Object.entries(dataMap).sort((a,b) => b[1].sum - a[1].sum).map(action => {
                             return <div key={action[0] + action[1].sum + Math.random()} className="action-details">
-                                <div className="left-side">
+                                {/* <div className="left-side"> */}
                                     <div className="action-color-dot" style={{ backgroundColor: action[1].color }}></div>
-                                    <h2>{action[0]}</h2>
-                                </div>
-                                <div className="right-side">
-                                    <h2>{action[1].sum.toLocaleString()}{rawData.currency.sign}</h2>
-                                </div>
+                                    <h2 className="category">{action[0]}</h2>
+                                {/* </div> */}
+                                {/* <div className="right-side"> */}
+                                    <div className="sum"><h2>{action[1].sum.toLocaleString()}{rawData.currency.sign}</h2></div>
+                                {/* </div> */}
                             </div>
                         })}
                     </div>

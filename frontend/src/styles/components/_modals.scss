@@ -406,25 +406,39 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+
+                
                 .left-side{
                     display: flex;
                     align-items: center;
                     gap: 0.5rem;
                     font-size: 1.25rem;
 
+                    overflow: hidden;
+                    
                     .icon{
                         font-size: 1.25rem;
                         color: $txt-light-color;
                         border-radius: 100%;
                         width: 30px;
                         height: 30px;
+                        min-width: 30px;
+                        min-height: 30px;
                         
                         display: flex;
                         justify-content: center;
                         align-items: center;
                     }
 
+                    .label, p{
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        max-width: 70%;
+                    }
+                    
                     .label{
+                        max-width: unset;
                         font-size: 1.25rem;
                         color: #1d5de6;
                     }

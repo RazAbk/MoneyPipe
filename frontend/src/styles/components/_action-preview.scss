@@ -30,12 +30,17 @@
             text-overflow: ellipsis;
             max-width: calc(100vw - 11.5rem);
         }
-
+        
         p{
             font-size: 0.75rem;
         }
-
+        
         .action-labels{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: calc(100vw - 11.5rem);
+
             span{
                 margin-right: 0.4rem;
                 color: rgb(29, 93, 230);
@@ -91,7 +96,12 @@
             h3{
                 max-width: calc(50vw - 12rem);
             }
+
+            .action-labels{
+                max-width: calc(50vw - 12rem);
+            }
         }
+
     }
 
     @include for-desktop{
@@ -101,6 +111,10 @@
 
         .action-data{
             h3{
+                max-width: calc(50vw - 24rem);
+            }
+
+            .action-labels{
                 max-width: calc(50vw - 24rem);
             }
         }
