@@ -20,7 +20,7 @@ export const HeaderBlock = ({setSearchModalOpen}: IHeaderProps) => {
     return (
         <div className="header-block">
             <div className="header-block-content">
-                {currentLabel && <h2>{currentLabel}<p>-</p><span>{startDateString} - {endDateString}</span></h2>}
+                {currentLabel && <h2><span className="label">{currentLabel}</span><p>-</p><span>{startDateString} - {endDateString}</span></h2>}
                 {(!currentLabel && currentViewMode) && <h2>{currentViewMode}<p>-</p><span>{startDateString} - {endDateString}</span></h2>}
                 <p>{currentViewMode} of incomes and expenses</p>
             </div>

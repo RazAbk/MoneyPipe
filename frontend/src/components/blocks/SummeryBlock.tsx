@@ -98,7 +98,7 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
         }
     }, [dataMap])
 
-    if(!rawData) return <Loader />
+    if (!rawData) return <Loader />
 
     return (
         <div className="summery-blocks">
@@ -109,15 +109,11 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
                     {pieData && <Pie data={pieData} options={options} className="pie" />}
 
                     <div className="summery-block-details">
-                        {dataMap && Object.entries(dataMap).sort((a,b) => b[1].sum - a[1].sum).map(action => {
+                        {dataMap && Object.entries(dataMap).sort((a, b) => b[1].sum - a[1].sum).map(action => {
                             return <div key={action[0] + action[1].sum + Math.random()} className="action-details">
-                                {/* <div className="left-side"> */}
-                                    <div className="action-color-dot" style={{ backgroundColor: action[1].color }}></div>
-                                    <h2 className="category">{action[0]}</h2>
-                                {/* </div> */}
-                                {/* <div className="right-side"> */}
-                                    <div className="sum"><h2>{action[1].sum.toLocaleString()}{rawData.currency.sign}</h2></div>
-                                {/* </div> */}
+                                <div className="action-color-dot" style={{ backgroundColor: action[1].color }}></div>
+                                <h2 className="category">{action[0]}</h2>
+                                <div className="sum"><h2>{action[1].sum.toLocaleString()}{rawData.currency.sign}</h2></div>
                             </div>
                         })}
                     </div>

@@ -25,6 +25,13 @@
             align-items: center;
             gap: 0.25rem;
 
+            .label{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: calc(100vw - 17.5rem);
+            }
+
             p{
                 font-size: 1.5rem;
             }
@@ -75,6 +82,10 @@
             
             h2{
                 font-size: 2rem;
+
+                .label{
+                    max-width: calc(100vw - 25rem);
+                }
             }
             
             p{
@@ -86,5 +97,13 @@
     @include for-desktop{
         width: 98%;
         margin: 0.4rem;
+
+        .header-block-content{
+            h2{
+                .label{
+                    max-width: calc(100vw - 50rem);
+                }
+            }
+        }
     }
 }
