@@ -24,6 +24,13 @@
         align-items: flex-start;
         justify-content: space-between;
 
+        h3{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: calc(100vw - 11.5rem);
+        }
+
         p{
             font-size: 0.75rem;
         }
@@ -79,9 +86,23 @@
         transition: 0.2s;
     }
 
+    @include for-tablet{
+        .action-data{
+            h3{
+                max-width: calc(50vw - 12rem);
+            }
+        }
+    }
+
     @include for-desktop{
         &:hover {
             background-color: rgba(150, 150, 150, 0.1);
+        }
+
+        .action-data{
+            h3{
+                max-width: calc(50vw - 24rem);
+            }
         }
     }
 
