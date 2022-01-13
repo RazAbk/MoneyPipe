@@ -27,17 +27,6 @@ async function getById(userId: string) {
         const user = await collection.findOne({ '_id': ObjectId(userId) })
         delete user.password
 
-        user.data.labels.sort((a:ILabel ,b:ILabel) => {
-            if(a.labelName > b.labelName) return 1
-            if(a.labelName < b.labelName) return -1
-            return 0
-        })
-        user.data.categories.sort((a: ICategory, b: ICategory) => {
-            if(a.title > b.title) return 1
-            if(a.title < b.title) return -1
-            return 0
-        })
-
         return user
     } catch (err) {
         console.log('could not get user by id')
@@ -55,13 +44,6 @@ async function getByUsername(userName: string) {
         console.log(`error accrued while finding user ${userName}`, err)
         throw err
     }
-}
-
-async function _filterActions(actions: IAction[], filterBy: IDateFilterBy) {
-    return await actions.filter((action: IAction) => {
-        if (action.createdAt < filterBy.startDate || action.createdAt > filterBy.endDate) return false
-        return true
-    })
 }
 
 async function addUser(userName: string, password: string, firstName: string, lastName: string, picture: string | undefined, isGoogle: boolean) {
@@ -199,6 +181,12 @@ async function addCategory(category: ICategory, userId: string) {
         } else {
             category._id = utilService.makeId()
             user.data.categories.push(category)
+
+            user.data.categories.sort((a: ICategory, b: ICategory) => {
+                if (a.title > b.title) return 1
+                if (a.title < b.title) return -1
+                return 0
+            })
         }
 
         await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
@@ -262,6 +250,12 @@ async function addLabel(label: ILabel, userId: string) {
         } else {
             label._id = utilService.makeId()
             user.data.labels.push(label)
+
+            user.data.labels.sort((a: ILabel, b: ILabel) => {
+                if (a.labelName > b.labelName) return 1
+                if (a.labelName < b.labelName) return -1
+                return 0
+            })
         }
 
         await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
