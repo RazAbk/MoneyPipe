@@ -8,7 +8,7 @@
   "main": "server.ts",
   "scripts": {
     "start": "node dist/server.js",
-    "start:dev": "nodemon src/server.ts",
+    "dev": "nodemon src/server.ts",
     "build": "npm run clean && tsc && npm run copy-files",
     "clean": "rimraf dist/",
     "copy-files": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.ico src/**/*.txt src/**/*.png src/**/*.svg src/**/*.jpg src/**/*.jpeg src/**/*.json src/**/*.map src/**/*.ttf dist/",
