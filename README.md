@@ -68,7 +68,7 @@ npm start
 To run the Server run:
 
 ```sh
-npm run start:dev
+npm run dev
 ```
 
 
