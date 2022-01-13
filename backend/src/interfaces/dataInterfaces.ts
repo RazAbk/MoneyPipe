@@ -1,3 +1,5 @@
+import { ICurrency } from "./userInterfaces";
+
 export interface ILabel {
     _id: string,
     title: string,
@@ -32,13 +34,8 @@ export interface IErrorMsg {
     type: string;
 }
 
-export interface ICurrency {
-    sign: string;
-    code: string;
-}
-
 export interface IData {
-    currency: ICategory;
+    currency: ICurrency;
     labels: ILabel[];
     categories: ICategory[];
     actions: IAction[];
