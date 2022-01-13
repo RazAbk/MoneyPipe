@@ -31,3 +31,15 @@ export interface IErrorMsg {
     msg: string;
     type: string;
 }
+
+export interface ICurrency {
+    sign: string;
+    code: string;
+}
+
+export interface IData {
+    currency: ICategory;
+    labels: ILabel[];
+    categories: ICategory[];
+    actions: IAction[];
+}

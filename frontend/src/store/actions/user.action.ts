@@ -1,4 +1,4 @@
-import { IAction, ICategory, ILabel, IDateFilterBy, IDataUpdateForm } from "../../interfaces/dataInterfaces"
+import { IAction, ICategory, ILabel, IDateFilterBy, IDataUpdateForm, IFilterBy } from "../../interfaces/dataInterfaces"
 import { ICredentials, IUpdateForm } from "../../interfaces/userInterfaces"
 import { alertTitleMessage } from "../../services/alert.service"
 import { userService } from "../../services/user.service"
@@ -53,7 +53,7 @@ export const deleteUser = () => {
         try {
             const data = await userService.deleteUser()
             if (data) {
-                if(!data.msg){
+                if (!data.msg) {
                     dispatch({
                         type: "SET_USER",
                         user: null
@@ -130,31 +130,10 @@ export const updateUser = (updatedUser: IUpdateForm) => {
     }
 }
 
-export const updateData = (updatedData: IDataUpdateForm) => {
+export const updateData = (updatedData: IDataUpdateForm, filterBy: IFilterBy) => {
     return async (dispatch: AppDispatch) => {
         try {
-            const data = await userService.updateData(updatedData)
-            if (!data.msg) {
-
-                dispatch({
-                    type: "SET_DATA",
-                    data
-                })
-            } else {
-                alertTitleMessage(data.title, data.msg, data.type, 3500)
-            }
-            return data
-        } catch (err) {
-            console.error(err)
-        }
-    }
-}
-
-
-export const addAction = (action: IAction) => {
-    return async (dispatch: AppDispatch) => {
-        try {
-            const data = await userService.addAction(action)
+            const data = await userService.updateData(updatedData, filterBy)
             if (!data.msg) {
                 dispatch({
                     type: "SET_DATA",
@@ -170,28 +149,11 @@ export const addAction = (action: IAction) => {
     }
 }
 
-export const deleteAction = (actionId: string) => {
-    return async (dispatch: AppDispatch) => {
-        try {
-            const data = await userService.deleteAction(actionId)
-            if (!data.msg) {
-                dispatch({
-                    type: "SET_DATA",
-                    data
-                })
-            } else {
-                alertTitleMessage(data.title, data.msg, data.type, 3500)
-            }
-        } catch (err) {
-            console.error(err)
-        }
-    }
-}
 
-export const addCategory = (category: ICategory) => {
+export const addAction = (action: IAction, filterBy: IFilterBy) => {
     return async (dispatch: AppDispatch) => {
         try {
-            const data = await userService.addCategory(category)
+            const data = await userService.addAction(action, filterBy)
             if (!data.msg) {
                 dispatch({
                     type: "SET_DATA",
@@ -207,10 +169,47 @@ export const addCategory = (category: ICategory) => {
     }
 }
 
-export const deleteCategory = (categoryId: string) => {
+export const deleteAction = (actionId: string, filterBy: IFilterBy) => {
     return async (dispatch: AppDispatch) => {
         try {
-            const data = await userService.deleteCategory(categoryId)
+            const data = await userService.deleteAction(actionId, filterBy)
+            if (!data.msg) {
+                dispatch({
+                    type: "SET_DATA",
+                    data
+                })
+            } else {
+                alertTitleMessage(data.title, data.msg, data.type, 3500)
+            }
+        } catch (err) {
+            console.error(err)
+        }
+    }
+}
+
+export const addCategory = (category: ICategory, filterBy: IFilterBy) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const data = await userService.addCategory(category, filterBy)
+            if (!data.msg) {
+                dispatch({
+                    type: "SET_DATA",
+                    data
+                })
+            } else {
+                alertTitleMessage(data.title, data.msg, data.type, 3500)
+            }
+            return data
+        } catch (err) {
+            console.error(err)
+        }
+    }
+}
+
+export const deleteCategory = (categoryId: string, filterBy: IFilterBy) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const data = await userService.deleteCategory(categoryId, filterBy)
             if (data) {
                 if (!data.msg) {
                     dispatch({
@@ -228,10 +227,10 @@ export const deleteCategory = (categoryId: string) => {
     }
 }
 
-export const addLabel = (label: ILabel) => {
+export const addLabel = (label: ILabel, filterBy: IFilterBy) => {
     return async (dispatch: AppDispatch) => {
         try {
-            const data = await userService.addLabel(label)
+            const data = await userService.addLabel(label, filterBy)
             if (!data.msg) {
                 dispatch({
                     type: "SET_DATA",
@@ -248,10 +247,10 @@ export const addLabel = (label: ILabel) => {
     }
 }
 
-export const deleteLabel = (labelId: string) => {
+export const deleteLabel = (labelId: string, filterBy: IFilterBy) => {
     return async (dispatch: AppDispatch) => {
         try {
-            const data = await userService.deleteLabel(labelId)
+            const data = await userService.deleteLabel(labelId, filterBy)
             if (!data.msg) {
                 dispatch({
                     type: "SET_DATA",

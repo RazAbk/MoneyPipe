@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 import express from 'express'
+import { IData } from './interfaces/dataInterfaces';
 import { IUser } from './interfaces/userInterfaces';
 const cors = require('cors')
 const path = require('path')
@@ -9,7 +10,8 @@ const cookieParser = require('cookie-parser')
 declare global {
   namespace Express {
     interface Request {
-      user: IUser
+      user: IUser,
+      data: IData
     }
   }
 }

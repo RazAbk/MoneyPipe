@@ -1,4 +1,4 @@
-import { IAction, ICategory, ILabel, IDateFilterBy, IDataUpdateForm } from "../interfaces/dataInterfaces"
+import { IAction, ICategory, ILabel, IDateFilterBy, IDataUpdateForm, IFilterBy } from "../interfaces/dataInterfaces"
 import Axios from "axios"
 import { sessionStorageService } from "./session-storage.service"
 import { IUpdateForm } from "../interfaces/userInterfaces"
@@ -95,9 +95,9 @@ async function updateUser(data: IUpdateForm) {
     }
 }
 
-async function updateData(data: IDataUpdateForm) {
+async function updateData(data: IDataUpdateForm, filterBy: IFilterBy) {
     try {
-        const res = await axios.put(`${BASE_URL}/api/user/data`, data)
+        const res = await axios.put(`${BASE_URL}/api/user/data?startDate=${filterBy.startDate}&endDate=${filterBy.endDate}`, data)
         return res.data
     } catch (err) {
         console.error(err)
@@ -125,54 +125,54 @@ async function getUser() {
 }
 
 
-async function addAction(action: IAction) {
+async function addAction(action: IAction, filterBy: IFilterBy) {
     try {
-        const res = await axios.post(`${BASE_URL}/api/user/action`, action)
+        const res = await axios.post(`${BASE_URL}/api/user/action?startDate=${filterBy.startDate}&endDate=${filterBy.endDate}`, action)
         return res.data
     } catch (err) {
         console.error(err)
     }
 }
 
-async function deleteAction(actionId: string) {
+async function deleteAction(actionId: string, filterBy: IFilterBy) {
     try {
-        const res = await axios.delete(`${BASE_URL}/api/user/action/${actionId}`)
+        const res = await axios.delete(`${BASE_URL}/api/user/action/${actionId}?startDate=${filterBy.startDate}&endDate=${filterBy.endDate}`)
         return res.data
     } catch (err) {
         console.error(err)
     }
 }
 
-async function addCategory(category: ICategory) {
+async function addCategory(category: ICategory, filterBy: IFilterBy) {
     try {
-        const res = await axios.post(`${BASE_URL}/api/user/category`, category)
+        const res = await axios.post(`${BASE_URL}/api/user/category?startDate=${filterBy.startDate}&endDate=${filterBy.endDate}`, category)
         return res.data
     } catch (err) {
         console.error(err)
     }
 }
 
-async function deleteCategory(categoryId: string) {
+async function deleteCategory(categoryId: string, filterBy: IFilterBy) {
     try {
-        const res = await axios.delete(`${BASE_URL}/api/user/category/${categoryId}`)
+        const res = await axios.delete(`${BASE_URL}/api/user/category/${categoryId}?startDate=${filterBy.startDate}&endDate=${filterBy.endDate}`)
         return res.data
     } catch (err) {
         console.error(err)
     }
 }
 
-async function addLabel(label: ILabel) {
+async function addLabel(label: ILabel, filterBy: IFilterBy) {
     try {
-        const res = await axios.post(`${BASE_URL}/api/user/label`, label)
+        const res = await axios.post(`${BASE_URL}/api/user/label?startDate=${filterBy.startDate}&endDate=${filterBy.endDate}`, label)
         return res.data
     } catch (err) {
         console.error(err)
     }
 }
 
-async function deleteLabel(labelId: string) {
+async function deleteLabel(labelId: string, filterBy: IFilterBy) {
     try {
-        const res = await axios.delete(`${BASE_URL}/api/user/label/${labelId}`)
+        const res = await axios.delete(`${BASE_URL}/api/user/label/${labelId}?startDate=${filterBy.startDate}&endDate=${filterBy.endDate}`)
         return res.data
     } catch (err) {
         console.error(err)

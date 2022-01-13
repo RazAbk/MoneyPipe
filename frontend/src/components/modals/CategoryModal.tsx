@@ -4,12 +4,13 @@ import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { GetIcon } from '../GetIcon'
 import { BsApp } from 'react-icons/bs'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addCategory } from '../../store/actions/user.action'
-import { IAction, ICategory } from '../../interfaces/dataInterfaces'
+import { IAction, ICategory, IFilterBy } from '../../interfaces/dataInterfaces'
 import { utilService } from '../../services/util.service'
 import { setLoader } from '../../store/actions/app-state.action'
 import { ReactDimmer } from 'react-dimmer'
+import { RootState } from '../../store/store'
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -27,6 +28,8 @@ const btnErrorStyle = {
 export const CategoryModal = ({ closeModal, setFormData, categoryToEdit }: IModalProps) => {
 
     const dispatch = useDispatch()
+
+    const filterBy: IFilterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
 
     const [categoryName, setCategoryName] = useState(categoryToEdit?.title || '')
     const [selectedIcon, setSelectedIcon] = useState(categoryToEdit?.icon || '')
@@ -74,7 +77,7 @@ export const CategoryModal = ({ closeModal, setFormData, categoryToEdit }: IModa
                 bgColor: selectedColor
             }
             dispatch(setLoader(true))
-            await dispatch(addCategory(newCategory))
+            await dispatch(addCategory(newCategory, filterBy))
             dispatch(setLoader(false))
             if(!categoryToEdit && setFormData){
                 setFormData(formData => { return { ...formData, category: categoryFormatedName } })

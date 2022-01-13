@@ -4,7 +4,7 @@ import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-import { IAction, IDataObject } from '../../interfaces/dataInterfaces'
+import { IAction, IDataObject, IFilterBy } from '../../interfaces/dataInterfaces'
 import { RootState } from '../../store/store'
 import { addAction } from '../../store/actions/user.action';
 import { CategoryModal } from './CategoryModal';
@@ -48,6 +48,7 @@ export const ActionModal = ({ closeModal }: IActionModalProps) => {
 
     const selectedAction: IAction | null = useSelector((state: RootState) => state.appStateModule.selectedAction)
     const data: IDataObject = useSelector((state: RootState) => state.userModule.data)
+    const filterBy: IFilterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
     const dispatch = useDispatch()
     const theme = useTheme();
 
@@ -113,7 +114,7 @@ export const ActionModal = ({ closeModal }: IActionModalProps) => {
             return
         } else {
             dispatch(setLoader(true))
-            await dispatch(addAction(formData))
+            await dispatch(addAction(formData, filterBy))
             dispatch(setLoader(false))
             closeModal(false)
         }

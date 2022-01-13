@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { IAction, IDataObject } from '../interfaces/dataInterfaces'
+import { IAction, IDataObject, IFilterBy } from '../interfaces/dataInterfaces'
 import { RootState } from '../store/store'
 import { GetIcon } from './GetIcon'
 import { FaRegEdit } from 'react-icons/fa'
@@ -21,6 +21,7 @@ export const ActionPreview = ({ action, setActionModalOpen }: IActionProps) => {
     const dispatch = useDispatch()
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
     const selectedAction: IAction | null = useSelector((state: RootState) => state.appStateModule.selectedAction)
+    const filterBy: IFilterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
 
     const findCategoryData = (category: string) => {
         if (rawData) {
@@ -32,7 +33,7 @@ export const ActionPreview = ({ action, setActionModalOpen }: IActionProps) => {
     const onDelete = async (ev: React.MouseEvent<HTMLElement>) => {
         ev.stopPropagation()
         dispatch(setLoader(true))
-        await dispatch(deleteAction(action._id))
+        await dispatch(deleteAction(action._id, filterBy))
         dispatch(setLoader(false))
         dispatch(setSelectedAction(null))
     }

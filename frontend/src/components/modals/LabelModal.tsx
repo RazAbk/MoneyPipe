@@ -2,10 +2,11 @@ import { Button, Stack, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
-import { useDispatch } from 'react-redux'
-import { IAction, ILabel } from '../../interfaces/dataInterfaces'
+import { useDispatch, useSelector } from 'react-redux'
+import { IAction, IFilterBy, ILabel } from '../../interfaces/dataInterfaces'
 import { setLoader } from '../../store/actions/app-state.action'
 import { addLabel } from '../../store/actions/user.action'
+import { RootState } from '../../store/store'
 
 interface IModalProps {
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,7 +17,7 @@ interface IModalProps {
 export const LabelModal = ({ closeModal, setFormData, labelToEdit }: IModalProps) => {
 
     const dispatch = useDispatch()
-
+    const filterBy: IFilterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
     const [label, setLabel] = useState(labelToEdit?.title || '')
     const [error, setError] = useState(false)
 
@@ -37,7 +38,7 @@ export const LabelModal = ({ closeModal, setFormData, labelToEdit }: IModalProps
                 labelName: formatedLabel
             }
             dispatch(setLoader(true))
-            const res = await dispatch(addLabel(newLabel))
+            const res = await dispatch(addLabel(newLabel, filterBy))
             dispatch(setLoader(false))
             if(!labelToEdit && setFormData && res){
                 setFormData(formData => { return { ...formData, labels: [...formData.labels, formatedLabel] } })

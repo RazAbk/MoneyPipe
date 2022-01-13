@@ -8,7 +8,7 @@ import { FiUpload } from 'react-icons/fi'
 import { VscTrash } from 'react-icons/vsc'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { ICategory, IDataObject, IDataUpdateForm, ILabel } from '../../interfaces/dataInterfaces'
+import { ICategory, IDataObject, IDataUpdateForm, IFilterBy, ILabel } from '../../interfaces/dataInterfaces'
 import { IUpdateForm } from '../../interfaces/userInterfaces'
 import { alertMessage, alertTitleMessage } from '../../services/alert.service'
 import { sessionStorageService } from '../../services/session-storage.service'
@@ -205,6 +205,7 @@ const PreferencesSettings = ({ closeModal }: IModalProps) => {
 
     const dispatch = useDispatch()
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
+    const filterBy: IFilterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
 
     const [formData, setFormData] = useState<IDataUpdateForm>({
         currency: rawData.currency
@@ -233,7 +234,7 @@ const PreferencesSettings = ({ closeModal }: IModalProps) => {
 
     const handleSubmit = async () => {
         dispatch(setLoader(true))
-        await dispatch(updateData(formData))
+        await dispatch(updateData(formData, filterBy))
         dispatch(setLoader(false))
         closeModal(false)
     }
@@ -262,6 +263,7 @@ const CategoriesSettings = () => {
 
     const dispatch = useDispatch()
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
+    const filterBy: IFilterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
 
     const [addCategoryModal, setAddCategoryModal] = useState(false)
     const [selectedCategory, setSelectedCategory] = useState<ICategory | null>(null)
@@ -274,7 +276,7 @@ const CategoriesSettings = () => {
 
     const handleDelete = async (categoryId: string) => {
         dispatch(setLoader(true))
-        const res = await dispatch(deleteCategory(categoryId))
+        const res = await dispatch(deleteCategory(categoryId, filterBy))
         dispatch(setLoader(false))
         if (!res) {
             alertMessage("Cannot delete a category while it's in use", 'danger', 3500)
@@ -321,6 +323,7 @@ const LabelsSettings = () => {
 
     const dispatch = useDispatch()
     const rawData: IDataObject = useSelector((state: RootState) => state.userModule.data)
+    const filterBy: IFilterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
 
     const [addLabelModal, setAddLabelModal] = useState(false)
     const [selectedLabel, setSelectedLabel] = useState<ILabel | null>(null)
@@ -330,7 +333,7 @@ const LabelsSettings = () => {
     const handleModalAnswer = async (answer: boolean) => {
         if (answer && selectedLabel) {
             dispatch(setLoader(true))
-            await dispatch(deleteLabel(selectedLabel._id))
+            await dispatch(deleteLabel(selectedLabel._id, filterBy))
             dispatch(setLoader(false))
         }
         setSelectedLabel(null)
