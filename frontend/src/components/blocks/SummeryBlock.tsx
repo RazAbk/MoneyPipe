@@ -53,7 +53,7 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
                 } else {
                     dataMap[action.category] = {
                         sum: +action.amount,
-                        color: rawData.categories.find(category => category.title === action.category)?.bgColor || "#white"
+                        color: rawData.categories.find(category => category.title === action.category)?.bgColor || "#ffffff"
                     }
                 }
 
@@ -83,13 +83,17 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
 
     useEffect(() => {
         if (dataMap) {
+            const labels = Object.entries(dataMap).sort((a,b) => b[1].sum - a[1].sum).map((data: any) => data[0])
+            const data = Object.entries(dataMap).sort((a,b) => b[1].sum - a[1].sum).map((data: any) => data[1].sum)
+            const backgroundColors = Object.entries(dataMap).sort((a,b) => b[1].sum - a[1].sum).map((data: any) => data[1].color)
+            
             setPieData({
-                labels: Object.keys(dataMap),
+                labels: labels,
                 datasets: [
                     {
                         label: '',
-                        data: Object.values(dataMap).map((action: any) => action.sum),
-                        backgroundColor: Object.values(dataMap).map((action: any) => action.color),
+                        data: data,
+                        backgroundColor: backgroundColors,
                         borderColor: Object.values(dataMap).map(() => 'rgba(0, 0, 0, 1)'),
                         borderWidth: 1,
                     },
