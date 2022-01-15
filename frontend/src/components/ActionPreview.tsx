@@ -73,7 +73,7 @@ export const ActionPreview = ({ action, setActionModalOpen }: IActionProps) => {
                 </div>
             </div>
             <div className="right-side ">
-                <h3>{action.amount.toLocaleString()}{rawData.currency.sign}</h3>
+                <h3>{(+action.amount.toString()).toLocaleString()}{rawData.currency.sign}</h3>
             </div>
             <div className="action-preview-actions " style={{ transform: selectedAction?._id === action._id ? 'translateX(0%)' : 'translateX(100%)' }}>
                 <button onClick={onEdit}><FaRegEdit /></button>
