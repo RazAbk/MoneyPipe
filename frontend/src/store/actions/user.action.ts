@@ -187,6 +187,24 @@ export const deleteAction = (actionId: string, filterBy: IFilterBy) => {
     }
 }
 
+export const duplicateAction = (actionId: string, filterBy: IFilterBy) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const data = await userService.duplicateAction(actionId, filterBy)
+            if (!data.msg) {
+                dispatch({
+                    type: "SET_DATA",
+                    data
+                })
+            } else {
+                alertTitleMessage(data.title, data.msg, data.type, 3500)
+            }
+        } catch (err) {
+            console.error(err)
+        }
+    }
+}
+
 export const addCategory = (category: ICategory, filterBy: IFilterBy) => {
     return async (dispatch: AppDispatch) => {
         try {

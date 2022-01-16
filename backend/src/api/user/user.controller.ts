@@ -10,6 +10,7 @@ module.exports = {
     updateData,
     addAction,
     deleteAction,
+    duplicateAction,
     addCategory,
     deleteCategory,
     addLabel,
@@ -90,6 +91,19 @@ async function deleteAction(req: Request, res: Response, next: NextFunction) {
         next()
     } catch (err) {
         const errorMsg: IErrorMsg = { title: 'Opps, an error occurred', msg: 'Could not delete action, try again later', type: 'danger' }
+        res.status(200).send(errorMsg)
+    }
+}
+
+async function duplicateAction(req: Request, res: Response, next: NextFunction) {
+    try {
+        const { actionId } = req.params
+        const userId = req.user._id
+        const data = await userService.duplicateAction(actionId, userId)
+        req.data = data
+        next()
+    } catch (err) {
+        const errorMsg: IErrorMsg = { title: 'Opps, an error occurred', msg: 'Could not duplicate action, try again later', type: 'danger' }
         res.status(200).send(errorMsg)
     }
 }

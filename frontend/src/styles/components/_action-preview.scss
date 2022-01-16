@@ -52,7 +52,7 @@
         position: absolute;
         right: 0;
         height: 102%;
-        width: 8rem;
+        width: 10rem;
         transform: translateX(100%);
 
         display: flex;
@@ -68,14 +68,21 @@
         }
 
         >button:first-child{
-            background-color: rgb(226, 131, 21);
+            background-color: rgb(31, 135, 231);
             border-radius: 7.5px 0 0 7.5px;
             &:hover{
-                background-color: rgb(245, 142, 25);
+                background-color: rgb(67, 160, 247);
             }
         }
         
         >button:nth-child(2){
+            background-color: rgb(226, 131, 21);
+            &:hover{
+                background-color: rgb(245, 142, 25);
+            }
+        }
+
+        >button:nth-child(3){
             background-color: rgb(192, 45, 45);
             &:hover{
                 background-color: rgb(211, 35, 35);

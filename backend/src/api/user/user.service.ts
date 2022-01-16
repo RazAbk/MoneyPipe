@@ -2,6 +2,7 @@ import { IAction, ICategory, ILabel, IDateFilterBy } from "../../interfaces/data
 import { IUserUpdateForm, IDataUpdateForm } from "../../interfaces/userInterfaces"
 
 const { ObjectId } = require('mongodb')
+const { v4: uuid } = require('uuid');
 const bcrypt = require('bcrypt')
 const dbService = require('../../services/db.service')
 const utilService = require('../../services/util.service')
@@ -14,6 +15,7 @@ module.exports = {
     updateData,
     addAction,
     deleteAction,
+    duplicateAction,
     addCategory,
     deleteCategory,
     addLabel,
@@ -152,6 +154,25 @@ async function deleteAction(actionId: string, userId: string) {
     }
 }
 
+async function duplicateAction(actionId: string, userId: string) {
+    try {
+        const collection = await dbService.getCollection('users')
+        const user = await collection.findOne({ '_id': ObjectId(userId) })
+
+        const actionIdx = user.data.actions.findIndex((currAction: IAction) => currAction._id === actionId)
+        const newAction: IAction = JSON.parse(JSON.stringify(user.data.actions[actionIdx]))
+        newAction._id = uuid()
+        
+        user.data.actions.splice(actionIdx, 0, newAction)
+
+        await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
+
+        return user.data
+    } catch (err) {
+        console.log('could not duplicate action')
+        throw err
+    }
+}
 
 async function addCategory(category: ICategory, userId: string) {
     try {

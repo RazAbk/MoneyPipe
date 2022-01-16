@@ -19,6 +19,7 @@ export const userService = {
     getUser,
     addAction,
     deleteAction,
+    duplicateAction,
     addCategory,
     deleteCategory,
     addLabel,
@@ -137,6 +138,15 @@ async function addAction(action: IAction, filterBy: IFilterBy) {
 async function deleteAction(actionId: string, filterBy: IFilterBy) {
     try {
         const res = await axios.delete(`${BASE_URL}/api/user/action/${actionId}?startDate=${filterBy.startDate}&endDate=${filterBy.endDate}`)
+        return res.data
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+async function duplicateAction(actionId: string, filterBy: IFilterBy) {
+    try {
+        const res = await axios.post(`${BASE_URL}/api/user/action/${actionId}?startDate=${filterBy.startDate}&endDate=${filterBy.endDate}`)
         return res.data
     } catch (err) {
         console.error(err)

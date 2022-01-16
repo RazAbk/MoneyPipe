@@ -1,5 +1,5 @@
 import express from 'express'
-const { getData, getUser, updateUser, updateData, addAction, deleteAction, addCategory, deleteCategory, deleteLabel, addLabel, deleteUser } = require('./user.controller')
+const { getData, getUser, updateUser, updateData, addAction, deleteAction, addCategory, duplicateAction, deleteCategory, deleteLabel, addLabel, deleteUser } = require('./user.controller')
 const { authenticateToken } = require('../../middlewares/requireAuth.middleware')
 const { blockDemoUser } = require('../../middlewares/blockDemoUser.middleware')
 const { filterBy } = require('../../middlewares/filterBy.middleware')
@@ -17,6 +17,7 @@ userRouter.put('/user', updateUser)
 userRouter.put('/data', updateData, filterBy)
 
 userRouter.post('/action', addAction, filterBy)
+userRouter.post('/action/:actionId', duplicateAction, filterBy)
 userRouter.post('/category', addCategory, filterBy)
 userRouter.post('/label', addLabel, filterBy)
 
