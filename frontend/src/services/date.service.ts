@@ -9,6 +9,7 @@ export const dateService = {
     getNextMonth,
     getMonthStartTimeStamp,
     getDayMaxHour,
+    getDayMinHour,
     getRelativeDate,
     getDateAsString,
     getShortYear,
@@ -109,6 +110,16 @@ function getDayMaxHour(timeStamp: number) {
     const year = date.getFullYear()
 
     return new Date(year, month, day, 23, 59, 59).getTime()
+}
+
+function getDayMinHour(timeStamp: number) {
+    const date = new Date(timeStamp)
+
+    const day = date.getDate()
+    const month = date.getMonth()
+    const year = date.getFullYear()
+
+    return new Date(year, month, day, 0, 0, 0).getTime()
 }
 
 function getRelativeDate(timeStamp: number) {

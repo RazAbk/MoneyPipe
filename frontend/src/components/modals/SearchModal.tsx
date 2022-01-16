@@ -42,15 +42,25 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
 
     const handleDateChange = (date: number | null, field: string) => {
         if (date) {
-            const timeStamp = new Date(date).getTime();
-            if (timeStamp > Date.now()) {
-                alert("Date cannot be greater than the current date")
-                return
-            } else if (filterBy.startDate > filterBy.endDate) {
-                alert("Start date cannot be greater than end date")
-                return
+            const selectedTimeStamp = new Date(date).getTime();
+
+            if(field === "startDate"){
+                if(selectedTimeStamp > filterBy.endDate){
+                    alert("Start date cannot be greater than the end date")
+                    return
+                }
+            } else if(field === "endDate") {
+                if(dateService.getDayMinHour(selectedTimeStamp) > Date.now()){
+                    alert("End date cannot be greater than the current time")
+                    return
+                }
+                if(selectedTimeStamp < filterBy.startDate){
+                    alert("End date cannot be smaller than the start date")
+                    return
+                }
             }
-            setFilterBy({ ...filterBy, [field]: field === 'endDate' ? dateService.getDayMaxHour(timeStamp) : timeStamp })
+
+            setFilterBy({ ...filterBy, [field]: field === 'endDate' ? dateService.getDayMaxHour(selectedTimeStamp) : selectedTimeStamp })
         }
     }
 
