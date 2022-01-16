@@ -78,8 +78,9 @@
   }
 
   .pie {
-    flex-grow: 1;
+    max-width: 250px;
     max-height: 40%;
+    aspect-ratio: 1/1;
   }
 
 
@@ -91,6 +92,9 @@
     gap: 0.25rem;
     font-size: 0.8rem;
     overflow-y: auto;
+    
+    min-height: 25%;
+    flex-grow: 1;
 
     @include for-desktop {
       font-size: 1rem;

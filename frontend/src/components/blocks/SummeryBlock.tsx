@@ -14,7 +14,7 @@ interface ISummeryBlockProps {
 }
 
 const options = {
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     plugins: {
         legend: {
             display: false
