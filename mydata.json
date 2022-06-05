@@ -1,0 +1,3424 @@
+{
+    "_id": { "$oid": "61bdfa6f8457a5ea2f6cd7ec" },
+    "userName": "razab98754@gmail.com",
+    "password": "$2b$10$RqXT0wD70EYK6es90Aqwhum5CN48IPEE/iji89.cR0RQ.aQCy/lgC",
+    "firstName": "רז",
+    "lastName": "אבקסיס",
+    "createdAt": 1639840367679.0,
+    "picture": "http://res.cloudinary.com/dfj4zd14o/image/upload/v1640694045/MoneyPipe_Users_assets/rjmt4dzgkvggqnxw6ie5.jpg",
+    "isGoogle": true,
+    "data": {
+        "currency": {
+            "sign": "₪",
+            "code": "ILS"
+        },
+        "labels": [
+        {
+            "_id": "dogfaqP",
+            "title": "ביטוח לאומי",
+            "labelName": "#btl"
+        },
+        {
+            "_id": "gr3f21ed",
+            "title": "Motorcycle Parts",
+            "labelName": "#motorcycleparts"
+        },
+        {
+            "_id": "do31saaqP",
+            "title": "Book",
+            "labelName": "#book"
+        },
+        {
+            "_id": "doQMfdsaaqP",
+            "title": "Bank",
+            "labelName": "#bank"
+        },
+        {
+            "_id": "doQMfaqP",
+            "title": "Insurance",
+            "labelName": "#insurance"
+        },
+        {
+            "_id": "doQMqP",
+            "title": "Adobe",
+            "labelName": "#adobe"
+        },
+        {
+            "_id": "FwLa5F",
+            "title": "Apple",
+            "labelName": "#apple"
+        },
+        {
+            "_id": "ToX7lj",
+            "title": "Beer",
+            "labelName": "#beer"
+        },
+        {
+            "_id": "FIS8Fg",
+            "title": "Coding academy",
+            "labelName": "#codingacademy"
+        },
+        {
+            "_id": "ByVAcg",
+            "title": "Coffee",
+            "labelName": "#coffee"
+        },
+        {
+            "_id": "WWVzAv",
+            "title": "Deodorant",
+            "labelName": "#deodorant"
+        },
+        {
+            "_id": "yUpk_v",
+            "title": "Fuel",
+            "labelName": "#fuel"
+        },
+        {
+            "_id": "80Sg7W",
+            "title": "Gym",
+            "labelName": "#gym"
+        },
+        {
+            "_id": "fuhrbd",
+            "title": "Hangout",
+            "labelName": "#hangout"
+        },
+        {
+            "_id": "N068UL",
+            "title": "Household",
+            "labelName": "#household"
+        },
+        {
+            "_id": "d90QH1",
+            "title": "Ice cream",
+            "labelName": "#icecream"
+        },
+        {
+            "_id": "mrdWMf",
+            "title": "Icloud",
+            "labelName": "#icloud"
+        },
+        {
+            "_id": "L2hZGg",
+            "title": "Lecture",
+            "labelName": "#lecture"
+        },
+        {
+            "_id": "aV_UPN",
+            "title": "LinkedIn",
+            "labelName": "#linkedin"
+        },
+        {
+            "_id": "IGin7Q",
+            "title": "Motorcycle",
+            "labelName": "#motorcycle"
+        },
+        {
+            "_id": "IGin7fre2Q",
+            "title": "Video games",
+            "labelName": "#videogames"
+        },
+        {
+            "_id": "M0Ax1w",
+            "title": "כביש 6",
+            "labelName": "#כביש6"
+        },
+        {
+            "_id": "t42dswa",
+            "title": "Music",
+            "labelName": "#music"
+        },
+        {
+            "_id": "t4432dswa",
+            "title": "PSK Wind",
+            "labelName": "#pskwind"
+        },
+        {
+            "_id": "tr432dswa",
+            "title": "Elections",
+            "labelName": "#elections"
+        },
+        {
+            "_id": "tr43212dswa",
+            "title": "Dentist",
+            "labelName": "#dentist"
+        },
+        {
+            "_id": "tr43f41212dswa",
+            "title": "Gopro",
+            "labelName": "#gopro"
+        },
+        {
+            "_id": "tr43g4rt2312dswa",
+            "title": "Aliexpress",
+            "labelName": "#aliexpress"
+        },
+        {
+            "_id": "tr43g46r3swa",
+            "title": "Amazon",
+            "labelName": "#amazon"
+        },
+        {
+            "_id": "h5g4r2f5332",
+            "title": "Photography Gear",
+            "labelName": "#photographygear"
+        },
+        {
+            "_id": "h5t423g4fre",
+            "title": "Pizza",
+            "labelName": "#pizza"
+        },
+        {
+            "_id": "h5t423g31233fre",
+            "title": "Sinai",
+            "labelName": "#sinai"
+        },
+        {
+            "_id": "h5t2423g3123fre",
+            "title": "Motorcycle Care",
+            "labelName": "#motorcyclecare"
+        },
+        {
+            "_id": "h5t423g31213fre",
+            "title": "Restaurant",
+            "labelName": "#restaurant"
+        },
+        {
+            "_id": "h5tdsadasdasd123fre",
+            "title": "Camping Gear",
+            "labelName": "#campinggear"
+        },
+        {
+            "_id": "h5tdsadasdasd123123fre",
+            "title": "Noa",
+            "labelName": "#noa"
+        },
+        {
+            "_id": "h5tdsadasdasd123123fasdasdre",
+            "title": "udemy",
+            "labelName": "#udemy"
+        }
+    ],
+        "categories": [
+        {
+            "_id": "cT0r4zqZ",
+            "title": "Taxes",
+            "icon": "money",
+            "bgColor": "#a8071a"
+        },
+        {
+            "_id": "bT0r4zqZ",
+            "title": "Commission",
+            "icon": "warning",
+            "bgColor": "#a8071a"
+        },
+        {
+            "_id": "bT0zqZ",
+            "title": "Courses",
+            "icon": "student",
+            "bgColor": "#9e1068"
+        },
+        {
+            "_id": "xjd4ev",
+            "title": "Dog",
+            "icon": "dog",
+            "bgColor": "#d48806"
+        },
+        {
+            "_id": "FFFhRb",
+            "title": "Food",
+            "icon": "food",
+            "bgColor": "#389e0d"
+        },
+        {
+            "_id": "U_cVwZ",
+            "title": "Gift",
+            "icon": "box",
+            "bgColor": "#ff4d4f"
+        },
+        {
+            "_id": "RjSHIj",
+            "title": "Hangout",
+            "icon": "beer",
+            "bgColor": "#d46b08"
+        },
+        {
+            "_id": "aGNqLY",
+            "title": "Household",
+            "icon": "home",
+            "bgColor": "#d4380d"
+        },
+        {
+            "_id": "d7F1np",
+            "title": "Motorcycle",
+            "icon": "motorcycle",
+            "bgColor": "#006d75"
+        },
+        {
+            "_id": "cN8Dhd",
+            "title": "My Business",
+            "icon": "camera",
+            "bgColor": "#237804"
+        },
+        {
+            "_id": "AHldLB",
+            "title": "Pharmacy",
+            "icon": "capsules",
+            "bgColor": "#237804"
+        },
+        {
+            "_id": "2daMTc",
+            "title": "Shopping",
+            "icon": "shopping-cart",
+            "bgColor": "#237804"
+        },
+        {
+            "_id": "Cq9stB",
+            "title": "Software",
+            "icon": "laptop",
+            "bgColor": "#faad14"
+        },
+        {
+            "_id": "6XuP7H",
+            "title": "Sport",
+            "icon": "gym",
+            "bgColor": "#ad4e00"
+        },
+        {
+            "_id": "6fdasXuP7H",
+            "title": "Video games",
+            "icon": "cube",
+            "bgColor": "#ad4e00"
+        },
+        {
+            "_id": "6fdg423asXu",
+            "title": "Music",
+            "icon": "guitar",
+            "bgColor": "#ff4d4f"
+        },
+        {
+            "_id": "6fdg4gtsX123123u",
+            "title": "Random Job",
+            "icon": "coins",
+            "bgColor": "#237804"
+        },
+        {
+            "_id": "6fdg4gtsXu",
+            "title": "IDF",
+            "icon": "clothes",
+            "bgColor": "#237804"
+        },
+        {
+            "_id": "43gtsXu",
+            "title": "Salary",
+            "icon": "money",
+            "bgColor": "#237804"
+        },
+        {
+            "_id": "441sXu",
+            "title": "Electronics",
+            "icon": "laptop",
+            "bgColor": "#237804"
+        },
+        {
+            "_id": "441s432Xu",
+            "title": "Health",
+            "icon": "laptop",
+            "bgColor": "#237804"
+        },
+        {
+            "_id": "441s121232Xu",
+            "title": "Public Transportation",
+            "icon": "bus",
+            "bgColor": "#237804"
+        },
+        {
+            "_id": "g5432rf2er",
+            "title": "Photography",
+            "icon": "camera",
+            "bgColor": "#237804"
+        },
+        {
+            "_id": "g54324321rf2er",
+            "title": "Travel",
+            "icon": "camera",
+            "bgColor": "#237804"
+        },
+        {
+            "_id": "g54er",
+            "title": "Random",
+            "icon": "camera",
+            "bgColor": "#237804"
+        },
+        {
+            "_id": "VqMWKp",
+            "title": "Clothing",
+            "icon": "clothes",
+            "bgColor": "#531dab"
+        }
+    ],
+    "actions": [
+        {
+            "_id": "f43as2d",
+            "type": "expense",
+            "labels": ["#btl"],
+            "category": "Taxes",
+            "description": "ביטוח לאומי",
+            "amount": "354",
+            "createdAt": 1642579955000
+        },
+        {
+            "_id":"0b4da57c-d969-4fb5-817e-f852deadfb94",
+            "type":"expense",
+            "labels":[],
+            "category":"Clothing",
+            "description":"בגדים ברנואר",
+            "amount":"270",
+            "createdAt": 1642525336000
+        },
+        {
+            "_id":"E0zfeD",
+            "type":"expense",
+            "labels":[],
+            "category":"Clothing",
+            "description":"בגדים בקאסטרו",
+            "amount":"220",
+            "createdAt": 1642525336000
+        },
+        {
+            "_id": "zaaaakaaaasd21e12",
+            "type": "expense",
+            "labels": [],
+            "category": "Motorcycle",
+            "description": "מנוי זעקה האחרונה",
+            "amount": "61",
+            "createdAt": 1642510603000
+        },
+        {
+            "_id": "zaaaakaaa6",
+            "type": "expense",
+            "labels": [],
+            "category": "Motorcycle",
+            "description": "התקנת הזעקה האחרונה תשלומים",
+            "amount": "340",
+            "createdAt": 1657429200000
+        },
+        {
+            "_id": "zaaaakaaa5",
+            "type": "expense",
+            "labels": [],
+            "category": "Motorcycle",
+            "description": "התקנת הזעקה האחרונה תשלומים",
+            "amount": "340",
+            "createdAt": 1654837200000
+        },
+        {
+            "_id": "zaaaakaaa4",
+            "type": "expense",
+            "labels": [],
+            "category": "Motorcycle",
+            "description": "התקנת הזעקה האחרונה תשלומים",
+            "amount": "340",
+            "createdAt": 1652158800000
+        },
+        {
+            "_id": "zaaaakaaa3",
+            "type": "expense",
+            "labels": [],
+            "category": "Motorcycle",
+            "description": "התקנת הזעקה האחרונה תשלומים",
+            "amount": "340",
+            "createdAt": 1649566800000
+        },
+        {
+            "_id": "zaaaakaaa2",
+            "type": "expense",
+            "labels": [],
+            "category": "Motorcycle",
+            "description": "התקנת הזעקה האחרונה תשלומים",
+            "amount": "340",
+            "createdAt": 1646892000000
+        },
+        {
+            "_id": "zaaaakaaa1",
+            "type": "expense",
+            "labels": [],
+            "category": "Motorcycle",
+            "description": "התקנת הזעקה האחרונה תשלומים",
+            "amount": "350",
+            "createdAt": 1644472800000
+        },
+        {
+            "_id": "brgr12312312342f4w",
+            "type": "expense",
+            "labels": ["#udemy"],
+            "category": "Courses",
+            "description": "קורס אנגולר",
+            "amount": "60",
+            "createdAt": 1642505699000
+        },
+        {
+            "_id": "br12g23f1de321fe321eadf234w",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "80",
+            "createdAt": 1642285464000
+        },
+        {
+            "_id": "0XAZ123123iw",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "220",
+            "createdAt": 1642265436000
+        },
+        {
+            "_id": "rv32cr25v432",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "שטויות בתחנת דלק",
+            "amount": "35",
+            "createdAt": 1609926636000
+        },
+        {
+            "_id": "HondaCB500X",
+            "type": "expense",
+            "labels": [],
+            "category": "Motorcycle",
+            "description": "אופנוע",
+            "amount": "27500",
+            "createdAt": 1610531436000
+        },
+        {
+            "_id": "rrfberbg43rfasdasd3232",
+            "type": "expense",
+            "labels": [],
+            "category": "Motorcycle",
+            "description": "GBH איתור לאופנוע",
+            "amount": "648",
+            "createdAt": 1610531436000
+        },
+        {
+            "_id": "r4asd12321231231231dsadasd23r",
+            "type": "expense",
+            "labels": ["#motorcycleparts", "#aliexpress"],
+            "category": "Motorcycle",
+            "description": "דברים לאופנוע",
+            "amount": "462",
+            "createdAt": 1610790636000
+        },
+        {
+            "_id": "rrfberbg43rf3232",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "30",
+            "createdAt": 1610963436000
+        },
+        {
+            "_id": "iyQGqa1231231231",
+            "type": "expense",
+            "labels": ["#insurance"],
+            "category": "Motorcycle",
+            "description": "ביטוח חובה",
+            "amount": "6067",
+            "createdAt": 1611049836000
+        },
+        {
+            "_id": "z1de21de2123123v",
+            "type": "expense",
+            "labels": [],
+            "category": "Commission",
+            "description": "עמלת פעולה לביטוח חובה",
+            "amount": "20",
+            "createdAt": 1611049836000
+        },
+        {
+            "_id": "vgdsa2dsadasdg23r",
+            "type": "expense",
+            "labels": ["#restaurant"],
+            "category": "Food",
+            "description": "פלאפל",
+            "amount": "20",
+            "createdAt": 1611136236000
+        },
+        {
+            "_id": "rrfbe3de13312123123v1232",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "54",
+            "createdAt": 1611395436000
+        },
+        {
+            "_id": "vr3rb423r4f2ed",
+            "type": "expense",
+            "labels": [],
+            "category": "Pharmacy",
+            "description": "טלק",
+            "amount": "35",
+            "createdAt": 1611568236000
+        },
+        {
+            "_id": "rbe112121212de121212v",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "חלב",
+            "amount": "12",
+            "createdAt": 1611568236000
+        },
+        {
+            "_id": "ds12dwd",
+            "type": "expense",
+            "labels": ["#insurance"],
+            "category": "Motorcycle",
+            "description": "ביטוח צד ג",
+            "amount": "631",
+            "createdAt": 1611748236000
+        },
+        {
+            "_id": "vr3261253dsadasd411212ed",
+            "type": "expense",
+            "labels": [],
+            "category": "Pharmacy",
+            "description": "סופרפארם",
+            "amount": "90",
+            "createdAt": 1612266636000
+        },
+        {
+            "_id": "e3cf2e33131cfcf",
+            "type": "expense",
+            "labels": [],
+            "category": "Random",
+            "description": "תיקון משקפיים לאמא",
+            "amount": "50",
+            "createdAt": 1612353036000
+        },
+        {
+            "_id": "e3cf2e3cfcf",
+            "type": "expense",
+            "labels": ["#noa", "#restaurant"],
+            "category": "Food",
+            "description": "מקסיקני",
+            "amount": "119",
+            "createdAt": 1612482636000
+        },
+        {
+            "_id": "rrfbe3de133v12313132",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "קפה",
+            "amount": "18",
+            "createdAt": 1612785036000
+        },
+        {
+            "_id": "rrfbe3de133v1232",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "44",
+            "createdAt": 1613217036000
+        },
+        {
+            "_id": "r4asd1232123123123123r",
+            "type": "expense",
+            "labels": ["#motorcycleparts", "#aliexpress"],
+            "category": "Motorcycle",
+            "description": "גומיות לאופנוע",
+            "amount": "23",
+            "createdAt": 1613389836000
+        },
+        {
+            "_id": "z1de21de1232v",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "אוכל",
+            "amount": "60",
+            "createdAt": 1613476236000
+        },
+        {
+            "_id": "z1de21de2v",
+            "type": "expense",
+            "labels": [],
+            "category": "Commission",
+            "description": "עמלת משיכה מכספומט",
+            "amount": "7",
+            "createdAt": 1613476236000
+        },
+        {
+            "_id": "rrfbe3de3v3121232",
+            "type": "expense",
+            "labels": [],
+            "category": "Gift",
+            "description": "לאמא",
+            "amount": "50",
+            "createdAt": 1613649036000
+        },
+        {
+            "_id": "rrfbe3de3v1232",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "81",
+            "createdAt": 1614081036000
+        },
+        {
+            "_id": "rrfbe3de33213v2",
+            "type": "expense",
+            "labels": ["#campinggear"],
+            "category": "Shopping",
+            "description": "מגן רוח לפקל קפה",
+            "amount": "37",
+            "createdAt": 1614253836000
+        },
+        {
+            "_id": "rrfbe3de3v2",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "74",
+            "createdAt": 1614426636000
+        },
+        {
+            "_id": "z1jdsads123123ad3sajp",
+            "type": "expense",
+            "labels": [],
+            "category": "Commission",
+            "description": "עמלת משיכה מכספומט",
+            "amount": "6",
+            "createdAt": 1614513036000
+        },
+        {
+            "_id": "r4asdasd23r",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "טחינה הר ברכה וזעתר",
+            "amount": "125",
+            "createdAt": 1614513036000
+        },
+        {
+            "_id": "r4asd1232123r",
+            "type": "expense",
+            "labels": ["#motorcycleparts", "#aliexpress"],
+            "category": "Motorcycle",
+            "description": "ציוד קטן לאופנוע",
+            "amount": "293",
+            "createdAt": 1614513036000
+        },
+        {
+            "_id": "vgdsa2g2121223r",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "ג'וזג'וזה",
+            "amount": "22",
+            "createdAt": 1614599436000
+        },
+        {
+            "_id": "vgdsa2g21223r",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "מאפייה",
+            "amount": "22",
+            "createdAt": 1614685836000
+        },
+        {
+            "_id": "vgdsa2g23r",
+            "type": "expense",
+            "labels": ["#restaurant"],
+            "category": "Food",
+            "description": "פלאפל",
+            "amount": "24",
+            "createdAt": 1614685836000
+        },
+        {
+            "_id": "r4asd23r",
+            "type": "expense",
+            "labels": ["#motorcycleparts"],
+            "category": "Motorcycle",
+            "description": "ג'ק לאופנוע",
+            "amount": "265",
+            "createdAt": 1614858636000
+        },
+        {
+            "_id": "b1asd31234141",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירות",
+            "amount": "84",
+            "createdAt": 1614901836000
+        },
+        {
+            "_id": "c1asd1122123",
+            "type": "expense",
+            "labels": [],
+            "category": "Shopping",
+            "description": "ווקס לנעלים",
+            "amount": "51",
+            "createdAt": 1615161036000
+        },
+        {
+            "_id": "b1asd12123",
+            "type": "expense",
+            "labels": ["#photographygear"],
+            "category": "Shopping",
+            "description": "כבלים לגימבל",
+            "amount": "68",
+            "createdAt": 1615161036000
+        },
+        {
+            "_id": "asdasdasd213",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "פאב באילת",
+            "amount": "80",
+            "createdAt": 1615333836000
+        },
+        {
+            "_id": "r4faasdasd22d23r",
+            "type": "expense",
+            "labels": ["#beer"],
+            "category": "Food",
+            "description": "ארגז קורונה",
+            "amount": "105",
+            "createdAt": 1615377036000
+        },
+        {
+            "_id": "r4faasdas1211212122dd222d212g23r",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "ארטיק",
+            "amount": "10",
+            "createdAt": 1615377036000
+        },
+        {
+            "_id": "r112122r3f2112122312334w",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "62",
+            "createdAt": 1615463436000
+        },
+        {
+            "_id": "r4faasdas1212dd222d212g23r",
+            "type": "expense",
+            "labels": ["#restaurant"],
+            "category": "Food",
+            "description": "המבורגר",
+            "amount": "62",
+            "createdAt": 1615463436000
+        },
+        {
+            "_id": "b1212as121212aadf234w123",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "פאב",
+            "amount": "80",
+            "createdAt": 1615593036000
+        },
+        {
+            "_id": "r112122r3f212312334w",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "65",
+            "createdAt": 1615636236000
+        },
+        {
+            "_id": "r4faasdasdd222d212g23r",
+            "type": "expense",
+            "labels": ["#restaurant"],
+            "category": "Food",
+            "description": "פלאפלים",
+            "amount": "54",
+            "createdAt": 1615722636000
+        },
+        {
+            "_id": "r4fasddsasdasd212g23r",
+            "type": "expense",
+            "labels": ["aliexpress"],
+            "category": "Shopping",
+            "description": "מחזיק לטלפון לאוטו",
+            "amount": "40",
+            "createdAt": 1615765836000
+        },
+        {
+            "_id": "rbe1121212de121212v",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "לחם",
+            "amount": "9",
+            "createdAt": 1615809036000
+        },
+        {
+            "_id": "b1212as121212aadf234w",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה",
+            "amount": "80",
+            "createdAt": 1615852236000
+        },
+        {
+            "_id": "r4fadasda12121223r",
+            "type": "expense",
+            "labels": ["#motorcycleparts"],
+            "category": "Motorcycle",
+            "description": "ג׳בקה ומפתחות אלן",
+            "amount": "74",
+            "createdAt": 1615809036000
+        },
+        {
+            "_id": "r4fadasdasdg23r",
+            "type": "expense",
+            "labels": ["#campinggear"],
+            "category": "Shopping",
+            "description": "ג׳בקה ובלוני גז",
+            "amount": "135",
+            "createdAt": 1615895436000
+        },
+        {
+            "_id": "r4fasdasd1212121212g23r",
+            "type": "expense",
+            "labels": ["#motorcycleparts", "aliexpress"],
+            "category": "Motorcycle",
+            "description": "משאבת שיומי + מרחיב רגלית",
+            "amount": "222",
+            "createdAt": 1615895436000
+        },
+        {
+            "_id": "b1212asaadf234w",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה",
+            "amount": "60",
+            "createdAt": 1615938636000
+        },
+        {
+            "_id": "rbe11212121212de12v",
+            "type": "expense",
+            "labels": [],
+            "category": "Gift",
+            "description": "עיפרון לאמא",
+            "amount": "109",
+            "createdAt": 1616068236000
+        },
+        {
+            "_id": "r4fasdasd1212g23r",
+            "type": "expense",
+            "labels": ["#motorcycleparts", "aliexpress"],
+            "category": "Motorcycle",
+            "description": "מתג לאופנוע",
+            "amount": "37",
+            "createdAt": 1616154636000
+        },
+        {
+            "_id": "br12gaasaasaadf234w",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה",
+            "amount": "30",
+            "createdAt": 1616197836000
+        },
+        {
+            "_id": "rbe1121212de12v",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "קניות לבית",
+            "amount": "72",
+            "createdAt": 1616413836000
+        },
+        {
+            "_id": "r4fasdasdg23r",
+            "type": "expense",
+            "labels": ["#motorcycleparts", "aliexpress"],
+            "category": "Motorcycle",
+            "description": "מגני ידיים לאופנוע",
+            "amount": "170",
+            "createdAt": 1616629836000
+        },
+        {
+            "_id": "br12gdaaasadf234w",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "100",
+            "createdAt": 1616716236000
+        },
+        {
+            "_id": "gr4321r3214313132",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "ביצים",
+            "amount": "19",
+            "createdAt": 1617018636000
+        },
+        {
+            "_id": "r132cfed2112r3f212312334w",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "60",
+            "createdAt": 1617105036000
+        },
+        {
+            "_id": "vr3261253dsadasd41ed",
+            "type": "expense",
+            "labels": ["#deodorant"],
+            "category": "Pharmacy",
+            "description": "דאודורנט",
+            "amount": "40",
+            "createdAt": 1617191436000
+        },
+        {
+            "_id": "z1jdsadsad3sajp",
+            "type": "expense",
+            "labels": [],
+            "category": "Commission",
+            "description": "עמלת משיכה מכספומט",
+            "amount": "6",
+            "createdAt": 1617191436000
+        },
+        {
+            "_id": "tasdgvrf32rc32fr2e3v2",
+            "type": "expense",
+            "labels": ["#campinggear"],
+            "category": "Shopping",
+            "description": "ציוד טיולים",
+            "amount": "325",
+            "createdAt": 1617191436000
+        },
+        {
+            "_id": "br12gfasdfsadfsadf234w",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "60",
+            "createdAt": 1642204236000
+        },
+        {
+            "_id": "rh21fdsf31111f",
+            "type": "expense",
+            "labels": ["#gym"],
+            "category": "Sport",
+            "description": "דמי הרשמה לחדכ",
+            "amount": "150",
+            "createdAt": 1617268356000
+        },
+        {
+            "_id": "tasda1231233v2",
+            "type": "expense",
+            "labels": ["#campinggear"],
+            "category": "Shopping",
+            "description": "שולחן קמפינג",
+            "amount": "99",
+            "createdAt": 1617268356000
+        },
+        {
+            "_id": "tasdasd3r3v2",
+            "type": "expense",
+            "labels": [],
+            "category": "Shopping",
+            "description": "קרש חיתוך",
+            "amount": "17",
+            "createdAt": 1617268356000
+        },
+        {
+            "_id": "t4g3123123r3v2",
+            "type": "expense",
+            "labels": [],
+            "category": "Pharmacy",
+            "description": "מטליות אלכוהול",
+            "amount": "25",
+            "createdAt": 1617268356000
+        },
+        {
+            "_id": "r132cfed2112r3f234w",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "72",
+            "createdAt": 1617268356000
+        },
+        {
+            "_id": "br12g111121f234w",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "רסק עגבניות",
+            "amount": "5",
+            "createdAt": 1617354756000
+        },
+        {
+            "_id": "br12gfr3121121f234w",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "70",
+            "createdAt": 1617441156000
+        },
+        {
+            "_id": "r123g43d1212112r3f234w",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "7",
+            "createdAt": 1617613956000
+        },
+        {
+            "_id": "hg4vbrfFDD1g4",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "מים",
+            "amount": "17",
+            "createdAt": 1617613956000
+        },
+        {
+            "_id": "hg4vbrf33r4fFDD1g4",
+            "type": "expense",
+            "labels": ["#restaurant"],
+            "category": "Food",
+            "description": "מסעדה",
+            "amount": "89",
+            "createdAt": 1617613956000
+        },
+        {
+            "_id": "hg45rgg4g412g431g4",
+            "type": "expense",
+            "labels": ["#restaurant"],
+            "category": "Food",
+            "description": "גוני קריספי אילת",
+            "amount": "65",
+            "createdAt": 1617743556000
+        },
+        {
+            "_id": "hg45rgg4g412g4g4",
+            "type": "expense",
+            "labels": ["#restaurant"],
+            "category": "Food",
+            "description": "פלאפל",
+            "amount": "56",
+            "createdAt": 1617743556000
+        },
+        {
+            "_id": "hg45rgg4g4g4g4",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "מצרכי אוכל",
+            "amount": "47",
+            "createdAt": 1617743556000
+        },
+        {
+            "_id": "g5r4444423g",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "מיץ ומים",
+            "amount": "22",
+            "createdAt": 1617786756000
+        },
+        {
+            "_id": "g5r44444423g",
+            "type": "expense",
+            "labels": ["#restaurant"],
+            "category": "Food",
+            "description": "מסעדה הודית",
+            "amount": "80",
+            "createdAt": 1617786756000
+        },
+        {
+            "_id": "r123g4653d12r3f234w",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "סנדוויץ",
+            "amount": "27",
+            "createdAt": 1617873156000
+        },
+        {
+            "_id": "r123g43d12r3f234w",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "49",
+            "createdAt": 1617873156000
+        },
+        {
+            "_id": "rg43d12r3f234w",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "69",
+            "createdAt": 1617959556000
+        },
+        {
+            "_id": "rg43dr3f234w",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "חטיף",
+            "amount": "7",
+            "createdAt": 1617959556000
+        },
+        {
+            "_id": "br12gfr3213f234w",
+            "type": "expense",
+            "labels": [],
+            "category": "Travel",
+            "description": "טיול מצפה רמון",
+            "amount": "220",
+            "createdAt": 1618002756000
+        },
+        {
+            "_id": "br12gfr3f234w",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "80",
+            "createdAt": 1618089156000
+        },
+        {
+            "_id": "r4f32rg23r",
+            "type": "expense",
+            "labels": ["#pizza"],
+            "category": "Food",
+            "description": "פיצה",
+            "amount": "30",
+            "createdAt": 1618089156000
+        },
+        {
+            "_id": "r4fr3432rg23r",
+            "type": "expense",
+            "labels": ["#motorcycleparts"],
+            "category": "Motorcycle",
+            "description": "גומיות למגן רוח",
+            "amount": "40",
+            "createdAt": 1618132356000
+        },
+        {
+            "_id": "54g23423vefre",
+            "type": "expense",
+            "labels": ["#motorcycleparts"],
+            "category": "Motorcycle",
+            "description": "מגן רוח חדש",
+            "amount": "510",
+            "createdAt": 1618218756000
+        },
+        {
+            "_id": "54f312fre",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "על האש",
+            "amount": "37",
+            "createdAt": 1618305156000
+        },
+        {
+            "_id": "54g3f312fre",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "חומוס",
+            "amount": "60",
+            "createdAt": 1618391556000
+        },
+        {
+            "_id": "54g3fvefre",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "פיתות",
+            "amount": "26",
+            "createdAt": 1618391556000
+        },
+        {
+            "_id": "54grf23fvefre",
+            "type": "expense",
+            "labels": ["#motorcyclecare"],
+            "category": "Motorcycle",
+            "description": "קרוסין",
+            "amount": "37",
+            "createdAt": 1618564356000
+        },
+        {
+            "_id": "r52fvr2fEWWERf2",
+            "type": "expense",
+            "labels": [],
+            "category": "My Business",
+            "description": "אפקטים לפרמייר",
+            "amount": "171",
+            "createdAt": 1618737156000
+        },
+        {
+            "_id": "rbe112413334qde133212v",
+            "type": "expense",
+            "labels": [],
+            "category": "Random",
+            "description": "פרסומת לקסדה בפייסבוק",
+            "amount": "20",
+            "createdAt": 1618737156000
+        },
+        {
+            "_id": "rbe1334qde133212v",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "בצלים ובננות",
+            "amount": "45",
+            "createdAt": 1618737156000
+        },
+        {
+            "_id": "321rbe134321qde12v",
+            "type": "expense",
+            "labels": [],
+            "category": "Motorcycle",
+            "description": "קורס אופנוען מאומן",
+            "amount": "1960",
+            "createdAt": 1618823556000
+        },
+        {
+            "_id": "rbe1334qde12v",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "קניות לבית",
+            "amount": "29",
+            "createdAt": 1618823556000
+        },
+        {
+            "_id": "rbe134321qde12v",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "66",
+            "createdAt": 1618823556000
+        },
+        {
+            "_id": "br1rb4233234w",
+            "type": "expense",
+            "labels": [],
+            "category": "Shopping",
+            "description": "הפרש",
+            "amount": "30",
+            "createdAt": 1619046756000
+        },
+        {
+            "_id": "br1234w",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "105",
+            "createdAt": 1619219556000
+        },
+        {
+            "_id": "rgv31321v23",
+            "type": "expense",
+            "labels": ["#sinai"],
+            "category": "Travel",
+            "description": "אגרה לסיני",
+            "amount": "101",
+            "createdAt": 1619219556000
+        },
+        {
+            "_id": "br43tb321f4w",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "80",
+            "createdAt": 1619305956000
+        },
+        {
+            "_id": "brgr42f3214w",
+            "type": "expense",
+            "labels": [],
+            "category": "Hangout",
+            "description": "הופעה יונתן ברק",
+            "amount": "113",
+            "createdAt": 1619305956000
+        },
+        {
+            "_id": "brgr42f4w",
+            "type": "expense",
+            "labels": [],
+            "category": "Courses",
+            "description": "תכנית יזמות קרבית",
+            "amount": "490",
+            "createdAt": 1619392356000
+        },
+        {
+            "_id": "br43tbr432r32f4w",
+            "type": "expense",
+            "labels": ["#pizza"],
+            "category": "Food",
+            "description": "פיצה",
+            "amount": "35",
+            "createdAt": 1619478756000
+        },
+        {
+            "_id": "br43tbr432rf4w",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירות",
+            "amount": "65",
+            "createdAt": 1619478756000
+        },
+        {
+            "_id": "br4321t321312rew",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "חטיף",
+            "amount": "7",
+            "createdAt": 1619565156000
+        },
+        {
+            "_id": "br4t321312rew",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "140",
+            "createdAt": 1619565156000
+        },
+        {
+            "_id": "rgv3123421v23",
+            "type": "expense",
+            "labels": ["#sinai"],
+            "category": "Travel",
+            "description": "ביטוח פספורטקארד",
+            "amount": "86",
+            "createdAt": 1619651556000
+        },
+        {
+            "_id": "2ZWp2341416q",
+            "type": "income",
+            "labels": [],
+            "category": "Gift",
+            "description": "קיבלתי מאמא",
+            "amount": "100",
+            "createdAt": 1619737956000
+        },
+        {
+            "_id": "br4t23frew",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "132",
+            "createdAt": 1619737956000
+        },
+        {
+            "_id": "rgv3e12rfv23",
+            "type": "expense",
+            "labels": ["#sinai"],
+            "category": "Travel",
+            "description": "לינה בסיני",
+            "amount": "180",
+            "createdAt": 1619781156000
+        },
+        {
+            "_id": "rb123fde12v",
+            "type": "expense",
+            "labels": ["#sinai"],
+            "category": "Travel",
+            "description": "עלויות סיני",
+            "amount": "854",
+            "createdAt": 1619781156000
+        },
+        {
+            "_id": "t4b3231112131re",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "מים",
+            "amount": "9",
+            "createdAt": 1619781156000
+        },
+        {
+            "_id": "t4b3232131re",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "סנדוויץ",
+            "amount": "25",
+            "createdAt": 1619781156000
+        },
+        {
+            "_id": "gr4f3rg423fre32r432",
+            "type": "expense",
+            "labels": [],
+            "category": "Public Transportation",
+            "description": "רב קו",
+            "amount": "50",
+            "createdAt": 1619781156000
+        },
+        {
+            "_id": "rbfde12v",
+            "type": "expense",
+            "labels": [],
+            "category": "Shopping",
+            "description": "מחברת",
+            "amount": "20",
+            "createdAt": 1620213156000
+        },
+        {
+            "_id": "rbe132vrewqde12v",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "67",
+            "createdAt": 1620213156000
+        },
+        {
+            "_id": "bt4r1223vgfgf4323r",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "80",
+            "createdAt": 1620515556000
+        },
+        {
+            "_id": "bt4r1223vf4323r",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "120",
+            "createdAt": 1620515556000
+        },
+        {
+            "_id": "tbh423gtr3f2g",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "בננות לבית",
+            "amount": "11",
+            "createdAt": 1621422756000
+        },
+        {
+            "_id": "t4g324r3v2",
+            "type": "expense",
+            "labels": [],
+            "category": "Pharmacy",
+            "description": "סופר פטרם(טלק, מסטיקים, ספריי כביסה)",
+            "amount": "182",
+            "createdAt": 1621509156000
+        },
+        {
+            "_id": "gr234234t4f",
+            "type": "expense",
+            "labels": ["#motorcycleparts", "#amazon"],
+            "category": "Motorcycle",
+            "description": "פתחי איוורר למעיל אופנוע",
+            "amount": "115",
+            "createdAt": 1621509156000
+        },
+        {
+            "_id": "bt4r23vf4323r",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "100",
+            "createdAt": 1621638756000
+        },
+        {
+            "_id": "rbe132vde12v",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "60",
+            "createdAt": 1621674756000
+        },
+        {
+            "_id": "t4b3212re",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "מים",
+            "amount": "8",
+            "createdAt": 1621674756000
+        },
+        {
+            "_id": "t4b32re",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "סנדוויץ",
+            "amount": "29",
+            "createdAt": 1621674756000
+        },
+        {
+            "_id": "bht432r32",
+            "type": "expense",
+            "labels": ["#pizza"],
+            "category": "Food",
+            "description": "פיצה",
+            "amount": "39",
+            "createdAt": 1621717956000
+        },
+        {
+            "_id": "gh5r41r23f32",
+            "type": "expense",
+            "labels": ["#photographygear"],
+            "category": "Photography",
+            "description": "ציוד smallrig",
+            "amount": "240",
+            "createdAt": 1622023956000
+        },
+        {
+            "_id": "tn5432vfe3",
+            "type": "expense",
+            "labels": ["#motorcycleparts", "#aliexpress"],
+            "category": "Motorcycle",
+            "description": "דברים לחיזוק מגן רוח",
+            "amount": "80",
+            "createdAt": 1622023956000
+        },
+        {
+            "_id": "54gr4f32132edfd",
+            "type": "expense",
+            "labels": ["#motorcycleparts"],
+            "category": "Motorcycle",
+            "description": "ברגים ואומים",
+            "amount": "113",
+            "createdAt": 1622110356000
+        },
+        {
+            "_id": "f4r3rg4v321ed",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "76",
+            "createdAt": 1622196756000
+        },
+        {
+            "_id": "rg4n444e",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "70",
+            "createdAt": 1622239956000
+        },
+        {
+            "_id": "4gfrb423fe131e1",
+            "type": "expense",
+            "labels": [],
+            "category": "Taxes",
+            "description": "מכס על ציוד צילום",
+            "amount": "214",
+            "createdAt": 1622455956000
+        },
+        {
+            "_id": "4gf2432131e1",
+            "type": "expense",
+            "labels": ["#codingacademy"],
+            "category": "Courses",
+            "description": "קודינג אקדמי",
+            "amount": "3500",
+            "createdAt": 1619863956000
+        },
+        {
+            "_id": "gr432fr243",
+            "type": "expense",
+            "labels": ["#aliexpress"],
+            "category": "Shopping",
+            "description": "קופסאות קטנות של תבלינים",
+            "amount": "60",
+            "createdAt": 1622585556000
+        },
+        {
+            "_id": "rb4gg54f32d3fe",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "70",
+            "createdAt": 1622844756000
+        },
+        {
+            "_id": "rb4gr432f1d3fe",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "70",
+            "createdAt": 1623103956000
+        },
+        {
+            "_id": "h5413g2r",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "עגבניות",
+            "amount": "8",
+            "createdAt": 1623233556000
+        },
+        {
+            "_id": "f4r3g1342f1ed",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "70",
+            "createdAt": 1623406356000
+        },
+        {
+            "_id": "4tg32re32",
+            "type": "expense",
+            "labels": ["#gopro"],
+            "category": "Electronics",
+            "description": "גופרו יד 2",
+            "amount": "900",
+            "createdAt": 1623406356000
+        },
+        {
+            "_id": "gr4fgsda32",
+            "type": "expense",
+            "labels": ["#gopro", "amazon"],
+            "category": "Electronics",
+            "description": "ND filters + mSD card",
+            "amount": "286",
+            "createdAt": 1623492756000
+        },
+        {
+            "_id": "gr43232132",
+            "type": "expense",
+            "labels": ["#gopro", "aliexpress"],
+            "category": "Electronics",
+            "description": "אביזרים לגופרו אליאקספרס",
+            "amount": "313",
+            "createdAt": 1623492756000
+        },
+        {
+            "_id": "rb4vggg41233fe1",
+            "type": "expense",
+            "labels": ["#hangout"],
+            "category": "Hangout",
+            "description": "פיצוחים",
+            "amount": "17",
+            "createdAt": 1623535956000
+        },
+        {
+            "_id": "rb4vggg41233fe",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירות",
+            "amount": "84",
+            "createdAt": 1623535956000
+        },
+        {
+            "_id": "gr4321r321432",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "ביצים",
+            "amount": "12",
+            "createdAt": 1623579156000
+        },
+        {
+            "_id": "gr4321r432",
+            "type": "expense",
+            "labels": ["#gopro"],
+            "category": "Electronics",
+            "description": "תפס פה לגופרו",
+            "amount": "33",
+            "createdAt": 1623665556000
+        },
+        {
+            "_id": "vrg423312fd",
+            "type": "expense",
+            "labels": ["#כביש6"],
+            "category": "Motorcycle",
+            "description": "אגרה כביש 6",
+            "amount": "35",
+            "createdAt": 1623795156000
+        },
+        {
+            "_id": "rb4vgggc3feg",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "גלידה",
+            "amount": "15",
+            "createdAt": 1623795156000
+        },
+        {
+            "_id": "rb4vggg422131c3fe",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "140",
+            "createdAt": 1623795156000
+        },
+        {
+            "_id": "rb4vggg4231c3fe",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "150",
+            "createdAt": 1624054356000
+        },
+        {
+            "_id": "gr4f32131232r432",
+            "type": "expense",
+            "labels": [],
+            "category": "Public Transportation",
+            "description": "רב קו",
+            "amount": "50",
+            "createdAt": 1624270356000
+        },
+        {
+            "_id": "trb4g3123212fsda",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "אוכל",
+            "amount": "15",
+            "createdAt": 1624525956000
+        },
+        {
+            "_id": "f4r31122f1ed",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "72",
+            "createdAt": 1624698756000
+        },
+        {
+            "_id": "f4r312f1ed",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "71",
+            "createdAt": 1624698756000
+        },
+        {
+            "_id": "trb4g3212fsda",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "מים",
+            "amount": "8",
+            "createdAt": 1624698756000
+        },
+        {
+            "_id": "trb4g3221fsda",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "שתייה",
+            "amount": "17",
+            "createdAt": 1624698756000
+        },
+        {
+            "_id": "trb4g32fsda",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "שתייה",
+            "amount": "5",
+            "createdAt": 1624698756000
+        },
+        {
+            "_id": "rb4vgggc3fe",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "155",
+            "createdAt": 1624741956000
+        },
+        {
+            "_id": "vg45rfr",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "חטיפים למילואים",
+            "amount": "50",
+            "createdAt": 1624871556000
+        },
+        {
+            "_id": "vr3265341ed",
+            "type": "expense",
+            "labels": ["#deodorant"],
+            "category": "Pharmacy",
+            "description": "סופרפארם",
+            "amount": "90",
+            "createdAt": 1624871556000
+        },
+        {
+            "_id": "bfr432r",
+            "type": "expense",
+            "labels": [],
+            "category": "Courses",
+            "description": "הרצאה של אוהד הנווד",
+            "amount": "55",
+            "createdAt": 1624871556000
+        },
+        {
+            "_id": "vbt432def",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "לחם לבית",
+            "amount": "9",
+            "createdAt": 1624871556000
+        },
+        {
+            "_id": "12313123fd",
+            "type": "expense",
+            "labels": ["#motorcyclecare"],
+            "category": "Motorcycle",
+            "description": "טיפול 60,000",
+            "amount": "631",
+            "createdAt": 1625044356000
+        },
+        {
+            "_id": "vr412123fd",
+            "type": "expense",
+            "labels": ["#motorcycleparts"],
+            "category": "Motorcycle",
+            "description": "מגן רוח + בורג גשש לאופנוע",
+            "amount": "335",
+            "createdAt": 1625044356000
+        },
+        {
+            "_id": "vr4123fd",
+            "type": "expense",
+            "labels": ["#motorcycleparts"],
+            "category": "Motorcycle",
+            "description": "גומיות למגן רוח",
+            "amount": "46",
+            "createdAt": 1625044356000
+        },
+        {
+            "_id": "thbrf2",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "חלב לבית",
+            "amount": "6",
+            "createdAt": 1625562756000
+        },
+        {
+            "_id": "thbrf23122143f2",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "85",
+            "createdAt": 1625260356000
+        },
+        {
+            "_id": "thbrf232143f2",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "75",
+            "createdAt": 1625605956000
+        },
+        {
+            "_id": "thbrf232f2",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "55",
+            "createdAt": 1625865156000
+        },
+        {
+            "_id": "ff231vd34rv3",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "44",
+            "createdAt": 1625865156000
+        },
+        {
+            "_id": "rf43r2gede",
+            "type": "expense",
+            "labels": ["#coffee"],
+            "category": "Food",
+            "description": "קפה",
+            "amount": "7",
+            "createdAt": 1625908356000
+        },
+        {
+            "_id": "f4r312fed",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "68",
+            "createdAt": 1625908356000
+        },
+        {
+            "_id": "fe32142edf",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "רב קו לאמא",
+            "amount": "30",
+            "createdAt": 1626081156000
+        },
+        {
+            "_id": "hrt432gfre2",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "41",
+            "createdAt": 1626297156000
+        },
+        {
+            "_id": "vr321ed",
+            "type": "expense",
+            "labels": ["#deodorant"],
+            "category": "Pharmacy",
+            "description": "סופרפארם מסטיקים וזה",
+            "amount": "47",
+            "createdAt": 1626772356000
+        },
+        {
+            "_id": "qcsaf1234e_",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "40",
+            "createdAt": 1627168356000
+        },
+        {
+            "_id": "uvkB324sg32K",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "מים",
+            "amount": "6",
+            "createdAt": 1627211556000
+        },
+        {
+            "_id": "uvkBsg32K",
+            "type": "expense",
+            "labels": ["#motorcycle",
+                "#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "68",
+            "createdAt": 1627213296000
+        },
+        {
+            "_id": "fe31232edf",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "רב קו לאמא",
+            "amount": "50",
+            "createdAt": 1627213296000
+        },
+        {
+            "_id": "vrg4rg423f3ef123fd",
+            "type": "expense",
+            "labels": ["#motorcycleparts"],
+            "category": "Motorcycle",
+            "description": "חלקי חילוף לאופנוע",
+            "amount": "662",
+            "createdAt": 1627213296000
+        },
+        {
+            "_id": "qcsafd231Pee_",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "120",
+            "createdAt": 1627686696000
+        },
+        {
+            "_id": "df21ve1",
+            "type": "expense",
+            "labels": ["#adobe"],
+            "category": "Software",
+            "description": "תוכנות אדובי",
+            "amount": "105",
+            "createdAt": 1609492296000
+        },
+        {
+            "_id": "32e1fg321gv",
+            "type": "expense",
+            "labels": ["#icloud",
+                "#apple"],
+            "category": "Software",
+            "description": "ICloud",
+            "amount": "12",
+            "createdAt": 1609492296000
+        },
+        {
+            "_id": "br423",
+            "type": "expense",
+            "labels": ["#adobe"],
+            "category": "Software",
+            "description": "תוכנות אדובי",
+            "amount": "105",
+            "createdAt": 1612170696000
+        },
+        {
+            "_id": "br4g321rf31",
+            "type": "expense",
+            "labels": ["#icloud",
+                "#apple"],
+            "category": "Software",
+            "description": "ICloud",
+            "amount": "12",
+            "createdAt": 1612170696000
+        },
+        {
+            "_id": "vdsavd2",
+            "type": "expense",
+            "labels": ["#adobe"],
+            "category": "Software",
+            "description": "תוכנות אדובי",
+            "amount": "105",
+            "createdAt": 1614589896000
+        },
+        {
+            "_id": "23333333333eb21",
+            "type": "expense",
+            "labels": ["#icloud",
+                "#apple"],
+            "category": "Software",
+            "description": "ICloud",
+            "amount": "12",
+            "createdAt": 1614589896000
+        },
+        {
+            "_id": "rh23f",
+            "type": "expense",
+            "labels": ["#gym"],
+            "category": "Sport",
+            "description": "מכון כושר",
+            "amount": "99",
+            "createdAt": 1617268296000
+        },
+        {
+            "_id": "hgr432fr",
+            "type": "expense",
+            "labels": ["#adobe"],
+            "category": "Software",
+            "description": "תוכנות אדובי",
+            "amount": "105",
+            "createdAt": 1617268296000
+        },
+        {
+            "_id": "ghr4f32432b",
+            "type": "expense",
+            "labels": ["#icloud",
+                "#apple"],
+            "category": "Software",
+            "description": "ICloud",
+            "amount": "12",
+            "createdAt": 1617268296000
+        },
+        {
+            "_id": "bfr32ve",
+            "type": "expense",
+            "labels": ["#gym"],
+            "category": "Sport",
+            "description": "מכון כושר",
+            "amount": "99",
+            "createdAt": 1619860296000
+        },
+        {
+            "_id": "r23rge3gvrf2",
+            "type": "expense",
+            "labels": ["#adobe"],
+            "category": "Software",
+            "description": "תוכנות אדובי",
+            "amount": "105",
+            "createdAt": 1619860296000
+        },
+        {
+            "_id": "r43g2rfg34",
+            "type": "expense",
+            "labels": ["#icloud",
+                "#apple"],
+            "category": "Software",
+            "description": "ICloud",
+            "amount": "12",
+            "createdAt": 1619860296000
+        },
+        {
+            "_id": "bhr4gf31re",
+            "type": "expense",
+            "labels": ["#gym"],
+            "category": "Sport",
+            "description": "מכון כושר",
+            "amount": "99",
+            "createdAt": 1622538696000
+        },
+        {
+            "_id": "vgr312rb132r1de2",
+            "type": "expense",
+            "labels": ["#adobe"],
+            "category": "Software",
+            "description": "תוכנות אדובי",
+            "amount": "105",
+            "createdAt": 1622538696000
+        },
+        {
+            "_id": "12b3rvg1e",
+            "type": "expense",
+            "labels": ["#icloud",
+                "#apple"],
+            "category": "Software",
+            "description": "ICloud",
+            "amount": "12",
+            "createdAt": 1622538696000
+        },
+        {
+            "_id": "g5rf132",
+            "type": "expense",
+            "labels": ["#gym"],
+            "category": "Sport",
+            "description": "מכון כושר",
+            "amount": "99",
+            "createdAt": 1625130696000
+        },
+        {
+            "_id": "bh54r",
+            "type": "expense",
+            "labels": ["#adobe"],
+            "category": "Software",
+            "description": "תוכנות אדובי",
+            "amount": "105",
+            "createdAt": 1625130696000
+        },
+        {
+            "_id": "hr4234fr",
+            "type": "expense",
+            "labels": ["#icloud",
+                "#apple"],
+            "category": "Software",
+            "description": "ICloud",
+            "amount": "12",
+            "createdAt": 1625130696000
+        },
+        {
+            "_id": "bfadse2",
+            "type": "expense",
+            "labels": ["#gym"],
+            "category": "Sport",
+            "description": "מכון כושר",
+            "amount": "99",
+            "createdAt": 1627809096000
+        },
+        {
+            "_id": "vgr1de2",
+            "type": "expense",
+            "labels": ["#adobe"],
+            "category": "Software",
+            "description": "תוכנות אדובי",
+            "amount": "105",
+            "createdAt": 1627809096000
+        },
+        {
+            "_id": "4gf3d23e12vg",
+            "type": "expense",
+            "labels": ["#icloud",
+                "#apple"],
+            "category": "Software",
+            "description": "ICloud",
+            "amount": "12",
+            "createdAt": 1627809096000
+        },
+        {
+            "_id": "4gf231e1",
+            "type": "expense",
+            "labels": ["#codingacademy"],
+            "category": "Courses",
+            "description": "קודינג אקדמי",
+            "amount": "1410",
+            "createdAt": 1627809096000
+        },
+        {
+            "_id": "vfdsa",
+            "type": "expense",
+            "labels": ["#gym"],
+            "category": "Sport",
+            "description": "מכון כושר",
+            "amount": "99",
+            "createdAt": 1630487496000
+        },
+        {
+            "_id": "asdfvasdf",
+            "type": "expense",
+            "labels": ["#adobe"],
+            "category": "Software",
+            "description": "תוכנות אדובי",
+            "amount": "105",
+            "createdAt": 1630487496000
+        },
+        {
+            "_id": "gr321fed",
+            "type": "expense",
+            "labels": ["#icloud",
+                "#apple"],
+            "category": "Software",
+            "description": "ICloud",
+            "amount": "12",
+            "createdAt": 1630487496000
+        },
+        {
+            "_id": "gr3f2",
+            "type": "expense",
+            "labels": ["#codingacademy"],
+            "category": "Courses",
+            "description": "קודינג אקדמי",
+            "amount": "1410",
+            "createdAt": 1630487496000
+        },
+        {
+            "_id": "DPtfe31fMgB",
+            "type": "expense",
+            "labels": ["#gym"],
+            "category": "Sport",
+            "description": "מכון כושר",
+            "amount": "99",
+            "createdAt": 1633079496000
+        },
+        {
+            "_id": "bhB4fedw21fEo",
+            "type": "expense",
+            "labels": ["#adobe"],
+            "category": "Software",
+            "description": "תוכנות אדובי",
+            "amount": "105",
+            "createdAt": 1633079496000
+        },
+        {
+            "_id": "wN5fre12pwe",
+            "type": "expense",
+            "labels": ["#icloud",
+                "#apple"],
+            "category": "Software",
+            "description": "ICloud",
+            "amount": "12",
+            "createdAt": 1633079496000
+        },
+        {
+            "_id": "z1jzf1e2jp",
+            "type": "expense",
+            "labels": ["#codingacademy"],
+            "category": "Courses",
+            "description": "קודינג אקדמי",
+            "amount": "1410",
+            "createdAt": 1633079496000
+        },
+        {
+            "_id": "fgv32gved",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "יציאה עם חברים",
+            "amount": "80",
+            "createdAt": 1628241096000
+        },
+        {
+            "_id": "gr4f32r432",
+            "type": "expense",
+            "labels": [],
+            "category": "Electronics",
+            "description": "מיקרופון",
+            "amount": "132",
+            "createdAt": 1628413896000
+        },
+        {
+            "_id": "t54grf4v",
+            "type": "expense",
+            "labels": ["#deodorant"],
+            "category": "Pharmacy",
+            "description": "דאודורנט",
+            "amount": "67",
+            "createdAt": 1638346623000.0
+        },
+        {
+            "_id": "fdsa32r",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "יציאה עם חברים",
+            "amount": "90",
+            "createdAt": 1628802696000
+        },
+        {
+            "_id": "afdsae23",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "יציאה עם חברים",
+            "amount": "40",
+            "createdAt": 1628889096000
+        },
+        {
+            "_id": "vrg423fd",
+            "type": "expense",
+            "labels": ["#כביש6"],
+            "category": "Motorcycle",
+            "description": "אגרה כביש 6",
+            "amount": "35",
+            "createdAt": 1628932296000
+        },
+        {
+            "_id": "fe32edf",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "רב קו לאמא",
+            "amount": "100",
+            "createdAt": 1629105096000
+        },
+        {
+            "_id": "fds4341121a32",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "מסטיקים",
+            "amount": "44",
+            "createdAt": 1629364296000
+        },
+        {
+            "_id": "fds43411a32",
+            "type": "expense",
+            "labels": ["#dentist"],
+            "category": "Health",
+            "description": "שיננית",
+            "amount": "40",
+            "createdAt": 1629364296000
+        },
+        {
+            "_id": "fds431a32",
+            "type": "expense",
+            "labels": [],
+            "category": "Electronics",
+            "description": "מגבר למיקרופון",
+            "amount": "130",
+            "createdAt": 1630228296000
+        },
+        {
+            "_id": "fdsa32",
+            "type": "income",
+            "labels": ["#pskwind"],
+            "category": "Salary",
+            "description": "משכורת פ.ס.ק. ווינד",
+            "amount": "7428",
+            "createdAt": 1610320296000
+        },
+        {
+            "_id": "vfr3r4f",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "50",
+            "createdAt": 1612307496000
+        },
+        {
+            "_id": "g4g4323sdf",
+            "type": "income",
+            "labels": [],
+            "category": "Random Job",
+            "description": "כסף מזדמן",
+            "amount": "100",
+            "createdAt": 1613257896000
+        },
+        {
+            "_id": "vbg32fr4f",
+            "type": "income",
+            "labels": ["#pskwind"],
+            "category": "Salary",
+            "description": "משכורת פ.ס.ק. ווינד",
+            "amount": "7816",
+            "createdAt": 1612998696000
+        },
+        {
+            "_id": "gfgsdfg345",
+            "type": "income",
+            "labels": ["#elections"],
+            "category": "Salary",
+            "description": "עבודה בבחירות",
+            "amount": "1709",
+            "createdAt": 1615417896000
+        },
+        {
+            "_id": "vbghfdfdfr4f",
+            "type": "income",
+            "labels": ["#pskwind"],
+            "category": "Salary",
+            "description": "משכורת פ.ס.ק. ווינד",
+            "amount": "2412",
+            "createdAt": 1615417896000
+        },
+        {
+            "_id": "vbghfdr4f",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "100",
+            "createdAt": 1616627496000
+        },
+        {
+            "_id": "vbfgfdr4f",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "800",
+            "createdAt": 1616281896000
+        },
+        {
+            "_id": "vbfgfr4f",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "1000",
+            "createdAt": 1616281896000
+        },
+        {
+            "_id": "vbfr4f",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "100",
+            "createdAt": 1614640296000
+        },
+        {
+            "_id": "vvfsde2df",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם מושיקו",
+            "amount": "150",
+            "createdAt": 1618873896000
+        },
+        {
+            "_id": "vbf2df",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "100",
+            "createdAt": 1620342696000
+        },
+        {
+            "_id": "gtg4fr32df",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "100",
+            "createdAt": 1622416296000
+        },
+        {
+            "_id": "iyf42qa",
+            "type": "income",
+            "labels": [],
+            "category": "Gift",
+            "description": "מתנה מרונן",
+            "amount": "5000",
+            "createdAt": 1621120296000
+        },
+        {
+            "_id": "gtf4df",
+            "type": "income",
+            "labels": [],
+            "category": "IDF",
+            "description": "מילואים",
+            "amount": "88",
+            "createdAt": 1623798696000
+        },
+        {
+            "_id": "dsadsa221",
+            "type": "income",
+            "labels": [],
+            "category": "IDF",
+            "description": "מילואים",
+            "amount": "811",
+            "createdAt": 1623798696000
+        },
+        {
+            "_id": "gtg4df",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "350",
+            "createdAt": 1623280296000
+        },
+        {
+            "_id": "g4gfr3sdf",
+            "type": "income",
+            "labels": [],
+            "category": "Random Job",
+            "description": "שמירה על קיטה לסופש",
+            "amount": "200",
+            "createdAt": 1625353896000
+        },
+        {
+            "_id": "g4t343sdf",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "100",
+            "createdAt": 1626563496000
+        },
+        {
+            "_id": "g4adffev3sdf",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "100",
+            "createdAt": 1629069096000
+        },
+        {
+            "_id": "g4adffev3sdf",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "75",
+            "createdAt": 1634598696000
+        },
+        {
+            "_id": "g4adfdsa3sdf",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "200",
+            "createdAt": 1635376296000
+        },
+        {
+            "_id": "g4ad3sdf",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "100",
+            "createdAt": 1639523496000
+        },
+        {
+            "_id": "as4323",
+            "type": "expense",
+            "labels": ["#apple", "#music"],
+            "category": "Music",
+            "description": "apple music",
+            "amount": "200",
+            "createdAt": 1630537896000
+        },
+        {
+            "_id": "asd543",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "My Business",
+            "description": "חשבונית ירוקה",
+            "amount": "267",
+            "createdAt": 1630537896000
+        },
+        {
+            "_id": "asdfda23",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "יציאה עם חברים",
+            "amount": "105",
+            "createdAt": 1630883496000
+        },
+        {
+            "_id": "asfaddg33",
+            "type": "income",
+            "labels": [],
+            "category": "Gift",
+            "description": "קיבלתי מאמא",
+            "amount": "50",
+            "createdAt": 1630969896000
+        },
+        {
+            "_id": "asdg33",
+            "type": "expense",
+            "labels": [],
+            "category": "Household",
+            "description": "רב קו לאמא",
+            "amount": "100",
+            "createdAt": 1631229096000
+        },
+        {
+            "_id": "asdgadgfd23",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "יציאה עם חברים",
+            "amount": "70",
+            "createdAt": 1631401896000
+        },
+        {
+            "_id": "asdgadsae23",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "יציאה עם חברים",
+            "amount": "103",
+            "createdAt": 1631661096000
+        },
+        {
+            "_id": "as43223",
+            "type": "expense",
+            "labels": ["#videogames"],
+            "category": "Video games",
+            "description": "Pubg",
+            "amount": "88",
+            "createdAt": 1631877096000
+        },
+        {
+            "_id": "asddaae23",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "יציאה עם חברים",
+            "amount": "85",
+            "createdAt": 1631999496000
+        },
+        {
+            "_id": "qc3ease",
+            "type": "expense",
+            "labels": [],
+            "category": "Software",
+            "description": "חדר זום",
+            "amount": "15",
+            "createdAt": 1632301896000
+        },
+        {
+            "_id": "vsafaaffde",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "יציאה עם חברים",
+            "amount": "80",
+            "createdAt": 1633122696000
+        },
+        {
+            "_id": "f434faf22d",
+            "type": "expense",
+            "labels": [],
+            "category": "Software",
+            "description": "Steam",
+            "amount": "40",
+            "createdAt": 1633684296000
+        },
+        {
+            "_id": "gafaaffde",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "יציאה עם חברים",
+            "amount": "80",
+            "createdAt": 1634332296000
+        },
+        {
+            "_id": "gafaffde",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "יציאה עם חברים",
+            "amount": "100",
+            "createdAt": 1634418696000
+        },
+        {
+            "_id": "f43as2d",
+            "type": "expense",
+            "labels": ["#btl"],
+            "category": "Taxes",
+            "description": "ביטוח לאומי",
+            "amount": "1242",
+            "createdAt": 1634634696000
+        },
+        {
+            "_id": "f43422d",
+            "type": "expense",
+            "labels": [],
+            "category": "Software",
+            "description": "AlgoExpert",
+            "amount": "285",
+            "createdAt": 1634717496000
+        },
+        {
+            "_id": "qc4ee",
+            "type": "expense",
+            "labels": [],
+            "category": "Software",
+            "description": "תוכנה",
+            "amount": "12",
+            "createdAt": 1634811096000
+        },
+        {
+            "_id": "ga4ffde",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "יציאה עם חברים",
+            "amount": "80",
+            "createdAt": 1634857896000
+        },
+        {
+            "_id": "qc331ee",
+            "type": "expense",
+            "labels": [],
+            "category": "Food",
+            "description": "ארטיק",
+            "amount": "11",
+            "createdAt": 1634857896000
+        },
+        {
+            "_id": "qc3ee",
+            "type": "expense",
+            "labels": [],
+            "category": "Software",
+            "description": "חדר זום",
+            "amount": "12",
+            "createdAt": 1634933496000
+        },
+        {
+            "_id": "qc4v2ee",
+            "type": "expense",
+            "labels": ["#motorcycle"],
+            "category": "Motorcycle",
+            "description": "טיול מועדון הונדה",
+            "amount": "110",
+            "createdAt": 1635279096000
+        },
+        {
+            "_id": "qcaPee",
+            "type": "expense",
+            "labels": ["#book"],
+            "category": "Shopping",
+            "description": "ספר להשקעות",
+            "amount": "74",
+            "createdAt": 1635505896000
+        },
+        {
+            "_id": "qcsaPee_",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "80",
+            "createdAt": 1635549096000
+        },
+        {
+            "_id": "qcPee_",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "40",
+            "createdAt": 1639775656000.0
+        },
+        {
+            "_id": "lmioYB",
+            "type": "expense",
+            "labels": ["#motorcycle"],
+            "category": "Motorcycle",
+            "description": "כפפות חורף",
+            "amount": "286",
+            "createdAt": 1639997896229.0
+        },
+        {
+            "_id": "H2CbAq",
+            "type": "expense",
+            "labels": ["#coffee"],
+            "category": "Food",
+            "description": "קפה ומאפה",
+            "amount": "21",
+            "createdAt": 1640000111739.0
+        },
+        {
+            "_id": "WjU3Lj",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "100",
+            "createdAt": 1640193115425.0
+        },
+        {
+            "_id": "FAitNa",
+            "type": "expense",
+            "labels": ["#כביש6"],
+            "category": "Motorcycle",
+            "description": "אגרה כביש 6",
+            "amount": "28",
+            "createdAt": 1639582688000.0
+        },
+        {
+            "_id": "IUeOSo",
+            "type": "expense",
+            "labels": ["#icecream"],
+            "category": "Food",
+            "description": "גלידה",
+            "amount": "30",
+            "createdAt": 1639173011000.0
+        },
+        {
+            "_id": "W1Btcp",
+            "type": "expense",
+            "labels": ["#beer",
+                "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "80",
+            "createdAt": 1638568265000.0
+        },
+        {
+            "_id": "r5r_x7",
+            "type": "expense",
+            "labels": ["#coffee"],
+            "category": "Food",
+            "description": "קפה ומאפה",
+            "amount": "28",
+            "createdAt": 1638522758000.0
+        },
+        {
+            "_id": "uvkBsK",
+            "type": "expense",
+            "labels": ["#motorcycle",
+                "#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "66",
+            "createdAt": 1638521542000.0
+        },
+        {
+            "_id": "uP2CLJ",
+            "type": "expense",
+            "labels": ["#deodorant"],
+            "category": "Pharmacy",
+            "description": "דאודורנט",
+            "amount": "40",
+            "createdAt": 1638346623000.0
+        },
+        {
+            "_id": "DPtMgB",
+            "type": "expense",
+            "labels": ["#gym"],
+            "category": "Sport",
+            "description": "מכון כושר",
+            "amount": "99",
+            "createdAt": 1638341670000.0
+        },
+        {
+            "_id": "bhB4Eo",
+            "type": "expense",
+            "labels": ["#adobe"],
+            "category": "Software",
+            "description": "תוכנות אדובי",
+            "amount": "105",
+            "createdAt": 1638340564000.0
+        },
+        {
+            "_id": "Ewc5hk",
+            "type": "expense",
+            "labels": ["#linkedin"],
+            "category": "Software",
+            "description": "מנוי פרימיום לינקדין",
+            "amount": "105",
+            "createdAt": 1638340912000.0
+        },
+        {
+            "_id": "wN5pwe",
+            "type": "expense",
+            "labels": ["#icloud",
+                "#apple"],
+            "category": "Software",
+            "description": "ICloud",
+            "amount": "12",
+            "createdAt": 1638338500000.0
+        },
+        {
+            "_id": "z1jzjp",
+            "type": "expense",
+            "labels": ["#codingacademy"],
+            "category": "Courses",
+            "description": "קודינג אקדמי",
+            "amount": "1410",
+            "createdAt": 1639116300000.0
+        },
+        {
+            "_id": "cMUa3x",
+            "type": "expense",
+            "labels": ["#coffee"],
+            "category": "Food",
+            "description": "קפה",
+            "amount": "14",
+            "createdAt": 1640429720627.0
+        },
+        {
+            "_id": "HoRPXo",
+            "type": "expense",
+            "labels": ["#deodorant"],
+            "category": "Pharmacy",
+            "description": "דאודורנט",
+            "amount": "42",
+            "createdAt": 1640772993372.0
+        },
+        {
+            "_id": "pLYAzH",
+            "type": "expense",
+            "labels": [],
+            "category": "Dog",
+            "description": "מנורת חימום + תכשיר נגד פרעושים",
+            "amount": "218",
+            "createdAt": 1640773019375.0
+        },
+        {
+            "_id": "3mTrU8",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "105",
+            "createdAt": 1640918344892.0
+        },
+        {
+            "_id": "fMFDor",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "פאב",
+            "amount": "70",
+            "createdAt": 1638217322000.0
+        },
+        {
+            "_id": "z76Gr1",
+            "type": "expense",
+            "labels": ["#motorcycle"],
+            "category": "Motorcycle",
+            "description": "מצלמות לאופנוע",
+            "amount": "464",
+            "createdAt": 1637918607000.0
+        },
+        {
+            "_id": "2ZWp6q",
+            "type": "income",
+            "labels": [],
+            "category": "Gift",
+            "description": "קיבלתי מאמא",
+            "amount": "50",
+            "createdAt": 1637843106000.0
+        },
+        {
+            "_id": "MTANgB",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "בירה עם חברים",
+            "amount": "60",
+            "createdAt": 1637443596000.0
+        },
+        {
+            "_id": "O6V9jw",
+            "type": "expense",
+            "labels": ["#motorcycle", "#motorcycleparts"],
+            "category": "Motorcycle",
+            "description": "מנעול לארגז של האופנוע",
+            "amount": "186",
+            "createdAt": 1636892873000.0
+        },
+        {
+            "_id": "51Dc1k",
+            "type": "expense",
+            "labels": ["#linkedin"],
+            "category": "Software",
+            "description": "מנוי לינקדין פרימיום",
+            "amount": "105",
+            "createdAt": 1635769715000.0
+        },
+        {
+            "_id": "B1l4xe",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "יציאה",
+            "amount": "85",
+            "createdAt": 1636752554000.0
+        },
+        {
+            "_id": "aEuID9",
+            "type": "expense",
+            "labels": ["#household"],
+            "category": "Shopping",
+            "description": "קניות לבית",
+            "amount": "27",
+            "createdAt": 1636721734000.0
+        },
+        {
+            "_id": "ugLr0N",
+            "type": "expense",
+            "labels": ["#household"],
+            "category": "Shopping",
+            "description": "קניות לבית",
+            "amount": "80",
+            "createdAt": 1636721860000.0
+        },
+        {
+            "_id": "hfWc2u",
+            "type": "expense",
+            "labels": ["#motorcycle"],
+            "category": "Motorcycle",
+            "description": "טסט לאופנוע",
+            "amount": "35",
+            "createdAt": 1636635500000.0
+        },
+        {
+            "_id": "Tc9nOB",
+            "type": "expense",
+            "labels": ["#fuel",
+                "#motorcycle"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "54",
+            "createdAt": 1636203547000.0
+        },
+        {
+            "_id": "VhHcz3",
+            "type": "expense",
+            "labels": ["#fuel",
+                "#motorcycle"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "61",
+            "createdAt": 1636203574000.0
+        },
+        {
+            "_id": "VQ7vHE",
+            "type": "expense",
+            "labels": ["#beer", "#hangout"],
+            "category": "Hangout",
+            "description": "פאב",
+            "amount": "70",
+            "createdAt": 1635973215000.0
+        },
+        {
+            "_id": "mpCFyM",
+            "type": "expense",
+            "labels": ["#hangout", "#restaurant"],
+            "category": "Food",
+            "description": "מסעדה עם שון ויונתן",
+            "amount": "180",
+            "createdAt": 1635944509000.0
+        },
+        {
+            "_id": "Kq8Og4",
+            "type": "expense",
+            "labels": ["#coffee",
+                "#hangout"],
+            "category": "Food",
+            "description": "קפה ומאפה",
+            "amount": "24",
+            "createdAt": 1635949178000.0
+        },
+        {
+            "_id": "q2T330",
+            "type": "expense",
+            "labels": ["#coffee"],
+            "category": "Food",
+            "description": "קפה",
+            "amount": "7",
+            "createdAt": 1635937409000.0
+        },
+        {
+            "_id": "I8Fuv0",
+            "type": "expense",
+            "labels": ["#motorcycle"],
+            "category": "Motorcycle",
+            "description": "אגרה לטסט",
+            "amount": "303",
+            "createdAt": 1635858237000.0
+        },
+        {
+            "_id": "NJ3QSn",
+            "type": "expense",
+            "labels": ["#adobe"],
+            "category": "Software",
+            "description": "תוכנות אדובי",
+            "amount": "105",
+            "createdAt": 1635771971000.0
+        },
+        {
+            "_id": "cMuat9",
+            "type": "expense",
+            "labels": ["#apple",
+                "#icloud"],
+            "category": "Software",
+            "description": "iCloud",
+            "amount": "12",
+            "createdAt": 1635771993000.0
+        },
+        {
+            "_id": "2WoLjT",
+            "type": "expense",
+            "labels": ["#gym"],
+            "category": "Sport",
+            "description": "מכון כושר",
+            "amount": "99",
+            "createdAt": 1635772033000.0
+        },
+        {
+            "_id": "0XAZiw",
+            "type": "income",
+            "labels": [],
+            "category": "My Business",
+            "description": "עבודה עם עינב",
+            "amount": "75",
+            "createdAt": 1636463315000.0
+        },
+        {
+            "_id": "60BBIA",
+            "type": "expense",
+            "labels": ["#codingacademy"],
+            "category": "Courses",
+            "description": "קודינג אקדמי",
+            "amount": "1410",
+            "createdAt": 1636549787000.0
+        },
+        {
+            "_id": "T5ADRT",
+            "type": "expense",
+            "labels": ["#fuel"],
+            "category": "Motorcycle",
+            "description": "דלק",
+            "amount": "63",
+            "createdAt": 1641718867524.0
+        },
+        {
+            "_id": "8yDdWi",
+            "type": "expense",
+            "labels": [],
+            "category": "Shopping",
+            "description": "מתאם din usb לאופנוע של אבא",
+            "amount": "34",
+            "createdAt": 1641759758331.0
+        },
+        {
+            "_id": "tSk6os",
+            "type": "expense",
+            "labels": ["#lecture"],
+            "category": "Courses",
+            "description": "כרטיס להרצאה של אבי שטרן",
+            "amount": "3",
+            "createdAt": 1641992117433.0
+        },
+        {
+            "_id": "iyQGqa",
+            "type": "income",
+            "labels": [],
+            "category": "Gift",
+            "description": "מתנה מרונן",
+            "amount": "5000",
+            "createdAt": 1642075231156.0
+        },
+        {
+            "_id": "iyQGqa1",
+            "type": "expense",
+            "labels": ["#insurance"],
+            "category": "Motorcycle",
+            "description": "ביטוח חובה",
+            "amount": "513",
+            "createdAt": 1641820236000.0
+        },
+        {
+            "_id": "DPtMgBgsa",
+            "type": "expense",
+            "labels": ["#gym"],
+            "category": "Sport",
+            "description": "מכון כושר",
+            "amount": "99",
+            "createdAt": 1641024636000
+        },
+        {
+            "_id": "bhB3214Eo",
+            "type": "expense",
+            "labels": ["#adobe"],
+            "category": "Software",
+            "description": "תוכנות אדובי",
+            "amount": "105",
+            "createdAt": 1641024636000
+        },
+        {
+            "_id": "Ewc5safhk",
+            "type": "expense",
+            "labels": ["#linkedin"],
+            "category": "Software",
+            "description": "מנוי פרימיום לינקדין",
+            "amount": "105",
+            "createdAt": 1641024636000
+        },
+        {
+            "_id": "wN5fasdpwe",
+            "type": "expense",
+            "labels": ["#icloud",
+                "#apple"],
+            "category": "Software",
+            "description": "ICloud",
+            "amount": "12",
+            "createdAt": 1641024636000
+        },
+        {
+            "_id": "z1jzdsajp",
+            "type": "expense",
+            "labels": ["#codingacademy"],
+            "category": "Courses",
+            "description": "קודינג אקדמי",
+            "amount": "1410",
+            "createdAt": 1641024636000
+        },
+        {
+            "_id": "z1jzdvrt3sajp",
+            "type": "expense",
+            "labels": ["#bank"],
+            "category": "Commission",
+            "description": "דמי כרטיס דביט",
+            "amount": "8",
+            "createdAt": 1619943036000
+        },
+        {
+            "_id": "z1jzdvrdsat3sajp",
+            "type": "expense",
+            "labels": ["#bank"],
+            "category": "Commission",
+            "description": "דמי כרטיס דביט",
+            "amount": "8",
+            "createdAt": 1622621436000
+        },
+        {
+            "_id": "z1jzdvrdasdsat3sajp",
+            "type": "expense",
+            "labels": ["#bank"],
+            "category": "Commission",
+            "description": "דמי כרטיס דביט",
+            "amount": "8",
+            "createdAt": 1625213436000
+        },
+        {
+            "_id": "z1jzdvrdafdsdsat3sajp",
+            "type": "expense",
+            "labels": ["#bank"],
+            "category": "Commission",
+            "description": "דמי כרטיס דביט",
+            "amount": "8",
+            "createdAt": 1627891836000
+        },
+        {
+            "_id": "jzdvrdafdsdsat3sajp",
+            "type": "expense",
+            "labels": ["#bank"],
+            "category": "Commission",
+            "description": "דמי כרטיס דביט",
+            "amount": "8",
+            "createdAt": 1630570236000
+        },
+        {
+            "_id": "jzdvrdafdsdfdsat3sajp",
+            "type": "expense",
+            "labels": ["#bank"],
+            "category": "Commission",
+            "description": "דמי כרטיס דביט",
+            "amount": "8",
+            "createdAt": 1633162236000
+        },
+        {
+            "_id": "jzdfdsat3sajp",
+            "type": "expense",
+            "labels": ["#bank"],
+            "category": "Commission",
+            "description": "דמי כרטיס דביט",
+            "amount": "8",
+            "createdAt": 1635840636000
+        },
+        {
+            "_id": "jzdfdsfdsat3sajp",
+            "type": "expense",
+            "labels": ["#bank"],
+            "category": "Commission",
+            "description": "דמי כרטיס דביט",
+            "amount": "8",
+            "createdAt": 1638432636000
+        },
+        {
+            "_id": "jzdfdsfdsathga3sajp",
+            "type": "expense",
+            "labels": ["#bank"],
+            "category": "Commission",
+            "description": "דמי כרטיס דביט",
+            "amount": "8",
+            "createdAt": 1641111036000
+        }
+    ]
+    }
+}
