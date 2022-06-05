@@ -117,15 +117,15 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
                             return <div key={action[0] + action[1].sum + Math.random()} className="action-details">
                                 <div className="action-color-dot" style={{ backgroundColor: action[1].color }}></div>
                                 <h2 className="category">{action[0]}</h2>
-                                <div className="sum"><h2>{action[1].sum.toLocaleString()}{rawData.currency.sign}</h2></div>
+                                <div className="sum"><h2>{Math.round(action[1].sum).toLocaleString()}{rawData.currency.sign}</h2></div>
                             </div>
                         })}
                     </div>
                     {pieData && <h2 className="summery-block-total" style={{ color: type === 'expense' ? '#8A0000' : '#00600F' }}>
-                        {pieData?.datasets[0].data.reduce((sum, expense) => {
+                        {Math.round(pieData?.datasets[0].data.reduce((sum, expense) => {
                             sum += expense
                             return sum
-                        }, 0).toLocaleString()}{rawData.currency.sign}
+                        }, 0)).toLocaleString()}{rawData.currency.sign}
                     </h2>
                     }
                 </div>
