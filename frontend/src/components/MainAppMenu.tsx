@@ -84,7 +84,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionModalOpen, setSe
                     <ul>
                         <li className={`${currentViewMode === 'Summery' ? 'menu-li-active' : ''}`}
                             onClick={() => { handleViewModeClick('Summery') }}>
-                            Summery
+                            Summary
                         </li>
                         <li className={`${currentViewMode === 'Graph' ? 'menu-li-active' : ''}`}
                             onClick={() => { handleViewModeClick('Graph') }}>
