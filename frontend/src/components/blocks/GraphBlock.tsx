@@ -65,12 +65,12 @@ export const GraphBlock = () => {
             timePoints = timeData.timePoints
             timeStamps = timeData.timeStamps
 
-        } else if (daysPeriod <= 365) {
+        } else if (daysPeriod <= 3650) {
             const timeData = dateService.getMonthsTimeData(filterBy)
             timePoints = timeData.timePoints
             timeStamps = timeData.timeStamps
 
-        } else if (daysPeriod > 365) {
+        } else if (daysPeriod > 3650) {
             const timeData = dateService.getYearsTimeData(filterBy)
             timePoints = timeData.timePoints
             timeStamps = timeData.timeStamps
