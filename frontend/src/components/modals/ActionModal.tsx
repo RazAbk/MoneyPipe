@@ -83,13 +83,14 @@ export const ActionModal = ({ closeModal }: IActionModalProps) => {
 
     const handleDateChange = (date: number | null) => {
         if (date) {
-            const timeStamp = new Date(date).getTime();
-            if (timeStamp > Date.now()) {
-                alert("Date cannot be greater than the current date")
-                return
-            } else{
-                setFormData({...formData, createdAt: timeStamp})
-            }
+            const currentTimeStamp = new Date(date).getTime();
+            setFormData({...formData, createdAt: currentTimeStamp})
+            // if (timeStamp > Date.now()) {
+            //     alert("Date cannot be greater than the current date")
+            //     return
+            // } else{
+            //     setFormData({...formData, createdAt: timeStamp})
+            // }
         }
     }
 
