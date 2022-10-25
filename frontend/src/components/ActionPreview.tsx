@@ -76,9 +76,9 @@ export const ActionPreview = ({ action, setActionModalOpen }: IActionProps) => {
                 <div className="action-data ">
                     <p className="action-date ">{dateService.getRelativeDate(action.createdAt)}</p>
                     <h3>{action.description}</h3>
-                    <p className="action-labels ">{action.labels.map(label => {
+                    <p className="action-labels ">{action.labels?.length ? action.labels.map(label => {
                         return <span key={`label-${action.createdAt}-${label}`}>{label}</span>
-                    })}</p>
+                    }) : <span></span> }</p>
                 </div>
             </div>
             <div className="right-side ">
