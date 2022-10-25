@@ -50,10 +50,10 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
                     return
                 }
             } else if(field === "endDate") {
-                if(dateService.getDayMinHour(selectedTimeStamp) > Date.now()){
-                    alert("End date cannot be greater than the current time")
-                    return
-                }
+                // if(dateService.getDayMinHour(selectedTimeStamp) > Date.now()){
+                //     alert("End date cannot be greater than the current time")
+                //     return
+                // }
                 if(selectedTimeStamp < filterBy.startDate){
                     alert("End date cannot be smaller than the start date")
                     return
