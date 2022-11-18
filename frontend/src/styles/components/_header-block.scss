@@ -16,8 +16,10 @@
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
+        width: 95%;
 
         h2{
+            width: 100%;
             font-size: 1.5rem;
             font-weight: 600;
 
@@ -25,11 +27,19 @@
             align-items: center;
             gap: 0.25rem;
 
-            .label{
-                white-space: nowrap;
+            .labels {
+                flex-grow: 1;
+                max-width: 50%;
                 overflow: hidden;
+                white-space: nowrap;
                 text-overflow: ellipsis;
-                max-width: calc(100vw - 17.5rem);
+
+                .label{
+                    // white-space: nowrap;
+                    // overflow: hidden;
+                    // text-overflow: ellipsis;
+                    // max-width: calc(100vw - 17.5rem);
+                }
             }
 
             p{
