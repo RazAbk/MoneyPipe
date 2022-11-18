@@ -6,7 +6,7 @@ interface IState {
     isPaginationDots: boolean,
     loaderState: boolean;
     currentViewMode: string;
-    currentLabel: string | null;
+    currentLabels: string[];
     selectedAction: IAction | null;
     filterBy: IFilterBy;
 }
@@ -21,13 +21,13 @@ const initialState: IState = {
     isPaginationDots: false,
     loaderState: false,
     currentViewMode: 'Summery',
-    currentLabel: null,
+    currentLabels: [],
     selectedAction: null,
     filterBy: {
         searchTxt: '',
         startDate: dateService.getMonthStartTimeStamp(),
         endDate: dateService.getDayMaxHour(Date.now()),
-        label: '',
+        labels: [],
         category: ''
     }
 }
@@ -42,8 +42,8 @@ export const appStateReducer = (state = initialState, action: IReducerAction) =>
             return state = { ...state, loaderState: action.loaderState }
         case 'SET_VIEWMODE':
             return state = { ...state, currentViewMode: action.viewMode }
-        case 'SET_LABEL':
-            return state = { ...state, currentLabel: action.label }
+        case 'SET_LABELS':
+            return state = { ...state, currentLabels: action.labels }
         case 'SET_SELECTED_ACTION':
             return state = { ...state, selectedAction: action.action }
         case 'SET_FILTERBY':

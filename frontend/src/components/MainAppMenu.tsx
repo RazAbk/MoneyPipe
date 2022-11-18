@@ -3,7 +3,7 @@ import { IoMdExit, IoMdSettings } from 'react-icons/io'
 import { MdAddCircle } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store/store'
-import { setCurrentViewMode, setCurrentLabel, setLoader } from '../store/actions/app-state.action'
+import { setCurrentViewMode, setCurrentLabels, setLoader } from '../store/actions/app-state.action'
 import { logout } from '../store/actions/user.action'
 import { IDataObject } from '../interfaces/dataInterfaces'
 import { setFilterBy } from '../store/actions/app-state.action'
@@ -24,7 +24,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionModalOpen, setSe
     const navigate = useNavigate()
 
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
-    const currentLabel = useSelector((state: RootState) => state.appStateModule.currentLabel)
+    const currentLabels = useSelector((state: RootState) => state.appStateModule.currentLabels)
     const filterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
     const user: IUser = useSelector((state: RootState) => state.userModule.loggedInUser) || sessionStorageService.load('loggedInUser')
     const data: IDataObject = useSelector((state: RootState) => state.userModule.data)
@@ -37,9 +37,17 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionModalOpen, setSe
     }
 
     const handleLabelClick = (value: string) => {
-        const label = currentLabel === value ? '' : value
-        const newFilterBy = { ...filterBy, label }
-        dispatch(setCurrentLabel(label))
+        const newLabels = [...currentLabels]
+
+        if (newLabels.includes(value)) {
+            const idx = newLabels.findIndex((label: string) => label === value)
+            newLabels.splice(idx, 1)
+        } else {
+            newLabels.push(value)
+        }
+
+        const newFilterBy = { ...filterBy, labels: newLabels }
+        dispatch(setCurrentLabels(newLabels))
         dispatch(setFilterBy(newFilterBy))
         setMenuOpen(false)
     }
@@ -55,7 +63,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionModalOpen, setSe
                 searchTxt: '',
                 startDate: dateService.getMonthStartTimeStamp(),
                 endDate: dateService.getDayMaxHour(Date.now()),
-                label: '',
+                labels: [],
                 category: ''
             }))
             dispatch(setCurrentViewMode('Summery'))
@@ -98,7 +106,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionModalOpen, setSe
                     <ul>
                         {data && data.labels.map(label => {
                             return <li onClick={() => { handleLabelClick(label.labelName) }}
-                                className={`${currentLabel === label.labelName ? 'menu-li-active' : ''}`}
+                                className={`${currentLabels.includes(label.labelName) ? 'menu-li-active' : ''}`}
                                 key={label._id}>
                                 {label.title}
                             </li>

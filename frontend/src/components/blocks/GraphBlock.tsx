@@ -87,7 +87,7 @@ export const GraphBlock = () => {
 
             rawData.actions.filter(action => {
                 if (filterBy.category && action.category !== filterBy.category) return false
-                if (filterBy.label && !action.labels.includes(filterBy.label)) return false
+                if (filterBy.labels?.length && !action.labels.some((label: string) => filterBy.labels.includes(label))) return false
                 if (!action.description.includes(filterBy.searchTxt)) return false
                 return true
             }).forEach(action => {

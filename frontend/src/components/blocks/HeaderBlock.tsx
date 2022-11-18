@@ -11,7 +11,7 @@ interface IHeaderProps {
 export const HeaderBlock = ({setSearchModalOpen}: IHeaderProps) => {
 
     const currentViewMode = useSelector((state: RootState) => state.appStateModule.currentViewMode)
-    const currentLabel = useSelector((state: RootState) => state.appStateModule.currentLabel)
+    const currentLabels: string[] = useSelector((state: RootState) => state.appStateModule.currentLabels)
     const filterBy = useSelector((state: RootState) => state.appStateModule.filterBy)
 
     const startDateString = dateService.getDateAsString(filterBy.startDate)
@@ -20,8 +20,8 @@ export const HeaderBlock = ({setSearchModalOpen}: IHeaderProps) => {
     return (
         <div className="header-block">
             <div className="header-block-content">
-                {currentLabel && <h2><span className="label">{currentLabel}</span><p>-</p><span>{startDateString} - {endDateString}</span></h2>}
-                {(!currentLabel && currentViewMode) && <h2>{currentViewMode === 'Summery' ? 'Summary' : 'Graph'}<p>-</p><span>{startDateString} - {endDateString}</span></h2>}
+                {!!currentLabels?.length && <h2>{currentLabels.map((label: string) => <span key={label} className="label">{label}</span>)}<p>-</p><span>{startDateString} - {endDateString}</span></h2>}
+                {(!currentLabels?.length && currentViewMode) && <h2>{currentViewMode === 'Summery' ? 'Summary' : 'Graph'}<p>-</p><span>{startDateString} - {endDateString}</span></h2>}
                 <p>{currentViewMode === 'Summery' ? 'Summary' : 'Graph'} of incomes and expenses</p>
             </div>
             <div className="filter-btn">

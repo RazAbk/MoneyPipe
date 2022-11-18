@@ -12,7 +12,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { IDataObject } from '../../interfaces/dataInterfaces';
 import { setFilterBy as setGlobalFilterBy } from '../../store/actions/app-state.action'
-import { setCurrentLabel } from '../../store/actions/app-state.action';
+import { setCurrentLabels } from '../../store/actions/app-state.action';
 import { dateService } from '../../services/date.service';
 
 interface IModalProps {
@@ -23,7 +23,7 @@ const emptyFilterBy = {
     category: "",
     startDate: dateService.getMonthStartTimeStamp(),
     endDate: dateService.getDayMaxHour(Date.now()),
-    label: "",
+    labels: [],
     searchTxt: ""
 }
 
@@ -66,7 +66,7 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
 
     const handleApply = () => {
         dispatch(setGlobalFilterBy(filterBy))
-        dispatch(setCurrentLabel(filterBy.label))
+        dispatch(setCurrentLabels(filterBy.labels))
         closeModal(false)
     }
 
@@ -98,8 +98,8 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
                         <div className="input-select">
                             <FormControl className="input-field" fullWidth>
                                 <InputLabel id="label">Label</InputLabel>
-                                <Select fullWidth labelId="label" id="label" value={filterBy.label} label="Label" name="label" onChange={handleChange}>
-                                    <MenuItem key={`lab-filter-none-option`} value={""}>None</MenuItem>
+                                <Select fullWidth labelId="label" id="label" placeholder='Select Labels' multiple={true} value={filterBy.labels} label="Label" name="labels" onChange={handleChange}>
+                                    {/* <MenuItem key={`lab-filter-none-option`} value={""}>None</MenuItem> */}
                                     {rawData && rawData.labels.map(label => <MenuItem key={`lab-filter-${label._id}`} value={label.labelName}>{label.title}</MenuItem>)}
                                 </Select>
                             </FormControl>

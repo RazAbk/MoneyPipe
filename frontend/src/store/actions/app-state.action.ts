@@ -37,11 +37,11 @@ export const setCurrentViewMode = (viewMode: string) => {
     }
 }
 
-export const setCurrentLabel = (label: string | null) => {
+export const setCurrentLabels = (labels: string[]) => {
     return (dispatch: AppDispatch) => {
         dispatch({
-            type: "SET_LABEL",
-            label
+            type: "SET_LABELS",
+            labels
         })
     }
 }

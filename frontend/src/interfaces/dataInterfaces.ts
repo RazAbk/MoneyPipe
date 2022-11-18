@@ -43,7 +43,7 @@ export interface IFilterBy {
     searchTxt: string,
     startDate: number,
     endDate: number,
-    label: string,
+    labels: string[],
     category: string
 }
 
