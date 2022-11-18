@@ -86,8 +86,8 @@ export const GraphBlock = () => {
             incomesDataset.data = [...expensesDataset.data]
 
             rawData.actions.filter(action => {
-                if (filterBy.category && action.category !== filterBy.category) return false
-                if (filterBy.labels?.length && !action.labels.some((label: string) => filterBy.labels.includes(label))) return false
+                if (!!filterBy.categories?.length && filterBy.categories.every((category: string) => category !== action.category)) return false
+                if (!!filterBy.labels?.length && !action.labels.some((label: string) => filterBy.labels.includes(label))) return false
                 if (!action.description.includes(filterBy.searchTxt)) return false
                 return true
             }).forEach(action => {

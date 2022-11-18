@@ -20,7 +20,7 @@ interface IModalProps {
 }
 
 const emptyFilterBy = {
-    category: "",
+    categories: [],
     startDate: dateService.getMonthStartTimeStamp(),
     endDate: dateService.getDayMaxHour(Date.now()),
     labels: [],
@@ -89,8 +89,8 @@ export const SearchModal = ({ closeModal }: IModalProps) => {
                         <div className="input-select">
                             <FormControl className="input-field" fullWidth>
                                 <InputLabel id="category">Category</InputLabel>
-                                <Select fullWidth labelId="category" id="category" value={filterBy.category} label="Category" name="category" onChange={handleChange}>
-                                    <MenuItem key={`cat-filter-none-option`} value={""}>None</MenuItem>
+                                <Select fullWidth labelId="category" id="category" multiple={true} placeholder='Select Categories' value={filterBy.categories} label="Category" name="categories" onChange={handleChange}>
+                                    {/* <MenuItem key={`cat-filter-none-option`} value={""}>None</MenuItem> */}
                                     {rawData && rawData.categories.map(category => <MenuItem key={`cat-filter-${category.title}`} value={category.title}>{category.title}</MenuItem>)}
                                 </Select>
                             </FormControl>

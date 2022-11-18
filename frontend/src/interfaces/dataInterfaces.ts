@@ -44,7 +44,7 @@ export interface IFilterBy {
     startDate: number,
     endDate: number,
     labels: string[],
-    category: string
+    categories: string[]
 }
 
 export interface IDateFilterBy {

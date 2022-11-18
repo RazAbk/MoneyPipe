@@ -44,8 +44,8 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
 
             setDataMap(rawData.actions.reduce((dataMap, action) => {
                 if (action.type !== type) return dataMap
-                if (filterBy.category && action.category !== filterBy.category) return dataMap
-                if (filterBy.label?.length && !action.labels.some((label: string) => filterBy.labels.includes(label))) return dataMap
+                if (!!filterBy.categories?.length && filterBy.categories.every((category: string) => category !== action.category)) return dataMap
+                if (!!filterBy.labels?.length && !action.labels.some((label: string) => filterBy.labels.includes(label))) return dataMap
                 if (!action.description.includes(filterBy.searchTxt)) return dataMap
 
                 if (dataMap[action.category]) {
@@ -65,8 +65,8 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
 
             rawData.actions.filter(action => {
                 if (action.type !== type) return false
-                if (filterBy.category && action.category !== filterBy.category) return false
-                if (filterBy.labels?.length && !action.labels.some((label: string) => filterBy.labels.includes(label))) return false
+                if (!!filterBy.categories?.length && filterBy.categories.every((category: string) => category !== action.category)) return false
+                if (!!filterBy.labels?.length && !action.labels.some((label: string) => filterBy.labels.includes(label))) return false
                 if (!action.description.includes(filterBy.searchTxt)) return false
                 return true
             }).sort((a, b) => b.createdAt - a.createdAt).forEach(action => {

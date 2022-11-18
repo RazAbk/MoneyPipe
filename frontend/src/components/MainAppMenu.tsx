@@ -64,7 +64,7 @@ export const MainAppMenu = ({ isMenuOpen, setMenuOpen, setActionModalOpen, setSe
                 startDate: dateService.getMonthStartTimeStamp(),
                 endDate: dateService.getDayMaxHour(Date.now()),
                 labels: [],
-                category: ''
+                categories: []
             }))
             dispatch(setCurrentViewMode('Summery'))
             navigate('/')

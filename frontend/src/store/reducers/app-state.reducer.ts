@@ -28,7 +28,7 @@ const initialState: IState = {
         startDate: dateService.getMonthStartTimeStamp(),
         endDate: dateService.getDayMaxHour(Date.now()),
         labels: [],
-        category: ''
+        categories: []
     }
 }
 

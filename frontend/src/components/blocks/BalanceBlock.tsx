@@ -15,8 +15,8 @@ export const BalanceBlock = () => {
     useEffect(() => {
         if(rawData){
             const balance = rawData.actions.reduce((balance, action) => {
-                if (filterBy.category && action.category !== filterBy.category) return balance
-                if (filterBy.labels?.length && !action.labels.some((label: string) => filterBy.labels.includes(label))) return balance
+                if (!!filterBy.categories?.length && filterBy.categories.every((category: string) => category !== action.category)) return balance
+                if (!!filterBy.labels?.length && !action.labels.some((label: string) => filterBy.labels.includes(label))) return balance
                 if (!action.description.includes(filterBy.searchTxt)) return balance
                 
                 if (action.type === 'income') balance += +action.amount
