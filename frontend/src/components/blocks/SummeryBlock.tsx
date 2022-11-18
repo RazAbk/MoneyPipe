@@ -110,7 +110,7 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
                 <div className="summery-block">
                     <h2 className="summery-block-title">{type === 'expense' ? 'Expenses' : 'Incomes'}</h2>
                     {(pieData && pieData.labels.length === 0) && <h2 className="no-data-title">No data to display</h2>}
-                    {pieData && <Pie data={pieData} options={options} className="pie" />}
+                    {pieData && <div className="pie"><Pie data={pieData} options={options} /></div> }
 
                     <div className="summery-block-details">
                         {dataMap && Object.entries(dataMap).sort((a, b) => b[1].sum - a[1].sum).map(action => {
