@@ -20,7 +20,7 @@ export const HeaderBlock = ({setSearchModalOpen}: IHeaderProps) => {
     return (
         <div className="header-block">
             <div className="header-block-content">
-                {!!currentLabels?.length && <h2><span className="labels">{currentLabels.map((label: string) => <span key={label} className="label">{label}</span>)}</span><p>-</p><span>{startDateString} - {endDateString}</span></h2>}
+                {!!currentLabels?.length && <h2><span className="labels">{currentLabels.map((label: string) => <span key={label} className="label">{label}</span>)}</span><p>-</p><span className="dates">{startDateString} - {endDateString}</span></h2>}
                 {(!currentLabels?.length && currentViewMode) && <h2>{currentViewMode === 'Summery' ? 'Summary' : 'Graph'}<p>-</p><span>{startDateString} - {endDateString}</span></h2>}
                 <p>{currentViewMode === 'Summery' ? 'Summary' : 'Graph'} of incomes and expenses</p>
             </div>

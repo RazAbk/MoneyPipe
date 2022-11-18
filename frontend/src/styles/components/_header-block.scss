@@ -22,6 +22,7 @@
             width: 100%;
             font-size: 1.5rem;
             font-weight: 600;
+            white-space: nowrap;
 
             display: flex;
             align-items: center;
@@ -40,6 +41,10 @@
                     // text-overflow: ellipsis;
                     // max-width: calc(100vw - 17.5rem);
                 }
+            }
+
+            .dates {
+                white-space: nowrap;
             }
 
             p{
