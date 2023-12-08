@@ -7,7 +7,7 @@ module.exports = {
 
 function authenticateToken(req: Request, res: Response, next: NextFunction) {
     try{
-        const token = req.cookies.token
+        const token = req?.cookies?.token ?? req?.headers?.authorization;
 
         if(!token) return res.status(200).send('')
         
