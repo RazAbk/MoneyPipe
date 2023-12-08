@@ -10,6 +10,9 @@ module.exports = {
     logout
 }
 
+// 1 year in milliseconds
+const maxAge = 1000 * 60 * 60 * 24 * 365;
+
 async function signup(req: Request, res: Response) {
     try {
         const { userName, password, firstName, lastName, picture, isGoogle } = req.body
@@ -28,7 +31,7 @@ async function signup(req: Request, res: Response) {
 
             res.cookie("token", accessToken, {
                 httpOnly: true,
-                maxAge: 1000 * 60 * 60 * 48,
+                maxAge: maxAge,
                 secure: true
             })
 
@@ -52,7 +55,7 @@ async function login(req: Request, res: Response) {
 
         res.cookie("token", accessToken, {
             httpOnly: true,
-            maxAge: 1000 * 60 * 60 * 48,
+            maxAge: maxAge,
             secure: true
         })
 
