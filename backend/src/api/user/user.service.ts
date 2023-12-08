@@ -129,7 +129,7 @@ async function addAction(action: IAction, userId: string) {
             const actionIdx = user.data.actions.findIndex((currAction: IAction) => action._id === currAction._id)
             user.data.actions[actionIdx] = actionWithCorrectDate
         } else {
-            action._id = utilService.makeId()
+            actionWithCorrectDate._id = utilService.makeId()
             user.data.actions.push(actionWithCorrectDate)
         }
 
