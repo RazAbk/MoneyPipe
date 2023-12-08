@@ -120,12 +120,17 @@ async function addAction(action: IAction, userId: string) {
         const collection = await dbService.getCollection('users')
         const user = await collection.findOne({ '_id': ObjectId(userId) })
 
+        const actionWithCorrectDate = {
+            ...action,
+            createdAt: new Date(action.createdAt).getTime()
+        }
+
         if (action._id) {
             const actionIdx = user.data.actions.findIndex((currAction: IAction) => action._id === currAction._id)
-            user.data.actions[actionIdx] = action
+            user.data.actions[actionIdx] = actionWithCorrectDate
         } else {
             action._id = utilService.makeId()
-            user.data.actions.push(action)
+            user.data.actions.push(actionWithCorrectDate)
         }
 
         await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
