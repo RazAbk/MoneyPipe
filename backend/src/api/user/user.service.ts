@@ -120,17 +120,20 @@ async function addAction(action: IAction, userId: string) {
         const collection = await dbService.getCollection('users')
         const user = await collection.findOne({ '_id': ObjectId(userId) })
 
-        const actionWithCorrectDate = {
+        const modifiedAction = {
             ...action,
-            createdAt: new Date(action.createdAt).getTime()
+            createdAt: new Date(action.createdAt).getTime(),
+            amount: trimAmountInput(`${action.amount}`) ?? action.amount
         }
+
+        console.log('modifiedAction', modifiedAction);
 
         if (action._id) {
             const actionIdx = user.data.actions.findIndex((currAction: IAction) => action._id === currAction._id)
-            user.data.actions[actionIdx] = actionWithCorrectDate
+            user.data.actions[actionIdx] = modifiedAction
         } else {
-            actionWithCorrectDate._id = utilService.makeId()
-            user.data.actions.push(actionWithCorrectDate)
+            modifiedAction._id = utilService.makeId()
+            user.data.actions.push(modifiedAction)
         }
 
         await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
@@ -330,4 +333,16 @@ async function deleteUser(userId: string) {
         console.log('could not delete user')
         throw err
     }
+}
+
+function trimAmountInput(amount: string): string | null {
+  // Use a regular expression to match numeric values (including decimals)
+  const numericValue = amount?.match(/[0-9.]+/);
+
+  // If a match is found, return the numeric value
+  if (numericValue) {
+    return numericValue[0];
+  } else {
+    return null; // No numeric value found in the input
+  }
 }
