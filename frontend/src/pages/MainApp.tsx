@@ -88,14 +88,11 @@ export const MainApp = () => {
 
 
     const _handleScroll = (ev: any) => {
-        if(ev.target.scrollLeft > 0) {
-            dispatch(setBlocksIdx(1))
-        } else {
-            dispatch(setBlocksIdx(0))
-        }
+        const currentPage = Math.floor((ev.target.scrollLeft / ev.target.scrollWidth) * 3); // 3 number of pages
+        dispatch(setBlocksIdx(currentPage))
     }
 
-    const handleBlocksScroll = utilService.debounce(_handleScroll, 100)
+    const handleBlocksScroll = utilService.debounce(_handleScroll, 200)
 
     return (
         <>
