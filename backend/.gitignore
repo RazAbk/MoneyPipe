@@ -2,4 +2,3 @@ node_modules
 .env
 /build
 dist/
-src/public/
