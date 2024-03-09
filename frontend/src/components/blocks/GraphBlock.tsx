@@ -39,16 +39,22 @@ export const GraphBlock = () => {
         const daysPeriod = dateService.calculatePeriodDays(filterBy.startDate, filterBy.endDate)
 
         // Initializing the graph's Data
-        let expensesDataset: any = {
+        const expensesDataset: any = {
             data: [],
             borderColor: '#c41f02',
             backgroundColor: '#eb2300',
         }
 
-        let incomesDataset: any = {
+        const incomesDataset: any = {
             data: [],
             borderColor: '#18b50d',
             backgroundColor: '#0ecf00',
+        }
+
+        const investmentsDataset: any = {
+            data: [],
+            borderColor: '#f78b08',
+            backgroundColor: '#f78b08',
         }
 
         let timePoints: string[] = []
@@ -84,6 +90,7 @@ export const GraphBlock = () => {
             // Initialize with amounts of 0 for each time point in the graph
             expensesDataset.data = timeStamps.map(timeStamp => 0)
             incomesDataset.data = [...expensesDataset.data]
+            investmentsDataset.data = [...expensesDataset.data]
 
             rawData.actions.filter(action => {
                 if (!!filterBy.categories?.length && filterBy.categories.every((category: string) => category !== action.category)) return false
@@ -95,17 +102,29 @@ export const GraphBlock = () => {
                     if (action.createdAt >= timeStamp) {
                         if (idx === timeStamps.length - 1) {
                             if (action.createdAt <= Date.now()) {
-                                if (action.type === 'expense') {
-                                    expensesDataset.data[idx] += +action.amount
-                                } else {
-                                    incomesDataset.data[idx] += +action.amount
+                                switch (action.type) {
+                                    case 'expense':
+                                        expensesDataset.data[idx] += +action.amount
+                                        break;
+                                    case 'income':
+                                        incomesDataset.data[idx] += +action.amount
+                                        break;
+                                    case 'investment':
+                                        investmentsDataset.data[idx] += +action.amount
+                                        break;
                                 }
                             }
                         } else if (action.createdAt <= (timeStamps[idx + 1])) {
-                            if (action.type === 'expense') {
-                                expensesDataset.data[idx] += +action.amount
-                            } else {
-                                incomesDataset.data[idx] += +action.amount
+                            switch (action.type) {
+                                case 'expense':
+                                    expensesDataset.data[idx] += +action.amount
+                                    break;
+                                case 'income':
+                                    incomesDataset.data[idx] += +action.amount
+                                    break;
+                                case 'investment':
+                                    investmentsDataset.data[idx] += +action.amount
+                                    break;
                             }
                         }
                     }
@@ -114,7 +133,7 @@ export const GraphBlock = () => {
 
             setGraphData({
                 labels: timePoints,
-                datasets: [expensesDataset, incomesDataset]
+                datasets: [expensesDataset, incomesDataset, investmentsDataset]
             })
         }
 

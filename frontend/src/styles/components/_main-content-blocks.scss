@@ -72,6 +72,22 @@
   .summery-block-total {
     font-weight: 600;
 
+    &:first-letter {
+      text-transform: uppercase;
+    }
+
+    &.expense {
+      color: #8A0000;
+    }
+
+    &.income {
+      color: #00600F;
+    }
+
+    &.investment {
+      color: #ce7508;
+    }
+
     @include for-desktop {
       font-size: 2rem;
     }

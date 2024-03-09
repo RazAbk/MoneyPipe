@@ -138,6 +138,7 @@ export const ActionModal = ({ closeModal }: IActionModalProps) => {
                                     <Select fullWidth labelId="type" id="type" value={formData.type} label="Type" name="type" onChange={handleChange}>
                                         <MenuItem key="type-expense" value={'expense'}>Expense</MenuItem>
                                         <MenuItem key="type-income" value={'income'}>Income</MenuItem>
+                                        <MenuItem key="type-investment" value={'investment'}>Investment</MenuItem>
                                     </Select>
                                 </FormControl>
                             </div>

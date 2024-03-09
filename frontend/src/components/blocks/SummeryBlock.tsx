@@ -108,7 +108,7 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
         <div className="summery-blocks">
             {currentViewMode === 'Summery' &&
                 <div className="summery-block">
-                    <h2 className="summery-block-title">{type === 'expense' ? 'Expenses' : 'Incomes'}</h2>
+                    <h2 className="summery-block-title">{type}</h2>
                     {(pieData && pieData.labels.length === 0) && <h2 className="no-data-title">No data to display</h2>}
                     {pieData && <div className="pie"><Pie data={pieData} options={options} /></div> }
 
@@ -121,7 +121,7 @@ export const SummeryBlock = ({ type, setActionModalOpen }: ISummeryBlockProps) =
                             </div>
                         })}
                     </div>
-                    {pieData && <h2 className="summery-block-total" style={{ color: type === 'expense' ? '#8A0000' : '#00600F' }}>
+                    {pieData && <h2 className={`summery-block-total ${type}`}>
                         {Math.round(pieData?.datasets[0].data.reduce((sum, expense) => {
                             sum += expense
                             return sum

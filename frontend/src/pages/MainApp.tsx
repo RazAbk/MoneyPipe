@@ -110,6 +110,7 @@ export const MainApp = () => {
                         <div ref={blocksRef} onScroll={handleBlocksScroll} className="main-content-blocks">
                             <SummeryBlock type="expense" setActionModalOpen={setActionModalOpen} />
                             <SummeryBlock type="income" setActionModalOpen={setActionModalOpen} />
+                            <SummeryBlock type="investment" setActionModalOpen={setActionModalOpen} />
                         </div>
                     </div>
 
