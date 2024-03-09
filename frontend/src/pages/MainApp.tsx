@@ -92,7 +92,7 @@ export const MainApp = () => {
         dispatch(setBlocksIdx(currentPage))
     }
 
-    const handleBlocksScroll = utilService.debounce(_handleScroll, 200)
+    const handleBlocksScroll = utilService.debounce(_handleScroll, 100)
 
     return (
         <>
