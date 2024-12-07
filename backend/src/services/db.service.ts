@@ -13,7 +13,7 @@ let dbConn: any = null
 
 async function getCollection(collectionName: string) {
     try {
-        const db = await connect()
+        const db = await connect();
         const collection = await db.collection(collectionName)
         return collection
     } catch (err) {

@@ -118,12 +118,16 @@ async function updateData(data: IDataUpdateForm, userId: string) {
 async function addAction(action: IAction, userId: string) {
     try {
         const collection = await dbService.getCollection('users')
-        const user = await collection.findOne({ '_id': ObjectId(userId) })
+        const user = await collection.findOne({ '_id': ObjectId(userId) });
+
+        const userCurrency = user.data.currency.code;
+
+        const convertedAmount = await utilService.convertCurrency(`${action.amount}`, userCurrency, userCurrency);
 
         const modifiedAction = {
             ...action,
             createdAt: new Date(action.createdAt).getTime(),
-            amount: trimAmountInput(`${action.amount}`) ?? action.amount
+            amount: convertedAmount
         }
 
         console.log('modifiedAction', modifiedAction);
@@ -333,16 +337,4 @@ async function deleteUser(userId: string) {
         console.log('could not delete user')
         throw err
     }
-}
-
-function trimAmountInput(amount: string): string | null {
-  // Use a regular expression to match numeric values (including decimals)
-  const numericValue = amount?.match(/[0-9.]+/);
-
-  // If a match is found, return the numeric value
-  if (numericValue) {
-    return numericValue[0];
-  } else {
-    return null; // No numeric value found in the input
-  }
 }
