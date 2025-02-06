@@ -1,4 +1,5 @@
 import Axios from "axios"
+const { Logger } = require('../logger');
 
 module.exports = {
     makeId,
@@ -8,57 +9,67 @@ module.exports = {
 const currencyURL = `https://api.freecurrencyapi.com/v1/latest?apikey=${process.env.CURRENCY_API_KEY}`;
 
 const CurrenciesMap: any = {
-    "$": "USD",    // U.S. Dollar
-    "USD": "USD",
-    "₪": "ILS",    // Israeli Shekel
-    "ILS": "ILS",
-    "€": "EUR",    // Euro
-    "EUR": "EUR",
-    "£": "GBP",    // British Pound
-    "GBP": "GBP",
-    "¥": "JPY",    // Japanese Yen
-    "JPY": "JPY",
-    "₩": "KRW",    // South Korean Won
-    "KRW": "KRW",
-    "₹": "INR",    // Indian Rupee
-    "INR": "INR",
-    "C$": "CAD",   // Canadian Dollar
-    "CAD": "CAD",
-    "A$": "AUD",   // Australian Dollar
-    "AUD": "AUD",
-    "R$": "BRL",   // Brazilian Real
-    "BRL": "BRL",
-    "₽": "RUB",    // Russian Ruble
-    "RUB": "RUB",
-    "S$": "SGD",   // Singapore Dollar
-    "SGD": "SGD",
-    "HK$": "HKD",  // Hong Kong Dollar
-    "HKD": "HKD",
-    "₺": "TRY",    // Turkish Lira
-    "TRY": "TRY",
-    "R": "ZAR",    // South African Rand
-    "ZAR": "ZAR",
-    "CHF": "CHF",  // Swiss Franc
-    "CNY": "CNY",  // Chinese Yuan
-    "CZK": "CZK",  // Czech Koruna
-    "DKK": "DKK",  // Danish Krone
-    "HRK": "HRK",  // Croatian Kuna
-    "HUF": "HUF",  // Hungarian Forint
-    "IDR": "IDR",  // Indonesian Rupiah
-    "ISK": "ISK",  // Icelandic Krona
-    "MX$": "MXN",  // Mexican Peso
-    "MXN": "MXN",
-    "MYR": "MYR",  // Malaysian Ringgit
-    "NOK": "NOK",  // Norwegian Krone
-    "NZ$": "NZD",  // New Zealand Dollar
-    "NZD": "NZD",
-    "₱": "PHP",    // Philippine Peso
-    "PHP": "PHP",
-    "zł": "PLN",   // Polish Zloty
-    "PLN": "PLN",
-    "RON": "RON",  // Romanian Leu
-    "SEK": "SEK",  // Swedish Krona
-    "THB": "THB",  // Thai Baht
+    "$": "USD", "USD": "USD", // U.S. Dollar
+    "₪": "ILS", "ILS": "ILS", // Israeli Shekel
+    "€": "EUR", "EUR": "EUR", // Euro
+    "£": "GBP", "GBP": "GBP", // British Pound
+    "¥": "JPY", "JPY": "JPY", // Japanese Yen
+    "₩": "KRW", "KRW": "KRW", // South Korean Won
+    "₹": "INR", "INR": "INR", // Indian Rupee
+    "C$": "CAD", "CAD": "CAD", // Canadian Dollar
+    "A$": "AUD", "AUD": "AUD", // Australian Dollar
+    "R$": "BRL", "BRL": "BRL", // Brazilian Real
+    "₽": "RUB", "RUB": "RUB", // Russian Ruble
+    "S$": "SGD", "SGD": "SGD", // Singapore Dollar
+    "HK$": "HKD", "HKD": "HKD", // Hong Kong Dollar
+    "₺": "TRY", "TRY": "TRY", // Turkish Lira
+    "R": "ZAR", "ZAR": "ZAR", // South African Rand
+    "CHF": "CHF", // Swiss Franc
+    "CNY": "CNY", // Chinese Yuan
+    "CZK": "CZK", // Czech Koruna
+    "DKK": "DKK", // Danish Krone
+    "HRK": "HRK", // Croatian Kuna (now replaced by EUR)
+    "HUF": "HUF", // Hungarian Forint
+    "IDR": "IDR", // Indonesian Rupiah
+    "ISK": "ISK", // Icelandic Krona
+    "MX$": "MXN", "MXN": "MXN", // Mexican Peso
+    "MYR": "MYR", // Malaysian Ringgit
+    "NOK": "NOK", // Norwegian Krone
+    "NZ$": "NZD", "NZD": "NZD", // New Zealand Dollar
+    "₱": "PHP", "PHP": "PHP", // Philippine Peso
+    "zł": "PLN", "PLN": "PLN", // Polish Zloty
+    "RON": "RON", // Romanian Leu
+    "SEK": "SEK", // Swedish Krona
+    "THB": "THB", // Thai Baht
+    "BGN": "BGN", // Bulgarian Lev
+    "CLP": "CLP", // Chilean Peso
+    "COP": "COP", // Colombian Peso
+    "EGP": "EGP", // Egyptian Pound
+    "MAD": "MAD", // Moroccan Dirham
+    "TWD": "TWD", "NT$": "TWD", // New Taiwan Dollar
+    "UAH": "UAH", // Ukrainian Hryvnia
+    "VND": "VND", "₫": "VND", // Vietnamese Dong
+    "SAR": "SAR", // Saudi Riyal
+    "AED": "AED", // United Arab Emirates Dirham
+    "QAR": "QAR", // Qatari Riyal
+    "KWD": "KWD", // Kuwaiti Dinar
+    "BHD": "BHD", // Bahraini Dinar
+    "OMR": "OMR", // Omani Rial
+    "PKR": "PKR", "Rs": "PKR", // Pakistani Rupee
+    "LKR": "LKR", "SLRs": "LKR", // Sri Lankan Rupee
+    "BDT": "BDT", // Bangladeshi Taka
+    "MMK": "MMK", // Myanmar Kyat
+    "GHS": "GHS", // Ghanaian Cedi
+    "NGN": "NGN", // Nigerian Naira
+    "KES": "KES", // Kenyan Shilling
+    "TZS": "TZS", // Tanzanian Shilling
+    "UGX": "UGX", // Ugandan Shilling
+    "MZN": "MZN", // Mozambican Metical
+    "ETB": "ETB", // Ethiopian Birr
+    "DZD": "DZD", // Algerian Dinar
+    "IRR": "IRR", // Iranian Rial
+    "IQD": "IQD", // Iraqi Dinar
+    "JOD": "JOD", // Jordanian Dinar
 };
 
 let CurrenciesRates: { [curr: string]: number } = {};
@@ -67,15 +78,15 @@ let CurrenciesRatesLastUpdate: number = 0;
 
 async function getCurrencies() {
     if (Date.now() - CurrenciesRatesLastUpdate < (1000 * 60 * 60 * 24)) { // 1 day
-        console.log("Currencies from cache");
+        Logger.info("Fetched currencies from cache");
         return CurrenciesRates;
     } else {
         const response = await Axios.get(currencyURL);
         const currencies = response?.data ?? {};
         CurrenciesRatesLastUpdate = Date.now();
-        
+
         CurrenciesRates = currencies;
-        console.log("Fetched currencies");
+        Logger.info("Fetched currencies from internet");
         return CurrenciesRates;
     }
 }

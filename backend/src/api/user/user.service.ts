@@ -6,6 +6,7 @@ const { v4: uuid } = require('uuid');
 const bcrypt = require('bcrypt')
 const dbService = require('../../services/db.service')
 const utilService = require('../../services/util.service')
+const { Logger } = require('../../logger');
 
 module.exports = {
     getById,
@@ -31,8 +32,7 @@ async function getById(userId: string) {
 
         return user
     } catch (err) {
-        console.log('could not get user by id')
-        console.log(err)
+        Logger.error('could not get user by id', err)
         throw err
     }
 }
@@ -43,7 +43,7 @@ async function getByUsername(userName: string) {
         const user = await collection.findOne({ userName: userName })
         return user
     } catch (err) {
-        console.log(`error accrued while finding user ${userName}`, err)
+        Logger.error(`error accrued while finding user ${userName}`, err)
         throw err
     }
 }
@@ -73,7 +73,7 @@ async function addUser(userName: string, password: string, firstName: string, la
         await collection.insertOne(newUser)
         return newUser
     } catch (err) {
-        console.log('error occurred while adding user')
+        Logger.error('Error occurred while adding user', err)
         throw err
     }
 }
@@ -92,7 +92,7 @@ async function updateUser(data: IUserUpdateForm, userId: string) {
         const user = await collection.findOne({ "_id": ObjectId(userId) })
         return user
     } catch (err) {
-        console.log('error occurred while updating user')
+        Logger.error('Error occurred while updating user', err)
         throw err
     }
 }
@@ -110,7 +110,7 @@ async function updateData(data: IDataUpdateForm, userId: string) {
         const user = await collection.findOne({ "_id": ObjectId(userId) })
         return user
     } catch (err) {
-        console.log('err occurred white updating data')
+        Logger.error('err occurred white updating data', err)
         throw err
     }
 }
@@ -130,7 +130,7 @@ async function addAction(action: IAction, userId: string) {
             amount: convertedAmount
         }
 
-        console.log('modifiedAction', modifiedAction);
+        Logger.info('Action to add:', modifiedAction);
 
         if (action._id) {
             const actionIdx = user.data.actions.findIndex((currAction: IAction) => action._id === currAction._id)
@@ -144,7 +144,7 @@ async function addAction(action: IAction, userId: string) {
 
         return user.data
     } catch (err) {
-        console.log('could not add new action')
+        Logger.error('Could not add new action', err);
         throw err
     }
 }
@@ -161,7 +161,7 @@ async function deleteAction(actionId: string, userId: string) {
 
         return user.data
     } catch (err) {
-        console.log('could not delete action')
+        Logger.error('Could not delete action', err)
         throw err
     }
 }
@@ -181,7 +181,7 @@ async function duplicateAction(actionId: string, userId: string) {
 
         return user.data
     } catch (err) {
-        console.log('could not duplicate action')
+        Logger.error('Could not duplicate action', err);
         throw err
     }
 }
@@ -250,7 +250,7 @@ async function deleteCategory(categoryId: string, userId: string) {
             }
         }
     } catch (err) {
-        console.log('could not delete category')
+        Logger.error('could not delete category', err);
         throw err
     }
 }
@@ -295,7 +295,7 @@ async function addLabel(label: ILabel, userId: string) {
 
         return user.data
     } catch (err) {
-        console.log('could not add label')
+        Logger.error('could not add label', err);
         throw err
     }
 }
@@ -321,7 +321,7 @@ async function deleteLabel(labelId: string, userId: string) {
             return user.data
         }
     } catch (err) {
-        console.log('could not delete category')
+        Logger.error('could not delete category', err);
         throw err
     }
 }
@@ -334,7 +334,7 @@ async function deleteUser(userId: string) {
 
         return result.deletedCount
     } catch (err) {
-        console.log('could not delete user')
+        Logger.error('could not delete user', err);
         throw err
     }
 }

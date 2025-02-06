@@ -1,6 +1,7 @@
 const { MongoClient } = require('mongodb')
 
 const config = require('../config')
+const { Logger } = require('../logger');
 
 module.exports = {
     getCollection
@@ -17,7 +18,7 @@ async function getCollection(collectionName: string) {
         const collection = await db.collection(collectionName)
         return collection
     } catch (err) {
-        console.log('error while getting collection', err)
+        Logger.error('error while getting collection', err);
         throw err
     }
 }
@@ -30,7 +31,7 @@ async function connect() {
         dbConn = db
         return db
     } catch (err) {
-        console.log('error while connection to MongoDB', err)
+        Logger.error('error while connection to MongoDB', err);
         throw err
     }
 }

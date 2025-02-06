@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 const jwt = require('jsonwebtoken')
 const authService = require('./auth.service')
 const userService = require('../user/user.service')
+const { Logger } = require('../../logger');
 
 module.exports = {
     signup,
@@ -38,7 +39,7 @@ async function signup(req: Request, res: Response) {
             res.json(user)
         }
     } catch (err) {
-        console.log('could not sign up', err)
+        Logger.error('Could not sign up', err)
         res.json(null)
     }
 }
@@ -61,7 +62,7 @@ async function login(req: Request, res: Response) {
 
         res.json(user)
     } catch (err) {
-        console.log('could not log in', err)
+        Logger.error('could not log in', err);
         res.json(null)
     }
 }
@@ -71,7 +72,7 @@ async function logout(req: Request, res: Response) {
         res.clearCookie('token')
         res.send('logged out successfully')
     } catch (err) {
-        console.log('could not logout', err)
+        Logger.error('Could not logout', err);
         res.status(500).send('could not log out')
     }
 }

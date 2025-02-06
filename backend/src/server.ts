@@ -6,6 +6,7 @@ import { IUser } from './interfaces/userInterfaces';
 const cors = require('cors')
 const path = require('path')
 const cookieParser = require('cookie-parser')
+const { Logger } = require('./logger');
 
 declare global {
   namespace Express {
@@ -50,5 +51,5 @@ app.get('/**', (req, res) => {
 const PORT = process.env.PORT || 3030;
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+  Logger.info(`Server is running on port ${PORT}.`);
 });
