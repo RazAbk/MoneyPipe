@@ -14,21 +14,28 @@
     transition: background-color 0.2s;
 
     .left-side{
+        flex-grow: 1;
+        width: 0;
         display: flex;
         align-items: center;
         gap: 1rem;
     }
+
     .action-data{
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: space-between;
 
+        flex-grow: 1;
+        width: 0;
+        overflow: hidden;
+
         h3{
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: calc(100vw - 11.5rem);
+            width: 100%;
         }
         
         p{
@@ -39,7 +46,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: calc(100vw - 11.5rem);
+            width: 100%;
 
             span{
                 margin-right: 0.4rem;
@@ -140,6 +147,8 @@
     font-size: 1.5rem;
     color: $txt-light-color;
     border-radius: 100%;
+    width: 40px;
+    height: 40px;
     width: 40px;
     height: 40px;
     
