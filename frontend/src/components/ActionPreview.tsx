@@ -74,15 +74,15 @@ export const ActionPreview = ({ action, setActionModalOpen }: IActionProps) => {
                     <GetIcon iconName={categoryData.icon} />
                 </div>
                 <div className="action-data ">
-                    <p className="action-date ">{dateService.getRelativeDate(action.createdAt)}</p>
+                    <p className="action-date ">{dateService.getRelativeDate(action?.createdAt)}</p>
                     <h3>{action.description}</h3>
-                    <p className="action-labels ">{action.labels?.length ? action.labels.map(label => {
-                        return <span key={`label-${action.createdAt}-${label}`}>{label}</span>
+                    <p className="action-labels ">{action?.labels?.length ? action?.labels.map(label => {
+                        return <span key={`label-${action?.createdAt}-${label}`}>{label}</span>
                     }) : <span></span> }</p>
                 </div>
             </div>
             <div className="right-side ">
-                <h3>{(+action.amount.toString()).toLocaleString()}{rawData.currency.sign}</h3>
+                <h3>{(+(action?.amount?.toString()))?.toLocaleString()}{rawData?.currency.sign}</h3>
             </div>
             <div className="action-preview-actions " style={{ transform: selectedAction?._id === action._id ? 'translateX(0%)' : 'translateX(100%)' }}>
                 <button onClick={onDuplicate}><CgDuplicate /></button>

@@ -127,6 +127,11 @@ async function addAction(action: IAction, userId: string) {
 
         const convertedAmount = await utilService.convertCurrency(`${action.amount}`, userCurrency, userCurrency);
 
+        if(!convertedAmount) {
+            Logger.error('Error while converting currency', action.amount);
+            throw new Error('Error while converting currency');
+        }
+
         const createdAt = action?.createdAt ? new Date(action.createdAt).getTime() : Date.now();
 
         const modifiedAction = {
