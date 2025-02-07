@@ -155,7 +155,7 @@ async function addAction(action: IAction, userId: string) {
         return user.data
     } catch (err) {
         Logger.error(`Could not add action to userId: '${userId}':`, err);
-        Logger.INFO('Failed action:', action);
+        Logger.info('Failed action:', action);
         throw err
     }
 }
