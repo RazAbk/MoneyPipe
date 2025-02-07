@@ -96,8 +96,8 @@ async function convertCurrency(amountStr: string, defaultCurrency: string, toCur
     const CurrenciesRates = ((await getCurrencies()).data) as any;
 
     const { amount, currency } = splitCurrency(amountStr);
-    const fromRate = CurrenciesRates[CurrenciesMap[currency as string] ?? CurrenciesMap[defaultCurrency]];
-    const toRate = CurrenciesRates[CurrenciesMap[toCurrency]];
+    const fromRate = CurrenciesRates[CurrenciesMap[(currency)?.toUpperCase() as string] ?? CurrenciesMap[(defaultCurrency)?.toUpperCase()]];
+    const toRate = CurrenciesRates[CurrenciesMap[(toCurrency)?.toUpperCase()]];
 
     return amount * (toRate / fromRate);
 }
