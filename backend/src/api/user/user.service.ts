@@ -71,9 +71,10 @@ async function addUser(userName: string, password: string, firstName: string, la
 
         const collection = await dbService.getCollection('users')
         await collection.insertOne(newUser)
+        Logger.success(`User ${userName} - ${firstName} ${lastName}, added successfully`);
         return newUser
     } catch (err) {
-        Logger.error('Error occurred while adding user', err)
+        Logger.error(`Error occurred while adding user - userName: '${userName}'`, err)
         throw err
     }
 }
@@ -90,9 +91,10 @@ async function updateUser(data: IUserUpdateForm, userId: string) {
 
         await collection.updateOne({ "_id": ObjectId(userId) }, { $set: data })
         const user = await collection.findOne({ "_id": ObjectId(userId) })
+        Logger.success(`User ${user?.userName} updated successfully, userId: '${userId}'`);
         return user
     } catch (err) {
-        Logger.error('Error occurred while updating user', err)
+        Logger.error(`Error occurred while updating user - userId: '${userId}'`, err)
         throw err
     }
 }
@@ -107,10 +109,11 @@ async function updateData(data: IDataUpdateForm, userId: string) {
 
         await collection.updateOne({ "_id": ObjectId(userId) }, $setObj)
 
-        const user = await collection.findOne({ "_id": ObjectId(userId) })
+        const user = await collection.findOne({ "_id": ObjectId(userId) });
+        Logger.success(`Data updated successfully for user: '${user?.userId}'`);
         return user
     } catch (err) {
-        Logger.error('err occurred white updating data', err)
+        Logger.error(`err occurred white updating data - userId: '${userId}'`, err)
         throw err
     }
 }
@@ -132,8 +135,6 @@ async function addAction(action: IAction, userId: string) {
             amount: convertedAmount
         }
 
-        Logger.info('Action to add:', modifiedAction);
-
         if (action._id) {
             const actionIdx = user.data.actions.findIndex((currAction: IAction) => action._id === currAction._id)
             user.data.actions[actionIdx] = modifiedAction
@@ -144,9 +145,11 @@ async function addAction(action: IAction, userId: string) {
 
         await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
 
+        Logger.success(`Action ${action?._id ? 'updated' : 'added'} to userId: '${userId}':`, modifiedAction);
+
         return user.data
     } catch (err) {
-        Logger.error('Could not add new action', err);
+        Logger.error(`Could not add action to userId: '${userId}':`, err);
         throw err
     }
 }
@@ -160,10 +163,10 @@ async function deleteAction(actionId: string, userId: string) {
         user.data.actions.splice(actionIdx, 1)
 
         await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
-
+        Logger.success(`Action deleted, actionId: '${actionId}', userId: '${userId}'`);
         return user.data
     } catch (err) {
-        Logger.error('Could not delete action', err)
+        Logger.error(`Could not delete action, actionId: '${actionId}', userId: '${userId}'`, err)
         throw err
     }
 }
@@ -180,10 +183,10 @@ async function duplicateAction(actionId: string, userId: string) {
         user.data.actions.splice(actionIdx, 0, newAction)
 
         await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
-
+        Logger.success(`Action duplicated, actionId: '${actionId}', userId: '${userId}'`);
         return user.data
     } catch (err) {
-        Logger.error('Could not duplicate action', err);
+        Logger.error(`Could not duplicate action, actionId: '${actionId}', userId: '${userId}'`, err);
         throw err
     }
 }
@@ -226,9 +229,11 @@ async function addCategory(category: ICategory, userId: string) {
 
         await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
 
+        Logger.success(`Category added / updated: '${category.title}', userId: '${userId}'`);
+
         return user.data
     } catch (err) {
-        console.error('could not add category')
+        console.error(`Could not add / update category: '${category.title}', userId: '${userId}'`, err);
         throw err
     }
 }
@@ -244,16 +249,18 @@ async function deleteCategory(categoryId: string, userId: string) {
             const isCategoryUsed = user.data.actions.some((action: IAction) => action.category === user.data.categories[categoryIdx].title)
             // Do not allow to delete category if it's in use!
             if (isCategoryUsed) {
+                Logger.warning(`Category '${categoryId}' is in use and cannot be deleted, userId: '${userId}'`);
                 return null
             } else {
                 user.data.categories.splice(categoryIdx, 1)
                 await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data.categories": user.data.categories } })
+                Logger.success(`Category deleted: '${categoryId}', userId: '${userId}'`);
                 return user.data
             }
         }
     } catch (err) {
-        Logger.error('could not delete category', err);
-        throw err
+        Logger.error(`Could not delete category: '${categoryId}', userId: '${userId}'`, err);
+        throw err;
     }
 }
 
@@ -265,6 +272,7 @@ async function addLabel(label: ILabel, userId: string) {
         const isLabelExist = user.data.labels.some((lab: ILabel) => lab.labelName === label.labelName)
         // Cannot have same label name duplicates
         if (isLabelExist) {
+            Logger.warning(`Label '${label.title}' already exists, userId: '${userId}'`);
             return user.data
         }
 
@@ -295,9 +303,11 @@ async function addLabel(label: ILabel, userId: string) {
 
         await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
 
+        Logger.success(`Label added / updated: '${label.title}', userId: '${userId}'`);
+
         return user.data
     } catch (err) {
-        Logger.error('could not add label', err);
+        Logger.error(`Could not add / update label: '${label.title}', userId: '${userId}'`, err);
         throw err
     }
 }
@@ -320,10 +330,12 @@ async function deleteLabel(labelId: string, userId: string) {
                 return action
             })
             await collection.updateOne({ "_id": ObjectId(userId) }, { $set: { "data": user.data } })
+
+            Logger.success(`Label deleted: '${labelId}', userId: '${userId}'`);
             return user.data
         }
     } catch (err) {
-        Logger.error('could not delete category', err);
+        Logger.error(`Could not delete label: '${labelId}', userId: '${userId}'`, err);
         throw err
     }
 }
@@ -333,10 +345,10 @@ async function deleteUser(userId: string) {
     try {
         const collection = await dbService.getCollection('users')
         const result = await collection.deleteOne({ '_id': ObjectId(userId) })
-
+        Logger.success(`User deleted: '${userId}'`);
         return result.deletedCount
     } catch (err) {
-        Logger.error('could not delete user', err);
+        Logger.error(`Could not delete user: '${userId}'`, err);
         throw err
     }
 }
