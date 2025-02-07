@@ -124,9 +124,11 @@ async function addAction(action: IAction, userId: string) {
 
         const convertedAmount = await utilService.convertCurrency(`${action.amount}`, userCurrency, userCurrency);
 
+        const createdAt = action?.createdAt ? new Date(action.createdAt).getTime() : Date.now();
+
         const modifiedAction = {
             ...action,
-            createdAt: new Date(action.createdAt).getTime(),
+            createdAt,
             amount: convertedAmount
         }
 
