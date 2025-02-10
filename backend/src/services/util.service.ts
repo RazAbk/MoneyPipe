@@ -103,13 +103,14 @@ async function convertCurrency(amountStr: string, defaultCurrency: string, toCur
 }
 
 function splitCurrency(amountStr: string): { amount: number; currency: string | null; } {
-    const regex = /^([\d.,]+)\s*([^\d\s]*)$/;
+    const regex = /^\s*([^\d\s]*)\s*([\d.,]+)\s*([^\d\s]*)$/;
     const match = amountStr.match(regex);
 
     if (match) {
+        const currency = match[1] || match[3] || null;
         return {
-            amount: parseFloat(match[1].replace(',', '')), // Convert the number to float
-            currency: match[2] || null                    // Return the currency symbol or null if none
+            amount: parseFloat(match[2].replace(',', '')), // Convert the number to float
+            currency: currency                             // Return the currency symbol or null if none
         };
     }
 
