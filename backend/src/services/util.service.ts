@@ -6,7 +6,11 @@ module.exports = {
     convertCurrency,
 };
 
-const currencyURL = `https://api.freecurrencyapi.com/v1/latest?apikey=${process.env.CURRENCY_API_KEY}`;
+// Old
+// const currencyURL = `https://api.freecurrencyapi.com/v1/latest?apikey=${process.env.CURRENCY_API_KEY}`;
+
+// New
+const currencyURL = `https://data.fixer.io/api/latest?access_key=${process.env.FIXER_CURRENCY_API_KEY}`;
 
 const CurrenciesMap: any = {
     "$": "USD", "USD": "USD", // U.S. Dollar
@@ -82,7 +86,7 @@ async function getCurrencies() {
         return CurrenciesRates;
     } else {
         const response = await Axios.get(currencyURL);
-        const currencies = response?.data ?? {};
+        const currencies = response?.data?.rates ?? {};
         CurrenciesRatesLastUpdate = Date.now();
 
         CurrenciesRates = currencies;
@@ -93,12 +97,10 @@ async function getCurrencies() {
 
 
 async function convertCurrency(amountStr: string, defaultCurrency: string, toCurrency: string) {
-    const CurrenciesRates = ((await getCurrencies()).data) as any;
-
+    const CurrenciesRates = (await getCurrencies()) as any;
     const { amount, currency } = splitCurrency(amountStr);
     const fromRate = CurrenciesRates[CurrenciesMap[(currency)?.toUpperCase() as string] ?? CurrenciesMap[(defaultCurrency)?.toUpperCase()]];
     const toRate = CurrenciesRates[CurrenciesMap[(toCurrency)?.toUpperCase()]];
-
     return amount * (toRate / fromRate);
 }
 
