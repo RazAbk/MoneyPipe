@@ -105,8 +105,9 @@ async function convertCurrency(amountStr: string, defaultCurrency: string, toCur
 }
 
 function splitCurrency(amountStr: string): { amount: number; currency: string | null; } {
+    const commasCleanAmount = amountStr.replace(/,/g, '');
     const regex = /^\s*([^\d\s]*)\s*([\d.,]+)\s*([^\d\s]*)$/;
-    const match = amountStr.match(regex);
+    const match = commasCleanAmount.match(regex);
 
     if (match) {
         const currency = match[1] || match[3] || null;
