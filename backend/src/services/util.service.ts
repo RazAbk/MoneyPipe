@@ -1,4 +1,5 @@
 import Axios from "axios"
+const { v4: uuidv4 } = require('uuid');
 const { Logger } = require('../logger');
 
 module.exports = {
@@ -17,7 +18,7 @@ const CurrenciesMap: any = {
     "₪": "ILS", "ILS": "ILS", // Israeli Shekel
     "€": "EUR", "EUR": "EUR", // Euro
     "£": "GBP", "GBP": "GBP", // British Pound
-    "¥": "JPY", "JPY": "JPY", // Japanese Yen
+    "¥": "JPY", "JPY": "JPY", "JP¥": "JPY", // Japanese Yen
     "₩": "KRW", "KRW": "KRW", // South Korean Won
     "₹": "INR", "INR": "INR", // Indian Rupee
     "C$": "CAD", "CAD": "CAD", // Canadian Dollar
@@ -121,13 +122,6 @@ function splitCurrency(amountStr: string): { amount: number; currency: string | 
 }
 
 
-function makeId(length: number = 6) {
-    let txt = '';
-    let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_';
-
-    for (let i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-
-    return txt;
+function makeId() {
+    return uuidv4();
 }
