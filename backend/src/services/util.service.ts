@@ -1,6 +1,8 @@
 import Axios from "axios"
 const { v4: uuidv4 } = require('uuid');
 const { Logger } = require('../logger');
+const { ObjectId } = require('mongodb')
+const dbService = require('./db.service')
 
 module.exports = {
     makeId,
@@ -82,16 +84,22 @@ let CurrenciesRatesLastUpdate: number = 0;
 
 
 async function getCurrencies() {
-    if (Date.now() - CurrenciesRatesLastUpdate < (1000 * 60 * 60 * 24)) { // 1 day
+    const collection = await dbService.getCollection('currencies');
+    const currenciesObject = await collection.findOne({});
+
+    if (!!currenciesObject?.lastFetched && (Date.now() - currenciesObject?.lastFetched < (1000 * 60 * 60 * 24))) { // 1 day
         Logger.info("Fetched currencies from cache");
-        return CurrenciesRates;
+        return currenciesObject?.rates;
     } else {
         const response = await Axios.get(currencyURL);
         const currencies = response?.data?.rates ?? {};
         CurrenciesRatesLastUpdate = Date.now();
 
         CurrenciesRates = currencies;
-        Logger.info("Fetched currencies from internet");
+        Logger.info("Fetched currencies from internet, updating DB");
+
+        collection.updateOne({ '_id': ObjectId(currenciesObject._id) }, { $set: { lastFetched: Date.now(), rates: currencies } });
+
         return CurrenciesRates;
     }
 }
