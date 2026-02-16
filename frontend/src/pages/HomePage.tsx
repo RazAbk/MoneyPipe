@@ -219,7 +219,7 @@ export const HomePage = () => {
                     <h4 className="form-state-header">{formState === 'signup' ? 'Have an account? ' : `Don't have an account? `}<span onClick={switchFormState}><b>{formState === 'signup' ? 'Login' : 'Signup'}</b></span></h4>
                     <h2 className="form-title">{formState === 'signup' ? 'Create account' : 'Login'}</h2>
                     <Box onChange={handleChange} component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }} autoComplete="off">
-                        <TextField autoComplete="off" label="username" error={errors.userName} name="userName" value={formData.userName} helperText={errors.userName ? 'invalid username' : ''} />
+                        <TextField autoComplete="off" label="user name" error={errors.userName} name="userName" value={formData.userName} helperText={errors.userName ? 'invalid username' : ''} />
                         {formState === 'signup' && <div className="name-fields">
                             <TextField autoComplete="off" label="first name" error={errors.firstName} name="firstName" value={formData.firstName} />
                             <TextField autoComplete="off" label="last name" error={errors.lastName} name="lastName" value={formData.lastName} />
