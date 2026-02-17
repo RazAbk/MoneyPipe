@@ -6,13 +6,29 @@ import { useDispatch, useSelector } from 'react-redux'
 import { signup, login, getUser } from '../store/actions/user.action'
 import { setLoader } from '../store/actions/app-state.action'
 import { RootState } from '../store/store'
-import { GoogleLogin } from 'react-google-login';
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import { alertMessage, alertTitleMessage } from '../services/alert.service'
 import graphSvg from '../assets/images/graphssvg.svg'
+import { jwtDecode } from "jwt-decode";
+
 
 interface IErrors {
     [key: string]: boolean
 }
+
+
+type GoogleIdTokenPayload = {
+    sub: string;            // stable Google user id (use instead of googleId)
+    email: string;
+    given_name?: string;
+    family_name?: string;
+    picture?: string;
+    name?: string;
+    exp?: number;
+    iat?: number;
+    aud?: string;
+    iss?: string;
+  };
 
 export const HomePage = () => {
 
@@ -65,8 +81,8 @@ export const HomePage = () => {
         const isValidUserName = userNameTest.test(formData.userName)
         const isValidPassword = passwordTests.every(test => test.test(formData.password))
 
-        if(!isValidPassword) alertTitleMessage('Invalid password', 'Must include at least 8 characters: upper and lower case, symbols and numbers', 'danger', 12000)
-        if(!isValidUserName) alertTitleMessage('Invalid username', 'Must include at least 5 characters: letters, numbers and symbols', 'danger', 12000)
+        if (!isValidPassword) alertTitleMessage('Invalid password', 'Must include at least 8 characters: upper and lower case, symbols and numbers', 'danger', 12000)
+        if (!isValidUserName) alertTitleMessage('Invalid username', 'Must include at least 5 characters: letters, numbers and symbols', 'danger', 12000)
 
         errorsCopy.userName = !formData.userName ? true : false
 
@@ -145,15 +161,23 @@ export const HomePage = () => {
         }
     }
 
-    const handleGoogleLogin = (responseGoogle: any) => {
+    const handleGoogleLogin = (credResp: CredentialResponse) => {
+        const idToken = credResp.credential;
+        if (!idToken) {
+          setErrors((prev) => ({ ...prev, userName: true, password: true }));
+          return;
+        }
+
+
+        const payload = jwtDecode<GoogleIdTokenPayload>(idToken);
 
         const credendials = {
-            userName: responseGoogle.profileObj.email,
-            firstName: responseGoogle.profileObj.givenName,
-            lastName: responseGoogle.profileObj.familyName,
-            password: responseGoogle.profileObj.googleId,
-            picture: responseGoogle.profileObj.imageUrl,
-            isGoogle: true
+          userName: payload.email,
+          firstName: payload.given_name || "",
+          lastName: payload.family_name || "",
+          password: payload.sub,          // replaces responseGoogle.profileObj.googleId
+          picture: payload.picture || "",
+          isGoogle: true,
         };
 
 
@@ -230,11 +254,9 @@ export const HomePage = () => {
                     </Box>
                     <hr></hr>
                     <GoogleLogin
-                        clientId={googleClientId}
-                        buttonText='Continue with Google'
                         onSuccess={handleGoogleLogin}
-                        onFailure={handleGoogleFail}
-                        cookiePolicy={'single_host_origin'}
+                        onError={handleGoogleFail}
+                        useOneTap={false}
                     />
                 </div>
             </div>
